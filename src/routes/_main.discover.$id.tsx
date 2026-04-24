@@ -4,6 +4,16 @@ import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetail
 import { CompatibilityPill } from "@/components/discover/profile/CompatibilityPill";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
+import { IntentCard } from "@/components/discover/profile/cards/IntentCard";
+import { RelationalSnapshotCard } from "@/components/discover/profile/cards/RelationalSnapshotCard";
+import { AboutMeCard } from "@/components/discover/profile/cards/AboutMeCard";
+import { CompatibilityOverviewCard } from "@/components/discover/profile/cards/CompatibilityOverviewCard";
+import { AIInsightCard } from "@/components/discover/profile/cards/AIInsightCard";
+import { HowIShowUpCard } from "@/components/discover/profile/cards/HowIShowUpCard";
+import { RelationalInsightsCard } from "@/components/discover/profile/cards/RelationalInsightsCard";
+import { BigFiveSnapshotCard } from "@/components/discover/profile/cards/BigFiveSnapshotCard";
+import { WhatLightsThemUpCard } from "@/components/discover/profile/cards/WhatLightsThemUpCard";
+import { LifestyleDetailsCard } from "@/components/discover/profile/cards/LifestyleDetailsCard";
 import {
   Sheet,
   SheetContent,
@@ -110,20 +120,32 @@ function ProfileDetailScreen() {
 
         <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
 
-        {/* Pass 2 fills these — placeholders keep layout sane during scroll-test. */}
-        <DetailCardPlaceholder label="Intent" />
+        <IntentCard
+          primary={profile.intent.primary}
+          relationshipStyle={profile.intent.relationshipStyle}
+        />
         <ProfilePhoto hue={profile.photos[1].hue} alt={profile.photos[1].alt} />
-        <DetailCardPlaceholder label="Relational Snapshot" />
-        <DetailCardPlaceholder label="About Me" />
-        <DetailCardPlaceholder label="Compatibility Overview" />
-        <DetailCardPlaceholder label="Personalised AI Insight" />
+        <RelationalSnapshotCard
+          empathy={profile.empathy}
+          communication={profile.communication}
+          onInfo={openInfo}
+        />
+        <AboutMeCard bio={profile.bio} seeking={profile.seeking} />
+        <CompatibilityOverviewCard values={profile.compatibilityOverview} />
+        <AIInsightCard insight={profile.aiInsight} />
         <ProfilePhoto hue={profile.photos[2].hue} alt={profile.photos[2].alt} />
-        <DetailCardPlaceholder label="How I show up in relationships" />
-        <DetailCardPlaceholder label="Relational Insights" />
+        <HowIShowUpCard text={profile.howIShowUp} />
+        <RelationalInsightsCard
+          connectionLanguage={profile.connectionLanguage}
+          attachmentStyle={profile.attachmentStyle}
+        />
         <ProfilePhoto hue={profile.photos[3].hue} alt={profile.photos[3].alt} />
-        <DetailCardPlaceholder label="Big Five Snapshot" />
-        <DetailCardPlaceholder label="What lights them up" />
-        <DetailCardPlaceholder label="Lifestyle & Details" />
+        <BigFiveSnapshotCard values={profile.bigFive} />
+        <WhatLightsThemUpCard
+          interests={profile.interests}
+          starters={profile.conversationStarters}
+        />
+        <LifestyleDetailsCard data={profile.lifestyle} />
       </div>
 
       <Sheet open={info !== null} onOpenChange={(o) => !o && setInfo(null)}>
@@ -142,17 +164,5 @@ function ProfileDetailScreen() {
         </SheetContent>
       </Sheet>
     </div>
-  );
-}
-
-/** Phase-1 placeholder. Pass 2 replaces each with the real card. */
-function DetailCardPlaceholder({ label }: { label: string }) {
-  return (
-    <section className="rounded-[20px] bg-paper p-4 shadow-elev-1">
-      <h2 className="font-display text-[15px] font-semibold text-plum-700">{label}</h2>
-      <p className="mt-1 font-body text-[12px] italic text-stone">
-        Card body lands in Pass 2.
-      </p>
-    </section>
   );
 }

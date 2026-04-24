@@ -136,7 +136,7 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
       "You both tend to check in before big plans, which supports secure pacing. Try a low-stakes coffee plan this week and reflect after.",
 
     howIShowUp:
-      "I communicate directly and check in regularly. I appreciate honest conversation and making space for both other's solo time.",
+      "I communicate directly and check in regularly. I appreciate shared calendars and making space for each other's solo time.",
 
     connectionLanguage: {
       primary: "Quality Time",
