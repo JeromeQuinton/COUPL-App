@@ -79,7 +79,7 @@ export function MoreFiltersSheet({ open, onOpenChange, tier, onUpgrade }: Props)
 
         <Section title="Depth Unlocks required" paid isFree={isFree}>
           <PaidPlaceholderRow
-            label="Only show people with matched Depth Unlocks"
+            label="Only show people with reciprocal Depth Unlocks"
             disabled={isFree}
           />
         </Section>
