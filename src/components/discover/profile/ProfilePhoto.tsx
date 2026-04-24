@@ -2,6 +2,8 @@
  * Full-bleed photo placeholder (lavender/blush gradient).
  * Phase 1 only — Phase 4 swaps `hue` for real uploads.
  */
+import { useState } from "react";
+
 export function ProfilePhoto({
   hue,
   alt,
@@ -15,13 +17,16 @@ export function ProfilePhoto({
   /** Optional image URL/path. When omitted, the lavender gradient is used as a fallback. */
   src?: string;
 }) {
+  const [errored, setErrored] = useState(false);
+  const showImage = src && !errored;
   return (
     <div className="relative -mx-4 overflow-hidden">
-      {src ? (
+      {showImage ? (
         <img
           src={src}
           alt={alt}
           loading="lazy"
+          onError={() => setErrored(true)}
           className="aspect-[4/5] w-full object-cover"
           style={{
             background: `linear-gradient(150deg, ${hue} 0%, var(--lavender-100) 55%, #E8D5EC 100%)`,
