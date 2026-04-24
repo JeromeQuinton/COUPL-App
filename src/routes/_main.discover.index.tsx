@@ -23,7 +23,7 @@ import { capForTier, useUserTier } from "@/lib/user_tier";
 import { useUserPreferences } from "@/lib/user_preferences";
 import { discoverSessionState, statusFor } from "@/lib/discover_session_state";
 
-export const Route = createFileRoute("/_main/discover")({
+export const Route = createFileRoute("/_main/discover/")({
   head: () => ({
     meta: [
       { title: "Discover — COUPL" },

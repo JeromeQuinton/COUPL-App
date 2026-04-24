@@ -16,9 +16,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainGrowthRouteImport } from './routes/_main.growth'
-import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
 import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
 import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
+import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.index'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -54,11 +54,6 @@ const MainGrowthRoute = MainGrowthRouteImport.update({
   path: '/growth',
   getParentRoute: () => MainRoute,
 } as any)
-const MainDiscoverRoute = MainDiscoverRouteImport.update({
-  id: '/discover',
-  path: '/discover',
-  getParentRoute: () => MainRoute,
-} as any)
 const MainConnectionsRoute = MainConnectionsRouteImport.update({
   id: '/connections',
   path: '/connections',
@@ -69,10 +64,15 @@ const AuthSigninRoute = AuthSigninRouteImport.update({
   path: '/signin',
   getParentRoute: () => AuthRoute,
 } as any)
+const MainDiscoverIndexRoute = MainDiscoverIndexRouteImport.update({
+  id: '/discover/',
+  path: '/discover/',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => MainDiscoverRoute,
+  id: '/discover/$id',
+  path: '/discover/$id',
+  getParentRoute: () => MainRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -80,22 +80,22 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/signin': typeof AuthSigninRoute
   '/connections': typeof MainConnectionsRoute
-  '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/discover/': typeof MainDiscoverIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRoute
   '/signin': typeof AuthSigninRoute
   '/connections': typeof MainConnectionsRoute
-  '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/discover': typeof MainDiscoverIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -105,11 +105,11 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/_auth/signin': typeof AuthSigninRoute
   '/_main/connections': typeof MainConnectionsRoute
-  '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRoute
   '/_main/home': typeof MainHomeRoute
   '/_main/profile': typeof MainProfileRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
+  '/_main/discover/': typeof MainDiscoverIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -118,22 +118,22 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/signin'
     | '/connections'
-    | '/discover'
     | '/growth'
     | '/home'
     | '/profile'
     | '/discover/$id'
+    | '/discover/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/onboarding'
     | '/signin'
     | '/connections'
-    | '/discover'
     | '/growth'
     | '/home'
     | '/profile'
     | '/discover/$id'
+    | '/discover'
   id:
     | '__root__'
     | '/'
@@ -142,11 +142,11 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/_auth/signin'
     | '/_main/connections'
-    | '/_main/discover'
     | '/_main/growth'
     | '/_main/home'
     | '/_main/profile'
     | '/_main/discover/$id'
+    | '/_main/discover/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -207,13 +207,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainGrowthRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/discover': {
-      id: '/_main/discover'
-      path: '/discover'
-      fullPath: '/discover'
-      preLoaderRoute: typeof MainDiscoverRouteImport
-      parentRoute: typeof MainRoute
-    }
     '/_main/connections': {
       id: '/_main/connections'
       path: '/connections'
@@ -228,12 +221,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSigninRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_main/discover/': {
+      id: '/_main/discover/'
+      path: '/discover'
+      fullPath: '/discover/'
+      preLoaderRoute: typeof MainDiscoverIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/discover/$id': {
       id: '/_main/discover/$id'
-      path: '/$id'
+      path: '/discover/$id'
       fullPath: '/discover/$id'
       preLoaderRoute: typeof MainDiscoverIdRouteImport
-      parentRoute: typeof MainDiscoverRoute
+      parentRoute: typeof MainRoute
     }
   }
 }
@@ -248,32 +248,22 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
-interface MainDiscoverRouteChildren {
-  MainDiscoverIdRoute: typeof MainDiscoverIdRoute
-}
-
-const MainDiscoverRouteChildren: MainDiscoverRouteChildren = {
-  MainDiscoverIdRoute: MainDiscoverIdRoute,
-}
-
-const MainDiscoverRouteWithChildren = MainDiscoverRoute._addFileChildren(
-  MainDiscoverRouteChildren,
-)
-
 interface MainRouteChildren {
   MainConnectionsRoute: typeof MainConnectionsRoute
-  MainDiscoverRoute: typeof MainDiscoverRouteWithChildren
   MainGrowthRoute: typeof MainGrowthRoute
   MainHomeRoute: typeof MainHomeRoute
   MainProfileRoute: typeof MainProfileRoute
+  MainDiscoverIdRoute: typeof MainDiscoverIdRoute
+  MainDiscoverIndexRoute: typeof MainDiscoverIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
   MainConnectionsRoute: MainConnectionsRoute,
-  MainDiscoverRoute: MainDiscoverRouteWithChildren,
   MainGrowthRoute: MainGrowthRoute,
   MainHomeRoute: MainHomeRoute,
   MainProfileRoute: MainProfileRoute,
+  MainDiscoverIdRoute: MainDiscoverIdRoute,
+  MainDiscoverIndexRoute: MainDiscoverIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
