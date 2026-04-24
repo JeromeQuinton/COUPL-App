@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { SwipeCard } from "@/components/discover/SwipeCard";
-import { DiscoverActions } from "@/components/discover/DiscoverActions";
+import { ProfileView } from "@/components/discover/ProfileView";
+import { ProfileActions } from "@/components/discover/ProfileActions";
+import type { MetricPrecision } from "@/components/discover/MetricDisplay";
 
 export const Route = createFileRoute("/_main/discover")({
   head: () => ({
@@ -18,7 +19,17 @@ export const Route = createFileRoute("/_main/discover")({
 
 type ViewState = "loading" | "ready" | "empty" | "error";
 
-// Phase 1: hard-coded sample data. No backend, no persistence.
+// Phase 1: hard-coded stub data. No backend, no persistence.
+// Per DR-009 these numbers are NOT shipped scores — they are placeholder fixtures
+// for layout. Phase 4 replaces SAMPLE with computed values from
+// pair_compatibility (see DR-017).
+//
+// Per DR-013, display precision is decided by the weakest link between the two
+// users' assessment depth. `precisionMode` here is the rendering toggle that
+// Phase 4 will switch per-pair. Default 'exact' so the reference visual still
+// reads as designed.
+const precisionMode: MetricPrecision = "exact";
+
 const SAMPLE = [
   {
     id: "p1",
@@ -55,10 +66,13 @@ const SAMPLE = [
 
 function DiscoverScreen() {
   const [state] = useState<ViewState>("ready");
-  const [index, setIndex] = useState(0);
-  const card = SAMPLE[index];
+  // Per DR-006/DR-007 this is NOT a deck index. It's a pointer to the single
+  // profile currently being viewed; on action, the next profile replaces it
+  // in place on the same route. No transition, no swipe, no stack.
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const profile = SAMPLE[currentIndex];
 
-  const advance = () => setIndex((i) => i + 1);
+  const loadNextProfile = () => setCurrentIndex((i) => i + 1);
 
   return (
     <div
@@ -73,22 +87,22 @@ function DiscoverScreen() {
       <div className="flex flex-1 flex-col">
         {state === "loading" && <LoadingState />}
         {state === "error" && <ErrorState />}
-        {state === "ready" && !card && <EmptyState />}
-        {state === "ready" && card && (
+        {state === "ready" && !profile && <EmptyState />}
+        {state === "ready" && profile && (
           <>
-            <SwipeCard
-              name={card.name}
-              age={card.age}
-              city={card.city}
-              prompt={card.prompt}
-              answer={card.answer}
-              compatibility={card.compatibility}
-              imageHue={card.imageHue}
+            <ProfileView
+              name={profile.name}
+              age={profile.age}
+              city={profile.city}
+              prompt={profile.prompt}
+              answer={profile.answer}
+              compatibility={profile.compatibility}
+              precisionMode={precisionMode}
+              imageHue={profile.imageHue}
             />
-            <DiscoverActions
-              onPass={advance}
-              onSaveForLater={advance}
-              onConnect={advance}
+            <ProfileActions
+              onNotToday={loadNextProfile}
+              onInviteToChat={loadNextProfile}
             />
           </>
         )}
