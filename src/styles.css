@@ -5,17 +5,25 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
+ * COUPL design system — sourced from
+ * COUPL_Design_Tokens_and_Lovable.docx (April 2026).
+ * The token doc is the single source of truth. Hex values are preserved
+ * exactly as specified — do not convert to oklch and do not invent values.
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
+ * Token namespace mapping (doc → CSS variable):
+ *   brand.plum.500       → --plum-500
+ *   brand.plum.700       → --plum-700
+ *   brand.plum.300       → --plum-300
+ *   accent.lavender.100  → --lavender-100
+ *   accent.lavender.50   → --lavender-50
+ *   accent.beeswax.100   → --beeswax-100
+ *   accent.beeswax.300   → --beeswax-300
+ *   neutral.50..900      → --ink, --slate, --stone, --line, --cloud, --paper
+ *   status.*             → --success, --caution, --danger, --info
  *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Semantic shadcn aliases (--background, --primary, etc.) are mapped onto
+ * the COUPL palette so shadcn primitives inherit the brand without
+ * overrides.
  */
 
 @theme inline {
@@ -59,77 +67,118 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* COUPL brand color tokens (exposed as Tailwind utilities) */
+  --color-plum-500: var(--plum-500);
+  --color-plum-700: var(--plum-700);
+  --color-plum-300: var(--plum-300);
+  --color-lavender-100: var(--lavender-100);
+  --color-lavender-50: var(--lavender-50);
+  --color-beeswax-100: var(--beeswax-100);
+  --color-beeswax-300: var(--beeswax-300);
+  --color-ink: var(--ink);
+  --color-slate: var(--slate);
+  --color-stone: var(--stone);
+  --color-line: var(--line);
+  --color-cloud: var(--cloud);
+  --color-paper: var(--paper);
+  --color-success: var(--success);
+  --color-caution: var(--caution);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  /* Typography */
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-sans: Arial, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", Menlo, Consolas, monospace;
+
+  /* COUPL motion tokens */
+  --ease-coupl: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  /* Radius scale (token doc §2.5) */
+  --radius-coupl-sm: 8px;   /* radius.sm — chips, badges, inputs */
+  --radius-coupl-md: 12px;  /* radius.md — buttons, small cards */
+  --radius-coupl-lg: 16px;  /* radius.lg — standard cards */
+  --radius-coupl-xl: 24px;  /* radius.xl — sheets, major surfaces */
+  --radius-full: 9999px;
+  --radius: var(--radius-coupl-md); /* shadcn default → buttons */
+
+  /* COUPL palette — exact hex from §2.1 */
+  --plum-500: #5B2B66;
+  --plum-700: #3D1A47;
+  --plum-300: #8F5E9C;
+  --lavender-100: #F3E8F5;
+  --lavender-50: #FAF5FB;
+  --beeswax-100: #FFF9E6;
+  --beeswax-300: #FFE9A3;
+  --ink: #1A1A1A;
+  --slate: #666666;
+  --stone: #888888;
+  --line: #CCCCCC;
+  --cloud: #F7F7F7;
+  --paper: #FFFFFF;
+  --success: #2F8F46;
+  --caution: #D47F1E;
+  --danger: #B8312F;
+  --info: #2F6FB8;
+
+  /* Elevation tokens (§2.5) — plum-tinted shadows */
+  --elevation-1: 0 1px 2px rgba(91, 43, 102, 0.08);
+  --elevation-2: 0 4px 12px rgba(91, 43, 102, 0.12);
+  --elevation-3: 0 12px 32px rgba(91, 43, 102, 0.18);
+
+  /* Spacing scale (§2.4, 8pt baseline) — exposed for ad-hoc use.
+     Prefer Tailwind's spacing utilities (p-2 = 8px etc.) which already
+     align with this scale. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Semantic shadcn aliases mapped onto COUPL palette */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--plum-500);
+  --primary-foreground: var(--paper);
+  --secondary: var(--lavender-100);
+  --secondary-foreground: var(--plum-700);
+  --muted: var(--cloud);
+  --muted-foreground: var(--slate);
+  --accent: var(--lavender-100);
+  --accent-foreground: var(--plum-700);
+  --destructive: var(--danger);
+  --destructive-foreground: var(--paper);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--plum-300);
+  --chart-1: var(--plum-500);
+  --chart-2: var(--plum-300);
+  --chart-3: var(--beeswax-300);
+  --chart-4: var(--info);
+  --chart-5: var(--success);
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--plum-500);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--lavender-100);
+  --sidebar-accent-foreground: var(--plum-700);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--plum-300);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Dark mode tokens are out of scope for Phase 1 per build doctrine
+     (no light/dark toggle). Re-introduce when explicitly scoped. */
 }
 
 @layer base {
@@ -140,5 +189,42 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+  }
+}
+
+/*
+ * COUPL typography utilities (token doc §2.2).
+ * Sizes follow the spec: pt values rendered as px (1pt ≈ 1px on web baseline).
+ * Mobile sizes apply at viewport < 640px.
+ */
+@layer utilities {
+  .text-display-xxl { font-family: var(--font-display); font-size: 56px; line-height: 1.05; letter-spacing: -0.02em; }
+  .text-display-xl  { font-family: var(--font-display); font-size: 32px; line-height: 1.15; letter-spacing: -0.015em; }
+  .text-h1          { font-family: var(--font-display); font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; }
+  .text-h2          { font-family: var(--font-display); font-size: 16px; line-height: 1.3;  letter-spacing: -0.005em; }
+  .text-h3          { font-family: var(--font-display); font-size: 14px; line-height: 1.35; }
+  .text-body-lg     { font-family: var(--font-sans);    font-size: 16px; line-height: 1.5; }
+  .text-body-md     { font-family: var(--font-sans);    font-size: 14px; line-height: 1.5; }
+  .text-body-sm     { font-family: var(--font-sans);    font-size: 12px; line-height: 1.45; }
+  .text-mono-sm     { font-family: var(--font-mono);    font-size: 12px; line-height: 1.4; }
+
+  @media (min-width: 640px) {
+    .text-h1 { font-size: 24px; }
+    .text-h2 { font-size: 18px; }
+    .text-body-lg { font-size: 17px; }
+  }
+
+  .shadow-elev-1 { box-shadow: var(--elevation-1); }
+  .shadow-elev-2 { box-shadow: var(--elevation-2); }
+  .shadow-elev-3 { box-shadow: var(--elevation-3); }
   }
 }
