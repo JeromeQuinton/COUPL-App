@@ -115,6 +115,7 @@ function ProfileDetailScreen() {
         <ProfilePhoto
           hue={profile.photos[0].hue}
           alt={profile.photos[0].alt}
+          src={profile.photos[0].src}
           trustScore={profile.trustScore}
         />
 
@@ -124,7 +125,7 @@ function ProfileDetailScreen() {
           primary={profile.intent.primary}
           relationshipStyle={profile.intent.relationshipStyle}
         />
-        <ProfilePhoto hue={profile.photos[1].hue} alt={profile.photos[1].alt} />
+        <ProfilePhoto hue={profile.photos[1].hue} alt={profile.photos[1].alt} src={profile.photos[1].src} />
         <RelationalSnapshotCard
           empathy={profile.empathy}
           communication={profile.communication}
@@ -133,13 +134,13 @@ function ProfileDetailScreen() {
         <AboutMeCard bio={profile.bio} seeking={profile.seeking} />
         <CompatibilityOverviewCard values={profile.compatibilityOverview} />
         <AIInsightCard insight={profile.aiInsight} />
-        <ProfilePhoto hue={profile.photos[2].hue} alt={profile.photos[2].alt} />
+        <ProfilePhoto hue={profile.photos[2].hue} alt={profile.photos[2].alt} src={profile.photos[2].src} />
         <HowIShowUpCard text={profile.howIShowUp} />
         <RelationalInsightsCard
           connectionLanguage={profile.connectionLanguage}
           attachmentStyle={profile.attachmentStyle}
         />
-        <ProfilePhoto hue={profile.photos[3].hue} alt={profile.photos[3].alt} />
+        <ProfilePhoto hue={profile.photos[3].hue} alt={profile.photos[3].alt} src={profile.photos[3].src} />
         <BigFiveSnapshotCard values={profile.bigFive} />
         <WhatLightsThemUpCard
           interests={profile.interests}

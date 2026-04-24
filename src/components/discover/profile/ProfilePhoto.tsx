@@ -6,22 +6,37 @@ export function ProfilePhoto({
   hue,
   alt,
   trustScore,
+  src,
 }: {
   hue: string;
   alt: string;
   /** Optional Trust Score overlay pill (top-right). Only on the primary photo. */
   trustScore?: number;
+  /** Optional image URL/path. When omitted, the lavender gradient is used as a fallback. */
+  src?: string;
 }) {
   return (
     <div className="relative -mx-4 overflow-hidden">
-      <div
-        role="img"
-        aria-label={alt}
-        className="aspect-[4/5] w-full"
-        style={{
-          background: `linear-gradient(150deg, ${hue} 0%, var(--lavender-100) 55%, #E8D5EC 100%)`,
-        }}
-      />
+      {src ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="aspect-[4/5] w-full object-cover"
+          style={{
+            background: `linear-gradient(150deg, ${hue} 0%, var(--lavender-100) 55%, #E8D5EC 100%)`,
+          }}
+        />
+      ) : (
+        <div
+          role="img"
+          aria-label={alt}
+          className="aspect-[4/5] w-full"
+          style={{
+            background: `linear-gradient(150deg, ${hue} 0%, var(--lavender-100) 55%, #E8D5EC 100%)`,
+          }}
+        />
+      )}
       {typeof trustScore === "number" ? (
         <span
           className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-paper/90 px-3 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"

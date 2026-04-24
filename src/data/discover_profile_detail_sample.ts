@@ -23,7 +23,7 @@ export type ProfileDetail = {
   intent: { primary: string; relationshipStyle: string };
 
   /** 4 portrait slots — Phase 1 uses lavender/blush gradient seeds. */
-  photos: { hue: string; alt: string }[];
+  photos: { hue: string; alt: string; src?: string }[];
 
   /** Relational Snapshot — pair-level metrics. */
   empathy: number;
@@ -110,10 +110,10 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
     intent: { primary: "Long-term", relationshipStyle: "Relationship" },
 
     photos: [
-      { hue: "#F7E1D4", alt: "Soft warm portrait placeholder" },
-      { hue: "#EFE2F4", alt: "Lavender portrait placeholder" },
-      { hue: "#FCEEF0", alt: "Blush portrait placeholder" },
-      { hue: "#E8D5EC", alt: "Plum tint portrait placeholder" },
+      { hue: "#F7E1D4", alt: "Maya, outdoors with city skyline behind her", src: "/images/maya/1.jpg" },
+      { hue: "#EFE2F4", alt: "Maya at a café, white linen shirt", src: "/images/maya/2.jpg" },
+      { hue: "#FCEEF0", alt: "Maya on a London street, soft cardigan", src: "/images/maya/3.jpg" },
+      { hue: "#E8D5EC", alt: "Maya by the river, sage green blouse", src: "/images/maya/4.jpg" },
     ],
 
     empathy: 68,
