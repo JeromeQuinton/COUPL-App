@@ -44,6 +44,12 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@COUPL" },
+      { name: "twitter:title", content: "COUPL — Mindful dating" },
+      { name: "description", content: "A mindful dating app focused on psychology and user agency for meaningful connections." },
+      { property: "og:description", content: "A mindful dating app focused on psychology and user agency for meaningful connections." },
+      { name: "twitter:description", content: "A mindful dating app focused on psychology and user agency for meaningful connections." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d408333-e558-40be-84d5-a132eba8e26f/id-preview-bba6c186--e37ce557-fa9e-4e0b-a56e-d6f74ef12e63.lovable.app-1777066947007.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d408333-e558-40be-84d5-a132eba8e26f/id-preview-bba6c186--e37ce557-fa9e-4e0b-a56e-d6f74ef12e63.lovable.app-1777066947007.png" },
     ],
     links: [
       {
