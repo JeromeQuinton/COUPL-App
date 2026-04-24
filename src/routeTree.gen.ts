@@ -9,38 +9,95 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MainRouteImport } from './routes/_main'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MainProfileRouteImport } from './routes/_main.profile'
+import { Route as MainHomeRouteImport } from './routes/_main.home'
+import { Route as MainGrowthRouteImport } from './routes/_main.growth'
+import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
 
+const MainRoute = MainRouteImport.update({
+  id: '/_main',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MainProfileRoute = MainProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainHomeRoute = MainHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainGrowthRoute = MainGrowthRouteImport.update({
+  id: '/growth',
+  path: '/growth',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainConnectionsRoute = MainConnectionsRouteImport.update({
+  id: '/connections',
+  path: '/connections',
+  getParentRoute: () => MainRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/connections': typeof MainConnectionsRoute
+  '/growth': typeof MainGrowthRoute
+  '/home': typeof MainHomeRoute
+  '/profile': typeof MainProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/connections': typeof MainConnectionsRoute
+  '/growth': typeof MainGrowthRoute
+  '/home': typeof MainHomeRoute
+  '/profile': typeof MainProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_main': typeof MainRouteWithChildren
+  '/_main/connections': typeof MainConnectionsRoute
+  '/_main/growth': typeof MainGrowthRoute
+  '/_main/home': typeof MainHomeRoute
+  '/_main/profile': typeof MainProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/connections' | '/growth' | '/home' | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/connections' | '/growth' | '/home' | '/profile'
+  id:
+    | '__root__'
+    | '/'
+    | '/_main'
+    | '/_main/connections'
+    | '/_main/growth'
+    | '/_main/home'
+    | '/_main/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MainRoute: typeof MainRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_main': {
+      id: '/_main'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof MainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +105,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_main/profile': {
+      id: '/_main/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof MainProfileRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/home': {
+      id: '/_main/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof MainHomeRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/growth': {
+      id: '/_main/growth'
+      path: '/growth'
+      fullPath: '/growth'
+      preLoaderRoute: typeof MainGrowthRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/connections': {
+      id: '/_main/connections'
+      path: '/connections'
+      fullPath: '/connections'
+      preLoaderRoute: typeof MainConnectionsRouteImport
+      parentRoute: typeof MainRoute
+    }
   }
 }
 
+interface MainRouteChildren {
+  MainConnectionsRoute: typeof MainConnectionsRoute
+  MainGrowthRoute: typeof MainGrowthRoute
+  MainHomeRoute: typeof MainHomeRoute
+  MainProfileRoute: typeof MainProfileRoute
+}
+
+const MainRouteChildren: MainRouteChildren = {
+  MainConnectionsRoute: MainConnectionsRoute,
+  MainGrowthRoute: MainGrowthRoute,
+  MainHomeRoute: MainHomeRoute,
+  MainProfileRoute: MainProfileRoute,
+}
+
+const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MainRoute: MainRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
