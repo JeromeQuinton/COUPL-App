@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainGrowthRouteImport } from './routes/_main.growth'
+import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
 import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
 
 const MainRoute = MainRouteImport.update({
@@ -40,6 +41,11 @@ const MainGrowthRoute = MainGrowthRouteImport.update({
   path: '/growth',
   getParentRoute: () => MainRoute,
 } as any)
+const MainDiscoverRoute = MainDiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainConnectionsRoute = MainConnectionsRouteImport.update({
   id: '/connections',
   path: '/connections',
@@ -49,6 +55,7 @@ const MainConnectionsRoute = MainConnectionsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/connections': typeof MainConnectionsRoute
+  '/discover': typeof MainDiscoverRoute
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
@@ -56,6 +63,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/connections': typeof MainConnectionsRoute
+  '/discover': typeof MainDiscoverRoute
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
@@ -65,20 +73,28 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_main': typeof MainRouteWithChildren
   '/_main/connections': typeof MainConnectionsRoute
+  '/_main/discover': typeof MainDiscoverRoute
   '/_main/growth': typeof MainGrowthRoute
   '/_main/home': typeof MainHomeRoute
   '/_main/profile': typeof MainProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/connections' | '/growth' | '/home' | '/profile'
+  fullPaths:
+    | '/'
+    | '/connections'
+    | '/discover'
+    | '/growth'
+    | '/home'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/connections' | '/growth' | '/home' | '/profile'
+  to: '/' | '/connections' | '/discover' | '/growth' | '/home' | '/profile'
   id:
     | '__root__'
     | '/'
     | '/_main'
     | '/_main/connections'
+    | '/_main/discover'
     | '/_main/growth'
     | '/_main/home'
     | '/_main/profile'
@@ -126,6 +142,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainGrowthRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/discover': {
+      id: '/_main/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof MainDiscoverRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/connections': {
       id: '/_main/connections'
       path: '/connections'
@@ -138,6 +161,7 @@ declare module '@tanstack/react-router' {
 
 interface MainRouteChildren {
   MainConnectionsRoute: typeof MainConnectionsRoute
+  MainDiscoverRoute: typeof MainDiscoverRoute
   MainGrowthRoute: typeof MainGrowthRoute
   MainHomeRoute: typeof MainHomeRoute
   MainProfileRoute: typeof MainProfileRoute
@@ -145,6 +169,7 @@ interface MainRouteChildren {
 
 const MainRouteChildren: MainRouteChildren = {
   MainConnectionsRoute: MainConnectionsRoute,
+  MainDiscoverRoute: MainDiscoverRoute,
   MainGrowthRoute: MainGrowthRoute,
   MainHomeRoute: MainHomeRoute,
   MainProfileRoute: MainProfileRoute,
