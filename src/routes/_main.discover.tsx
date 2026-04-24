@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/sheet";
 import { SAMPLE_FEED } from "@/data/discover_feed_sample";
 import { capForTier, useUserTier } from "@/lib/user_tier";
+import { useUserPreferences } from "@/lib/user_preferences";
 
 export const Route = createFileRoute("/_main/discover")({
   head: () => ({
@@ -34,13 +35,10 @@ export const Route = createFileRoute("/_main/discover")({
   component: DiscoverScreen,
 });
 
-// Phase 1 stubs — onboarding-set defaults for Intent + Distance (DR-027).
-const ONBOARDING_INTENT = "Long-term";
-const ONBOARDING_DISTANCE_KM = 25;
-
 function DiscoverScreen() {
   const tier = useUserTier();
   const cap = capForTier(tier);
+  const prefs = useUserPreferences();
 
   const [activeToggles, setActiveToggles] = useState<Set<ToggleFilter>>(new Set());
   const [moreOpen, setMoreOpen] = useState(false);
@@ -106,8 +104,8 @@ function DiscoverScreen() {
 
         <FeedFilterRow
           tier={tier}
-          intentLabel={ONBOARDING_INTENT}
-          distanceLabel={`${ONBOARDING_DISTANCE_KM}km`}
+          intentLabel={prefs.intent}
+          distanceLabel={`${prefs.distanceKm}km`}
           activeToggles={activeToggles}
           onToggle={handleToggle}
           onLockedTap={handleLockedTap}

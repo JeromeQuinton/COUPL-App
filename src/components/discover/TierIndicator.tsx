@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import type { UserTier } from "@/lib/user_tier";
 
 /**
@@ -24,9 +25,10 @@ export function TierIndicator({
           <button
             type="button"
             onClick={onUpgrade}
-            className="font-medium text-plum-500 underline-offset-2 hover:underline"
+            className="inline-flex items-center gap-0.5 font-body text-[12px] font-semibold text-plum-500 underline decoration-plum-300/60 decoration-1 underline-offset-[3px] transition-colors hover:text-plum-700 hover:decoration-plum-500"
           >
             Upgrade
+            <ChevronRight aria-hidden width={12} height={12} strokeWidth={2.25} />
           </button>
         </>
       )}
