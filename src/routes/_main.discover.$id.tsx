@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { CompatibilityPill } from "@/components/discover/profile/CompatibilityPill";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
+import { IntentCard } from "@/components/discover/profile/cards/IntentCard";
+import { RelationalSnapshotCard } from "@/components/discover/profile/cards/RelationalSnapshotCard";
+import { AboutMeCard } from "@/components/discover/profile/cards/AboutMeCard";
+import { CompatibilityOverviewCard } from "@/components/discover/profile/cards/CompatibilityOverviewCard";
+import { AIInsightCard } from "@/components/discover/profile/cards/AIInsightCard";
+import { HowIShowUpCard } from "@/components/discover/profile/cards/HowIShowUpCard";
+import { RelationalInsightsCard } from "@/components/discover/profile/cards/RelationalInsightsCard";
+import { BigFiveSnapshotCard } from "@/components/discover/profile/cards/BigFiveSnapshotCard";
+import { WhatLightsThemUpCard } from "@/components/discover/profile/cards/WhatLightsThemUpCard";
+import { LifestyleDetailsCard } from "@/components/discover/profile/cards/LifestyleDetailsCard";
 import {
   Sheet,
   SheetContent,
@@ -53,6 +63,14 @@ function ProfileDetailScreen() {
   const router = useRouter();
   const profile = getProfileDetail(id);
   const [info, setInfo] = useState<InfoSheet>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const goBack = () => {
     if (window.history.length > 1) router.history.back();
@@ -83,13 +101,18 @@ function ProfileDetailScreen() {
           "linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%)",
       }}
     >
-      <ProfileDetailHeader
-        name={profile.name}
-        age={profile.age}
-        region={profile.region}
-        verified={profile.verified}
-        onBack={goBack}
-      />
+      <div
+        className="sticky top-0 z-30 -mx-4 transition-opacity duration-200"
+        style={{ opacity: scrolled ? 1 : 0.92 }}
+      >
+        <ProfileDetailHeader
+          name={profile.name}
+          age={profile.age}
+          region={profile.region}
+          verified={profile.verified}
+          onBack={goBack}
+        />
+      </div>
 
       <div className="flex flex-col gap-4 pt-4">
         <CompatibilityPill
@@ -110,20 +133,32 @@ function ProfileDetailScreen() {
 
         <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
 
-        {/* Pass 2 fills these — placeholders keep layout sane during scroll-test. */}
-        <DetailCardPlaceholder label="Intent" />
+        <IntentCard
+          primary={profile.intent.primary}
+          relationshipStyle={profile.intent.relationshipStyle}
+        />
         <ProfilePhoto hue={profile.photos[1].hue} alt={profile.photos[1].alt} />
-        <DetailCardPlaceholder label="Relational Snapshot" />
-        <DetailCardPlaceholder label="About Me" />
-        <DetailCardPlaceholder label="Compatibility Overview" />
-        <DetailCardPlaceholder label="Personalised AI Insight" />
+        <RelationalSnapshotCard
+          empathy={profile.empathy}
+          communication={profile.communication}
+          onInfo={openInfo}
+        />
+        <AboutMeCard bio={profile.bio} seeking={profile.seeking} />
+        <CompatibilityOverviewCard values={profile.compatibilityOverview} />
+        <AIInsightCard insight={profile.aiInsight} />
         <ProfilePhoto hue={profile.photos[2].hue} alt={profile.photos[2].alt} />
-        <DetailCardPlaceholder label="How I show up in relationships" />
-        <DetailCardPlaceholder label="Relational Insights" />
+        <HowIShowUpCard text={profile.howIShowUp} />
+        <RelationalInsightsCard
+          connectionLanguage={profile.connectionLanguage}
+          attachmentStyle={profile.attachmentStyle}
+        />
         <ProfilePhoto hue={profile.photos[3].hue} alt={profile.photos[3].alt} />
-        <DetailCardPlaceholder label="Big Five Snapshot" />
-        <DetailCardPlaceholder label="What lights them up" />
-        <DetailCardPlaceholder label="Lifestyle & Details" />
+        <BigFiveSnapshotCard values={profile.bigFive} />
+        <WhatLightsThemUpCard
+          interests={profile.interests}
+          starters={profile.conversationStarters}
+        />
+        <LifestyleDetailsCard data={profile.lifestyle} />
       </div>
 
       <Sheet open={info !== null} onOpenChange={(o) => !o && setInfo(null)}>
@@ -142,17 +177,5 @@ function ProfileDetailScreen() {
         </SheetContent>
       </Sheet>
     </div>
-  );
-}
-
-/** Phase-1 placeholder. Pass 2 replaces each with the real card. */
-function DetailCardPlaceholder({ label }: { label: string }) {
-  return (
-    <section className="rounded-[20px] bg-paper p-4 shadow-elev-1">
-      <h2 className="font-display text-[15px] font-semibold text-plum-700">{label}</h2>
-      <p className="mt-1 font-body text-[12px] italic text-stone">
-        Card body lands in Pass 2.
-      </p>
-    </section>
   );
 }
