@@ -147,6 +147,13 @@ function ProfileDetailScreen() {
           starters={profile.conversationStarters}
         />
         <LifestyleDetailsCard data={profile.lifestyle} />
+        {profile.photos[4] ? (
+          <ProfilePhoto
+            hue={profile.photos[4].hue}
+            alt={profile.photos[4].alt}
+            src={profile.photos[4].src}
+          />
+        ) : null}
       </div>
 
       <Sheet open={info !== null} onOpenChange={(o) => !o && setInfo(null)}>
