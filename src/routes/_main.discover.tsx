@@ -76,7 +76,7 @@ function DiscoverScreen() {
 
   return (
     <div
-      className="relative flex flex-col px-4 pt-4 pb-[120px]"
+      className="relative flex flex-col px-4 pt-4 pb-[180px]"
       style={{
         minHeight: "100dvh",
         paddingTop: "calc(env(safe-area-inset-top) + 1rem)",
