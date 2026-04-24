@@ -1,18 +1,11 @@
 import { Sparkles } from "lucide-react";
 
-const FILTERS = ["Intent", "Values", "Lifestyle", "Interests"] as const;
-export type FeedFilter = (typeof FILTERS)[number];
-
-type Props = {
-  activeFilter: FeedFilter;
-  onFilterChange: (f: FeedFilter) => void;
-};
-
 /**
- * FeedHeader — top of /discover (DR-019).
- * Filter chips are visually toggleable in Phase 1; they don't filter data yet.
+ * FeedHeader — top of /discover (DR-024).
+ * Filters now live in <FeedFilterRow />. This component renders the
+ * brand line, display heading, and the standing tone-setter pill.
  */
-export function FeedHeader({ activeFilter, onFilterChange }: Props) {
+export function FeedHeader() {
   return (
     <header className="flex flex-col gap-4">
       <div className="flex items-center justify-between gap-3">
@@ -30,30 +23,8 @@ export function FeedHeader({ activeFilter, onFilterChange }: Props) {
           Discover people who move at your pace.
         </h1>
         <p className="font-body text-[14px] leading-relaxed text-slate">
-          Explore matches aligned in intent, values, lifestyle, and interests.
+          Your feed of aligned profiles. Refine by intent, values, lifestyle, and pacing.
         </p>
-      </div>
-
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Feed filters">
-        {FILTERS.map((f) => {
-          const active = f === activeFilter;
-          return (
-            <button
-              key={f}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              onClick={() => onFilterChange(f)}
-              className={
-                active
-                  ? "rounded-full bg-plum-500 px-5 py-2 font-display text-[14px] font-medium text-paper shadow-elev-1"
-                  : "rounded-full border border-plum-300 bg-paper/60 px-5 py-2 font-display text-[14px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
-              }
-            >
-              {f}
-            </button>
-          );
-        })}
       </div>
     </header>
   );

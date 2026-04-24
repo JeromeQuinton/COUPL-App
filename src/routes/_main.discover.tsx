@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Users } from "lucide-react";
-import { FeedHeader, type FeedFilter } from "@/components/discover/FeedHeader";
-import { FeedSearchRow } from "@/components/discover/FeedSearchRow";
-import { UpdatingPanel } from "@/components/discover/UpdatingPanel";
+import { FeedHeader } from "@/components/discover/FeedHeader";
+import {
+  FeedFilterRow,
+  type LockedFilter,
+  type ToggleFilter,
+} from "@/components/discover/FeedFilterRow";
+import { MoreFiltersSheet } from "@/components/discover/MoreFiltersSheet";
+import { TierIndicator } from "@/components/discover/TierIndicator";
+import { EmptyStateFooter } from "@/components/discover/EmptyStateFooter";
 import { ProfileCard } from "@/components/discover/ProfileCard";
 import {
-  DAILY_QUEUE_SIZE,
-  SAMPLE_FEED,
-} from "@/data/discover_feed_sample";
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { SAMPLE_FEED } from "@/data/discover_feed_sample";
+import { capForTier, useUserTier } from "@/lib/user_tier";
 
 export const Route = createFileRoute("/_main/discover")({
   head: () => ({
@@ -16,27 +27,62 @@ export const Route = createFileRoute("/_main/discover")({
       { title: "Discover — COUPL" },
       {
         name: "description",
-        content: "Your curated daily profiles. Eight people, chosen with care.",
+        content: "Your ongoing feed of aligned profiles, refreshed daily.",
       },
     ],
   }),
   component: DiscoverScreen,
 });
 
+// Phase 1 stubs — onboarding-set defaults for Intent + Distance (DR-027).
+const ONBOARDING_INTENT = "Long-term";
+const ONBOARDING_DISTANCE_KM = 25;
+
 function DiscoverScreen() {
-  const [activeFilter, setActiveFilter] = useState<FeedFilter>("Intent");
-  const [query, setQuery] = useState("");
-  const [refreshing, setRefreshing] = useState(true);
+  const tier = useUserTier();
+  const cap = capForTier(tier);
 
-  // Phase 1: filters/search are visually toggleable but don't filter data (DR-019).
-  const profiles = SAMPLE_FEED.slice(0, DAILY_QUEUE_SIZE);
+  const [activeToggles, setActiveToggles] = useState<Set<ToggleFilter>>(new Set());
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
+  const [lockedTapped, setLockedTapped] = useState<LockedFilter | null>(null);
 
-  // Stub — Phase 4 wires real refresh.
-  const handleRefresh = () => {
-    setRefreshing((r) => !r);
+  const profiles = useMemo(() => SAMPLE_FEED.slice(0, cap), [cap]);
+
+  const handleToggle = (f: ToggleFilter) => {
+    setActiveToggles((prev) => {
+      const next = new Set(prev);
+      if (next.has(f)) {
+        next.delete(f);
+        return next;
+      }
+      // Free tier — single-select. Paid — stackable.
+      if (tier === "free") {
+        next.clear();
+      }
+      next.add(f);
+      return next;
+    });
   };
 
-  // Tap is a no-op until Prompt 3 builds /discover/[id] (DR-020).
+  const handleLockedTap = (f: LockedFilter) => {
+    if (tier === "free") {
+      setLockedTapped(f);
+      setUpgradeOpen(true);
+      return;
+    }
+    // Paid tier — Phase 4 picker. Stub no-op.
+    // eslint-disable-next-line no-console
+    console.log(`open picker for: ${f}`);
+  };
+
+  const handleUpgrade = () => {
+    setMoreOpen(false);
+    setLockedTapped(null);
+    setUpgradeOpen(true);
+  };
+
+  // Tap is a no-op until /discover/[id] lands.
   const handleOpen = (id: string) => {
     // eslint-disable-next-line no-console
     console.log(`profile card tapped: ${id}`);
@@ -54,16 +100,19 @@ function DiscoverScreen() {
       }}
     >
       <div className="flex flex-col gap-5">
-        <FeedHeader activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+        <FeedHeader />
 
-        <FeedSearchRow
-          query={query}
-          onQueryChange={setQuery}
-          refreshing={refreshing}
-          onRefresh={handleRefresh}
+        <TierIndicator tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
+
+        <FeedFilterRow
+          tier={tier}
+          intentLabel={ONBOARDING_INTENT}
+          distanceLabel={`${ONBOARDING_DISTANCE_KM}km`}
+          activeToggles={activeToggles}
+          onToggle={handleToggle}
+          onLockedTap={handleLockedTap}
+          onMoreFilters={() => setMoreOpen(true)}
         />
-
-        <UpdatingPanel />
 
         <section aria-labelledby="aligned-profiles-heading" className="flex flex-col gap-3">
           <div className="flex items-center justify-between gap-3">
@@ -79,12 +128,9 @@ function DiscoverScreen() {
                 id="aligned-profiles-heading"
                 className="font-display text-[17px] font-semibold text-plum-700"
               >
-                New Aligned Profiles · {activeFilter}
+                Aligned profiles
               </h2>
             </div>
-            <span className="rounded-full bg-lavender-100 px-3 py-1 font-body text-[12px] font-medium text-plum-700">
-              {profiles.length} updated
-            </span>
           </div>
 
           <ul className="flex flex-col gap-3">
@@ -96,28 +142,51 @@ function DiscoverScreen() {
           </ul>
         </section>
 
-        <p className="rounded-[16px] bg-paper/60 px-4 py-3 text-center font-body text-[13px] text-slate">
-          You've met today's {DAILY_QUEUE_SIZE}. Come back tomorrow for a fresh curation.
-        </p>
-
-        {/* Curated progress footer */}
-        <div className="flex items-center gap-3 pt-1">
-          <span className="font-body text-[12px] text-slate">Curated</span>
-          <div
-            className="h-1.5 flex-1 overflow-hidden rounded-full bg-lavender-100"
-            role="progressbar"
-            aria-valuenow={profiles.length}
-            aria-valuemin={0}
-            aria-valuemax={DAILY_QUEUE_SIZE}
-            aria-label="Today's curation progress"
-          >
-            <div
-              className="h-full rounded-full bg-plum-300"
-              style={{ width: `${(profiles.length / DAILY_QUEUE_SIZE) * 100}%` }}
-            />
-          </div>
-        </div>
+        <EmptyStateFooter tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
       </div>
+
+      <MoreFiltersSheet
+        open={moreOpen}
+        onOpenChange={setMoreOpen}
+        tier={tier}
+        onUpgrade={handleUpgrade}
+      />
+
+      <Sheet
+        open={upgradeOpen}
+        onOpenChange={(o) => {
+          setUpgradeOpen(o);
+          if (!o) setLockedTapped(null);
+        }}
+      >
+        <SheetContent
+          side="bottom"
+          className="rounded-t-[24px] border-t border-line bg-paper px-5 pb-8 pt-6"
+        >
+          <SheetHeader className="text-left">
+            <SheetTitle className="font-display text-[20px] font-semibold text-ink">
+              {lockedTapped
+                ? `Editing ${lockedTapped} is part of paid`
+                : "Unlock deeper alignment"}
+            </SheetTitle>
+            <SheetDescription className="font-body text-[13px] text-slate">
+              Paid tier lets you adjust Intent and Distance, stack filters, see up
+              to 40 aligned profiles a day, and apply depth filters and Modes.
+            </SheetDescription>
+          </SheetHeader>
+
+          <button
+            type="button"
+            onClick={() => setUpgradeOpen(false)}
+            className="mt-5 w-full rounded-full bg-plum-500 px-5 py-3 font-display text-[15px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+          >
+            See paid plans
+          </button>
+          <p className="pt-3 text-center font-body text-[12px] text-slate">
+            Billing wires up in a later phase.
+          </p>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
