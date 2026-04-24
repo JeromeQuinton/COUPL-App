@@ -29,14 +29,21 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "COUPL — Mindful dating" },
+      {
+        name: "description",
+        content:
+          "COUPL is a calm, psychology-informed dating app. No urgency, no scoring — meet people thoughtfully.",
+      },
+      { name: "author", content: "COUPL" },
+      { property: "og:title", content: "COUPL — Mindful dating" },
+      {
+        property: "og:description",
+        content: "A calm, psychology-informed way to meet people.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@COUPL" },
     ],
     links: [
       {
