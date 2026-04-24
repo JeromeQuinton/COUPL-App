@@ -1,24 +1,31 @@
 import { AlignmentPill } from "@/components/discover/AlignmentPill";
 import type { FeedProfile } from "@/data/discover_feed_sample";
+import type { DiscoverCardStatus } from "@/lib/discover_session_state";
 
 type Props = {
   profile: FeedProfile;
   onOpen: (id: string) => void;
+  status?: DiscoverCardStatus;
 };
 
 /**
  * ProfileCard — single row in the curated feed (DR-019).
- * Tap (card or "View") routes to /discover/[id] in Phase 4. For now
- * it logs and no-ops (route doesn't exist yet — scoped for next prompt).
+ * Tap routes to /discover/[id] (DR-020). Cards reflect Phase-1 session
+ * state — `dismissed` greys out, `invited` shows an "Invited" badge.
  */
-export function ProfileCard({ profile, onOpen }: Props) {
+export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
   const handle = () => onOpen(profile.id);
+  const isDismissed = status === "dismissed";
+  const isInvited = status === "invited";
 
   return (
     <button
       type="button"
       onClick={handle}
-      className="w-full rounded-[20px] bg-paper p-3 text-left shadow-elev-1 transition-colors hover:bg-lavender-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500"
+      aria-disabled={isDismissed}
+      className={`w-full rounded-[20px] bg-paper p-3 text-left shadow-elev-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500 ${
+        isDismissed ? "opacity-50 grayscale" : "hover:bg-lavender-50"
+      }`}
     >
       <div className="flex gap-3">
         {/* Photo placeholder */}
@@ -45,12 +52,22 @@ export function ProfileCard({ profile, onOpen }: Props) {
             {profile.observation}
           </p>
           <div className="mt-1 flex justify-end">
-            <span
-              className="rounded-full border border-plum-300 px-3 py-1 font-body text-[12px] font-medium text-plum-500"
-              aria-hidden
-            >
-              View
-            </span>
+            {isInvited ? (
+              <span className="rounded-full bg-plum-500 px-3 py-1 font-body text-[12px] font-medium text-paper">
+                Invited
+              </span>
+            ) : isDismissed ? (
+              <span className="rounded-full border border-line px-3 py-1 font-body text-[12px] font-medium text-stone">
+                Not today
+              </span>
+            ) : (
+              <span
+                className="rounded-full border border-plum-300 px-3 py-1 font-body text-[12px] font-medium text-plum-500"
+                aria-hidden
+              >
+                View
+              </span>
+            )}
           </div>
         </div>
       </div>
