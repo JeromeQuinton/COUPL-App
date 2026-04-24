@@ -101,18 +101,13 @@ function ProfileDetailScreen() {
           "linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%)",
       }}
     >
-      <div
-        className="sticky top-0 z-30 -mx-4 transition-opacity duration-200"
-        style={{ opacity: scrolled ? 1 : 0.92 }}
-      >
-        <ProfileDetailHeader
-          name={profile.name}
-          age={profile.age}
-          region={profile.region}
-          verified={profile.verified}
-          onBack={goBack}
-        />
-      </div>
+      <ProfileDetailHeader
+        name={profile.name}
+        age={profile.age}
+        region={profile.region}
+        verified={profile.verified}
+        onBack={goBack}
+      />
 
       <div className="flex flex-col gap-4 pt-4">
         <CompatibilityPill
