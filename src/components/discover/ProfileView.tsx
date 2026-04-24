@@ -1,4 +1,5 @@
-import { SlidersHorizontal, BadgeCheck, Heart, Info } from "lucide-react";
+import { SlidersHorizontal, BadgeCheck } from "lucide-react";
+import { MetricDisplay, type MetricPrecision } from "@/components/discover/MetricDisplay";
 
 type Props = {
   name: string;
@@ -6,25 +7,33 @@ type Props = {
   city: string;
   prompt: string;
   answer: string;
+  /** 0–100. How the metric renders is decided by `precisionMode`. */
   compatibility: number;
+  /** Per DR-013: weakest-link decides band vs. exact. */
+  precisionMode: MetricPrecision;
   verified?: boolean;
   imageHue?: string;
 };
 
 /**
- * Full-bleed Discover card matching 411HomeSwipeDeck reference.
- * - Header strip: name/age/city + filter + Verified pill
- * - Compatibility pill below header
- * - Large photo area filling remaining height with lavender→plum placeholder gradient
- * - Name/prompt overlay sits on a bottom gradient over the photo for legibility
+ * ProfileView — the daily profile view rendered on /discover.
+ * Per DR-006/DR-007: ONE complete profile at a time, on the /discover route.
+ * No deck, no swipe, no preview. The next profile replaces this one in place
+ * after the user takes a Not Today / Invite to Chat action.
+ *
+ * Visual structure (matches 411HomeSwipeDeck reference):
+ *   - Header card: name • age, city, filter icon, Verified pill
+ *   - Compatibility metric (renders via MetricDisplay → DR-013 compliant)
+ *   - Photo area with bottom gradient + prompt overlay
  */
-export function SwipeCard({
+export function ProfileView({
   name,
   age,
   city,
   prompt,
   answer,
   compatibility,
+  precisionMode,
   verified = true,
   imageHue = "#F3E8F5",
 }: Props) {
@@ -55,22 +64,27 @@ export function SwipeCard({
         </div>
       </div>
 
-      {/* Compatibility pill */}
-      <div className="flex items-center justify-center gap-2 rounded-full bg-paper px-5 py-3 shadow-elev-1">
-        <Heart aria-hidden width={18} height={18} strokeWidth={0} fill="var(--plum-500)" />
-        <span className="text-h2 font-semibold text-plum-700">{compatibility}%</span>
-        <span className="text-body-md text-slate">Compatibility</span>
-        <Info aria-hidden width={14} height={14} strokeWidth={1.5} className="text-stone" />
+      {/* Compatibility metric — routes through MetricDisplay (DR-013) */}
+      <div className="rounded-[20px] bg-paper px-5 py-4 shadow-elev-1">
+        <MetricDisplay
+          value={compatibility}
+          label="Compatibility"
+          precision={precisionMode}
+          infoText={
+            precisionMode === "band"
+              ? "Compatibility reflects how your styles align across the assessments you've both completed. Shown as a band because one of you has only completed the short-form assessment."
+              : "Compatibility reflects how your styles align across the assessments you've both completed. It's a mirror, not a ranking."
+          }
+        />
       </div>
 
       {/* Photo area */}
       <div
-        className="relative flex-1 overflow-hidden rounded-[24px] shadow-elev-2"
+        className="relative flex-1 min-h-[360px] overflow-hidden rounded-[24px] shadow-elev-2"
         style={{
           background: `linear-gradient(160deg, ${imageHue} 0%, var(--lavender-100) 55%, #E8D5EC 100%)`,
         }}
       >
-        {/* Bottom gradient for legibility */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5"
@@ -79,7 +93,6 @@ export function SwipeCard({
               "linear-gradient(to top, rgba(26,26,26,0.72) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0) 100%)",
           }}
         />
-        {/* Prompt overlay */}
         <div className="absolute inset-x-0 bottom-0 p-5">
           <p className="text-body-sm uppercase tracking-[0.14em] text-paper/80">Prompt</p>
           <p className="mt-1 text-h1 text-paper">{prompt}</p>
