@@ -9,38 +9,164 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as MainRouteImport } from './routes/_main'
+import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MainProfileRouteImport } from './routes/_main.profile'
+import { Route as MainHomeRouteImport } from './routes/_main.home'
+import { Route as MainGrowthRouteImport } from './routes/_main.growth'
+import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
+import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
+import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
 
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MainRoute = MainRouteImport.update({
+  id: '/_main',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MainProfileRoute = MainProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainHomeRoute = MainHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainGrowthRoute = MainGrowthRouteImport.update({
+  id: '/growth',
+  path: '/growth',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainDiscoverRoute = MainDiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainConnectionsRoute = MainConnectionsRouteImport.update({
+  id: '/connections',
+  path: '/connections',
+  getParentRoute: () => MainRoute,
+} as any)
+const AuthSigninRoute = AuthSigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/signin': typeof AuthSigninRoute
+  '/connections': typeof MainConnectionsRoute
+  '/discover': typeof MainDiscoverRoute
+  '/growth': typeof MainGrowthRoute
+  '/home': typeof MainHomeRoute
+  '/profile': typeof MainProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/signin': typeof AuthSigninRoute
+  '/connections': typeof MainConnectionsRoute
+  '/discover': typeof MainDiscoverRoute
+  '/growth': typeof MainGrowthRoute
+  '/home': typeof MainHomeRoute
+  '/profile': typeof MainProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteWithChildren
+  '/_main': typeof MainRouteWithChildren
+  '/onboarding': typeof OnboardingRoute
+  '/_auth/signin': typeof AuthSigninRoute
+  '/_main/connections': typeof MainConnectionsRoute
+  '/_main/discover': typeof MainDiscoverRoute
+  '/_main/growth': typeof MainGrowthRoute
+  '/_main/home': typeof MainHomeRoute
+  '/_main/profile': typeof MainProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/onboarding'
+    | '/signin'
+    | '/connections'
+    | '/discover'
+    | '/growth'
+    | '/home'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/onboarding'
+    | '/signin'
+    | '/connections'
+    | '/discover'
+    | '/growth'
+    | '/home'
+    | '/profile'
+  id:
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/_main'
+    | '/onboarding'
+    | '/_auth/signin'
+    | '/_main/connections'
+    | '/_main/discover'
+    | '/_main/growth'
+    | '/_main/home'
+    | '/_main/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  MainRoute: typeof MainRouteWithChildren
+  OnboardingRoute: typeof OnboardingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_main': {
+      id: '/_main'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof MainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +174,84 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_main/profile': {
+      id: '/_main/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof MainProfileRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/home': {
+      id: '/_main/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof MainHomeRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/growth': {
+      id: '/_main/growth'
+      path: '/growth'
+      fullPath: '/growth'
+      preLoaderRoute: typeof MainGrowthRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/discover': {
+      id: '/_main/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof MainDiscoverRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/connections': {
+      id: '/_main/connections'
+      path: '/connections'
+      fullPath: '/connections'
+      preLoaderRoute: typeof MainConnectionsRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_auth/signin': {
+      id: '/_auth/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof AuthSigninRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
+interface AuthRouteChildren {
+  AuthSigninRoute: typeof AuthSigninRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthSigninRoute: AuthSigninRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface MainRouteChildren {
+  MainConnectionsRoute: typeof MainConnectionsRoute
+  MainDiscoverRoute: typeof MainDiscoverRoute
+  MainGrowthRoute: typeof MainGrowthRoute
+  MainHomeRoute: typeof MainHomeRoute
+  MainProfileRoute: typeof MainProfileRoute
+}
+
+const MainRouteChildren: MainRouteChildren = {
+  MainConnectionsRoute: MainConnectionsRoute,
+  MainDiscoverRoute: MainDiscoverRoute,
+  MainGrowthRoute: MainGrowthRoute,
+  MainHomeRoute: MainHomeRoute,
+  MainProfileRoute: MainProfileRoute,
+}
+
+const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRouteWithChildren,
+  MainRoute: MainRouteWithChildren,
+  OnboardingRoute: OnboardingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
