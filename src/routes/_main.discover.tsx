@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState, useSyncExternalStore } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Users } from "lucide-react";
 import { FeedHeader } from "@/components/discover/FeedHeader";
 import {
@@ -21,6 +21,7 @@ import {
 import { SAMPLE_FEED } from "@/data/discover_feed_sample";
 import { capForTier, useUserTier } from "@/lib/user_tier";
 import { useUserPreferences } from "@/lib/user_preferences";
+import { discoverSessionState, statusFor } from "@/lib/discover_session_state";
 
 export const Route = createFileRoute("/_main/discover")({
   head: () => ({
@@ -39,6 +40,14 @@ function DiscoverScreen() {
   const tier = useUserTier();
   const cap = capForTier(tier);
   const prefs = useUserPreferences();
+  const navigate = useNavigate();
+
+  // Subscribe so cards re-render when detail screen mutates session state.
+  useSyncExternalStore(
+    discoverSessionState.subscribe,
+    discoverSessionState.getSnapshot,
+    discoverSessionState.getSnapshot,
+  );
 
   const [activeToggles, setActiveToggles] = useState<Set<ToggleFilter>>(new Set());
   const [moreOpen, setMoreOpen] = useState(false);
@@ -80,10 +89,8 @@ function DiscoverScreen() {
     setUpgradeOpen(true);
   };
 
-  // Tap is a no-op until /discover/[id] lands.
   const handleOpen = (id: string) => {
-    // eslint-disable-next-line no-console
-    console.log(`profile card tapped: ${id}`);
+    navigate({ to: "/discover/$id", params: { id } });
   };
 
   return (
@@ -134,7 +141,7 @@ function DiscoverScreen() {
           <ul className="flex flex-col gap-3">
             {profiles.map((p) => (
               <li key={p.id}>
-                <ProfileCard profile={p} onOpen={handleOpen} />
+                <ProfileCard profile={p} onOpen={handleOpen} status={statusFor(p.id)} />
               </li>
             ))}
           </ul>
