@@ -80,7 +80,7 @@ export function ProfileView({
 
       {/* Photo area */}
       <div
-        className="relative flex-1 overflow-hidden rounded-[24px] shadow-elev-2"
+        className="relative flex-1 min-h-[360px] overflow-hidden rounded-[24px] shadow-elev-2"
         style={{
           background: `linear-gradient(160deg, ${imageHue} 0%, var(--lavender-100) 55%, #E8D5EC 100%)`,
         }}
