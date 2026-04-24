@@ -110,10 +110,11 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
     intent: { primary: "Long-term", relationshipStyle: "Relationship" },
 
     photos: [
-      { hue: "#F7E1D4", alt: "Maya, outdoors with city skyline behind her", src: "/images/maya/1.jpg" },
-      { hue: "#EFE2F4", alt: "Maya at a café, white linen shirt", src: "/images/maya/2.jpg" },
-      { hue: "#FCEEF0", alt: "Maya on a London street, soft cardigan", src: "/images/maya/3.jpg" },
-      { hue: "#E8D5EC", alt: "Maya by the river, sage green blouse", src: "/images/maya/4.jpg" },
+      { hue: "#F7E1D4", alt: "Maya, outdoors with city skyline behind her", src: "https://github.com/lonestarfish/COUPL/blob/main/6bmsK.jpg?raw=true" },
+      { hue: "#EFE2F4", alt: "Maya at a café, white linen shirt", src: "https://github.com/lonestarfish/COUPL/blob/main/CR2e1.jpg?raw=true" },
+      { hue: "#FCEEF0", alt: "Maya on a London street, soft cardigan", src: "https://github.com/lonestarfish/COUPL/blob/main/SyPck.jpg?raw=true" },
+      { hue: "#E8D5EC", alt: "Maya by the river, sage green blouse", src: "https://github.com/lonestarfish/COUPL/blob/main/w8YQC.jpg?raw=true" },
+      { hue: "#F3E0EE", alt: "Maya in soft evening light", src: "https://github.com/lonestarfish/COUPL/blob/main/yrikI.jpg?raw=true" },
     ],
 
     empathy: 68,
