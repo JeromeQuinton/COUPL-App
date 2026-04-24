@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { CompatibilityPill } from "@/components/discover/profile/CompatibilityPill";
@@ -63,14 +63,6 @@ function ProfileDetailScreen() {
   const router = useRouter();
   const profile = getProfileDetail(id);
   const [info, setInfo] = useState<InfoSheet>(null);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const goBack = () => {
     if (window.history.length > 1) router.history.back();
