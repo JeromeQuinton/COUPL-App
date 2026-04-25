@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
-import { CompatibilityPill } from "@/components/discover/profile/CompatibilityPill";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
 import { IntentCard } from "@/components/discover/profile/cards/IntentCard";
