@@ -102,12 +102,14 @@ function ProfileDetailScreen() {
       />
 
       <div className="flex flex-col gap-4 pt-4">
-        <CompatibilityPill
-          value={profile.compatibility}
+        <IntentCard
+          primary={profile.intent.primary}
+          relationshipStyle={profile.intent.relationshipStyle}
+          attunedValue={profile.compatibility}
           onInfo={() =>
             openInfo(
-              "Compatibility",
-              "Your overall alignment across values, pacing, and psychology.",
+              "Attuned",
+              "How aligned your styles feel today across values, pacing, and psychology.",
             )
           }
         />
@@ -121,10 +123,6 @@ function ProfileDetailScreen() {
 
         <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
 
-        <IntentCard
-          primary={profile.intent.primary}
-          relationshipStyle={profile.intent.relationshipStyle}
-        />
         <ProfilePhoto hue={profile.photos[1].hue} alt={profile.photos[1].alt} src={profile.photos[1].src} />
         <RelationalSnapshotCard
           empathy={profile.empathy}
