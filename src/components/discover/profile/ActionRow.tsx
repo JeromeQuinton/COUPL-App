@@ -24,9 +24,10 @@ export function ActionRow({
         <button
           type="button"
           onClick={onInvite}
+          aria-label="Attune"
           className="rounded-full bg-plum-500 px-4 py-3 font-body text-[14px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300"
         >
-          Invite to Chat
+          Attune
         </button>
       </div>
     </div>
