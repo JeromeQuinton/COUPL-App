@@ -259,3 +259,18 @@
     }
   }
 }
+
+/*
+ * Generic opacity fade utility used by the sticky action bar on the
+ * detail view. Reduced-motion users get an instant toggle.
+ */
+@layer utilities {
+  .motion-fade {
+    transition: opacity 200ms ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .motion-fade {
+      transition: none;
+    }
+  }
+}

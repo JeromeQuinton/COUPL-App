@@ -92,19 +92,19 @@ export type ProfileDetail = {
   conversationStarters: string[];
 
   lifestyle: {
-    work: string;
-    education: string;
-    exercise: string;
-    diet: string;
-    drinking: string;
-    smoking: string;
-    kids: string;
-    haveKids: string;
-    height: string;
-    politics: string;
-    religion: string;
-    language: string;
-    pronouns: string;
+    work?: string;
+    education?: string;
+    exercise?: string;
+    diet?: string;
+    drinking?: string;
+    smoking?: string;
+    kids?: string;
+    haveKids?: string;
+    height?: string;
+    politics?: string;
+    religion?: string;
+    language?: string;
+    pronouns?: string;
   };
 };
 
@@ -238,6 +238,27 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
       language: "English + Spanish",
       pronouns: "she / her",
     },
+  },
+};
+
+/**
+ * Sparse profile fixture used for QA of empty-field handling in
+ * <LifestyleDetailsCard/>. Most lifestyle fields are missing or set
+ * to "Undisclosed" — only Work, Pronouns and Language render.
+ * Visit /discover/p-sparse-1 to verify.
+ */
+SAMPLE_PROFILE_DETAILS["p-sparse-1"] = {
+  ...SAMPLE_PROFILE_DETAILS["p-maya-1"],
+  id: "p-sparse-1",
+  name: "Sasha",
+  lifestyle: {
+    work: "Photographer",
+    education: "Undisclosed",
+    exercise: "",
+    drinking: "Prefer not to say",
+    smoking: undefined,
+    language: "English",
+    pronouns: "they / them",
   },
 };
 
