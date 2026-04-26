@@ -155,17 +155,18 @@ function DiscoverScreen() {
 
         <EmptyStateFooter tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
 
-        {import.meta.env.DEV && (
-          <div className="pt-2 text-center">
-            <button
-              type="button"
-              onClick={clearExclusions}
-              className="font-body text-[12px] text-stone underline-offset-2 transition-colors hover:text-plum-500 hover:underline"
-            >
-              Reset feed (dev only)
-            </button>
-          </div>
-        )}
+        <div className="pt-4 pb-2 text-center">
+          <button
+            type="button"
+            onClick={() => {
+              clearExclusions();
+              discoverSessionState.reset();
+            }}
+            className="font-body text-[12px] text-stone underline-offset-2 transition-colors hover:text-plum-500 hover:underline"
+          >
+            Dev: Reset feed
+          </button>
+        </div>
       </div>
 
       <MoreFiltersSheet
