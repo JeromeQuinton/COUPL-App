@@ -13,6 +13,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainGrowthRouteImport } from './routes/_main.growth'
@@ -39,6 +40,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OnboardingRoute,
 } as any)
 const MainProfileRoute = MainProfileRouteImport.update({
   id: '/profile',
@@ -83,24 +89,25 @@ const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/onboarding': typeof OnboardingRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
   '/signin': typeof AuthSigninRoute
   '/connections': typeof MainConnectionsRoute
   '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/': typeof MainDiscoverIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/onboarding': typeof OnboardingRoute
   '/signin': typeof AuthSigninRoute
   '/connections': typeof MainConnectionsRoute
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
+  '/onboarding': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover': typeof MainDiscoverIndexRoute
 }
@@ -109,13 +116,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_main': typeof MainRouteWithChildren
-  '/onboarding': typeof OnboardingRoute
+  '/onboarding': typeof OnboardingRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
   '/_main/connections': typeof MainConnectionsRoute
   '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRoute
   '/_main/home': typeof MainHomeRoute
   '/_main/profile': typeof MainProfileRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
 }
@@ -130,17 +138,18 @@ export interface FileRouteTypes {
     | '/growth'
     | '/home'
     | '/profile'
+    | '/onboarding/'
     | '/discover/$id'
     | '/discover/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/onboarding'
     | '/signin'
     | '/connections'
     | '/growth'
     | '/home'
     | '/profile'
+    | '/onboarding'
     | '/discover/$id'
     | '/discover'
   id:
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/_main/growth'
     | '/_main/home'
     | '/_main/profile'
+    | '/onboarding/'
     | '/_main/discover/$id'
     | '/_main/discover/'
   fileRoutesById: FileRoutesById
@@ -163,7 +173,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   MainRoute: typeof MainRouteWithChildren
-  OnboardingRoute: typeof OnboardingRoute
+  OnboardingRoute: typeof OnboardingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -195,6 +205,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof OnboardingIndexRouteImport
+      parentRoute: typeof OnboardingRoute
     }
     '/_main/profile': {
       id: '/_main/profile'
@@ -297,11 +314,23 @@ const MainRouteChildren: MainRouteChildren = {
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
+interface OnboardingRouteChildren {
+  OnboardingIndexRoute: typeof OnboardingIndexRoute
+}
+
+const OnboardingRouteChildren: OnboardingRouteChildren = {
+  OnboardingIndexRoute: OnboardingIndexRoute,
+}
+
+const OnboardingRouteWithChildren = OnboardingRoute._addFileChildren(
+  OnboardingRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   MainRoute: MainRouteWithChildren,
-  OnboardingRoute: OnboardingRoute,
+  OnboardingRoute: OnboardingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
