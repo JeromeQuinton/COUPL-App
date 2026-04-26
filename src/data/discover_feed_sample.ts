@@ -31,6 +31,12 @@ export type FeedProfile = {
   /** Lavender / blush gradient seed for the photo placeholder. */
   hue: string;
   /**
+   * Optional portrait URL for the profile thumbnail. When present, the
+   * card renders the image over the gradient (which remains as fallback
+   * during load or on error). Phase 1 sample data only.
+   */
+  photoUrl?: string;
+  /**
    * Pacing preference (DR-023 v2). Phase 1: derived deterministically by
    * index in `SAMPLE_FEED` so the distribution is stable across reloads
    * (matches existing seed=42 QA discipline). Phase 4: sourced from the
@@ -61,16 +67,16 @@ export const pacingForIndex = (i: number): PacingValue => {
 
 /* AUTO-GENERATED block start */
 const RAW_FEED: Omit<FeedProfile, "pacing">[] = [
-  { id: "p-maya-1", name: "Maya", age: 34, city: "Crystal Palace", distanceKm: 8, observation: "Both seeking intentional connection.", bandValue: 91, band: "Strongly Aligned", hue: "#F7E1D4" },
-  { id: "p-lena-2", name: "Lena", age: 32, city: "Clapham", distanceKm: 18, observation: "Shared focus on honesty and empathy.", bandValue: 92, band: "Strongly Aligned", hue: "#FAE6D5" },
-  { id: "p-noah-3", name: "Noah", age: 38, city: "Putney", distanceKm: 2, observation: "Both prefer slower, deliberate getting-to-know.", bandValue: 75, band: "Well Aligned", hue: "#FCEEF0" },
-  { id: "p-ari-4", name: "Ari", age: 38, city: "Walthamstow", distanceKm: 13, observation: "You both value steady, thoughtful pacing.", bandValue: 91, band: "Strongly Aligned", hue: "#EFE2F4" },
-  { id: "p-saoirse-5", name: "Saoirse", age: 29, city: "Tooting", distanceKm: 11, observation: "Aligned on quiet weekends and long conversations.", bandValue: 59, band: "Aligned", hue: "#E8E2D6" },
-  { id: "p-rohan-6", name: "Rohan", age: 32, city: "Holloway", distanceKm: 15, observation: "Both curious about each other's creative practice.", bandValue: 67, band: "Well Aligned", hue: "#F2DDE9" },
-  { id: "p-imogen-7", name: "Imogen", age: 28, city: "Stoke Newington", distanceKm: 18, observation: "A shared appreciation for unhurried mornings.", bandValue: 92, band: "Strongly Aligned", hue: "#F2DDE9" },
-  { id: "p-finn-8", name: "Finn", age: 37, city: "Tooting", distanceKm: 14, observation: "Different rhythms; some shared values to explore.", bandValue: 77, band: "Well Aligned", hue: "#F4DCE8" },
-  { id: "p-aisha-9", name: "Aisha", age: 31, city: "Stoke Newington", distanceKm: 5, observation: "Both lean towards gentle, considered communication.", bandValue: 60, band: "Aligned", hue: "#E8E2D6" },
-  { id: "p-theo-10", name: "Theo", age: 27, city: "Putney", distanceKm: 2, observation: "Aligned on prioritising rest and recovery.", bandValue: 63, band: "Aligned", hue: "#FDE9C2" },
+  { id: "p-maya-1", name: "Maya", age: 34, city: "Crystal Palace", distanceKm: 8, observation: "Both seeking intentional connection.", bandValue: 91, band: "Strongly Aligned", hue: "#F7E1D4", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Maya.jpg" },
+  { id: "p-lena-2", name: "Lena", age: 32, city: "Clapham", distanceKm: 18, observation: "Shared focus on honesty and empathy.", bandValue: 92, band: "Strongly Aligned", hue: "#FAE6D5", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Lena.jpg" },
+  { id: "p-noah-3", name: "Noah", age: 38, city: "Putney", distanceKm: 2, observation: "Both prefer slower, deliberate getting-to-know.", bandValue: 75, band: "Well Aligned", hue: "#FCEEF0", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Noah.jpg" },
+  { id: "p-ari-4", name: "Ari", age: 38, city: "Walthamstow", distanceKm: 13, observation: "You both value steady, thoughtful pacing.", bandValue: 91, band: "Strongly Aligned", hue: "#EFE2F4", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Ari.jpg" },
+  { id: "p-saoirse-5", name: "Saoirse", age: 29, city: "Tooting", distanceKm: 11, observation: "Aligned on quiet weekends and long conversations.", bandValue: 59, band: "Aligned", hue: "#E8E2D6", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Saoirse.jpg" },
+  { id: "p-rohan-6", name: "Rohan", age: 32, city: "Holloway", distanceKm: 15, observation: "Both curious about each other's creative practice.", bandValue: 67, band: "Well Aligned", hue: "#F2DDE9", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Rohan.jpg" },
+  { id: "p-imogen-7", name: "Imogen", age: 28, city: "Stoke Newington", distanceKm: 18, observation: "A shared appreciation for unhurried mornings.", bandValue: 92, band: "Strongly Aligned", hue: "#F2DDE9", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Imogen.jpg" },
+  { id: "p-finn-8", name: "Finn", age: 37, city: "Tooting", distanceKm: 14, observation: "Different rhythms; some shared values to explore.", bandValue: 77, band: "Well Aligned", hue: "#F4DCE8", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Finn.jpg" },
+  { id: "p-aisha-9", name: "Aisha", age: 31, city: "Stoke Newington", distanceKm: 5, observation: "Both lean towards gentle, considered communication.", bandValue: 60, band: "Aligned", hue: "#E8E2D6", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Aisha.jpg" },
+  { id: "p-theo-10", name: "Theo", age: 27, city: "Putney", distanceKm: 2, observation: "Aligned on prioritising rest and recovery.", bandValue: 63, band: "Aligned", hue: "#FDE9C2", photoUrl: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/Theo.jpg" },
   { id: "p-beatrice-11", name: "Beatrice", age: 36, city: "Shoreditch", distanceKm: 14, observation: "Shared instinct for asking better questions.", bandValue: 75, band: "Well Aligned", hue: "#EFE2F4" },
   { id: "p-jude-12", name: "Jude", age: 32, city: "Bermondsey", distanceKm: 15, observation: "Both drawn to depth over volume.", bandValue: 85, band: "Strongly Aligned", hue: "#F2DDE9" },
   { id: "p-priya-13", name: "Priya", age: 34, city: "Forest Hill", distanceKm: 1, observation: "Aligned on caring for the small, everyday things.", bandValue: 40, band: "Early Signal", hue: "#F6E7F2" },
