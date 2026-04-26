@@ -173,9 +173,6 @@ function ProfileDetailScreen() {
             age={profile.age}
             region={profile.region}
             verified={profile.verified}
-            primary={profile.intent.primary}
-            relationshipStyle={profile.intent.relationshipStyle}
-            pacing={profile.pacing}
             attunedValue={profile.compatibility}
           />,
         )}
