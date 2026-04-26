@@ -69,9 +69,8 @@ export type ProfileDetail = {
   // Physical Attunement, Emotional Co-regulation) post-DR-015.
   connectionLanguage: {
     primary: string;
-    primaryValue: number;
-    secondary: string;
-    observation: string;
+    secondary?: string;
+    primaryStrength: number;
   };
 
   attachmentStyle: {
@@ -194,10 +193,8 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
 
     connectionLanguage: {
       primary: "Quality Time",
-      primaryValue: 42,
       secondary: "Words",
-      observation:
-        "Their connections deepen through quality time and meaningful words.",
+      primaryStrength: 42,
     },
 
     attachmentStyle: {
