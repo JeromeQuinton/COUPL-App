@@ -3,6 +3,7 @@ import { AlignmentRing } from "./AlignmentRing";
 import { InfoButton } from "@/components/discover/InfoButton";
 import { VIEWER_PROFILE } from "@/data/discover_profile_detail_sample";
 import { TRAIT_DIFFERENCES_COPY } from "@/data/trait_differences_copy";
+import { computeAlignment } from "@/lib/compatibility";
 
 /**
  * Card — "Worth being curious about" (DifferencesCard).
@@ -41,11 +42,6 @@ const TRAIT_ORDER: TraitKey[] = [
   "emotionalBalance",
   "sharedIntent",
 ];
-
-// V0 PLACEHOLDER alignment heuristic — mirrors CompatibilityOverviewCard
-function computeAlignment(viewer: number, profile: number): number {
-  return Math.max(0, 100 - Math.abs(viewer - profile));
-}
 
 export function DifferencesCard({
   values,
