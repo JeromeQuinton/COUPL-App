@@ -60,7 +60,7 @@ export const pacingForIndex = (i: number): PacingValue => {
 };
 
 /* AUTO-GENERATED block start */
-export const SAMPLE_FEED: FeedProfile[] = [
+const RAW_FEED: Omit<FeedProfile, "pacing">[] = [
   { id: "p-maya-1", name: "Maya", age: 34, city: "Crystal Palace", distanceKm: 8, observation: "Both seeking intentional connection.", bandValue: 91, band: "Strongly Aligned", hue: "#F7E1D4" },
   { id: "p-lena-2", name: "Lena", age: 32, city: "Clapham", distanceKm: 18, observation: "Shared focus on honesty and empathy.", bandValue: 92, band: "Strongly Aligned", hue: "#FAE6D5" },
   { id: "p-noah-3", name: "Noah", age: 38, city: "Putney", distanceKm: 2, observation: "Both prefer slower, deliberate getting-to-know.", bandValue: 75, band: "Well Aligned", hue: "#FCEEF0" },
@@ -107,3 +107,13 @@ export const SAMPLE_FEED: FeedProfile[] = [
   { id: "p-maeve-44", name: "Maeve", age: 28, city: "Hackney", distanceKm: 10, observation: "Both grow through honest, generous feedback.", bandValue: 82, band: "Strongly Aligned", hue: "#FCEEF0" },
   { id: "p-sol-45", name: "Sol", age: 35, city: "Crystal Palace", distanceKm: 18, observation: "Aligned on building a life that feels chosen.", bandValue: 66, band: "Well Aligned", hue: "#FAE6D5" },
 ];
+
+/**
+ * Final feed export — pacing is injected by index per `pacingForIndex`.
+ * Note: `p-maya-1` is index 0 → "Open to depth", which matches the
+ * canonical detail sample for that profile.
+ */
+export const SAMPLE_FEED: FeedProfile[] = RAW_FEED.map((p, i) => ({
+  ...p,
+  pacing: pacingForIndex(i),
+}));
