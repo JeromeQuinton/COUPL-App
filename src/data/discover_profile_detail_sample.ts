@@ -26,6 +26,13 @@ export type ProfileDetail = {
   pacing: PacingValue;
 
   /**
+   * Date ideas seeded from the user's onboarding date-preferences step.
+   * `undefined` (the realistic Phase 1 state) drives the EmptyStateNudge
+   * inside <AttuneDateCard/>.
+   */
+  dateIdeas?: string[];
+
+  /**
    * Up to 5 portrait slots. Phase 1 uses lavender/blush gradient seeds
    * as fallback when `src` is missing. Each photo may carry an optional
    * user-authored `caption` rendered via `<PhotoCaption />`.
@@ -127,6 +134,8 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
 
     intent: { primary: "Long-term", relationshipStyle: "Relationship" },
     pacing: "Open to depth",
+    // Intentionally undefined so the EmptyStateNudge renders for QA.
+    dateIdeas: undefined,
 
     photos: [
       {
