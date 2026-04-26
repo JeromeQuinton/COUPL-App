@@ -14,6 +14,7 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
+import { Route as OnboardingErrorRouteImport } from './routes/onboarding.error'
 import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
@@ -45,6 +46,11 @@ const IndexRoute = IndexRouteImport.update({
 const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingErrorRoute = OnboardingErrorRouteImport.update({
+  id: '/error',
+  path: '/error',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const OnboardingCompleteRoute = OnboardingCompleteRouteImport.update({
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
+  '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/': typeof MainDiscoverIndexRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
+  '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover': typeof MainDiscoverIndexRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/_main/home': typeof MainHomeRoute
   '/_main/profile': typeof MainProfileRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
+  '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/profile'
     | '/onboarding/complete'
+    | '/onboarding/error'
     | '/onboarding/'
     | '/discover/$id'
     | '/discover/'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/profile'
     | '/onboarding/complete'
+    | '/onboarding/error'
     | '/onboarding'
     | '/discover/$id'
     | '/discover'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/_main/home'
     | '/_main/profile'
     | '/onboarding/complete'
+    | '/onboarding/error'
     | '/onboarding/'
     | '/_main/discover/$id'
     | '/_main/discover/'
@@ -223,6 +235,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/onboarding/'
       preLoaderRoute: typeof OnboardingIndexRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/error': {
+      id: '/onboarding/error'
+      path: '/error'
+      fullPath: '/onboarding/error'
+      preLoaderRoute: typeof OnboardingErrorRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/onboarding/complete': {
@@ -335,11 +354,13 @@ const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
 interface OnboardingRouteChildren {
   OnboardingCompleteRoute: typeof OnboardingCompleteRoute
+  OnboardingErrorRoute: typeof OnboardingErrorRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
 const OnboardingRouteChildren: OnboardingRouteChildren = {
   OnboardingCompleteRoute: OnboardingCompleteRoute,
+  OnboardingErrorRoute: OnboardingErrorRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
 }
 
