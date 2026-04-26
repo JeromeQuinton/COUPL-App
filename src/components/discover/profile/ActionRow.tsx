@@ -1,7 +1,7 @@
 /**
  * Action row (DR-020). Two equal-weight actions:
  *   Not Today      — outline pill, dismisses + returns to feed
- *   Invite to Chat — filled plum pill, marks invited + returns to feed
+ *   Attune         — filled plum pill, marks invited + returns to feed
  * Vocabulary per DR-023 — never "match," never "like."
  */
 export function ActionRow({

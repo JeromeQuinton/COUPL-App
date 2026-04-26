@@ -9,6 +9,9 @@
  * deterministically; never rendered as a number.
  */
 
+import { PACING_VALUES, type PacingValue } from "./discover_profile_detail_sample";
+export { PACING_VALUES, type PacingValue } from "./discover_profile_detail_sample";
+
 export type AlignmentBand =
   | "Strongly Aligned"
   | "Well Aligned"
@@ -27,6 +30,13 @@ export type FeedProfile = {
   band: AlignmentBand;
   /** Lavender / blush gradient seed for the photo placeholder. */
   hue: string;
+  /**
+   * Pacing preference (DR-023 v2). Phase 1: derived deterministically by
+   * index in `SAMPLE_FEED` so the distribution is stable across reloads
+   * (matches existing seed=42 QA discipline). Phase 4: sourced from the
+   * profile record.
+   */
+  pacing: PacingValue;
 };
 
 export const bandFor = (value: number): AlignmentBand => {
@@ -36,8 +46,21 @@ export const bandFor = (value: number): AlignmentBand => {
   return "Early Signal";
 };
 
+/**
+ * Deterministic Pacing assignment by feed index (DR-023 v2).
+ * i % 4 === 0 || 1 → "Open to depth"   (~50%)
+ * i % 4 === 2      → "Slow & deliberate" (~25%)
+ * i % 4 === 3      → "In the moment"     (~25%)
+ */
+export const pacingForIndex = (i: number): PacingValue => {
+  const m = i % 4;
+  if (m === 0 || m === 1) return PACING_VALUES[1]; // Open to depth
+  if (m === 2) return PACING_VALUES[0]; // Slow & deliberate
+  return PACING_VALUES[2]; // In the moment
+};
+
 /* AUTO-GENERATED block start */
-export const SAMPLE_FEED: FeedProfile[] = [
+const RAW_FEED: Omit<FeedProfile, "pacing">[] = [
   { id: "p-maya-1", name: "Maya", age: 34, city: "Crystal Palace", distanceKm: 8, observation: "Both seeking intentional connection.", bandValue: 91, band: "Strongly Aligned", hue: "#F7E1D4" },
   { id: "p-lena-2", name: "Lena", age: 32, city: "Clapham", distanceKm: 18, observation: "Shared focus on honesty and empathy.", bandValue: 92, band: "Strongly Aligned", hue: "#FAE6D5" },
   { id: "p-noah-3", name: "Noah", age: 38, city: "Putney", distanceKm: 2, observation: "Both prefer slower, deliberate getting-to-know.", bandValue: 75, band: "Well Aligned", hue: "#FCEEF0" },
@@ -84,3 +107,13 @@ export const SAMPLE_FEED: FeedProfile[] = [
   { id: "p-maeve-44", name: "Maeve", age: 28, city: "Hackney", distanceKm: 10, observation: "Both grow through honest, generous feedback.", bandValue: 82, band: "Strongly Aligned", hue: "#FCEEF0" },
   { id: "p-sol-45", name: "Sol", age: 35, city: "Crystal Palace", distanceKm: 18, observation: "Aligned on building a life that feels chosen.", bandValue: 66, band: "Well Aligned", hue: "#FAE6D5" },
 ];
+
+/**
+ * Final feed export — pacing is injected by index per `pacingForIndex`.
+ * Note: `p-maya-1` is index 0 → "Open to depth", which matches the
+ * canonical detail sample for that profile.
+ */
+export const SAMPLE_FEED: FeedProfile[] = RAW_FEED.map((p, i) => ({
+  ...p,
+  pacing: pacingForIndex(i),
+}));

@@ -22,6 +22,9 @@ export type ProfileDetail = {
 
   intent: { primary: string; relationshipStyle: string };
 
+  /** Pacing preference (DR-023 v2). One of PACING_VALUES. */
+  pacing: PacingValue;
+
   /** 4 portrait slots — Phase 1 uses lavender/blush gradient seeds. */
   photos: { hue: string; alt: string; src?: string }[];
 
@@ -95,6 +98,17 @@ export type ProfileDetail = {
   };
 };
 
+/**
+ * Accepted Pacing values (DR-023 v2). Locked vocabulary — do not extend
+ * without a new DR. Used by both the detail sample and the feed sample.
+ */
+export const PACING_VALUES = [
+  "Slow & deliberate",
+  "Open to depth",
+  "In the moment",
+] as const;
+export type PacingValue = (typeof PACING_VALUES)[number];
+
 export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
   "p-maya-1": {
     id: "p-maya-1",
@@ -108,6 +122,7 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
     trustScore: 92,
 
     intent: { primary: "Long-term", relationshipStyle: "Relationship" },
+    pacing: "Open to depth",
 
     photos: [
       { hue: "#F7E1D4", alt: "Maya, outdoors with city skyline behind her", src: "https://github.com/lonestarfish/COUPL/blob/main/6bmsK.jpg?raw=true" },

@@ -93,17 +93,18 @@ function ProfileDetailScreen() {
       }}
     >
       <ProfileDetailHeader
-        name={profile.name}
-        age={profile.age}
-        region={profile.region}
-        verified={profile.verified}
         onBack={goBack}
       />
 
       <div className="flex flex-col gap-4 pt-4">
         <IntentCard
+          name={profile.name}
+          age={profile.age}
+          region={profile.region}
+          verified={profile.verified}
           primary={profile.intent.primary}
           relationshipStyle={profile.intent.relationshipStyle}
+          pacing={profile.pacing}
           attunedValue={profile.compatibility}
           onInfo={() =>
             openInfo(

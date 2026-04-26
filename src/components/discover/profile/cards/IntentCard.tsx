@@ -1,36 +1,94 @@
-import { SectionCard } from "./SectionCard";
-import { Heart, Info } from "lucide-react";
+import { Heart, Info, BadgeCheck } from "lucide-react";
 
 /**
- * Card 1 — Intent (DR-023 vocabulary).
- * Pill chips reflect the user's stated intent + relationship style.
- * Header trailing slot carries the Attuned pill (DR-023 v2) — the
- * relabelled compatibility surface, relocated above the hero.
+ * Introduction Card (DR-023 v2).
+ * Combines identity, location, intent, pacing, and the brand-glow
+ * Attuned pill into a single card sitting between the sticky header
+ * and the hero photo. Replaces the previous Intent-only card and
+ * absorbs identity chrome formerly held by the sticky header.
  */
 export function IntentCard({
+  name,
+  age,
+  region,
+  verified,
   primary,
   relationshipStyle,
+  pacing,
   attunedValue,
   onInfo,
 }: {
+  name: string;
+  age: number;
+  region: string;
+  verified: boolean;
   primary: string;
   relationshipStyle: string;
+  pacing: string;
   attunedValue: number;
   onInfo: () => void;
 }) {
   return (
-    <SectionCard
-      title="Intent"
-      trailing={<AttunedPill value={attunedValue} onInfo={onInfo} />}
-    >
-      <div className="flex flex-wrap gap-2">
+    <section className="rounded-[20px] bg-paper p-5 shadow-elev-1">
+      {/* Row 1 — Identity */}
+      <div className="flex items-start justify-between gap-3">
+        <h1 className="font-display text-[20px] font-semibold leading-tight text-ink">
+          {name} · {age}
+        </h1>
+        {verified ? (
+          <span
+            className="inline-flex flex-shrink-0 items-center gap-1 rounded-full border border-line bg-paper px-2.5 py-1 font-body text-[11px] font-medium text-plum-700"
+            aria-label="Verified profile"
+          >
+            <BadgeCheck aria-hidden width={12} height={12} strokeWidth={2} />
+            Verified
+          </span>
+        ) : null}
+      </div>
+
+      {/* Row 2 — Location + Attuned */}
+      <div className="mt-1.5 flex items-center justify-between gap-3">
+        <p className="truncate font-body text-[13px] text-slate">{region}</p>
+        <AttunedPill value={attunedValue} onInfo={onInfo} />
+      </div>
+
+      <div className="my-4 h-px bg-line/60" />
+
+      {/* Row 3 — Intent */}
+      <LabelValueRow label="Intent">
         <Chip>{primary}</Chip>
         <Chip>{relationshipStyle}</Chip>
+      </LabelValueRow>
+
+      {/* Row 4 — Pacing */}
+      <div className="mt-3">
+        <LabelValueRow label="Pacing">
+          <Chip>{pacing}</Chip>
+        </LabelValueRow>
       </div>
-      <p className="mt-3 font-body text-[12px] italic text-stone">
+
+      {/* Row 5 — Quote */}
+      <p className="mt-4 font-body text-[12px] italic text-stone">
         Every connection begins with self-understanding.
       </p>
-    </SectionCard>
+    </section>
+  );
+}
+
+function LabelValueRow({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-stone">
+        {label}
+      </span>
+      <div className="flex flex-1 flex-wrap justify-end gap-2">{children}</div>
+    </div>
   );
 }
 
@@ -44,7 +102,7 @@ function Chip({ children }: { children: React.ReactNode }) {
 
 function AttunedPill({ value, onInfo }: { value: number; onInfo: () => void }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full bg-paper px-3 py-1.5 shadow-elev-1">
+    <div className="attuned-glow inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-paper px-3 py-1.5">
       <Heart
         aria-hidden
         width={14}
