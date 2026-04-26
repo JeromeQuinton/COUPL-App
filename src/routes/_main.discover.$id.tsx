@@ -177,17 +177,13 @@ function ProfileDetailScreen() {
           }}
         />
 
-        {wrapModule(
-          "about_me",
-          "About Me",
-          profile.bio,
-          <AboutMeCard
-            bio={profile.bio}
-            seeking={profile.seeking}
-            intent={profile.intent.primary}
-            pacing={profile.pacing}
-          />,
-        )}
+        {/* DR-057: About me is not an attune-able surface — no AttuneTarget wrapper. */}
+        <AboutMeCard
+          bio={profile.bio}
+          seeking={profile.seeking}
+          intent={profile.intent.primary}
+          pacing={profile.pacing}
+        />
         {wrapModule(
           "relational_snapshot",
           "Relational Snapshot",

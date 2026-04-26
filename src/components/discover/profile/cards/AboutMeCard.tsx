@@ -50,7 +50,7 @@ export function AboutMeCard({
   return (
     <section className="rounded-[20px] bg-paper p-5 shadow-elev-1">
       <div className="flex flex-col" style={{ gap: "14px" }}>
-        <div className="flex items-center" style={{ gap: "8px", marginBottom: "2px" }}>
+        <div className="flex items-center justify-between" style={{ gap: "8px", marginBottom: "2px" }}>
           <span className="bg-lavender-100 px-3 py-1.5 text-[12px] font-medium text-plum-700 rounded-full">
             {intent}
           </span>

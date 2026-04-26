@@ -3,14 +3,15 @@
  * /discover/[id] detail view. The wrapper <AttuneTarget/> uses these
  * keys as stable identifiers when sending an attune action.
  *
- * DR-053: Module Attune surface count locked at 14 (10 modules + 4 photos).
+ * DR-058 (amends DR-053/DR-030): Module Attune surface count is 13
+ * (9 modules + 4 photos). Per DR-057, About me is not an attune-able
+ * surface — editorial cards housing personal narrative are excluded.
  * The former `introduction_card` entry was retired when the IntroductionCard
  * was deleted (DR-047) and identity moved to the Photo 1 hero overlay (DR-046).
  */
 export type AttuneModule = { key: string; title: string };
 
 export const ATTUNE_MODULES: AttuneModule[] = [
-  { key: "about_me", title: "About Me" },
   { key: "relational_snapshot", title: "Relational Snapshot" },
   { key: "compatibility_overview", title: "Compatibility Overview" },
   { key: "ai_insight", title: "AI Insight" },
