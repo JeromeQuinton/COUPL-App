@@ -264,3 +264,26 @@ SAMPLE_PROFILE_DETAILS["p-sparse-1"] = {
 
 export const getProfileDetail = (id: string): ProfileDetail | undefined =>
   SAMPLE_PROFILE_DETAILS[id];
+
+/**
+ * Default viewer (current user) trait profile used by the
+ * Compatibility Overview alignment computation. Phase 1 only —
+ * Phase 4 sources this from the authenticated user's `user_traits`.
+ */
+export type ViewerTraitProfile = {
+  openness: number;
+  conscientiousness: number;
+  extraversion: number;
+  agreeableness: number;
+  emotionalBalance: number;
+  sharedIntent: number;
+};
+
+export const VIEWER_PROFILE: ViewerTraitProfile = {
+  openness: 78,
+  conscientiousness: 84,
+  extraversion: 55,
+  agreeableness: 72,
+  emotionalBalance: 68,
+  sharedIntent: 85,
+};

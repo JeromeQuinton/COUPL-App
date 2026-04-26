@@ -139,7 +139,10 @@ function ProfileDetailScreen() {
           communication={profile.communication}
           onInfo={openInfo}
         />
-        <CompatibilityOverviewCard values={profile.compatibilityOverview} />
+        <CompatibilityOverviewCard
+          values={profile.compatibilityOverview}
+          profileName={profile.name}
+        />
         <AIInsightCard insight={profile.aiInsight} />
         <ProfilePhoto
           hue={profile.photos[2].hue}
