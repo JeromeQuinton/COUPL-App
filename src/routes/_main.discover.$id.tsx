@@ -318,7 +318,7 @@ function ProfileDetailScreen() {
        */}
       <div
         aria-hidden={inlineInView}
-        className={`motion-fade fixed inset-x-0 z-30 ${
+        className={`motion-fade fixed left-1/2 z-30 w-full max-w-[640px] -translate-x-1/2 ${
           inlineInView ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
         style={{
@@ -327,7 +327,7 @@ function ProfileDetailScreen() {
           background: "var(--paper, #fff)",
         }}
       >
-        <div className="mx-auto max-w-[640px] px-4">
+        <div className="px-4">
           <ActionRow
             variant="compact"
             onNotToday={handleNotToday}
