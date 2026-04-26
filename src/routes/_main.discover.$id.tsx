@@ -13,6 +13,7 @@ import { HowIShowUpCard } from "@/components/discover/profile/cards/HowIShowUpCa
 import { RelationalInsightsCard } from "@/components/discover/profile/cards/RelationalInsightsCard";
 import { BigFiveSnapshotCard } from "@/components/discover/profile/cards/BigFiveSnapshotCard";
 import { WhatLightsThemUpCard } from "@/components/discover/profile/cards/WhatLightsThemUpCard";
+import { ConversationStartersCard } from "@/components/discover/profile/cards/ConversationStartersCard";
 import { LifestyleDetailsCard } from "@/components/discover/profile/cards/LifestyleDetailsCard";
 import {
   Sheet,
@@ -127,12 +128,12 @@ function ProfileDetailScreen() {
           src={profile.photos[1].src}
           caption={profile.photos[1].caption}
         />
+        <AboutMeCard bio={profile.bio} seeking={profile.seeking} />
         <RelationalSnapshotCard
           empathy={profile.empathy}
           communication={profile.communication}
           onInfo={openInfo}
         />
-        <AboutMeCard bio={profile.bio} seeking={profile.seeking} />
         <CompatibilityOverviewCard values={profile.compatibilityOverview} />
         <AIInsightCard insight={profile.aiInsight} />
         <ProfilePhoto
@@ -155,8 +156,8 @@ function ProfileDetailScreen() {
         <BigFiveSnapshotCard values={profile.bigFive} />
         <WhatLightsThemUpCard
           interests={profile.interests}
-          starters={profile.conversationStarters}
         />
+        <ConversationStartersCard starters={profile.conversationStarters} />
         <LifestyleDetailsCard data={profile.lifestyle} />
         {profile.photos[4] ? (
           <ProfilePhoto
