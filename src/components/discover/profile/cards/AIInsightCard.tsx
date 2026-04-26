@@ -11,7 +11,7 @@ export function AIInsightCard({ insight }: { insight: string }) {
     <SectionCard
       title={
         <span className="inline-flex items-center gap-1.5 font-display">
-          Personalised AI Insight
+          Reading the signal
           <Sparkles
             aria-hidden
             width={14}

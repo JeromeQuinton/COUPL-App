@@ -1,5 +1,4 @@
 import { SectionCard } from "./SectionCard";
-import { AlignmentRing } from "./AlignmentRing";
 import { InfoButton } from "@/components/discover/InfoButton";
 import { VIEWER_PROFILE } from "@/data/discover_profile_detail_sample";
 import { TRAIT_DIFFERENCES_COPY } from "@/data/trait_differences_copy";
@@ -67,25 +66,33 @@ export function DifferencesCard({
   const maxA = Math.max(...alignments);
   const remarkablyAligned = minA > 92 && maxA - minA <= 4;
 
+  // DR-040: 24x1px pink hairline, 40% opacity, 12px above the title.
+  const PinkHairline = (
+    <div
+      aria-hidden
+      className="mx-auto mb-3 h-px w-6"
+      style={{ backgroundColor: "rgba(236, 72, 153, 0.4)" }}
+    />
+  );
+
   if (remarkablyAligned) {
-    const overall = Math.round(alignments.reduce((s, n) => s + n, 0) / alignments.length);
     return (
-      <SectionCard
-        title={
-          <span className="inline-flex items-center gap-1.5 font-display">
-            Remarkably aligned
-            <InfoButton termKey="differences_card" />
-          </span>
-        }
-        subtitle="Your styles run unusually close on every trait we measure."
-      >
-        <div className="flex justify-center py-2">
-          <AlignmentRing value={overall} />
-        </div>
-        <p className="mt-4 text-center font-body text-[12px] italic text-stone">
-          Worth being curious about each other anyway.
-        </p>
-      </SectionCard>
+      <div>
+        {PinkHairline}
+        <SectionCard
+          title={
+            <span className="inline-flex items-center gap-1.5 font-display">
+              Remarkably aligned
+              <InfoButton termKey="differences_card" />
+            </span>
+          }
+          subtitle="Your styles run unusually close on every trait we measure."
+        >
+          <p className="text-center font-body text-[12px] italic text-stone">
+            Worth being curious about each other anyway.
+          </p>
+        </SectionCard>
+      </div>
     );
   }
 
@@ -94,39 +101,41 @@ export function DifferencesCard({
   const surfaced = [...rows].sort((a, b) => a.alignment - b.alignment).slice(0, 2);
 
   return (
-    <SectionCard
-      title={
-        <span className="inline-flex items-center gap-1.5 font-display">
-          Worth being curious about
-          <InfoButton termKey="differences_card" />
-        </span>
-      }
-      subtitle="Where your styles are most different."
-    >
-      <div className="flex flex-col gap-6 sm:flex-row sm:gap-4">
-        {surfaced.map((r) => {
-          const copy = TRAIT_DIFFERENCES_COPY[r.key];
-          const direction =
-            r.viewer > r.theirs ? copy.whenViewerHigher : copy.whenProfileHigher;
-          return (
-            <div
-              key={r.key}
-              className="flex flex-1 flex-col items-center gap-2 text-center"
-            >
-              <AlignmentRing value={r.alignment} label={r.label} />
-              <p className="font-body text-[11px] text-stone">
-                You {r.viewer}% · {profileName} {r.theirs}%
-              </p>
-              <p className="mt-2 font-body text-[13px] leading-relaxed text-ink">
-                {direction}
-              </p>
-            </div>
-          );
-        })}
-      </div>
-      <p className="mt-4 text-center font-body text-[12px] italic text-stone">
-        These are tendencies, not definitions.
-      </p>
-    </SectionCard>
+    <div>
+      {PinkHairline}
+      <SectionCard
+        title={
+          <span className="inline-flex items-center gap-1.5 font-display">
+            Worth being curious about
+            <InfoButton termKey="differences_card" />
+          </span>
+        }
+        subtitle="Where your styles are most different."
+      >
+        <div className="flex flex-col gap-6">
+          {surfaced.map((r) => {
+            const copy = TRAIT_DIFFERENCES_COPY[r.key];
+            const direction =
+              r.viewer > r.theirs ? copy.whenViewerHigher : copy.whenProfileHigher;
+            return (
+              <div key={r.key} className="flex flex-col gap-1.5">
+                <h3 className="font-body text-[16px] font-medium text-ink">
+                  {r.label}
+                </h3>
+                <p className="font-body text-[11px] text-stone">
+                  You {r.viewer}% · {profileName} {r.theirs}%
+                </p>
+                <p className="mt-1 font-body text-[13px] leading-relaxed text-ink">
+                  {direction}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+        <p className="mt-4 text-center font-body text-[12px] italic text-stone">
+          These are tendencies, not definitions.
+        </p>
+      </SectionCard>
+    </div>
   );
 }
