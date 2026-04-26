@@ -1,4 +1,5 @@
 import type { PacingValue } from "@/data/discover_profile_detail_sample";
+import { InfoButton } from "@/components/discover/InfoButton";
 
 /**
  * StandfirstStrip (DR-049, DR-043). Two lavender chips rendered
@@ -7,6 +8,11 @@ import type { PacingValue } from "@/data/discover_profile_detail_sample";
  * Slow & deliberate / Open to depth / In the moment respectively.
  * sr-only text accompanies the dots for a11y parity (R2).
  * Chip class string lifted verbatim per R1 (chip token reuse).
+ *
+ * DR-049 amendment: strip sits on the route's default surface (no
+ * pink-blush band); only a hairline border-bottom separates it.
+ * DR-052: Pacing chip is wrapped in <InfoButton termKey="pacing"/>;
+ * Intent chip remains non-tappable.
  */
 
 const PACING_DOTS: Record<PacingValue, number> = {
@@ -31,8 +37,9 @@ export function StandfirstStrip({
     <div
       className="flex items-center justify-center gap-2"
       style={{
-        padding: "20px 16px",
+        padding: "24px 16px",
         borderBottom: "0.5px solid #F5F0FF",
+        background: "#FFFFFF",
       }}
     >
       <span className="bg-lavender-100 px-3 py-1.5 text-[12px] font-medium text-plum-700 rounded-full">
@@ -59,6 +66,7 @@ export function StandfirstStrip({
           ))}
         </span>
         <span className="sr-only">{`Pacing: ${pacing} (${rhythmWord} rhythm)`}</span>
+        <InfoButton termKey="pacing" />
       </span>
     </div>
   );
