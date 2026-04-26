@@ -4,7 +4,6 @@ import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetail
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
 import { AttuneDateCard } from "@/components/discover/AttuneDateCard";
-import { IntroductionCard } from "@/components/discover/profile/cards/IntroductionCard";
 import { StandfirstStrip } from "@/components/discover/profile/StandfirstStrip";
 import { RelationalSnapshotCard } from "@/components/discover/profile/cards/RelationalSnapshotCard";
 import { AboutMeCard } from "@/components/discover/profile/cards/AboutMeCard";
@@ -165,29 +164,22 @@ function ProfileDetailScreen() {
       />
 
       <div className="flex flex-col gap-4 pt-4">
-        {wrapModule(
-          "introduction_card",
-          "Introduction",
-          `${profile.name}, ${profile.age} · ${profile.region}`,
-          <IntroductionCard
-            name={profile.name}
-            age={profile.age}
-            region={profile.region}
-            verified={profile.verified}
-            attunedValue={profile.compatibility}
-          />,
-        )}
-
-        {wrapPhoto(
-          0,
-          <ProfilePhoto
-            hue={profile.photos[0].hue}
-            alt={profile.photos[0].alt}
-            src={profile.photos[0].src}
-            caption={profile.photos[0].caption}
-            trustScore={profile.trustScore}
-          />,
-        )}
+        {/* DR-046: Photo 1 is NOT a Module Attune surface. Rendered directly
+         * (no AttuneTarget wrapper) with the four-corner hero overlay
+         * replacing the deleted IntroductionCard. */}
+        <ProfilePhoto
+          hue={profile.photos[0].hue}
+          alt={profile.photos[0].alt}
+          src={profile.photos[0].src}
+          hero={{
+            name: profile.name,
+            age: profile.age,
+            region: profile.region,
+            verified: profile.verified,
+            attunedValue: profile.compatibility,
+            trustScore: profile.trustScore,
+          }}
+        />
 
         <div ref={inlineActionRef}>
           <StandfirstStrip
@@ -196,15 +188,6 @@ function ProfileDetailScreen() {
           />
         </div>
 
-        {wrapPhoto(
-          1,
-          <ProfilePhoto
-            hue={profile.photos[1].hue}
-            alt={profile.photos[1].alt}
-            src={profile.photos[1].src}
-            caption={profile.photos[1].caption}
-          />,
-        )}
         {wrapModule(
           "about_me",
           "About Me",
@@ -228,6 +211,15 @@ function ProfileDetailScreen() {
           <CompatibilityOverviewCard
             values={profile.compatibilityOverview}
             profileName={profile.name}
+          />,
+        )}
+        {wrapPhoto(
+          1,
+          <ProfilePhoto
+            hue={profile.photos[1].hue}
+            alt={profile.photos[1].alt}
+            src={profile.photos[1].src}
+            caption={profile.photos[1].caption}
           />,
         )}
         {wrapModule(

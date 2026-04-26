@@ -76,10 +76,8 @@ export function AttuneTarget({
       ? `Attune to ${profileName}'s ${targetPreview?.title ?? "this section"}`
       : `Attune to this photo of ${profileName}`;
 
-  const buttonPosition =
-    targetType === "module"
-      ? "absolute right-4 top-4 z-10"
-      : "absolute right-4 bottom-4 z-10";
+  // DR-050: ∞ button anchored top-right on every surface (modules + photos).
+  const buttonPosition = "absolute right-4 top-4 z-10";
 
   return (
     <div className="relative">
