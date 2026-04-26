@@ -3,9 +3,10 @@
  * /discover/[id] detail view. The wrapper <AttuneTarget/> uses these
  * keys as stable identifiers when sending an attune action.
  *
- * DR-058 (amends DR-053/DR-030): Module Attune surface count is 13
- * (9 modules + 4 photos). Per DR-057, About me is not an attune-able
+ * DR-061 (amends DR-058): Module Attune surface count is 14
+ * (9 modules + 5 photos). Per DR-057, About me is not an attune-able
  * surface — editorial cards housing personal narrative are excluded.
+ * DR-060 added Photo 6 (skydiving) between Differences and Date Card.
  * The former `introduction_card` entry was retired when the IntroductionCard
  * was deleted (DR-047) and identity moved to the Photo 1 hero overlay (DR-046).
  */
