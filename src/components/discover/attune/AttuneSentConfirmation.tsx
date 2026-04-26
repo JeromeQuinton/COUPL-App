@@ -73,7 +73,13 @@ export function AttuneSentConfirmation({
         pointerEvents: "none",
       }}
     >
-      <AlignmentRing value={100} size={140} strokeWidth={10} centerLabel="∞" />
+      <AlignmentRing
+        value={100}
+        size={140}
+        strokeWidth={10}
+        centerLabel="∞"
+        brandGradient
+      />
       <h2 className="mt-6 font-display text-[24px] font-semibold text-plum-700">
         Attune sent
       </h2>
