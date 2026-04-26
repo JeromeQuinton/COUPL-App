@@ -118,12 +118,18 @@ function ProfileDetailScreen() {
           hue={profile.photos[0].hue}
           alt={profile.photos[0].alt}
           src={profile.photos[0].src}
+          caption={profile.photos[0].caption}
           trustScore={profile.trustScore}
         />
 
         <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
 
-        <ProfilePhoto hue={profile.photos[1].hue} alt={profile.photos[1].alt} src={profile.photos[1].src} />
+        <ProfilePhoto
+          hue={profile.photos[1].hue}
+          alt={profile.photos[1].alt}
+          src={profile.photos[1].src}
+          caption={profile.photos[1].caption}
+        />
         <RelationalSnapshotCard
           empathy={profile.empathy}
           communication={profile.communication}
@@ -132,13 +138,23 @@ function ProfileDetailScreen() {
         <AboutMeCard bio={profile.bio} seeking={profile.seeking} />
         <CompatibilityOverviewCard values={profile.compatibilityOverview} />
         <AIInsightCard insight={profile.aiInsight} />
-        <ProfilePhoto hue={profile.photos[2].hue} alt={profile.photos[2].alt} src={profile.photos[2].src} />
+        <ProfilePhoto
+          hue={profile.photos[2].hue}
+          alt={profile.photos[2].alt}
+          src={profile.photos[2].src}
+          caption={profile.photos[2].caption}
+        />
         <HowIShowUpCard text={profile.howIShowUp} />
         <RelationalInsightsCard
           connectionLanguage={profile.connectionLanguage}
           attachmentStyle={profile.attachmentStyle}
         />
-        <ProfilePhoto hue={profile.photos[3].hue} alt={profile.photos[3].alt} src={profile.photos[3].src} />
+        <ProfilePhoto
+          hue={profile.photos[3].hue}
+          alt={profile.photos[3].alt}
+          src={profile.photos[3].src}
+          caption={profile.photos[3].caption}
+        />
         <BigFiveSnapshotCard values={profile.bigFive} />
         <WhatLightsThemUpCard
           interests={profile.interests}
@@ -150,6 +166,7 @@ function ProfileDetailScreen() {
             hue={profile.photos[4].hue}
             alt={profile.photos[4].alt}
             src={profile.photos[4].src}
+            caption={profile.photos[4].caption}
           />
         ) : null}
       </div>

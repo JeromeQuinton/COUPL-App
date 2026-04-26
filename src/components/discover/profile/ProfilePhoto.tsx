@@ -3,12 +3,14 @@
  * Phase 1 only — Phase 4 swaps `hue` for real uploads.
  */
 import { useState } from "react";
+import { PhotoCaption } from "@/components/discover/PhotoCaption";
 
 export function ProfilePhoto({
   hue,
   alt,
   trustScore,
   src,
+  caption,
 }: {
   hue: string;
   alt: string;
@@ -16,6 +18,8 @@ export function ProfilePhoto({
   trustScore?: number;
   /** Optional image URL/path. When omitted, the lavender gradient is used as a fallback. */
   src?: string;
+  /** Optional user-authored caption rendered over a soft bottom gradient. */
+  caption?: string;
 }) {
   const [errored, setErrored] = useState(false);
   const showImage = src && !errored;
@@ -50,6 +54,7 @@ export function ProfilePhoto({
           <span className="font-display text-[12px] font-semibold">Trust Score {trustScore}%</span>
         </span>
       ) : null}
+      <PhotoCaption caption={caption} photoAlt={alt} />
     </div>
   );
 }

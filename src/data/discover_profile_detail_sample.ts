@@ -25,8 +25,12 @@ export type ProfileDetail = {
   /** Pacing preference (DR-023 v2). One of PACING_VALUES. */
   pacing: PacingValue;
 
-  /** 4 portrait slots — Phase 1 uses lavender/blush gradient seeds. */
-  photos: { hue: string; alt: string; src?: string }[];
+  /**
+   * Up to 5 portrait slots. Phase 1 uses lavender/blush gradient seeds
+   * as fallback when `src` is missing. Each photo may carry an optional
+   * user-authored `caption` rendered via `<PhotoCaption />`.
+   */
+  photos: { hue: string; alt: string; src?: string; caption?: string }[];
 
   /** Relational Snapshot — pair-level metrics. */
   empathy: number;
@@ -125,11 +129,36 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
     pacing: "Open to depth",
 
     photos: [
-      { hue: "#F7E1D4", alt: "Maya, outdoors with city skyline behind her", src: "https://github.com/lonestarfish/COUPL/blob/main/6bmsK.jpg?raw=true" },
-      { hue: "#EFE2F4", alt: "Maya at a café, white linen shirt", src: "https://github.com/lonestarfish/COUPL/blob/main/CR2e1.jpg?raw=true" },
-      { hue: "#FCEEF0", alt: "Maya on a London street, soft cardigan", src: "https://github.com/lonestarfish/COUPL/blob/main/SyPck.jpg?raw=true" },
-      { hue: "#E8D5EC", alt: "Maya by the river, sage green blouse", src: "https://github.com/lonestarfish/COUPL/blob/main/w8YQC.jpg?raw=true" },
-      { hue: "#F3E0EE", alt: "Maya in soft evening light", src: "https://github.com/lonestarfish/COUPL/blob/main/yrikI.jpg?raw=true" },
+      {
+        hue: "#F7E1D4",
+        alt: "Maya, outdoors with city skyline behind her",
+        src: "https://github.com/lonestarfish/COUPL/blob/main/6bmsK.jpg?raw=true",
+        caption: "Saturday morning in Borough Market — slow start, strong coffee.",
+      },
+      {
+        hue: "#EFE2F4",
+        alt: "Maya at a café, white linen shirt",
+        src: "https://github.com/lonestarfish/COUPL/blob/main/CR2e1.jpg?raw=true",
+        caption: "My nan's recipe book finally has my handwriting in it.",
+      },
+      {
+        hue: "#FCEEF0",
+        alt: "Maya on a London street, soft cardigan",
+        src: "https://github.com/lonestarfish/COUPL/blob/main/SyPck.jpg?raw=true",
+        caption: "Three years ago I couldn't run for ten minutes. Now I do this.",
+      },
+      {
+        hue: "#E8D5EC",
+        alt: "Maya by the river, sage green blouse",
+        src: "https://github.com/lonestarfish/COUPL/blob/main/w8YQC.jpg?raw=true",
+        caption: "The one about hiding my book from the friend who recommended it.",
+      },
+      {
+        hue: "#F3E0EE",
+        alt: "Maya in soft evening light",
+        src: "https://github.com/lonestarfish/COUPL/blob/main/yrikI.jpg?raw=true",
+        caption: "My favourite version of myself is a little bit windswept.",
+      },
     ],
 
     empathy: 68,
