@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Sparkles, Compass, Users, Heart, Waves, Target } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import { SectionCard } from "./SectionCard";
@@ -60,6 +61,13 @@ export function CompatibilityOverviewCard({
     rows.reduce((sum, r) => sum + r.alignment, 0) / rows.length,
   );
 
+  const [expanded, setExpanded] = useState(false);
+
+  // Top 3 highest-aligned traits (stable ordering on ties via TRAITS order).
+  const topThree = [...rows]
+    .sort((a, b) => b.alignment - a.alignment)
+    .slice(0, 3);
+
   return (
     <SectionCard
       title={
@@ -70,13 +78,30 @@ export function CompatibilityOverviewCard({
       }
       subtitle={`How aligned you are with ${profileName} across the traits that matter most.`}
       trailing={
-        <span className="font-display text-[13px] font-semibold text-plum-700">
+        <span className="pr-10 font-display text-[13px] font-semibold text-plum-700">
           {overall}% Aligned overall
         </span>
       }
     >
-      <div className="flex flex-col gap-4">
-        {rows.map((r) => {
+      {!expanded ? (
+        <div className="flex flex-col gap-3">
+          <p className="font-body text-[13px] text-ink">
+            <span className="text-stone">Strong fit on: </span>
+            {topThree.map((r) => r.label).join(", ")}
+          </p>
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="self-start font-body text-[13px] font-medium text-plum-700"
+            aria-expanded={false}
+            aria-controls="compat-overview-bars"
+          >
+            See all six →
+          </button>
+        </div>
+      ) : (
+        <div id="compat-overview-bars" className="flex flex-col gap-4">
+          {rows.map((r) => {
           const Icon = r.icon;
           return (
             <div key={r.key} className="flex flex-col gap-1.5">
@@ -120,8 +145,18 @@ export function CompatibilityOverviewCard({
               </p>
             </div>
           );
-        })}
-      </div>
+          })}
+          <button
+            type="button"
+            onClick={() => setExpanded(false)}
+            className="self-start font-body text-[13px] font-medium text-plum-700"
+            aria-expanded={true}
+            aria-controls="compat-overview-bars"
+          >
+            Show less
+          </button>
+        </div>
+      )}
     </SectionCard>
   );
 }

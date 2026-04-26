@@ -232,7 +232,7 @@ function ProfileDetailScreen() {
         )}
         {wrapModule(
           "ai_insight",
-          "AI Insight",
+          "Reading the signal",
           profile.aiInsight,
           <AIInsightCard insight={profile.aiInsight} />,
         )}
