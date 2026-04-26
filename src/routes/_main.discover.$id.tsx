@@ -3,6 +3,7 @@ import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-r
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
+import { AttuneDateCard } from "@/components/discover/AttuneDateCard";
 import { IntentCard } from "@/components/discover/profile/cards/IntentCard";
 import { RelationalSnapshotCard } from "@/components/discover/profile/cards/RelationalSnapshotCard";
 import { AboutMeCard } from "@/components/discover/profile/cards/AboutMeCard";
@@ -117,6 +118,8 @@ function ProfileDetailScreen() {
         />
 
         <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
+
+        <AttuneDateCard dateIdeas={profile.dateIdeas} />
 
         <ProfilePhoto
           hue={profile.photos[1].hue}
