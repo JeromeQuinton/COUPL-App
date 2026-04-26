@@ -147,19 +147,19 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
         hue: "#EFE2F4",
         alt: "Maya at a café, white linen shirt",
         src: "https://github.com/lonestarfish/COUPL/blob/main/CR2e1.jpg?raw=true",
-        caption: "My nan's recipe book finally has my handwriting in it.",
+        caption: "Five minutes from home and already in a better mood.",
       },
       {
         hue: "#FCEEF0",
         alt: "Maya on a London street, soft cardigan",
         src: "https://github.com/lonestarfish/COUPL/blob/main/SyPck.jpg?raw=true",
-        caption: "Three years ago I couldn't run for ten minutes. Now I do this.",
+        caption: "Sometimes the river says what I can't yet.",
       },
       {
         hue: "#E8D5EC",
         alt: "Maya by the river, sage green blouse",
         src: "https://github.com/lonestarfish/COUPL/blob/main/w8YQC.jpg?raw=true",
-        caption: "The one about hiding my book from the friend who recommended it.",
+        caption: "My favourite kind of Tuesday — somewhere I've never been.",
       },
       {
         hue: "#F3E0EE",
