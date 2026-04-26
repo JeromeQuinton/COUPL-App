@@ -3,13 +3,30 @@ import type { ProfileDetail } from "@/data/discover_profile_detail_sample";
 
 /**
  * Card 10 — Lifestyle & Details. Two-column label + chip-value grid.
+ *
+ * Empty-field policy: any field whose value is undefined / null /
+ * empty string / "Undisclosed" / "Prefer not to say" is hidden
+ * entirely (label and chip both). Sub-sections with no remaining
+ * fields collapse. If the entire module is empty, the module itself
+ * does not render.
  */
+
+const EMPTY_TOKENS = new Set(["", "undisclosed", "prefer not to say"]);
+
+function isMeaningful(value: string | null | undefined): value is string {
+  if (value == null) return false;
+  return !EMPTY_TOKENS.has(value.trim().toLowerCase());
+}
+
+type Field = { label: string; value: string | null | undefined };
+type Group = Field[];
+
 export function LifestyleDetailsCard({
   data,
 }: {
   data: ProfileDetail["lifestyle"];
 }) {
-  const rows: { label: string; value: string }[][] = [
+  const groups: Group[] = [
     [
       { label: "Work", value: data.work },
       { label: "Education", value: data.education },
@@ -34,21 +51,25 @@ export function LifestyleDetailsCard({
       { label: "Religion", value: data.religion },
       { label: "Language", value: data.language },
     ],
+    [{ label: "Pronouns", value: data.pronouns }],
   ];
+
+  const visibleGroups = groups
+    .map((g) => g.filter((f) => isMeaningful(f.value)))
+    .filter((g) => g.length > 0);
+
+  if (visibleGroups.length === 0) return null;
 
   return (
     <SectionCard title="Lifestyle & Details">
       <div className="flex flex-col gap-3">
-        {rows.map((row, i) => (
+        {visibleGroups.map((row, i) => (
           <div key={i} className="grid grid-cols-2 gap-3">
             {row.map((c) => (
-              <Cell key={c.label} label={c.label} value={c.value} />
+              <Cell key={c.label} label={c.label} value={c.value as string} />
             ))}
           </div>
         ))}
-        <div className="grid grid-cols-2 gap-3">
-          <Cell label="Pronouns" value={data.pronouns} />
-        </div>
       </div>
     </SectionCard>
   );
