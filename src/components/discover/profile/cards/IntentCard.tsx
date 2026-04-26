@@ -13,18 +13,12 @@ export function IntentCard({
   age,
   region,
   verified,
-  primary,
-  relationshipStyle,
-  pacing,
   attunedValue,
 }: {
   name: string;
   age: number;
   region: string;
   verified: boolean;
-  primary: string;
-  relationshipStyle: string;
-  pacing: string;
   attunedValue: number;
 }) {
   return (
@@ -50,26 +44,6 @@ export function IntentCard({
         <p className="truncate font-body text-[13px] text-slate">{region}</p>
         <AttunedPill value={attunedValue} />
       </div>
-
-      <div className="my-4 h-px bg-line/60" />
-
-      {/* Row 3 — Intent */}
-      <LabelValueRow label="Intent" termKey="intent">
-        <Chip>{primary}</Chip>
-        <Chip>{relationshipStyle}</Chip>
-      </LabelValueRow>
-
-      {/* Row 4 — Pacing */}
-      <div className="mt-3">
-        <LabelValueRow label="Pacing" termKey="pacing">
-          <Chip>{pacing}</Chip>
-        </LabelValueRow>
-      </div>
-
-      {/* Row 5 — Quote */}
-      <p className="mt-4 font-body text-[12px] italic text-stone">
-        Every connection begins with self-understanding.
-      </p>
     </section>
   );
 }

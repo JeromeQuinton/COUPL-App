@@ -12,7 +12,7 @@ export function WhatLightsThemUpCard({
   interests: { label: string; favorite?: boolean }[];
 }) {
   return (
-    <SectionCard title={<span>What lights them up ✨</span>}>
+    <SectionCard title={<span className="font-display">What lights them up ✨</span>}>
       <div className="grid grid-cols-2 gap-2">
         {interests.map((i) => (
           <span

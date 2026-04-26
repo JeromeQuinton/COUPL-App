@@ -72,7 +72,7 @@ export function DifferencesCard({
     return (
       <SectionCard
         title={
-          <span className="inline-flex items-center gap-1.5">
+          <span className="inline-flex items-center gap-1.5 font-display">
             Remarkably aligned
             <InfoButton termKey="differences_card" />
           </span>
@@ -96,7 +96,7 @@ export function DifferencesCard({
   return (
     <SectionCard
       title={
-        <span className="inline-flex items-center gap-1.5">
+        <span className="inline-flex items-center gap-1.5 font-display">
           Worth being curious about
           <InfoButton termKey="differences_card" />
         </span>
