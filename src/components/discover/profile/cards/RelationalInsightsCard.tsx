@@ -12,9 +12,8 @@ export function RelationalInsightsCard({
 }: {
   connectionLanguage: {
     primary: string;
-    primaryValue: number;
-    secondary: string;
-    observation: string;
+    secondary?: string;
+    primaryStrength: number;
   };
   attachmentStyle: { label: string; leaning: string; chips: string[] };
 }) {
@@ -38,48 +37,56 @@ function ConnectionLanguageSubCard({
 }: {
   data: {
     primary: string;
-    primaryValue: number;
-    secondary: string;
-    observation: string;
+    secondary?: string;
+    primaryStrength: number;
   };
 }) {
-  const v = Math.max(0, Math.min(100, data.primaryValue));
+  const v = Math.max(0, Math.min(100, data.primaryStrength));
   return (
     <div className="flex flex-col gap-2">
       <h3 className="inline-flex items-center gap-1.5 font-display text-[14px] font-semibold text-plum-700">
         Connection Language
         <InfoButton termKey="connection_language" />
       </h3>
-      <p className="font-body text-[13px] text-ink">
-        Primary: <span className="font-medium">{data.primary}</span> — {v}%
-      </p>
-      <div
-        className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
-        role="progressbar"
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={v}
-      >
+
+      <div className="flex flex-wrap gap-2">
+        <span className="inline-flex items-center rounded-full bg-plum-500 px-3 py-1 font-body text-[12px] font-medium text-paper">
+          {data.primary}
+        </span>
+        {data.secondary ? (
+          <span className="inline-flex items-center rounded-full border border-plum-500 bg-paper px-3 py-1 font-body text-[12px] font-medium text-plum-700">
+            {data.secondary}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="mt-2 flex flex-col gap-1.5">
+        <div className="flex items-center justify-between">
+          <span className="font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-stone">
+            Primary signal strength
+          </span>
+          <span className="font-body text-[12px] font-medium text-plum-700">
+            {v}%
+          </span>
+        </div>
         <div
-          className="absolute inset-y-0 left-0 rounded-full"
-          style={{
-            width: `${v}%`,
-            background:
-              "linear-gradient(90deg, var(--plum-300) 0%, var(--plum-500) 100%)",
-          }}
-        />
-      </div>
-      <div className="mt-1 flex items-center gap-4">
-        <div className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full bg-plum-500" />
-          <span className="font-body text-[12px] text-ink">{data.primary}</span>
+          className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={v}
+          aria-label="Primary signal strength"
+        >
+          <div
+            className="absolute inset-y-0 left-0 rounded-full"
+            style={{
+              width: `${v}%`,
+              background:
+                "linear-gradient(90deg, var(--plum-300) 0%, var(--plum-500) 100%)",
+            }}
+          />
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full border border-plum-500" />
-          <span className="font-body text-[12px] text-ink">{data.secondary}</span>
-        </div>
       </div>
-      <p className="mt-1 font-body text-[12px] italic text-stone">{data.observation}</p>
     </div>
   );
 }
