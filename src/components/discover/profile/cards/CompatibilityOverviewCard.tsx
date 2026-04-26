@@ -71,17 +71,20 @@ export function CompatibilityOverviewCard({
   return (
     <SectionCard
       title={
-        <span className="inline-flex items-center gap-1.5">
-          Compatibility Overview
-          <InfoButton termKey="compatibility_overview" />
+        <span className="inline-flex items-baseline gap-1.5">
+          <span className="inline-flex items-center gap-1.5">
+            Compatibility Overview
+            <InfoButton termKey="compatibility_overview" />
+          </span>
+          <span
+            className="font-body text-[14px] font-medium text-plum-700"
+            style={{ marginLeft: "12px" }}
+          >
+            {overall}% Aligned overall
+          </span>
         </span>
       }
       subtitle={`How aligned you are with ${profileName} across the traits that matter most.`}
-      trailing={
-        <span className="pr-10 font-display text-[13px] font-semibold text-plum-700">
-          {overall}% Aligned overall
-        </span>
-      }
     >
       {!expanded ? (
         <div className="flex flex-col gap-3">
