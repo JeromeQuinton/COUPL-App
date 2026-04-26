@@ -241,5 +241,26 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
   },
 };
 
+/**
+ * Sparse profile fixture used for QA of empty-field handling in
+ * <LifestyleDetailsCard/>. Most lifestyle fields are missing or set
+ * to "Undisclosed" — only Work, Pronouns and Language render.
+ * Visit /discover/p-sparse-1 to verify.
+ */
+SAMPLE_PROFILE_DETAILS["p-sparse-1"] = {
+  ...SAMPLE_PROFILE_DETAILS["p-maya-1"],
+  id: "p-sparse-1",
+  name: "Sasha",
+  lifestyle: {
+    work: "Photographer",
+    education: "Undisclosed",
+    exercise: "",
+    drinking: "Prefer not to say",
+    smoking: undefined,
+    language: "English",
+    pronouns: "they / them",
+  },
+};
+
 export const getProfileDetail = (id: string): ProfileDetail | undefined =>
   SAMPLE_PROFILE_DETAILS[id];
