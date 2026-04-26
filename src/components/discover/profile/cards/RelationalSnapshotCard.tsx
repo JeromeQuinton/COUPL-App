@@ -26,14 +26,14 @@ export function RelationalSnapshotCard({
           value={empathy}
           precision="exact"
           infoText="How attuned you both are to emotional nuance."
-          onInfo={onInfo}
+          termKey="empathy"
         />
         <MetricDisplay
           label="Communication"
           value={communication}
           precision="exact"
           infoText="How aligned your communication styles are."
-          onInfo={onInfo}
+          termKey="communication"
         />
       </div>
     </SectionCard>
