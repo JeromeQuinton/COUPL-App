@@ -22,6 +22,7 @@ import { SAMPLE_FEED } from "@/data/discover_feed_sample";
 import { capForTier, useUserTier } from "@/lib/user_tier";
 import { useUserPreferences } from "@/lib/user_preferences";
 import { discoverSessionState, statusFor } from "@/lib/discover_session_state";
+import { useFeedExclusions } from "@/hooks/use-feed-exclusions";
 
 export const Route = createFileRoute("/_main/discover/")({
   head: () => ({
@@ -41,6 +42,7 @@ function DiscoverScreen() {
   const cap = capForTier(tier);
   const prefs = useUserPreferences();
   const navigate = useNavigate();
+  const { excludedProfileIds } = useFeedExclusions();
 
   // Subscribe so cards re-render when detail screen mutates session state.
   useSyncExternalStore(
@@ -54,7 +56,11 @@ function DiscoverScreen() {
   const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [lockedTapped, setLockedTapped] = useState<LockedFilter | null>(null);
 
-  const profiles = useMemo(() => SAMPLE_FEED.slice(0, cap), [cap]);
+  const profiles = useMemo(
+    () =>
+      SAMPLE_FEED.filter((p) => !excludedProfileIds.has(p.id)).slice(0, cap),
+    [cap, excludedProfileIds],
+  );
 
   const handleToggle = (f: ToggleFilter) => {
     setActiveToggles((prev) => {
