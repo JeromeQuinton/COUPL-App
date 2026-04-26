@@ -139,4 +139,12 @@ export const INFO_CONTENT: Record<string, InfoContent> = {
     whatItMeansForYou:
       "Highest-impact dimension. People with aligned intent often work even when other dimensions differ. People with misaligned intent rarely work even when other dimensions match.",
   },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  differences_card: {
+    termName: "Worth being curious about",
+    whatThisMeans:
+      "The two traits where your styles run most differently. Differences aren't problems — they're often where the most interesting parts of a relationship live.",
+    whatItMeansForYou:
+      "These are the dimensions where you and this person will need to be a little more intentional. They're also the dimensions where you might learn the most from each other.",
+  },
 };
