@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
@@ -29,7 +29,6 @@ import {
 } from "@/components/ui/sheet";
 import { getProfileDetail } from "@/data/discover_profile_detail_sample";
 import { discoverSessionState } from "@/lib/discover_session_state";
-import { useInView } from "@/hooks/use-in-view";
 
 // V0 — replace with subscription check in Phase 4. Flip to false to QA paywall.
 const IS_PAID_USER_V0 = true;
@@ -73,8 +72,6 @@ function ProfileDetailScreen() {
   const router = useRouter();
   const profile = getProfileDetail(id);
   const [info, setInfo] = useState<InfoSheet>(null);
-  const inlineActionRef = useRef<HTMLDivElement>(null);
-  const inlineInView = useInView(inlineActionRef, { rootMargin: "0px 0px -8px 0px" });
   const { sendAttune } = useAttuneState(id);
   const { excludeProfile } = useFeedExclusions();
   const [primaryDialogOpen, setPrimaryDialogOpen] = useState(false);
@@ -181,12 +178,10 @@ function ProfileDetailScreen() {
           }}
         />
 
-        <div ref={inlineActionRef}>
-          <StandfirstStrip
-            intent={profile.intent.primary}
-            pacing={profile.pacing}
-          />
-        </div>
+        <StandfirstStrip
+          intent={profile.intent.primary}
+          pacing={profile.pacing}
+        />
 
         {wrapModule(
           "about_me",
@@ -303,16 +298,12 @@ function ProfileDetailScreen() {
       </div>
 
       {/*
-       * Sticky action bar — appears once the inline action row leaves
-       * the viewport. Sits above the bottom nav (BottomNav is fixed
-       * with ~62px height + safe-area). Fade respects reduced motion
-       * via the .motion-fade utility in styles.css.
+       * Sticky action bar (DR-054) — always visible from first paint.
+       * Sits above the bottom nav (BottomNav is fixed with ~62px height
+       * + safe-area). No scroll-triggered reveal.
        */}
       <div
-        aria-hidden={inlineInView}
-        className={`motion-fade fixed left-1/2 z-30 w-full max-w-[640px] -translate-x-1/2 ${
-          inlineInView ? "pointer-events-none opacity-0" : "opacity-100"
-        }`}
+        className="fixed left-1/2 z-30 w-full max-w-[640px] -translate-x-1/2 opacity-100"
         style={{
           bottom: "calc(env(safe-area-inset-bottom) + 62px)",
           boxShadow: "0 -2px 8px rgba(0,0,0,0.06)",
