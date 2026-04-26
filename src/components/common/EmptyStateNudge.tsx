@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 
 /**
  * EmptyStateNudge — reusable lavender-tinted nudge with a "Try it"
@@ -26,12 +25,12 @@ export function EmptyStateNudge({
 
   return (
     <div className="relative flex items-center gap-3 rounded-[16px] bg-lavender-100/70 p-4">
-      <Link
-        to={ctaDestination}
+      <a
+        href={ctaDestination}
         className="flex-shrink-0 rounded-full bg-paper px-4 py-2 font-body text-[13px] font-medium text-plum-700 shadow-elev-1 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300"
       >
         {ctaLabel}
-      </Link>
+      </a>
       <p className="flex-1 font-body text-[13px] leading-snug text-ink">
         {microcopy}
       </p>
