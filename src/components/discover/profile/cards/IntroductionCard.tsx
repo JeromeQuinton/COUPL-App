@@ -8,7 +8,7 @@ import { InfoButton } from "@/components/discover/InfoButton";
  * and the hero photo. Replaces the previous Intent-only card and
  * absorbs identity chrome formerly held by the sticky header.
  */
-export function IntentCard({
+export function IntroductionCard({
   name,
   age,
   region,

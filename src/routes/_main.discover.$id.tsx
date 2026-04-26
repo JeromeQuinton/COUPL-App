@@ -4,7 +4,8 @@ import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetail
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
 import { AttuneDateCard } from "@/components/discover/AttuneDateCard";
-import { IntentCard } from "@/components/discover/profile/cards/IntentCard";
+import { IntroductionCard } from "@/components/discover/profile/cards/IntroductionCard";
+import { StandfirstStrip } from "@/components/discover/profile/StandfirstStrip";
 import { RelationalSnapshotCard } from "@/components/discover/profile/cards/RelationalSnapshotCard";
 import { AboutMeCard } from "@/components/discover/profile/cards/AboutMeCard";
 import { CompatibilityOverviewCard } from "@/components/discover/profile/cards/CompatibilityOverviewCard";
@@ -168,7 +169,7 @@ function ProfileDetailScreen() {
           "introduction_card",
           "Introduction",
           `${profile.name}, ${profile.age} · ${profile.region}`,
-          <IntentCard
+          <IntroductionCard
             name={profile.name}
             age={profile.age}
             region={profile.region}
@@ -189,10 +190,11 @@ function ProfileDetailScreen() {
         )}
 
         <div ref={inlineActionRef}>
-          <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
+          <StandfirstStrip
+            intent={profile.intent.primary}
+            pacing={profile.pacing}
+          />
         </div>
-
-        <AttuneDateCard dateIdeas={profile.dateIdeas} />
 
         {wrapPhoto(
           1,
@@ -276,6 +278,7 @@ function ProfileDetailScreen() {
             profileName={profile.name}
           />,
         )}
+        <AttuneDateCard dateIdeas={profile.dateIdeas} />
         {wrapModule(
           "what_lights_them_up",
           "What lights them up",
