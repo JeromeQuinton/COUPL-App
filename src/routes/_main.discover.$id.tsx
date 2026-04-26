@@ -4,7 +4,6 @@ import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetail
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
 import { AttuneDateCard } from "@/components/discover/AttuneDateCard";
-import { StandfirstStrip } from "@/components/discover/profile/StandfirstStrip";
 import { RelationalSnapshotCard } from "@/components/discover/profile/cards/RelationalSnapshotCard";
 import { AboutMeCard } from "@/components/discover/profile/cards/AboutMeCard";
 import { CompatibilityOverviewCard } from "@/components/discover/profile/cards/CompatibilityOverviewCard";
@@ -178,16 +177,16 @@ function ProfileDetailScreen() {
           }}
         />
 
-        <StandfirstStrip
-          intent={profile.intent.primary}
-          pacing={profile.pacing}
-        />
-
         {wrapModule(
           "about_me",
           "About Me",
           profile.bio,
-          <AboutMeCard bio={profile.bio} seeking={profile.seeking} />,
+          <AboutMeCard
+            bio={profile.bio}
+            seeking={profile.seeking}
+            intent={profile.intent.primary}
+            pacing={profile.pacing}
+          />,
         )}
         {wrapModule(
           "relational_snapshot",
@@ -215,6 +214,7 @@ function ProfileDetailScreen() {
             alt={profile.photos[1].alt}
             src={profile.photos[1].src}
             caption={profile.photos[1].caption}
+            variant="inset"
           />,
         )}
         {wrapModule(
@@ -230,6 +230,7 @@ function ProfileDetailScreen() {
             alt={profile.photos[2].alt}
             src={profile.photos[2].src}
             caption={profile.photos[2].caption}
+            variant="inset"
           />,
         )}
         {wrapModule(
@@ -254,6 +255,7 @@ function ProfileDetailScreen() {
             alt={profile.photos[3].alt}
             src={profile.photos[3].src}
             caption={profile.photos[3].caption}
+            variant="inset"
           />,
         )}
         {wrapModule(
@@ -292,6 +294,7 @@ function ProfileDetailScreen() {
                 alt={profile.photos[4].alt}
                 src={profile.photos[4].src}
                 caption={profile.photos[4].caption}
+                variant="inset"
               />,
             )
           : null}

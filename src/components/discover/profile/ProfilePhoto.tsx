@@ -29,6 +29,7 @@ export function ProfilePhoto({
   src,
   caption,
   hero,
+  variant = "hero",
 }: {
   hue: string;
   alt: string;
@@ -40,11 +41,21 @@ export function ProfilePhoto({
   caption?: string;
   /** When provided, renders the four-corner hero overlay (Photo 1 only). */
   hero?: HeroOverlay;
+  /**
+   * DR-056: layout variant.
+   * - "hero" (default): full-bleed (negative horizontal margin), no border-radius.
+   * - "inset": matches surrounding card width, 20px border-radius. Used for Photos 2–5.
+   */
+  variant?: "hero" | "inset";
 }) {
   const [errored, setErrored] = useState(false);
   const showImage = src && !errored;
+  const isInset = variant === "inset";
+  const containerClass = isInset
+    ? "relative overflow-hidden rounded-[20px] shadow-elev-1"
+    : "relative -mx-4 overflow-hidden";
   return (
-    <div className="relative -mx-4 overflow-hidden">
+    <div className={containerClass}>
       {showImage ? (
         <img
           src={src}
