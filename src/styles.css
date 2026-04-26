@@ -232,3 +232,30 @@
   .shadow-elev-2 { box-shadow: var(--elevation-2); }
   .shadow-elev-3 { box-shadow: var(--elevation-3); }
 }
+
+/*
+ * Single brand-glow moment for the Attuned pill (DR-023 v2).
+ * One premium light moment on the detail view — no other element
+ * receives this treatment. Respects prefers-reduced-motion.
+ */
+@keyframes attuned-glow {
+  0%   { box-shadow: 0 0 0 0 rgba(91, 43, 102, 0); }
+  35%  { box-shadow: 0 0 12px 4px rgba(91, 43, 102, 0.40); }
+  100% { box-shadow: 0 0 3px 1px rgba(91, 43, 102, 0.18); }
+}
+
+@layer utilities {
+  .attuned-glow {
+    animation: attuned-glow 600ms ease-out forwards;
+    will-change: box-shadow;
+  }
+  .attuned-glow-steady {
+    box-shadow: 0 0 3px 1px rgba(91, 43, 102, 0.18);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .attuned-glow {
+      animation: none;
+      box-shadow: 0 0 3px 1px rgba(91, 43, 102, 0.18);
+    }
+  }
+}
