@@ -9,6 +9,9 @@
  * deterministically; never rendered as a number.
  */
 
+import { PACING_VALUES, type PacingValue } from "./discover_profile_detail_sample";
+export { PACING_VALUES, type PacingValue } from "./discover_profile_detail_sample";
+
 export type AlignmentBand =
   | "Strongly Aligned"
   | "Well Aligned"
@@ -27,6 +30,13 @@ export type FeedProfile = {
   band: AlignmentBand;
   /** Lavender / blush gradient seed for the photo placeholder. */
   hue: string;
+  /**
+   * Pacing preference (DR-023 v2). Phase 1: derived deterministically by
+   * index in `SAMPLE_FEED` so the distribution is stable across reloads
+   * (matches existing seed=42 QA discipline). Phase 4: sourced from the
+   * profile record.
+   */
+  pacing: PacingValue;
 };
 
 export const bandFor = (value: number): AlignmentBand => {
@@ -34,6 +44,19 @@ export const bandFor = (value: number): AlignmentBand => {
   if (value >= 66) return "Well Aligned";
   if (value >= 51) return "Aligned";
   return "Early Signal";
+};
+
+/**
+ * Deterministic Pacing assignment by feed index (DR-023 v2).
+ * i % 4 === 0 || 1 → "Open to depth"   (~50%)
+ * i % 4 === 2      → "Slow & deliberate" (~25%)
+ * i % 4 === 3      → "In the moment"     (~25%)
+ */
+export const pacingForIndex = (i: number): PacingValue => {
+  const m = i % 4;
+  if (m === 0 || m === 1) return PACING_VALUES[1]; // Open to depth
+  if (m === 2) return PACING_VALUES[0]; // Slow & deliberate
+  return PACING_VALUES[2]; // In the moment
 };
 
 /* AUTO-GENERATED block start */
