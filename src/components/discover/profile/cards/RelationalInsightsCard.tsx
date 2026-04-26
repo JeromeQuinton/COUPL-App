@@ -50,11 +50,16 @@ function ConnectionLanguageSubCard({
       </h3>
 
       <div className="flex flex-wrap gap-2">
-        <span className="inline-flex items-center rounded-full bg-plum-500 px-3 py-1 font-body text-[12px] font-medium text-paper">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-lavender-100 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700">
+          <span
+            aria-hidden
+            className="inline-block h-1.5 w-1.5 rounded-full bg-plum-500"
+          />
           {data.primary}
+          <span className="sr-only"> (primary)</span>
         </span>
         {data.secondary ? (
-          <span className="inline-flex items-center rounded-full border border-plum-500 bg-paper px-3 py-1 font-body text-[12px] font-medium text-plum-700">
+          <span className="inline-flex items-center rounded-full bg-lavender-100 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700">
             {data.secondary}
           </span>
         ) : null}
