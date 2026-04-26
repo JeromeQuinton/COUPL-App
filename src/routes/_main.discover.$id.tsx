@@ -11,7 +11,7 @@ import { CompatibilityOverviewCard } from "@/components/discover/profile/cards/C
 import { AIInsightCard } from "@/components/discover/profile/cards/AIInsightCard";
 import { HowIShowUpCard } from "@/components/discover/profile/cards/HowIShowUpCard";
 import { RelationalInsightsCard } from "@/components/discover/profile/cards/RelationalInsightsCard";
-import { BigFiveSnapshotCard } from "@/components/discover/profile/cards/BigFiveSnapshotCard";
+import { DifferencesCard } from "@/components/discover/profile/cards/DifferencesCard";
 import { WhatLightsThemUpCard } from "@/components/discover/profile/cards/WhatLightsThemUpCard";
 import { ConversationStartersCard } from "@/components/discover/profile/cards/ConversationStartersCard";
 import { LifestyleDetailsCard } from "@/components/discover/profile/cards/LifestyleDetailsCard";
@@ -161,7 +161,10 @@ function ProfileDetailScreen() {
           src={profile.photos[3].src}
           caption={profile.photos[3].caption}
         />
-        <BigFiveSnapshotCard values={profile.bigFive} />
+        <DifferencesCard
+          values={profile.compatibilityOverview}
+          profileName={profile.name}
+        />
         <WhatLightsThemUpCard
           interests={profile.interests}
         />

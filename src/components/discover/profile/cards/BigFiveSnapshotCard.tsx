@@ -1,3 +1,6 @@
+// DEPRECATED — superseded by DifferencesCard. Retain for potential
+// future deep-dive view per design backlog. Not rendered by the
+// detail route. The reusable ring lives in ./AlignmentRing.tsx.
 import { SectionCard } from "./SectionCard";
 
 /**
