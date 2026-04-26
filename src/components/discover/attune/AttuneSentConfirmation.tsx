@@ -64,7 +64,7 @@ export function AttuneSentConfirmation({
     <div
       role="status"
       aria-live="polite"
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center px-6"
+      className="fixed inset-y-0 left-1/2 z-50 flex w-full max-w-[640px] -translate-x-1/2 flex-col items-center justify-center px-6"
       style={{
         opacity,
         transition: `opacity ${FADE_MS}ms ease-out`,

@@ -8,7 +8,10 @@ export const Route = createFileRoute("/_main")({
 function MainLayout() {
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-[640px] pb-24">
+      <main
+        id="phone-frame"
+        className="relative mx-auto max-w-[640px] overflow-x-hidden pb-24"
+      >
         <Outlet />
       </main>
       <BottomNav />

@@ -22,10 +22,10 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/95 backdrop-blur-md"
+      className="fixed bottom-0 left-1/2 z-40 w-full max-w-[640px] -translate-x-1/2 border-t border-line bg-paper/95 backdrop-blur-md"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <ul className="mx-auto flex max-w-[640px] items-stretch justify-between px-2">
+      <ul className="flex items-stretch justify-between px-2">
         {TABS.map(({ to, label, Icon }) => {
           const isActive = pathname === to || pathname.startsWith(`${to}/`);
           return (
