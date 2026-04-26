@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
@@ -15,6 +15,11 @@ import { DifferencesCard } from "@/components/discover/profile/cards/Differences
 import { WhatLightsThemUpCard } from "@/components/discover/profile/cards/WhatLightsThemUpCard";
 import { ConversationStartersCard } from "@/components/discover/profile/cards/ConversationStartersCard";
 import { LifestyleDetailsCard } from "@/components/discover/profile/cards/LifestyleDetailsCard";
+import { AttuneTarget } from "@/components/discover/attune/AttuneTarget";
+import { AttuneDialog } from "@/components/discover/attune/AttuneDialog";
+import { AttuneSentConfirmation } from "@/components/discover/attune/AttuneSentConfirmation";
+import { useAttuneState, type AttuneTarget as AttuneStateTarget } from "@/hooks/use-attune-state";
+import { useFeedExclusions } from "@/hooks/use-feed-exclusions";
 import {
   Sheet,
   SheetContent,
@@ -25,6 +30,9 @@ import {
 import { getProfileDetail } from "@/data/discover_profile_detail_sample";
 import { discoverSessionState } from "@/lib/discover_session_state";
 import { useInView } from "@/hooks/use-in-view";
+
+// V0 — replace with subscription check in Phase 4. Flip to false to QA paywall.
+const IS_PAID_USER_V0 = true;
 
 export const Route = createFileRoute("/_main/discover/$id")({
   head: ({ params }) => ({
@@ -67,6 +75,12 @@ function ProfileDetailScreen() {
   const [info, setInfo] = useState<InfoSheet>(null);
   const inlineActionRef = useRef<HTMLDivElement>(null);
   const inlineInView = useInView(inlineActionRef, { rootMargin: "0px 0px -8px 0px" });
+  const { sendAttune } = useAttuneState(id);
+  const { excludeProfile } = useFeedExclusions();
+  const [primaryDialogOpen, setPrimaryDialogOpen] = useState(false);
+  const [confirmation, setConfirmation] = useState<
+    { visible: boolean; targetType: "profile" | "module" | "photo" }
+  >({ visible: false, targetType: "profile" });
 
   const goBack = () => {
     if (window.history.length > 1) router.history.back();
@@ -75,17 +89,65 @@ function ProfileDetailScreen() {
 
   const handleNotToday = () => {
     discoverSessionState.markDismissed(id);
+    excludeProfile(id);
     navigate({ to: "/discover" });
   };
 
   const handleInvite = () => {
-    discoverSessionState.markInvited(id);
-    navigate({ to: "/discover" });
+    setPrimaryDialogOpen(true);
   };
+
+  const completeAttune = useCallback(
+    (target: AttuneStateTarget, comment: string | undefined) => {
+      sendAttune(target, comment);
+      discoverSessionState.markInvited(id);
+      setConfirmation({ visible: true, targetType: target.type });
+    },
+    [id, sendAttune],
+  );
+
+  const handleConfirmationDismissed = useCallback(() => {
+    setConfirmation((c) => ({ ...c, visible: false }));
+    excludeProfile(id);
+    navigate({ to: "/discover" });
+  }, [excludeProfile, id, navigate]);
 
   const openInfo = (label: string, body: string) => setInfo({ label, body });
 
   if (!profile) return <ProfileNotFound />;
+
+  const wrapModule = (
+    key: string,
+    title: string,
+    previewText: string | undefined,
+    node: React.ReactNode,
+  ) => (
+    <AttuneTarget
+      targetType="module"
+      targetKey={key}
+      targetPreview={{ title, previewText }}
+      profileId={id}
+      profileName={profile.name}
+      isPaidUser={IS_PAID_USER_V0}
+      onAttuneSent={completeAttune}
+    >
+      {node}
+    </AttuneTarget>
+  );
+
+  const wrapPhoto = (index: number, node: React.ReactNode) => (
+    <AttuneTarget
+      targetType="photo"
+      targetKey={String(index)}
+      targetPreview={{ thumbnailUrl: profile.photos[index]?.src }}
+      profileId={id}
+      profileName={profile.name}
+      isPaidUser={IS_PAID_USER_V0}
+      onAttuneSent={completeAttune}
+    >
+      {node}
+    </AttuneTarget>
+  );
 
   return (
     <div
@@ -102,24 +164,32 @@ function ProfileDetailScreen() {
       />
 
       <div className="flex flex-col gap-4 pt-4">
-        <IntentCard
-          name={profile.name}
-          age={profile.age}
-          region={profile.region}
-          verified={profile.verified}
-          primary={profile.intent.primary}
-          relationshipStyle={profile.intent.relationshipStyle}
-          pacing={profile.pacing}
-          attunedValue={profile.compatibility}
-        />
+        {wrapModule(
+          "introduction_card",
+          "Introduction",
+          `${profile.name}, ${profile.age} · ${profile.region}`,
+          <IntentCard
+            name={profile.name}
+            age={profile.age}
+            region={profile.region}
+            verified={profile.verified}
+            primary={profile.intent.primary}
+            relationshipStyle={profile.intent.relationshipStyle}
+            pacing={profile.pacing}
+            attunedValue={profile.compatibility}
+          />,
+        )}
 
-        <ProfilePhoto
-          hue={profile.photos[0].hue}
-          alt={profile.photos[0].alt}
-          src={profile.photos[0].src}
-          caption={profile.photos[0].caption}
-          trustScore={profile.trustScore}
-        />
+        {wrapPhoto(
+          0,
+          <ProfilePhoto
+            hue={profile.photos[0].hue}
+            alt={profile.photos[0].alt}
+            src={profile.photos[0].src}
+            caption={profile.photos[0].caption}
+            trustScore={profile.trustScore}
+          />,
+        )}
 
         <div ref={inlineActionRef}>
           <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
@@ -127,57 +197,117 @@ function ProfileDetailScreen() {
 
         <AttuneDateCard dateIdeas={profile.dateIdeas} />
 
-        <ProfilePhoto
-          hue={profile.photos[1].hue}
-          alt={profile.photos[1].alt}
-          src={profile.photos[1].src}
-          caption={profile.photos[1].caption}
-        />
-        <AboutMeCard bio={profile.bio} seeking={profile.seeking} />
-        <RelationalSnapshotCard
-          empathy={profile.empathy}
-          communication={profile.communication}
-          onInfo={openInfo}
-        />
-        <CompatibilityOverviewCard
-          values={profile.compatibilityOverview}
-          profileName={profile.name}
-        />
-        <AIInsightCard insight={profile.aiInsight} />
-        <ProfilePhoto
-          hue={profile.photos[2].hue}
-          alt={profile.photos[2].alt}
-          src={profile.photos[2].src}
-          caption={profile.photos[2].caption}
-        />
-        <HowIShowUpCard text={profile.howIShowUp} />
-        <RelationalInsightsCard
-          connectionLanguage={profile.connectionLanguage}
-          attachmentStyle={profile.attachmentStyle}
-        />
-        <ProfilePhoto
-          hue={profile.photos[3].hue}
-          alt={profile.photos[3].alt}
-          src={profile.photos[3].src}
-          caption={profile.photos[3].caption}
-        />
-        <DifferencesCard
-          values={profile.compatibilityOverview}
-          profileName={profile.name}
-        />
-        <WhatLightsThemUpCard
-          interests={profile.interests}
-        />
-        <ConversationStartersCard starters={profile.conversationStarters} />
-        <LifestyleDetailsCard data={profile.lifestyle} />
-        {profile.photos[4] ? (
+        {wrapPhoto(
+          1,
           <ProfilePhoto
-            hue={profile.photos[4].hue}
-            alt={profile.photos[4].alt}
-            src={profile.photos[4].src}
-            caption={profile.photos[4].caption}
-          />
-        ) : null}
+            hue={profile.photos[1].hue}
+            alt={profile.photos[1].alt}
+            src={profile.photos[1].src}
+            caption={profile.photos[1].caption}
+          />,
+        )}
+        {wrapModule(
+          "about_me",
+          "About Me",
+          profile.bio,
+          <AboutMeCard bio={profile.bio} seeking={profile.seeking} />,
+        )}
+        {wrapModule(
+          "relational_snapshot",
+          "Relational Snapshot",
+          `Empathy ${profile.empathy}% · Communication ${profile.communication}%`,
+          <RelationalSnapshotCard
+            empathy={profile.empathy}
+            communication={profile.communication}
+            onInfo={openInfo}
+          />,
+        )}
+        {wrapModule(
+          "compatibility_overview",
+          "Compatibility Overview",
+          `How aligned you are with ${profile.name}.`,
+          <CompatibilityOverviewCard
+            values={profile.compatibilityOverview}
+            profileName={profile.name}
+          />,
+        )}
+        {wrapModule(
+          "ai_insight",
+          "AI Insight",
+          profile.aiInsight,
+          <AIInsightCard insight={profile.aiInsight} />,
+        )}
+        {wrapPhoto(
+          2,
+          <ProfilePhoto
+            hue={profile.photos[2].hue}
+            alt={profile.photos[2].alt}
+            src={profile.photos[2].src}
+            caption={profile.photos[2].caption}
+          />,
+        )}
+        {wrapModule(
+          "how_i_show_up",
+          "How they show up in relationships",
+          profile.howIShowUp,
+          <HowIShowUpCard text={profile.howIShowUp} />,
+        )}
+        {wrapModule(
+          "relational_insights",
+          "Relational Insights",
+          `Connection Language: ${profile.connectionLanguage.primary}`,
+          <RelationalInsightsCard
+            connectionLanguage={profile.connectionLanguage}
+            attachmentStyle={profile.attachmentStyle}
+          />,
+        )}
+        {wrapPhoto(
+          3,
+          <ProfilePhoto
+            hue={profile.photos[3].hue}
+            alt={profile.photos[3].alt}
+            src={profile.photos[3].src}
+            caption={profile.photos[3].caption}
+          />,
+        )}
+        {wrapModule(
+          "differences_card",
+          "Worth being curious about",
+          "Where your styles are most different.",
+          <DifferencesCard
+            values={profile.compatibilityOverview}
+            profileName={profile.name}
+          />,
+        )}
+        {wrapModule(
+          "what_lights_them_up",
+          "What lights them up",
+          profile.interests.map((i) => i.label).join(", "),
+          <WhatLightsThemUpCard interests={profile.interests} />,
+        )}
+        {wrapModule(
+          "conversation_starters",
+          "Conversation Starters",
+          profile.conversationStarters[0],
+          <ConversationStartersCard starters={profile.conversationStarters} />,
+        )}
+        {wrapModule(
+          "lifestyle_details",
+          "Lifestyle & Details",
+          profile.lifestyle.work,
+          <LifestyleDetailsCard data={profile.lifestyle} />,
+        )}
+        {profile.photos[4]
+          ? wrapPhoto(
+              4,
+              <ProfilePhoto
+                hue={profile.photos[4].hue}
+                alt={profile.photos[4].alt}
+                src={profile.photos[4].src}
+                caption={profile.photos[4].caption}
+              />,
+            )
+          : null}
       </div>
 
       {/*
@@ -221,6 +351,25 @@ function ProfileDetailScreen() {
           </SheetHeader>
         </SheetContent>
       </Sheet>
+
+      {/* Primary Attune button → profile-target dialog. Free for all tiers. */}
+      <AttuneDialog
+        open={primaryDialogOpen}
+        onClose={() => setPrimaryDialogOpen(false)}
+        onSend={(comment) => {
+          setPrimaryDialogOpen(false);
+          completeAttune({ type: "profile" }, comment);
+        }}
+        target={{ type: "profile", title: profile.name }}
+        profileName={profile.name}
+      />
+
+      <AttuneSentConfirmation
+        visible={confirmation.visible}
+        profileName={profile.name}
+        targetType={confirmation.targetType}
+        onDismissed={handleConfirmationDismissed}
+      />
     </div>
   );
 }
