@@ -167,6 +167,12 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
         src: "https://github.com/lonestarfish/COUPL/blob/main/yrikI.jpg?raw=true",
         caption: "My favourite version of myself is a little bit windswept.",
       },
+      {
+        hue: "#E8D5EC",
+        alt: "Maya mid-skydive, arms wide",
+        src: "https://raw.githubusercontent.com/JeromeQuinton/COUPL/main/LNxSI.jpg",
+        caption: "The version of me that says yes before her brain catches up.",
+      },
     ],
 
     empathy: 68,
