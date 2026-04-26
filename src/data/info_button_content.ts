@@ -83,4 +83,60 @@ export const INFO_CONTENT: Record<string, InfoContent> = {
     whatItMeansForYou:
       "Quality Time as primary means presence matters more than performance. Phones away, real attention. Words as secondary means thoughtful messages also land.",
   },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  compatibility_overview: {
+    termName: "Compatibility Overview",
+    whatThisMeans:
+      "How aligned the two of you are across the Big Five personality traits and shared intent. Not a prediction — a snapshot of where your styles likely meet or differ.",
+    whatItMeansForYou:
+      "High alignment usually means easier early conversations and fewer surface-level frictions. Lower alignment isn't a problem — it just means more to be curious about together.",
+  },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  openness: {
+    termName: "Openness",
+    whatThisMeans:
+      "How drawn someone is to new ideas, experiences, and unconventional thinking. High openness means imaginative and curious; lower means practical and grounded.",
+    whatItMeansForYou:
+      "Strong alignment here means similar appetites for novelty and creativity. A gap can mean one of you stretches the other into new territory — which can be a good thing or a friction point.",
+  },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  conscientiousness: {
+    termName: "Conscientiousness",
+    whatThisMeans:
+      "How organized, reliable, and goal-oriented someone is. High conscientiousness = planners and finishers; lower = flexible and spontaneous.",
+    whatItMeansForYou:
+      "Aligned here means matched expectations around plans, follow-through, and how structured daily life feels. Mismatched here is one of the most common sources of low-grade relationship friction.",
+  },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  extraversion: {
+    termName: "Extraversion",
+    whatThisMeans:
+      "How energized someone is by social situations versus solitude. High = recharges around people; low = recharges alone.",
+    whatItMeansForYou:
+      "Closely aligned scores tend to mean compatible social rhythms — same comfort level with parties, same hunger for quiet time. Big gaps require explicit negotiation about social pace.",
+  },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  agreeableness: {
+    termName: "Agreeableness",
+    whatThisMeans:
+      "How cooperative, warm, and conflict-averse someone tends to be. High = harmony-focused; lower = direct and challenging.",
+    whatItMeansForYou:
+      "Strong alignment here makes day-to-day interaction easier. A gap can mean one of you ends up carrying more emotional accommodation, which builds up over time if not named.",
+  },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  emotional_balance: {
+    termName: "Emotional Balance",
+    whatThisMeans:
+      "How steady someone tends to feel under stress. The inverse of trait neuroticism — higher means calmer baseline, lower means more emotionally responsive.",
+    whatItMeansForYou:
+      "Aligned scores tend to mean matched capacity for handling each other's harder moments. A gap means one of you may end up doing more emotional regulation work — worth knowing early.",
+  },
+  // V0 PLACEHOLDER — needs psych advisor sign-off
+  shared_intent: {
+    termName: "Shared Intent",
+    whatThisMeans:
+      "How aligned the two of you are on what you're looking for from a relationship — short-term fun, partnership, casual depth, etc.",
+    whatItMeansForYou:
+      "Highest-impact dimension. People with aligned intent often work even when other dimensions differ. People with misaligned intent rarely work even when other dimensions match.",
+  },
 };
