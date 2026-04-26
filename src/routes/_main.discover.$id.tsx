@@ -194,15 +194,6 @@ function ProfileDetailScreen() {
             onInfo={openInfo}
           />,
         )}
-        {wrapModule(
-          "compatibility_overview",
-          "Compatibility Overview",
-          `How aligned you are with ${profile.name}.`,
-          <CompatibilityOverviewCard
-            values={profile.compatibilityOverview}
-            profileName={profile.name}
-          />,
-        )}
         {wrapPhoto(
           1,
           <ProfilePhoto
@@ -214,10 +205,25 @@ function ProfileDetailScreen() {
           />,
         )}
         {wrapModule(
+          "compatibility_overview",
+          "Compatibility Overview",
+          `How aligned you are with ${profile.name}.`,
+          <CompatibilityOverviewCard
+            values={profile.compatibilityOverview}
+            profileName={profile.name}
+          />,
+        )}
+        {wrapModule(
           "ai_insight",
           "Reading the signal",
           profile.aiInsight,
           <AIInsightCard insight={profile.aiInsight} />,
+        )}
+        {wrapModule(
+          "how_i_show_up",
+          "How they show up in relationships",
+          profile.howIShowUp,
+          <HowIShowUpCard text={profile.howIShowUp} />,
         )}
         {wrapPhoto(
           2,
@@ -230,18 +236,21 @@ function ProfileDetailScreen() {
           />,
         )}
         {wrapModule(
-          "how_i_show_up",
-          "How they show up in relationships",
-          profile.howIShowUp,
-          <HowIShowUpCard text={profile.howIShowUp} />,
-        )}
-        {wrapModule(
           "relational_insights",
           "Relational Insights",
           `Connection Language: ${profile.connectionLanguage.primary}`,
           <RelationalInsightsCard
             connectionLanguage={profile.connectionLanguage}
             attachmentStyle={profile.attachmentStyle}
+          />,
+        )}
+        {wrapModule(
+          "differences_card",
+          "Worth being curious about",
+          "Where your styles are most different.",
+          <DifferencesCard
+            values={profile.compatibilityOverview}
+            profileName={profile.name}
           />,
         )}
         {wrapPhoto(
@@ -254,27 +263,6 @@ function ProfileDetailScreen() {
             variant="inset"
           />,
         )}
-        {wrapModule(
-          "differences_card",
-          "Worth being curious about",
-          "Where your styles are most different.",
-          <DifferencesCard
-            values={profile.compatibilityOverview}
-            profileName={profile.name}
-          />,
-        )}
-        {profile.photos[5]
-          ? wrapPhoto(
-              5,
-              <ProfilePhoto
-                hue={profile.photos[5].hue}
-                alt={profile.photos[5].alt}
-                src={profile.photos[5].src}
-                caption={profile.photos[5].caption}
-                variant="inset"
-              />,
-            )
-          : null}
         <AttuneDateCard dateIdeas={profile.dateIdeas} />
         {wrapModule(
           "what_lights_them_up",
@@ -288,6 +276,18 @@ function ProfileDetailScreen() {
           profile.conversationStarters[0],
           <ConversationStartersCard starters={profile.conversationStarters} />,
         )}
+        {profile.photos[5]
+          ? wrapPhoto(
+              5,
+              <ProfilePhoto
+                hue={profile.photos[5].hue}
+                alt={profile.photos[5].alt}
+                src={profile.photos[5].src}
+                caption={profile.photos[5].caption}
+                variant="inset"
+              />,
+            )
+          : null}
         {wrapModule(
           "lifestyle_details",
           "Lifestyle & Details",
