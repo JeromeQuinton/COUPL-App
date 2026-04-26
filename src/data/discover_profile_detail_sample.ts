@@ -92,19 +92,19 @@ export type ProfileDetail = {
   conversationStarters: string[];
 
   lifestyle: {
-    work: string;
-    education: string;
-    exercise: string;
-    diet: string;
-    drinking: string;
-    smoking: string;
-    kids: string;
-    haveKids: string;
-    height: string;
-    politics: string;
-    religion: string;
-    language: string;
-    pronouns: string;
+    work?: string;
+    education?: string;
+    exercise?: string;
+    diet?: string;
+    drinking?: string;
+    smoking?: string;
+    kids?: string;
+    haveKids?: string;
+    height?: string;
+    politics?: string;
+    religion?: string;
+    language?: string;
+    pronouns?: string;
   };
 };
 
