@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AlignmentPill } from "@/components/discover/AlignmentPill";
 import type { FeedProfile } from "@/data/discover_feed_sample";
 import type { DiscoverCardStatus } from "@/lib/discover_session_state";
@@ -17,6 +18,8 @@ export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
   const handle = () => onOpen(profile.id);
   const isDismissed = status === "dismissed";
   const isInvited = status === "invited";
+  const [imgErrored, setImgErrored] = useState(false);
+  const showPhoto = Boolean(profile.photoUrl) && !imgErrored;
 
   return (
     <button
@@ -28,14 +31,23 @@ export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
       }`}
     >
       <div className="flex gap-3">
-        {/* Photo placeholder */}
+        {/* Photo (with gradient fallback behind the <img>) */}
         <div
-          aria-hidden
-          className="h-[72px] w-[72px] flex-shrink-0 rounded-[14px]"
+          className="relative h-[72px] w-[72px] flex-shrink-0 overflow-hidden rounded-[14px]"
           style={{
             background: `linear-gradient(150deg, ${profile.hue} 0%, var(--lavender-100) 60%, #E8D5EC 100%)`,
           }}
-        />
+        >
+          {showPhoto ? (
+            <img
+              src={profile.photoUrl}
+              alt={profile.name}
+              loading="lazy"
+              onError={() => setImgErrored(true)}
+              className="h-full w-full object-cover"
+            />
+          ) : null}
+        </div>
 
         {/* Body */}
         <div className="flex flex-1 flex-col gap-1.5 min-w-0">
