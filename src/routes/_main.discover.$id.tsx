@@ -106,12 +106,6 @@ function ProfileDetailScreen() {
           relationshipStyle={profile.intent.relationshipStyle}
           pacing={profile.pacing}
           attunedValue={profile.compatibility}
-          onInfo={() =>
-            openInfo(
-              "Attuned",
-              "How aligned your styles feel today across values, pacing, and psychology.",
-            )
-          }
         />
 
         <ProfilePhoto

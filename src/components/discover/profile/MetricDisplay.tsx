@@ -1,4 +1,5 @@
 import { Info } from "lucide-react";
+import { InfoButton } from "@/components/discover/InfoButton";
 
 /**
  * Shared MetricDisplay (DR-013).
@@ -21,6 +22,12 @@ export type MetricDisplayProps = {
   /** Plain-language, observational explanation surfaced via info dot. */
   infoText: string;
   onInfo?: (label: string, infoText: string) => void;
+  /**
+   * When provided, renders a shared <InfoButton/> sourced from the
+   * INFO_CONTENT registry instead of the legacy local info dot.
+   * Takes precedence over onInfo.
+   */
+  termKey?: string;
   /** Visual variant — `inline` is label + bar in a row, `stacked` is label / value above bar. */
   variant?: "inline" | "stacked";
 };
@@ -45,6 +52,7 @@ export function MetricDisplay({
   label,
   infoText,
   onInfo,
+  termKey,
   variant = "stacked",
 }: MetricDisplayProps) {
   const clamped = Math.max(0, Math.min(100, value));
@@ -57,7 +65,9 @@ export function MetricDisplay({
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5">
           <span className="font-body text-[13px] font-medium text-ink">{label}</span>
-          {onInfo ? (
+          {termKey ? (
+            <InfoButton termKey={termKey} />
+          ) : onInfo ? (
             <button
               type="button"
               onClick={() => onInfo(label, infoText)}

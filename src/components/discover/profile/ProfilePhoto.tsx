@@ -4,6 +4,7 @@
  */
 import { useState } from "react";
 import { PhotoCaption } from "@/components/discover/PhotoCaption";
+import { InfoButton } from "@/components/discover/InfoButton";
 
 export function ProfilePhoto({
   hue,
@@ -48,10 +49,11 @@ export function ProfilePhoto({
       )}
       {typeof trustScore === "number" ? (
         <span
-          className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-paper/90 px-3 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"
+          className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-paper/90 px-3 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"
           aria-label={`Trust Score ${trustScore}%`}
         >
           <span className="font-display text-[12px] font-semibold">Trust Score {trustScore}%</span>
+          <InfoButton termKey="trust_score" />
         </span>
       ) : null}
       <PhotoCaption caption={caption} photoAlt={alt} />

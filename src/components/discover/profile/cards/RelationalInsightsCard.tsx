@@ -1,4 +1,5 @@
 import { SectionCard } from "./SectionCard";
+import { InfoButton } from "@/components/discover/InfoButton";
 
 /**
  * Card 7 — Relational Insights. Composes two sub-cards:
@@ -45,8 +46,9 @@ function ConnectionLanguageSubCard({
   const v = Math.max(0, Math.min(100, data.primaryValue));
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="font-display text-[14px] font-semibold text-plum-700">
+      <h3 className="inline-flex items-center gap-1.5 font-display text-[14px] font-semibold text-plum-700">
         Connection Language
+        <InfoButton termKey="connection_language" />
       </h3>
       <p className="font-body text-[13px] text-ink">
         Primary: <span className="font-medium">{data.primary}</span> — {v}%
@@ -89,8 +91,9 @@ function AttachmentStyleSubCard({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="font-display text-[14px] font-semibold text-plum-700">
+      <h3 className="inline-flex items-center gap-1.5 font-display text-[14px] font-semibold text-plum-700">
         Attachment Style
+        <InfoButton termKey="attachment_style" />
       </h3>
       <p className="font-body text-[13px] text-ink">
         <span className="font-medium">{data.label}</span> — {data.leaning}

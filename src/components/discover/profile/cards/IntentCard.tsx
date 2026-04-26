@@ -1,4 +1,5 @@
-import { Heart, Info, BadgeCheck } from "lucide-react";
+import { Heart, BadgeCheck } from "lucide-react";
+import { InfoButton } from "@/components/discover/InfoButton";
 
 /**
  * Introduction Card (DR-023 v2).
@@ -16,7 +17,6 @@ export function IntentCard({
   relationshipStyle,
   pacing,
   attunedValue,
-  onInfo,
 }: {
   name: string;
   age: number;
@@ -26,7 +26,6 @@ export function IntentCard({
   relationshipStyle: string;
   pacing: string;
   attunedValue: number;
-  onInfo: () => void;
 }) {
   return (
     <section className="rounded-[20px] bg-paper p-5 shadow-elev-1">
@@ -49,20 +48,20 @@ export function IntentCard({
       {/* Row 2 — Location + Attuned */}
       <div className="mt-1.5 flex items-center justify-between gap-3">
         <p className="truncate font-body text-[13px] text-slate">{region}</p>
-        <AttunedPill value={attunedValue} onInfo={onInfo} />
+        <AttunedPill value={attunedValue} />
       </div>
 
       <div className="my-4 h-px bg-line/60" />
 
       {/* Row 3 — Intent */}
-      <LabelValueRow label="Intent">
+      <LabelValueRow label="Intent" termKey="intent">
         <Chip>{primary}</Chip>
         <Chip>{relationshipStyle}</Chip>
       </LabelValueRow>
 
       {/* Row 4 — Pacing */}
       <div className="mt-3">
-        <LabelValueRow label="Pacing">
+        <LabelValueRow label="Pacing" termKey="pacing">
           <Chip>{pacing}</Chip>
         </LabelValueRow>
       </div>
@@ -77,15 +76,18 @@ export function IntentCard({
 
 function LabelValueRow({
   label,
+  termKey,
   children,
 }: {
   label: string;
+  termKey?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-stone">
+      <span className="inline-flex items-center gap-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-stone">
         {label}
+        {termKey ? <InfoButton termKey={termKey} /> : null}
       </span>
       <div className="flex flex-1 flex-wrap justify-end gap-2">{children}</div>
     </div>
@@ -100,7 +102,7 @@ function Chip({ children }: { children: React.ReactNode }) {
   );
 }
 
-function AttunedPill({ value, onInfo }: { value: number; onInfo: () => void }) {
+function AttunedPill({ value }: { value: number }) {
   return (
     <div className="attuned-glow inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-paper px-3 py-1.5">
       <Heart
@@ -114,14 +116,7 @@ function AttunedPill({ value, onInfo }: { value: number; onInfo: () => void }) {
       <span className="font-display text-[13px] font-semibold leading-none text-plum-700">
         {value}% Attuned
       </span>
-      <button
-        type="button"
-        onClick={onInfo}
-        aria-label="About attunement"
-        className="inline-flex h-4 w-4 items-center justify-center text-stone transition-colors hover:text-plum-500"
-      >
-        <Info aria-hidden width={12} height={12} strokeWidth={1.75} />
-      </button>
+      <InfoButton termKey="attuned_percentage" />
     </div>
   );
 }
