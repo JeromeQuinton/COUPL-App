@@ -10,11 +10,11 @@ function MainLayout() {
     <div className="min-h-screen bg-paper text-ink">
       <main
         id="phone-frame"
-        className="relative mx-auto min-h-screen max-w-[640px] overflow-x-hidden pb-24"
+        className="relative mx-auto max-w-[640px] overflow-x-hidden pb-24"
       >
         <Outlet />
-        <BottomNav />
       </main>
+      <BottomNav />
     </div>
   );
 }
