@@ -3,6 +3,7 @@ import type { ComponentType, SVGProps } from "react";
 import { SectionCard } from "./SectionCard";
 import { InfoButton } from "@/components/discover/InfoButton";
 import { VIEWER_PROFILE } from "@/data/discover_profile_detail_sample";
+import { computeAlignment } from "@/lib/compatibility";
 
 /**
  * Card 4 — Compatibility Overview (DR-018).
@@ -34,13 +35,6 @@ const TRAITS: TraitDef[] = [
   { key: "emotionalBalance", label: "Emotional Balance", termKey: "emotional_balance", icon: Waves },
   { key: "sharedIntent", label: "Shared Intent", termKey: "shared_intent", icon: Compass },
 ];
-
-// V0 PLACEHOLDER alignment heuristic — replace with
-// psych-validated compatibility model in Phase 2
-function computeAlignment(viewer: number | undefined, profile: number | undefined): number {
-  if (typeof viewer !== "number" || typeof profile !== "number") return 0;
-  return Math.max(0, 100 - Math.abs(viewer - profile));
-}
 
 export function CompatibilityOverviewCard({
   values,
