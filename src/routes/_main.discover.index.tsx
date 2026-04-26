@@ -42,7 +42,7 @@ function DiscoverScreen() {
   const cap = capForTier(tier);
   const prefs = useUserPreferences();
   const navigate = useNavigate();
-  const { excludedProfileIds } = useFeedExclusions();
+  const { excludedProfileIds, clearExclusions } = useFeedExclusions();
 
   // Subscribe so cards re-render when detail screen mutates session state.
   useSyncExternalStore(
@@ -154,6 +154,18 @@ function DiscoverScreen() {
         </section>
 
         <EmptyStateFooter tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
+
+        {import.meta.env.DEV && (
+          <div className="pt-2 text-center">
+            <button
+              type="button"
+              onClick={clearExclusions}
+              className="font-body text-[12px] text-stone underline-offset-2 transition-colors hover:text-plum-500 hover:underline"
+            >
+              Reset feed (dev only)
+            </button>
+          </div>
+        )}
       </div>
 
       <MoreFiltersSheet
