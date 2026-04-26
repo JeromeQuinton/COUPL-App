@@ -263,6 +263,18 @@ function ProfileDetailScreen() {
             profileName={profile.name}
           />,
         )}
+        {profile.photos[5]
+          ? wrapPhoto(
+              5,
+              <ProfilePhoto
+                hue={profile.photos[5].hue}
+                alt={profile.photos[5].alt}
+                src={profile.photos[5].src}
+                caption={profile.photos[5].caption}
+                variant="inset"
+              />,
+            )
+          : null}
         <AttuneDateCard dateIdeas={profile.dateIdeas} />
         {wrapModule(
           "what_lights_them_up",
