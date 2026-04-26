@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/sheet";
 import { getProfileDetail } from "@/data/discover_profile_detail_sample";
 import { discoverSessionState } from "@/lib/discover_session_state";
+import { useInView } from "@/hooks/use-in-view";
 
 export const Route = createFileRoute("/_main/discover/$id")({
   head: ({ params }) => ({
@@ -64,6 +65,8 @@ function ProfileDetailScreen() {
   const router = useRouter();
   const profile = getProfileDetail(id);
   const [info, setInfo] = useState<InfoSheet>(null);
+  const inlineActionRef = useRef<HTMLDivElement>(null);
+  const inlineInView = useInView(inlineActionRef, { rootMargin: "0px 0px -8px 0px" });
 
   const goBack = () => {
     if (window.history.length > 1) router.history.back();
@@ -118,7 +121,9 @@ function ProfileDetailScreen() {
           trustScore={profile.trustScore}
         />
 
-        <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
+        <div ref={inlineActionRef}>
+          <ActionRow onNotToday={handleNotToday} onInvite={handleInvite} />
+        </div>
 
         <AttuneDateCard dateIdeas={profile.dateIdeas} />
 
@@ -167,6 +172,32 @@ function ProfileDetailScreen() {
             caption={profile.photos[4].caption}
           />
         ) : null}
+      </div>
+
+      {/*
+       * Sticky action bar — appears once the inline action row leaves
+       * the viewport. Sits above the bottom nav (BottomNav is fixed
+       * with ~62px height + safe-area). Fade respects reduced motion
+       * via the .motion-fade utility in styles.css.
+       */}
+      <div
+        aria-hidden={inlineInView}
+        className={`motion-fade fixed inset-x-0 z-30 ${
+          inlineInView ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
+        style={{
+          bottom: "calc(env(safe-area-inset-bottom) + 62px)",
+          boxShadow: "0 -2px 8px rgba(0,0,0,0.06)",
+          background: "var(--paper, #fff)",
+        }}
+      >
+        <div className="mx-auto max-w-[640px] px-4">
+          <ActionRow
+            variant="compact"
+            onNotToday={handleNotToday}
+            onInvite={handleInvite}
+          />
+        </div>
       </div>
 
       <Sheet open={info !== null} onOpenChange={(o) => !o && setInfo(null)}>
