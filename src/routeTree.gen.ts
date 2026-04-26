@@ -14,6 +14,7 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
+import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainGrowthRouteImport } from './routes/_main.growth'
@@ -44,6 +45,11 @@ const IndexRoute = IndexRouteImport.update({
 const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingCompleteRoute = OnboardingCompleteRouteImport.update({
+  id: '/complete',
+  path: '/complete',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const MainProfileRoute = MainProfileRouteImport.update({
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
+  '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/': typeof MainDiscoverIndexRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRoute
   '/profile': typeof MainProfileRoute
+  '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover': typeof MainDiscoverIndexRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/_main/growth': typeof MainGrowthRoute
   '/_main/home': typeof MainHomeRoute
   '/_main/profile': typeof MainProfileRoute
+  '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/growth'
     | '/home'
     | '/profile'
+    | '/onboarding/complete'
     | '/onboarding/'
     | '/discover/$id'
     | '/discover/'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/growth'
     | '/home'
     | '/profile'
+    | '/onboarding/complete'
     | '/onboarding'
     | '/discover/$id'
     | '/discover'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/_main/growth'
     | '/_main/home'
     | '/_main/profile'
+    | '/onboarding/complete'
     | '/onboarding/'
     | '/_main/discover/$id'
     | '/_main/discover/'
@@ -211,6 +223,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/onboarding/'
       preLoaderRoute: typeof OnboardingIndexRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/complete': {
+      id: '/onboarding/complete'
+      path: '/complete'
+      fullPath: '/onboarding/complete'
+      preLoaderRoute: typeof OnboardingCompleteRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/_main/profile': {
@@ -315,10 +334,12 @@ const MainRouteChildren: MainRouteChildren = {
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
 interface OnboardingRouteChildren {
+  OnboardingCompleteRoute: typeof OnboardingCompleteRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
 const OnboardingRouteChildren: OnboardingRouteChildren = {
+  OnboardingCompleteRoute: OnboardingCompleteRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
 }
 
