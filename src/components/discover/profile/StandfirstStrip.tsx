@@ -38,8 +38,7 @@ export function StandfirstStrip({
       className="flex items-center justify-center gap-2"
       style={{
         padding: "24px 16px",
-        borderBottom: "0.5px solid #F5F0FF",
-        background: "#FFFFFF",
+        background: "transparent",
       }}
     >
       <span className="bg-lavender-100 px-3 py-1.5 text-[12px] font-medium text-plum-700 rounded-full">
