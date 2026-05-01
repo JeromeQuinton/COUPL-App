@@ -29,6 +29,9 @@ import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
 import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
 import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
 import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.index'
+import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.reflection'
+import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
+import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -129,6 +132,21 @@ const MainDiscoverIndexRoute = MainDiscoverIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainHomeReflectionRoute = MainHomeReflectionRouteImport.update({
+  id: '/reflection',
+  path: '/reflection',
+  getParentRoute: () => MainHomeRoute,
+} as any)
+const MainHomeCoachRoute = MainHomeCoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => MainHomeRoute,
+} as any)
+const MainHomeCheckInRoute = MainHomeCheckInRouteImport.update({
+  id: '/check-in',
+  path: '/check-in',
+  getParentRoute: () => MainHomeRoute,
+} as any)
 const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -142,7 +160,7 @@ export interface FileRoutesByFullPath {
   '/connections': typeof MainConnectionsRoute
   '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRoute
-  '/home': typeof MainHomeRoute
+  '/home': typeof MainHomeRouteWithChildren
   '/profile': typeof MainProfileRoute
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
@@ -154,6 +172,9 @@ export interface FileRoutesByFullPath {
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/home/check-in': typeof MainHomeCheckInRoute
+  '/home/coach': typeof MainHomeCoachRoute
+  '/home/reflection': typeof MainHomeReflectionRoute
   '/discover/': typeof MainDiscoverIndexRoute
 }
 export interface FileRoutesByTo {
@@ -161,7 +182,7 @@ export interface FileRoutesByTo {
   '/signin': typeof AuthSigninRoute
   '/connections': typeof MainConnectionsRoute
   '/growth': typeof MainGrowthRoute
-  '/home': typeof MainHomeRoute
+  '/home': typeof MainHomeRouteWithChildren
   '/profile': typeof MainProfileRoute
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
@@ -173,6 +194,9 @@ export interface FileRoutesByTo {
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/home/check-in': typeof MainHomeCheckInRoute
+  '/home/coach': typeof MainHomeCoachRoute
+  '/home/reflection': typeof MainHomeReflectionRoute
   '/discover': typeof MainDiscoverIndexRoute
 }
 export interface FileRoutesById {
@@ -185,7 +209,7 @@ export interface FileRoutesById {
   '/_main/connections': typeof MainConnectionsRoute
   '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRoute
-  '/_main/home': typeof MainHomeRoute
+  '/_main/home': typeof MainHomeRouteWithChildren
   '/_main/profile': typeof MainProfileRoute
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
@@ -197,6 +221,9 @@ export interface FileRoutesById {
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
+  '/_main/home/check-in': typeof MainHomeCheckInRoute
+  '/_main/home/coach': typeof MainHomeCoachRoute
+  '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
 }
 export interface FileRouteTypes {
@@ -220,6 +247,9 @@ export interface FileRouteTypes {
     | '/onboarding/verify'
     | '/onboarding/'
     | '/discover/$id'
+    | '/home/check-in'
+    | '/home/coach'
+    | '/home/reflection'
     | '/discover/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -239,6 +269,9 @@ export interface FileRouteTypes {
     | '/onboarding/verify'
     | '/onboarding'
     | '/discover/$id'
+    | '/home/check-in'
+    | '/home/coach'
+    | '/home/reflection'
     | '/discover'
   id:
     | '__root__'
@@ -262,6 +295,9 @@ export interface FileRouteTypes {
     | '/onboarding/verify'
     | '/onboarding/'
     | '/_main/discover/$id'
+    | '/_main/home/check-in'
+    | '/_main/home/coach'
+    | '/_main/home/reflection'
     | '/_main/discover/'
   fileRoutesById: FileRoutesById
 }
@@ -414,6 +450,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIndexRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/home/reflection': {
+      id: '/_main/home/reflection'
+      path: '/reflection'
+      fullPath: '/home/reflection'
+      preLoaderRoute: typeof MainHomeReflectionRouteImport
+      parentRoute: typeof MainHomeRoute
+    }
+    '/_main/home/coach': {
+      id: '/_main/home/coach'
+      path: '/coach'
+      fullPath: '/home/coach'
+      preLoaderRoute: typeof MainHomeCoachRouteImport
+      parentRoute: typeof MainHomeRoute
+    }
+    '/_main/home/check-in': {
+      id: '/_main/home/check-in'
+      path: '/check-in'
+      fullPath: '/home/check-in'
+      preLoaderRoute: typeof MainHomeCheckInRouteImport
+      parentRoute: typeof MainHomeRoute
+    }
     '/_main/discover/$id': {
       id: '/_main/discover/$id'
       path: '/$id'
@@ -448,11 +505,27 @@ const MainDiscoverRouteWithChildren = MainDiscoverRoute._addFileChildren(
   MainDiscoverRouteChildren,
 )
 
+interface MainHomeRouteChildren {
+  MainHomeCheckInRoute: typeof MainHomeCheckInRoute
+  MainHomeCoachRoute: typeof MainHomeCoachRoute
+  MainHomeReflectionRoute: typeof MainHomeReflectionRoute
+}
+
+const MainHomeRouteChildren: MainHomeRouteChildren = {
+  MainHomeCheckInRoute: MainHomeCheckInRoute,
+  MainHomeCoachRoute: MainHomeCoachRoute,
+  MainHomeReflectionRoute: MainHomeReflectionRoute,
+}
+
+const MainHomeRouteWithChildren = MainHomeRoute._addFileChildren(
+  MainHomeRouteChildren,
+)
+
 interface MainRouteChildren {
   MainConnectionsRoute: typeof MainConnectionsRoute
   MainDiscoverRoute: typeof MainDiscoverRouteWithChildren
   MainGrowthRoute: typeof MainGrowthRoute
-  MainHomeRoute: typeof MainHomeRoute
+  MainHomeRoute: typeof MainHomeRouteWithChildren
   MainProfileRoute: typeof MainProfileRoute
 }
 
@@ -460,7 +533,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainConnectionsRoute: MainConnectionsRoute,
   MainDiscoverRoute: MainDiscoverRouteWithChildren,
   MainGrowthRoute: MainGrowthRoute,
-  MainHomeRoute: MainHomeRoute,
+  MainHomeRoute: MainHomeRouteWithChildren,
   MainProfileRoute: MainProfileRoute,
 }
 
