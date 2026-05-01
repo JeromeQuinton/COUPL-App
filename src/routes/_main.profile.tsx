@@ -1,23 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ScreenHeader } from "@/components/shell/ScreenHeader";
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
+/**
+ * /profile layout. Pure outlet — dashboard lives in the index child;
+ * edit, audit, safety and pause flows are flat sibling routes.
+ */
 export const Route = createFileRoute("/_main/profile")({
-  head: () => ({
-    meta: [
-      { title: "Profile — COUPL" },
-      { name: "description", content: "Your profile, settings, and safety hub." },
-    ],
-  }),
-  component: ProfileScreen,
+  component: ProfileLayout,
 });
 
-function ProfileScreen() {
-  return (
-    <div className="px-4 pt-6">
-      <ScreenHeader eyebrow="You" title="Profile" />
-      <p className="mt-3 text-body-md text-slate">
-        Phase 1 placeholder — own profile, settings and safety hub live here.
-      </p>
-    </div>
-  );
+function ProfileLayout() {
+  return <Outlet />;
 }
