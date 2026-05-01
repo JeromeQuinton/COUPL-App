@@ -70,7 +70,7 @@ function OnboardingLanding() {
 
           {draftExists ? (
             <div className="mt-8 rounded-[16px] border border-line bg-lavender-50 p-4">
-              <p className="text-h2 text-plum-700">
+              <p className="text-h2">
                 Pick up where you left off
               </p>
               <p className="mt-1 text-body-md text-slate">
@@ -80,7 +80,7 @@ function OnboardingLanding() {
                 <Link
                   to="/onboarding/$step"
                   params={{ step: lastStep }}
-                  className="inline-flex h-10 items-center justify-center rounded-[12px] bg-plum-500 px-4 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+                  className="inline-flex h-10 items-center justify-center rounded-[12px] bg-ink px-4 text-body-md font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90"
                 >
                   Continue
                 </Link>
@@ -94,7 +94,7 @@ function OnboardingLanding() {
                       params: { step: "start" },
                     });
                   }}
-                  className="inline-flex h-10 items-center justify-center rounded-[12px] border border-line bg-paper px-4 text-body-md font-medium text-ink transition-colors hover:bg-cloud"
+                  className="inline-flex h-10 items-center justify-center rounded-[12px] border border-ink bg-blush px-4 text-body-md font-medium text-ink transition-colors hover:bg-cloud"
                 >
                   Start over
                 </button>
@@ -108,14 +108,14 @@ function OnboardingLanding() {
             <Link
               to="/onboarding/$step"
               params={{ step: "start" }}
-              className="flex h-12 w-full items-center justify-center rounded-[12px] bg-plum-500 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+              className="flex h-12 w-full items-center justify-center rounded-[12px] bg-ink text-body-md font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90"
             >
               Begin
             </Link>
           ) : null}
           <Link
             to="/signin"
-            className="flex h-12 w-full items-center justify-center rounded-[12px] border border-line bg-paper text-body-md font-medium text-ink transition-colors hover:bg-cloud"
+            className="flex h-12 w-full items-center justify-center rounded-[12px] border border-ink bg-blush text-body-md font-medium text-ink transition-colors hover:bg-cloud"
           >
             I already have an account
           </Link>

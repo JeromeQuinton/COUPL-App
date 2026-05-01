@@ -133,11 +133,11 @@ function DiscoverScreen() {
                 width={18}
                 height={18}
                 strokeWidth={1.75}
-                className="text-plum-700"
+                className="text-ink"
               />
               <h2
                 id="aligned-profiles-heading"
-                className="font-display text-[17px] font-semibold text-plum-700"
+                className="font-display text-[17px] font-semibold"
               >
                 Aligned profiles
               </h2>
@@ -185,7 +185,7 @@ function DiscoverScreen() {
       >
         <SheetContent
           side="bottom"
-          className="rounded-t-[24px] border-t border-line bg-paper px-5 pb-8 pt-6"
+          className="rounded-t-[24px] border-t border-ink bg-blush px-5 pb-8 pt-6"
         >
           <SheetHeader className="text-left">
             <SheetTitle className="font-display text-[20px] font-semibold text-ink">
@@ -202,7 +202,7 @@ function DiscoverScreen() {
           <button
             type="button"
             onClick={() => setUpgradeOpen(false)}
-            className="mt-5 w-full rounded-full bg-plum-500 px-5 py-3 font-display text-[15px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+            className="mt-5 w-full rounded-full bg-ink px-5 py-3 font-display text-[15px] font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90"
           >
             See paid plans
           </button>
