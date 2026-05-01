@@ -18,17 +18,19 @@ export function GrowthBackdrop({
   // with a slightly cooler top so editorial cards lift cleanly.
   const bg =
     tone === "editorial"
-      ? "linear-gradient(180deg, #F6E7F2 0%, #FCEEF0 45%, #EFE2F4 100%)"
-      : "linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%)";
+      ? "var(--gradient-ambient-editorial)"
+      : "var(--gradient-ambient)";
   return (
     <div className="relative" style={{ minHeight: "100dvh", background: bg }}>
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[360px]"
-        style={{
-          background:
-            "radial-gradient(110% 70% at 85% 0%, color-mix(in oklab, var(--lavender-100) 55%, transparent) 0%, transparent 70%)",
-        }}
+        className="pointer-events-none absolute inset-x-0 top-0 h-[420px]"
+        style={{ background: "var(--gradient-ambient-radial-tr)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[360px]"
+        style={{ background: "var(--gradient-ambient-radial-bl)" }}
       />
       <div className="relative">{children}</div>
     </div>
