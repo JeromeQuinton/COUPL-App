@@ -6,12 +6,12 @@ import { getProfileDetail } from "@/data/discover_profile_detail_sample";
  * /discover/$id/attuned — Mutual Attunement Toast (DR-023, DR-030, DR-033).
  *
  * Triggered when both viewer and target reciprocate Attune. Premium,
- * intentional connection moment — replaces shallow "match" mechanics
+ * intentional connection moment — replaces shallow recommendation-acceptance mechanics
  * with a psychology-informed celebration. Phase 1 is local state only;
  * Phase 4 will gate by `connections.state === 'mutual'` and source
  * `sharedLanguage` from the alignment summary.
  *
- * Vocab: Attune / Connected / Open conversation. Never "match", "like".
+ * Vocab: Attune / Connected / Open conversation. Canonical only (DR-023).
  */
 export const Route = createFileRoute("/_main/discover/$id_/attuned")({
   head: ({ params }) => ({

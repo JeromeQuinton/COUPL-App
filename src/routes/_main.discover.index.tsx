@@ -69,7 +69,7 @@ function DiscoverScreen() {
         next.delete(f);
         return next;
       }
-      // Free tier — single-select. Paid — stackable.
+      // Free tier — single-select. Paid — combinable.
       if (tier === "free") {
         next.clear();
       }
@@ -194,7 +194,7 @@ function DiscoverScreen() {
                 : "Unlock deeper alignment"}
             </SheetTitle>
             <SheetDescription className="font-body text-[13px] text-slate">
-              Paid tier lets you adjust Intent and Distance, stack filters, see up
+              Paid tier lets you adjust Intent and Distance, combine filters, see up
               to 40 aligned profiles a day, and apply depth filters and Modes.
             </SheetDescription>
           </SheetHeader>

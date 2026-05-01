@@ -2,7 +2,7 @@
  * Action row (DR-020). Two equal-weight actions:
  *   Not Today      — outline pill, dismisses + returns to feed
  *   Attune         — filled plum pill, marks invited + returns to feed
- * Vocabulary per DR-023 — never "match," never "like."
+ * Vocabulary per DR-023 — Attune / Not Today only.
  *
  * `variant="compact"` is used by the sticky-pinned replica that appears
  * once the inline action row scrolls out of view — slimmer vertical
