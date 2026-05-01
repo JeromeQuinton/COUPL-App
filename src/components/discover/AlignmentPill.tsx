@@ -7,24 +7,24 @@ import type { AlignmentBand } from "@/data/discover_feed_sample";
  */
 const STYLES: Record<AlignmentBand, { bg: string; text: string; border: string }> = {
   "Strongly Aligned": {
-    bg: "bg-plum-500",
-    text: "text-paper",
-    border: "border-plum-700",
+    bg: "bg-transparent",
+    text: "text-ink",
+    border: "border-ink",
   },
   "Well Aligned": {
-    bg: "bg-plum-300",
-    text: "text-paper",
-    border: "border-plum-300",
+    bg: "bg-transparent",
+    text: "text-slate",
+    border: "border-slate",
   },
-  "Aligned": {
-    bg: "bg-lavender-100",
-    text: "text-plum-700",
-    border: "border-plum-300/40",
+  Aligned: {
+    bg: "bg-transparent",
+    text: "text-stone",
+    border: "border-stone",
   },
   "Early Signal": {
-    bg: "bg-cloud",
-    text: "text-slate",
-    border: "border-line",
+    bg: "bg-transparent",
+    text: "text-stone",
+    border: "border-stone",
   },
 };
 
@@ -32,7 +32,7 @@ export function AlignmentPill({ band }: { band: AlignmentBand }) {
   const s = STYLES[band];
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 font-body text-[11px] font-medium leading-none ${s.bg} ${s.text} ${s.border}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.12em] leading-none ${s.bg} ${s.text} ${s.border}`}
       aria-label={`Alignment: ${band}`}
     >
       {band}
