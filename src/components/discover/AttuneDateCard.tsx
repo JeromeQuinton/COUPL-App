@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import {
   Popover,
@@ -225,7 +225,7 @@ export function AttuneDateCard({
            * does not re-hide.
            */}
           {engaged ? (
-            <div className="mt-1 flex flex-col gap-3 opacity-0 transition-opacity duration-200 ease-out animate-[dateCardReveal_200ms_ease-out_forwards] motion-reduce:animate-none motion-reduce:opacity-100">
+            <RevealGroup>
               <input
                 type="text"
                 value={comment}
@@ -250,7 +250,7 @@ export function AttuneDateCard({
               >
                 Attune
               </button>
-            </div>
+            </RevealGroup>
           ) : null}
         </div>
       </section>
@@ -262,6 +262,29 @@ export function AttuneDateCard({
           microcopy="Add date ideas. People remember those who show up specific."
         />
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * 200ms ease-out fade-in wrapper for the comment + Attune CTA reveal.
+ * Mounts at opacity-0 then flips to opacity-100 on the next frame so
+ * the transition fires. `motion-reduce:transition-none` snaps for
+ * reduced-motion users.
+ */
+function RevealGroup({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+  return (
+    <div
+      className={`mt-1 flex flex-col gap-3 transition-opacity duration-200 ease-out motion-reduce:transition-none ${
+        mounted ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {children}
     </div>
   );
 }
