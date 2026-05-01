@@ -153,6 +153,8 @@ export type AuditCategory = Exclude<AuditFilter, "all">;
 
 export type AuditSeverity = "ambient" | "considered" | "protective";
 
+export type AuditStatus = "applied" | "dismissed" | "override";
+
 export type AuditEntry = {
   id: string;
   ref: string;
@@ -164,6 +166,9 @@ export type AuditEntry = {
   why: string; // why it mattered
   emotion: string; // emotional category
   severity: AuditSeverity;
+  status: AuditStatus;
+  confidence: number; // 0-100 — AI confidence
+  signal: string; // one-word relational signal (e.g. "Connection")
 };
 
 export const AUDIT_ENTRIES: AuditEntry[] = [
@@ -178,6 +183,9 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     why: "You'd been quiet for two days — repair tends to land lighter when named.",
     emotion: "Reassurance",
     severity: "ambient",
+    status: "dismissed",
+    confidence: 82,
+    signal: "Connection",
   },
   {
     id: "fil-201",
@@ -190,6 +198,9 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     why: "You set a calmer week. We protected the feed accordingly.",
     emotion: "Protection",
     severity: "considered",
+    status: "applied",
+    confidence: 91,
+    signal: "Boundaries",
   },
   {
     id: "nud-477",
@@ -202,6 +213,9 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     why: "Late sends with high intensity are the ones people most often regret.",
     emotion: "Restraint",
     severity: "considered",
+    status: "override",
+    confidence: 76,
+    signal: "Growth",
   },
   {
     id: "pca-012",
@@ -214,6 +228,9 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     why: "Pacing is your boundary — we hold it even when the feed could go further.",
     emotion: "Steadiness",
     severity: "protective",
+    status: "applied",
+    confidence: 95,
+    signal: "Self-Care",
   },
   {
     id: "saf-088",
@@ -226,6 +243,9 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     why: "Small rewordings keep early conversations safe to stay open in.",
     emotion: "Care",
     severity: "protective",
+    status: "applied",
+    confidence: 88,
+    signal: "Care",
   },
 ];
 
@@ -234,13 +254,25 @@ export type AuditSummaryStat = {
   id: AuditCategory;
   label: string;
   value: number;
+  delta: number; // +/- vs prior 7 days
+  direction: "up" | "down";
 };
 
 export const AUDIT_SUMMARY: AuditSummaryStat[] = [
-  { id: "nudges", label: "Nudges", value: 12 },
-  { id: "safety", label: "Safety", value: 3 },
-  { id: "pacing", label: "Pacing", value: 5 },
-  { id: "visibility", label: "Visibility", value: 7 },
+  { id: "nudges", label: "Nudges", value: 12, delta: 20, direction: "up" },
+  { id: "safety", label: "Safety", value: 3, delta: 50, direction: "up" },
+  { id: "pacing", label: "Pacing", value: 5, delta: 10, direction: "down" },
+  { id: "visibility", label: "Visibility", value: 7, delta: 30, direction: "up" },
+];
+
+/* Mini sparkline — last 14 days of total daily AI guidance events. */
+export const AUDIT_SPARKLINE: number[] = [
+  3, 4, 2, 5, 4, 6, 5, 4, 7, 6, 5, 8, 6, 7,
+];
+
+/* Patterns chart — weekly anxiety-trigger delta % over last 8 weeks. */
+export const AUDIT_PATTERN_SERIES: number[] = [
+  6, 9, 4, 7, 2, 5, -8, -10,
 ];
 
 /* Behavioural patterns surfaced from your last 30 days of decisions. */
