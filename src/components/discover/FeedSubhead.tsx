@@ -26,7 +26,12 @@ export function FeedSubhead({
 
   return (
     <div className="flex items-baseline justify-between gap-3">
-      <p className="text-h3 italic text-ink">{copy}</p>
+      <p
+        className="font-display italic text-ink"
+        style={{ fontSize: "16px", lineHeight: 1.3 }}
+      >
+        {copy}
+      </p>
       <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-slate">
         {fmt(shownClamped)} / {fmt(editionSize)}
       </span>

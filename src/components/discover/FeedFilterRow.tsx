@@ -19,6 +19,10 @@ type Props = {
   tier: UserTier;
   intentLabel: string;
   distanceLabel: string;
+  /** Whether the Intent filter is currently constraining the feed. */
+  intentActive?: boolean;
+  /** Whether the Distance filter is currently constraining the feed. */
+  distanceActive?: boolean;
   activeToggles: Set<ToggleFilter>;
   onToggle: (f: ToggleFilter) => void;
   onLockedTap: (f: LockedFilter) => void;
@@ -35,6 +39,8 @@ export function FeedFilterRow({
   tier,
   intentLabel,
   distanceLabel,
+  intentActive = true,
+  distanceActive = true,
   activeToggles,
   onToggle,
   onLockedTap,
@@ -45,10 +51,12 @@ export function FeedFilterRow({
     <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Feed filters">
       <LockedKey
         label={collapseIntent(intentLabel)}
+        active={intentActive}
         onTap={() => onLockedTap("Intent")}
       />
       <LockedKey
         label={collapseDistance(distanceLabel)}
+        active={distanceActive}
         onTap={() => onLockedTap("Distance")}
       />
       {VISIBLE_TOGGLES.map((f) => {
@@ -94,16 +102,22 @@ function collapseDistance(label: string) {
 
 function LockedKey({
   label,
+  active,
   onTap,
 }: {
   label: string;
+  active: boolean;
   onTap: () => void;
 }) {
   return (
     <button
       type="button"
       onClick={onTap}
-      className={`${KEYLINE_BASE} gap-1.5 border-ink bg-blush text-ink hover:bg-ink/5`}
+      className={
+        active
+          ? `${KEYLINE_BASE} gap-1.5 border-ink bg-ink text-blush`
+          : `${KEYLINE_BASE} gap-1.5 border-ink bg-blush text-ink hover:bg-ink/5`
+      }
     >
       {label}
     </button>

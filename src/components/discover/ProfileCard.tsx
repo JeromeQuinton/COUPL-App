@@ -36,11 +36,12 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
       className={`group flex w-full items-stretch overflow-hidden rounded-[4px] border border-ink bg-blush text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
         isDismissed ? "opacity-50 grayscale" : "hover:bg-ink/[0.02]"
       }`}
-      style={{ minHeight: "136px" }}
+      style={{ minHeight: "160px" }}
     >
       {/* Left: square photo, full card height. */}
       <div
-        className="relative aspect-square h-auto w-[136px] flex-shrink-0 overflow-hidden bg-blush"
+        className="relative h-[144px] w-[144px] flex-shrink-0 self-center overflow-hidden bg-blush"
+        style={{ boxShadow: "inset 0 0 0 1px rgba(26,26,26,0.08)" }}
       >
         {showPhoto ? (
           <img
@@ -49,11 +50,16 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
             loading="lazy"
             onError={() => setImgErrored(true)}
             className="h-full w-full object-cover"
-            style={{ filter: "grayscale(0.65) saturate(0.7) contrast(1.05)" }}
+            style={{ filter: "grayscale(0.85) contrast(1.18) brightness(0.92)" }}
           />
         ) : null}
         <span
-          className="absolute left-2 top-2 rounded-[2px] bg-ink px-2 py-[2px] font-mono text-[11px] uppercase tracking-[0.08em] text-blush"
+          className="absolute left-2 top-2 rounded-[2px] font-mono text-[11px] font-medium uppercase leading-none text-blush"
+          style={{
+            background: "rgba(26,26,26,0.92)",
+            padding: "4px 8px",
+            letterSpacing: "0.08em",
+          }}
           aria-hidden
         >
           {positionLabel}
@@ -61,21 +67,27 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
       </div>
 
       {/* Right: editorial body. */}
-      <div className="flex min-w-0 flex-1 flex-col justify-between gap-2 p-4">
-        <div className="flex flex-col gap-1">
-          <h3 className="font-display text-[18px] font-semibold leading-tight text-ink">
-            {profile.name}, {profile.age}
-          </h3>
-          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">
-            {profile.city.toUpperCase()} · {profile.distanceKm} KM
-          </p>
-        </div>
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 py-4 pl-4 pr-4">
+        <h3 className="font-display text-[18px] font-semibold leading-tight text-ink">
+          {profile.name}, {profile.age}
+        </h3>
+        <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">
+          {profile.city.toUpperCase()} · {profile.distanceKm} KM
+        </p>
 
-        <p className="font-display italic text-[13px] leading-snug text-ink line-clamp-2">
+        <p
+          className="font-display italic text-ink line-clamp-2"
+          style={{
+            fontSize: "15px",
+            lineHeight: 1.4,
+            letterSpacing: "-0.005em",
+            marginTop: "8px",
+          }}
+        >
           “{profile.observation}”
         </p>
 
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-2" style={{ marginTop: "8px" }}>
           <AlignmentPill band={profile.band} />
           {isInvited ? (
             <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink">
