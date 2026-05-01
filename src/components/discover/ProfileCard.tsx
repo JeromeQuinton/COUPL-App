@@ -33,14 +33,14 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
       type="button"
       onClick={handle}
       aria-disabled={isDismissed}
-      className={`group flex w-full items-stretch overflow-hidden rounded-[4px] border border-ink bg-blush text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
+      className={`group flex w-full items-stretch overflow-hidden rounded-[4px] border border-ink bg-cream text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
         isDismissed ? "opacity-50 grayscale" : "hover:bg-ink/[0.02]"
       }`}
       style={{ minHeight: "160px" }}
     >
       {/* Left: square photo, full card height. */}
       <div
-        className="relative h-[144px] w-[144px] flex-shrink-0 self-center overflow-hidden bg-blush"
+        className="relative h-[144px] w-[144px] flex-shrink-0 self-center overflow-hidden bg-cream"
         style={{ boxShadow: "inset 0 0 0 1px rgba(26,26,26,0.08)" }}
       >
         {showPhoto ? (
