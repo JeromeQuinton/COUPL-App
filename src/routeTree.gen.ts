@@ -37,6 +37,7 @@ import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
+import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
@@ -178,6 +179,11 @@ const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainConnectionsIdRoute = MainConnectionsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => MainConnectionsRoute,
+} as any)
 const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
   id: '/$id_/attuned',
   path: '/$id/attuned',
@@ -194,7 +200,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/signin': typeof AuthSigninRoute
-  '/connections': typeof MainConnectionsRoute
+  '/connections': typeof MainConnectionsRouteWithChildren
   '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRouteWithChildren
@@ -211,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
+  '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
@@ -223,7 +230,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signin': typeof AuthSigninRoute
-  '/connections': typeof MainConnectionsRoute
+  '/connections': typeof MainConnectionsRouteWithChildren
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRouteWithChildren
   '/profile': typeof MainProfileRoute
@@ -239,6 +246,7 @@ export interface FileRoutesByTo {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
+  '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
@@ -255,7 +263,7 @@ export interface FileRoutesById {
   '/_main': typeof MainRouteWithChildren
   '/onboarding': typeof OnboardingRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
-  '/_main/connections': typeof MainConnectionsRoute
+  '/_main/connections': typeof MainConnectionsRouteWithChildren
   '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRoute
   '/_main/home': typeof MainHomeRouteWithChildren
@@ -272,6 +280,7 @@ export interface FileRoutesById {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
+  '/_main/connections/$id': typeof MainConnectionsIdRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/_main/home/check-in': typeof MainHomeCheckInRoute
@@ -304,6 +313,7 @@ export interface FileRouteTypes {
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
+    | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/home/check-in'
@@ -332,6 +342,7 @@ export interface FileRouteTypes {
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding'
+    | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/home/check-in'
@@ -364,6 +375,7 @@ export interface FileRouteTypes {
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
+    | '/_main/connections/$id'
     | '/_main/discover/$id'
     | '/_main/discover/quiet-day'
     | '/_main/home/check-in'
@@ -579,6 +591,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIdRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/connections/$id': {
+      id: '/_main/connections/$id'
+      path: '/$id'
+      fullPath: '/connections/$id'
+      preLoaderRoute: typeof MainConnectionsIdRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/discover/$id_/attuned': {
       id: '/_main/discover/$id_/attuned'
       path: '/$id/attuned'
@@ -605,6 +624,18 @@ const AuthRouteChildren: AuthRouteChildren = {
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface MainConnectionsRouteChildren {
+  MainConnectionsIdRoute: typeof MainConnectionsIdRoute
+}
+
+const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
+  MainConnectionsIdRoute: MainConnectionsIdRoute,
+}
+
+const MainConnectionsRouteWithChildren = MainConnectionsRoute._addFileChildren(
+  MainConnectionsRouteChildren,
+)
 
 interface MainDiscoverRouteChildren {
   MainDiscoverIdRoute: typeof MainDiscoverIdRoute
@@ -644,7 +675,7 @@ const MainHomeRouteWithChildren = MainHomeRoute._addFileChildren(
 )
 
 interface MainRouteChildren {
-  MainConnectionsRoute: typeof MainConnectionsRoute
+  MainConnectionsRoute: typeof MainConnectionsRouteWithChildren
   MainDiscoverRoute: typeof MainDiscoverRouteWithChildren
   MainGrowthRoute: typeof MainGrowthRoute
   MainHomeRoute: typeof MainHomeRouteWithChildren
@@ -652,7 +683,7 @@ interface MainRouteChildren {
 }
 
 const MainRouteChildren: MainRouteChildren = {
-  MainConnectionsRoute: MainConnectionsRoute,
+  MainConnectionsRoute: MainConnectionsRouteWithChildren,
   MainDiscoverRoute: MainDiscoverRouteWithChildren,
   MainGrowthRoute: MainGrowthRoute,
   MainHomeRoute: MainHomeRouteWithChildren,
