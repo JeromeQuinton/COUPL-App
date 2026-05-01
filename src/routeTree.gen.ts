@@ -15,6 +15,9 @@ import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as OnboardingVerifyRouteImport } from './routes/onboarding.verify'
+import { Route as OnboardingValuesRouteImport } from './routes/onboarding.values'
+import { Route as OnboardingPhotosRouteImport } from './routes/onboarding.photos'
+import { Route as OnboardingPaceRouteImport } from './routes/onboarding.pace'
 import { Route as OnboardingIntentRouteImport } from './routes/onboarding.intent'
 import { Route as OnboardingErrorRouteImport } from './routes/onboarding.error'
 import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
@@ -54,6 +57,21 @@ const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
 const OnboardingVerifyRoute = OnboardingVerifyRouteImport.update({
   id: '/verify',
   path: '/verify',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingValuesRoute = OnboardingValuesRouteImport.update({
+  id: '/values',
+  path: '/values',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingPhotosRoute = OnboardingPhotosRouteImport.update({
+  id: '/photos',
+  path: '/photos',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingPaceRoute = OnboardingPaceRouteImport.update({
+  id: '/pace',
+  path: '/pace',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const OnboardingIntentRoute = OnboardingIntentRouteImport.update({
@@ -130,6 +148,9 @@ export interface FileRoutesByFullPath {
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
+  '/onboarding/pace': typeof OnboardingPaceRoute
+  '/onboarding/photos': typeof OnboardingPhotosRoute
+  '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
@@ -146,6 +167,9 @@ export interface FileRoutesByTo {
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
+  '/onboarding/pace': typeof OnboardingPaceRoute
+  '/onboarding/photos': typeof OnboardingPhotosRoute
+  '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
@@ -167,6 +191,9 @@ export interface FileRoutesById {
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
+  '/onboarding/pace': typeof OnboardingPaceRoute
+  '/onboarding/photos': typeof OnboardingPhotosRoute
+  '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
@@ -187,6 +214,9 @@ export interface FileRouteTypes {
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
+    | '/onboarding/pace'
+    | '/onboarding/photos'
+    | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
     | '/discover/$id'
@@ -203,6 +233,9 @@ export interface FileRouteTypes {
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
+    | '/onboarding/pace'
+    | '/onboarding/photos'
+    | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding'
     | '/discover/$id'
@@ -223,6 +256,9 @@ export interface FileRouteTypes {
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
+    | '/onboarding/pace'
+    | '/onboarding/photos'
+    | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
     | '/_main/discover/$id'
@@ -278,6 +314,27 @@ declare module '@tanstack/react-router' {
       path: '/verify'
       fullPath: '/onboarding/verify'
       preLoaderRoute: typeof OnboardingVerifyRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/values': {
+      id: '/onboarding/values'
+      path: '/values'
+      fullPath: '/onboarding/values'
+      preLoaderRoute: typeof OnboardingValuesRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/photos': {
+      id: '/onboarding/photos'
+      path: '/photos'
+      fullPath: '/onboarding/photos'
+      preLoaderRoute: typeof OnboardingPhotosRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/pace': {
+      id: '/onboarding/pace'
+      path: '/pace'
+      fullPath: '/onboarding/pace'
+      preLoaderRoute: typeof OnboardingPaceRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/onboarding/intent': {
@@ -414,6 +471,9 @@ interface OnboardingRouteChildren {
   OnboardingCompleteRoute: typeof OnboardingCompleteRoute
   OnboardingErrorRoute: typeof OnboardingErrorRoute
   OnboardingIntentRoute: typeof OnboardingIntentRoute
+  OnboardingPaceRoute: typeof OnboardingPaceRoute
+  OnboardingPhotosRoute: typeof OnboardingPhotosRoute
+  OnboardingValuesRoute: typeof OnboardingValuesRoute
   OnboardingVerifyRoute: typeof OnboardingVerifyRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
@@ -423,6 +483,9 @@ const OnboardingRouteChildren: OnboardingRouteChildren = {
   OnboardingCompleteRoute: OnboardingCompleteRoute,
   OnboardingErrorRoute: OnboardingErrorRoute,
   OnboardingIntentRoute: OnboardingIntentRoute,
+  OnboardingPaceRoute: OnboardingPaceRoute,
+  OnboardingPhotosRoute: OnboardingPhotosRoute,
+  OnboardingValuesRoute: OnboardingValuesRoute,
   OnboardingVerifyRoute: OnboardingVerifyRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
 }
