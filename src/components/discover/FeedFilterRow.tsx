@@ -40,8 +40,7 @@ export function FeedFilterRow({
   onLockedTap,
   onMoreFilters,
 }: Props) {
-  const isFree = tier === "free";
-
+  void tier;
   return (
     <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Feed filters">
       <LockedKey
