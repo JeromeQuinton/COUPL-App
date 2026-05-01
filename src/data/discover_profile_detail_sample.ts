@@ -155,6 +155,13 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
     pacing: "Open to depth",
     // Intentionally undefined so the EmptyStateNudge renders for QA.
     dateIdeas: undefined,
+    dateSummary: "Walk + coffee · Sundays · Borough or Bermondsey",
+    datePreferences: {
+      locationFlexibility: "South-east London, happy to travel one zone",
+      timingWindow: "Weekend mornings or early afternoons",
+      durationPreference: "60–90 minutes for a first meeting",
+      anythingElse: "Outdoors if the weather plays along.",
+    },
 
     photos: [
       {
