@@ -85,6 +85,7 @@
   --color-line: var(--line);
   --color-cloud: var(--cloud);
   --color-paper: var(--paper);
+  --color-blush: var(--blush);
   --color-success: var(--success);
   --color-caution: var(--caution);
   --color-danger: var(--danger);
