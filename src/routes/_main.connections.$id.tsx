@@ -15,7 +15,7 @@ import {
  * /connections/$id — live conversation thread.
  *
  * Calm iMessage-style timeline with embedded CoachPromptCard. Send
- * action routes to /connections/$id/pause when the draft trips a
+ * action routes to /connections/$id/draft-pause when the draft trips a
  * pattern (Phase 1 stub: any non-empty draft routes to the intercept
  * so the flow is demonstrable). Phase 4 will run the real classifier
  * server-side and only intercept when needed.
