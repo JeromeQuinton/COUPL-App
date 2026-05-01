@@ -115,6 +115,8 @@ function DiscoverScreen() {
           tier={tier}
           intentLabel={prefs.intent}
           distanceLabel={`${prefs.distanceKm}km`}
+          intentActive={Boolean(prefs.intent)}
+          distanceActive={typeof prefs.distanceKm === "number"}
           activeToggles={activeToggles}
           onToggle={handleToggle}
           onLockedTap={handleLockedTap}
