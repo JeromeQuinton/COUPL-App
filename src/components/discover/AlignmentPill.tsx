@@ -8,7 +8,7 @@ import type { AlignmentBand } from "@/data/discover_feed_sample";
 export function AlignmentPill({ band }: { band: AlignmentBand }) {
   return (
     <span
-      className="inline-flex items-center rounded-[4px] border bg-transparent font-mono uppercase tracking-[0.12em] leading-none text-rust"
+      className="inline-flex items-center border bg-transparent font-mono uppercase tracking-[0.12em] leading-none text-rust"
       style={{
         fontSize: "10px",
         padding: "4px 10px",
