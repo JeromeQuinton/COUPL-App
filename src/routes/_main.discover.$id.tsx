@@ -283,7 +283,27 @@ function ProfileDetailScreen() {
             variant="inset"
           />,
         )}
-        <AttuneDateCard dateIdeas={profile.dateIdeas} />
+        <AttuneDateCard
+          dateIdeas={profile.dateIdeas}
+          onAttune={(proposal) => {
+            const bits: string[] = [];
+            if (proposal.timeWindow) {
+              bits.push(proposal.timeWindow.replace(/_/g, " "));
+            }
+            if (proposal.dateType) {
+              bits.push(`for ${proposal.dateType.replace(/_/g, " ")}`);
+            }
+            const summary = bits.join(" ");
+            const composed =
+              proposal.comment && summary
+                ? `${summary} — ${proposal.comment}`
+                : (proposal.comment ?? summary);
+            completeAttune(
+              { type: "module", key: "attune_date" },
+              composed || undefined,
+            );
+          }}
+        />
         {wrapModule(
           "what_lights_them_up",
           "What lights them up",
