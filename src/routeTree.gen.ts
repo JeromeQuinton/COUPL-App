@@ -38,6 +38,7 @@ import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.i
 import { Route as MainProfileSafetyRouteImport } from './routes/_main.profile.safety'
 import { Route as MainProfilePauseRouteImport } from './routes/_main.profile.pause'
 import { Route as MainProfileEditRouteImport } from './routes/_main.profile.edit'
+import { Route as MainProfileAuditLogRouteImport } from './routes/_main.profile.audit-log'
 import { Route as MainProfileAuditRouteImport } from './routes/_main.profile.audit'
 import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.reflection'
 import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
@@ -200,6 +201,11 @@ const MainProfileEditRoute = MainProfileEditRouteImport.update({
   path: '/edit',
   getParentRoute: () => MainProfileRoute,
 } as any)
+const MainProfileAuditLogRoute = MainProfileAuditLogRouteImport.update({
+  id: '/audit-log',
+  path: '/audit-log',
+  getParentRoute: () => MainProfileRoute,
+} as any)
 const MainProfileAuditRoute = MainProfileAuditRouteImport.update({
   id: '/audit',
   path: '/audit',
@@ -326,6 +332,7 @@ export interface FileRoutesByFullPath {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/profile/audit': typeof MainProfileAuditRoute
+  '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/edit': typeof MainProfileEditRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRoute
@@ -369,6 +376,7 @@ export interface FileRoutesByTo {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/profile/audit': typeof MainProfileAuditRoute
+  '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/edit': typeof MainProfileEditRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRoute
@@ -419,6 +427,7 @@ export interface FileRoutesById {
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/profile/audit': typeof MainProfileAuditRoute
+  '/_main/profile/audit-log': typeof MainProfileAuditLogRoute
   '/_main/profile/edit': typeof MainProfileEditRoute
   '/_main/profile/pause': typeof MainProfilePauseRoute
   '/_main/profile/safety': typeof MainProfileSafetyRoute
@@ -468,6 +477,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/profile/audit'
+    | '/profile/audit-log'
     | '/profile/edit'
     | '/profile/pause'
     | '/profile/safety'
@@ -511,6 +521,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/profile/audit'
+    | '/profile/audit-log'
     | '/profile/edit'
     | '/profile/pause'
     | '/profile/safety'
@@ -560,6 +571,7 @@ export interface FileRouteTypes {
     | '/_main/home/coach'
     | '/_main/home/reflection'
     | '/_main/profile/audit'
+    | '/_main/profile/audit-log'
     | '/_main/profile/edit'
     | '/_main/profile/pause'
     | '/_main/profile/safety'
@@ -790,6 +802,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileEditRouteImport
       parentRoute: typeof MainProfileRoute
     }
+    '/_main/profile/audit-log': {
+      id: '/_main/profile/audit-log'
+      path: '/audit-log'
+      fullPath: '/profile/audit-log'
+      preLoaderRoute: typeof MainProfileAuditLogRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
     '/_main/profile/audit': {
       id: '/_main/profile/audit'
       path: '/audit'
@@ -1002,6 +1021,7 @@ const MainHomeRouteWithChildren = MainHomeRoute._addFileChildren(
 
 interface MainProfileRouteChildren {
   MainProfileAuditRoute: typeof MainProfileAuditRoute
+  MainProfileAuditLogRoute: typeof MainProfileAuditLogRoute
   MainProfileEditRoute: typeof MainProfileEditRoute
   MainProfilePauseRoute: typeof MainProfilePauseRoute
   MainProfileSafetyRoute: typeof MainProfileSafetyRoute
@@ -1010,6 +1030,7 @@ interface MainProfileRouteChildren {
 
 const MainProfileRouteChildren: MainProfileRouteChildren = {
   MainProfileAuditRoute: MainProfileAuditRoute,
+  MainProfileAuditLogRoute: MainProfileAuditLogRoute,
   MainProfileEditRoute: MainProfileEditRoute,
   MainProfilePauseRoute: MainProfilePauseRoute,
   MainProfileSafetyRoute: MainProfileSafetyRoute,

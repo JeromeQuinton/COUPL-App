@@ -1,177 +1,154 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronRight, Shield, Pencil, Eye, AlertOctagon, PauseCircle } from "lucide-react";
+import { ChevronRight, Menu } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import {
-  PROFILE_SUMMARY,
-  DISCOVERY_SETTINGS,
-  CARE_SETTINGS,
-} from "@/data/you_sample";
+  PROFILE_ABOUT_QUOTE,
+  PROFILE_LANGUAGES,
+} from "@/data/wireframe_chap_extras";
 
+/**
+ * Screen 20 — Profile.
+ * Wireframe-anchored (UI-OwnProfile):
+ *   header chip → identity → about → connection languages → links.
+ */
 export const Route = createFileRoute("/_main/profile/")({
   head: () => ({
     meta: [
-      { title: "You — COUPL" },
+      { title: "Profile — COUPL" },
       {
         name: "description",
-        content:
-          "Your account, discovery and care settings, safety, and audit log.",
+        content: "Your own profile, languages, and audit access.",
       },
     ],
   }),
-  component: YouDashboard,
+  component: ProfileScreen,
 });
 
-function YouDashboard() {
+function ProfileScreen() {
   return (
     <YouBackdrop>
-      <StatusBar />
+      <StatusBar
+        trailing={
+          <button
+            type="button"
+            aria-label="Profile menu"
+            className="mr-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
+          >
+            <Menu size={18} />
+          </button>
+        }
+      />
 
       {/* Header */}
-      <header className="px-5 pt-2 pb-4">
-        <h1 className="text-display-xl text-ink">You</h1>
+      <header className="px-5 pt-1 pb-4 text-center">
+        <h1 className="font-display text-[26px] font-semibold text-ink">
+          Profile
+        </h1>
+        <p className="mt-1 inline-flex items-center gap-1.5 font-body text-[10.5px] font-semibold uppercase tracking-[0.16em] text-plum-700/80">
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-plum-500" />
+          UI-OwnProfile · Own profile
+        </p>
       </header>
 
-      {/* Identity card */}
+      {/* Identity */}
       <section className="px-5">
-        <Link
-          to="/profile/edit"
-          className="flex items-center gap-3 rounded-[18px] bg-paper p-4 shadow-elev-1 transition-colors hover:bg-lavender-50"
-        >
-          <div
+        <article className="flex items-center gap-4 rounded-[18px] bg-paper p-4 shadow-elev-1">
+          <span
             aria-hidden
-            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full font-display text-[18px] font-semibold text-paper"
-            style={{ background: "var(--plum-700, #5A2A6E)" }}
+            className="grid h-12 w-12 flex-shrink-0 place-items-center rounded-full font-display text-[18px] font-semibold text-paper"
+            style={{ background: "var(--plum-700)" }}
           >
-            {PROFILE_SUMMARY.initial}
-          </div>
+            S
+          </span>
           <div className="flex flex-1 flex-col">
-            <p className="font-display text-[16px] font-semibold text-ink">
-              {PROFILE_SUMMARY.name}
+            <p className="font-display text-[17px] font-semibold text-ink">
+              Sam · 32
             </p>
-            <p className="font-body text-[12.5px] text-stone">
-              Member since {PROFILE_SUMMARY.memberSince} · {PROFILE_SUMMARY.city}
+            <p className="font-body text-[12px] text-stone">
+              Verified · long-term
             </p>
           </div>
-          <ChevronRight size={18} className="text-stone" />
-        </Link>
+        </article>
       </section>
 
-      {/* Discovery */}
-      <SettingsGroup label="Discovery" rows={DISCOVERY_SETTINGS} />
+      {/* About */}
+      <section className="px-5 pt-4">
+        <article className="rounded-[18px] bg-paper p-4 shadow-elev-1">
+          <p className="font-body text-[10.5px] font-semibold uppercase tracking-[0.16em] text-plum-700/80">
+            About
+          </p>
+          <p className="mt-2 font-display text-[14.5px] italic leading-relaxed text-ink">
+            "{PROFILE_ABOUT_QUOTE}"
+          </p>
+        </article>
+      </section>
 
-      {/* Care */}
-      <SettingsGroup label="Care" rows={CARE_SETTINGS} />
+      {/* Connection languages */}
+      <section className="px-5 pt-4">
+        <article className="rounded-[18px] bg-paper p-4 shadow-elev-1">
+          <p className="font-body text-[10.5px] font-semibold uppercase tracking-[0.16em] text-plum-700/80">
+            Connection languages
+          </p>
+          <ul className="mt-3 flex flex-wrap items-center gap-2">
+            {PROFILE_LANGUAGES.map((l) => (
+              <li key={l}>
+                <span className="inline-flex items-center rounded-full border border-plum-300/40 bg-lavender-100 px-3 py-1 font-body text-[12px] text-plum-700">
+                  {l}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      </section>
 
-      {/* Safety & Trust */}
-      <section className="px-5 pt-7">
-        <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
-          Safety & trust
-        </h3>
-        <ul className="mt-3 flex flex-col gap-2">
-          <DashboardLink
-            to="/profile/audit"
-            Icon={Eye}
-            title="Who saw you, and when"
-            sub="Visibility audit · last 30 days"
-          />
-          <DashboardLink
-            to="/profile/safety"
-            Icon={AlertOctagon}
-            title="Tell us what happened"
-            sub="Safety report · human review within 4 hours"
-          />
-          <DashboardLink
-            to="/profile/pause"
-            Icon={PauseCircle}
-            title="Step out, hold your place"
-            sub="Pause your account, kindly"
-          />
-          <DashboardLink
+      {/* Links */}
+      <section className="px-5 pt-4 pb-12">
+        <ul className="flex flex-col gap-2">
+          <ProfileLinkRow
             to="/profile/edit"
-            Icon={Pencil}
-            title="Edit your profile"
-            sub="Photos, prompts, things to know"
+            title="Edit profile"
+          />
+          <ProfileLinkRow
+            to="/profile/audit-log"
+            title="Decision audit log"
+            sub="Every AI nudge, transparent + reversible"
+          />
+          <ProfileLinkRow
+            to="/profile/safety"
+            title="Coach settings"
+            sub="Tone, frequency, intercepts"
           />
         </ul>
-      </section>
-
-      <section className="px-5 pt-7 pb-12">
-        <div className="flex items-start gap-3 rounded-[16px] border border-line bg-paper/70 p-4">
-          <Shield size={16} className="mt-0.5 text-plum-500" strokeWidth={1.75} />
-          <p className="font-body text-[12.5px] leading-relaxed text-slate">
-            COUPL is built around relational sovereignty. Nothing is shared
-            without your consent. Anything you share can be undone here.
-          </p>
-        </div>
       </section>
     </YouBackdrop>
   );
 }
 
-function SettingsGroup({
-  label,
-  rows,
-}: {
-  label: string;
-  rows: { key: string; label: string; value: string }[];
-}) {
-  return (
-    <section className="px-5 pt-7">
-      <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
-        {label}
-      </h3>
-      <ul className="mt-3 overflow-hidden rounded-[16px] bg-paper shadow-elev-1">
-        {rows.map((r, i) => (
-          <li
-            key={r.key}
-            className={`flex items-start justify-between gap-4 px-4 py-3.5 ${
-              i > 0 ? "border-t border-line" : ""
-            }`}
-          >
-            <span className="font-display text-[14px] font-medium text-ink">
-              {r.label}
-            </span>
-            <span className="text-right font-body text-[13px] text-slate">
-              {r.value}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-import type { ComponentType, SVGProps } from "react";
-
-function DashboardLink({
+function ProfileLinkRow({
   to,
-  Icon,
   title,
   sub,
 }: {
-  to: "/profile/edit" | "/profile/audit" | "/profile/safety" | "/profile/pause";
-  Icon: ComponentType<SVGProps<SVGSVGElement>>;
+  to: "/profile/edit" | "/profile/audit-log" | "/profile/safety";
   title: string;
-  sub: string;
+  sub?: string;
 }) {
   return (
     <li>
       <Link
         to={to}
-        className="flex items-center gap-3 rounded-[14px] bg-paper p-3.5 shadow-elev-1 transition-colors hover:bg-lavender-50"
+        className="flex items-center justify-between gap-3 rounded-[14px] bg-paper p-4 shadow-elev-1 transition-colors hover:bg-lavender-50"
       >
-        <span
-          aria-hidden
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-lavender-100"
-        >
-          <Icon width={16} height={16} strokeWidth={1.75} className="text-plum-700" />
-        </span>
         <div className="flex flex-1 flex-col">
           <span className="font-display text-[14.5px] font-medium text-ink">
             {title}
           </span>
-          <span className="font-body text-[12px] text-stone">{sub}</span>
+          {sub && (
+            <span className="mt-0.5 font-body text-[12px] text-stone">
+              {sub}
+            </span>
+          )}
         </div>
         <ChevronRight size={16} className="text-stone" />
       </Link>
