@@ -1,5 +1,6 @@
 import { SectionCard } from "./SectionCard";
 import { InfoButton } from "@/components/discover/InfoButton";
+import { useParams } from "@tanstack/react-router";
 
 /**
  * Card 7 — Relational Insights. Composes two sub-cards:
@@ -42,11 +43,21 @@ function ConnectionLanguageSubCard({
   };
 }) {
   const v = Math.max(0, Math.min(100, data.primaryStrength));
+  // Read the profile id from the parent detail route. `strict: false`
+  // so this card stays mountable in storybook / non-route contexts.
+  const params = useParams({ strict: false });
+  const profileId = (params as { id?: string }).id;
+  const explainerPath = profileId
+    ? `/discover/${profileId}/insights/connection-languages`
+    : undefined;
   return (
     <div className="flex flex-col gap-2">
       <h3 className="inline-flex items-center gap-1.5 font-display text-[14px] font-semibold text-plum-700">
         Connection Language
-        <InfoButton termKey="connection_language" />
+        <InfoButton
+          termKey="connection_language"
+          navigateTo={explainerPath}
+        />
       </h3>
 
       <div className="flex flex-wrap gap-2">

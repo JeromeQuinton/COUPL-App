@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Info } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 import {
   Sheet,
   SheetContent,
@@ -19,11 +20,20 @@ import { INFO_CONTENT } from "@/data/info_button_content";
 export function InfoButton({
   termKey,
   inline = true,
+  /**
+   * When provided, tapping the button navigates to this in-app path
+   * instead of opening the bottom sheet. Used by Relational Insights
+   * to deep-link into the dedicated explainer screen
+   * (e.g. /discover/$id/insights/connection-languages).
+   */
+  navigateTo,
 }: {
   termKey: string;
   inline?: boolean;
+  navigateTo?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const content = INFO_CONTENT[termKey];
 
   if (!content) {
@@ -33,11 +43,20 @@ export function InfoButton({
     return null;
   }
 
+  const handleClick = () => {
+    if (navigateTo) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      navigate({ to: navigateTo as any });
+      return;
+    }
+    setOpen(true);
+  };
+
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={handleClick}
         aria-label={`More information about ${content.termName}`}
         className={
           (inline ? "inline-flex align-middle " : "inline-flex ") +
@@ -49,6 +68,7 @@ export function InfoButton({
         <span aria-hidden className="absolute -inset-2" />
       </button>
 
+      {navigateTo ? null : (
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent
           side="bottom"
@@ -90,6 +110,7 @@ export function InfoButton({
           ) : null}
         </SheetContent>
       </Sheet>
+      )}
     </>
   );
 }
