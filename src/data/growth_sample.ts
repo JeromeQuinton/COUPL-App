@@ -63,7 +63,7 @@ export const REFLECTIONS: ReflectionEntry[] = [
 
 export const WORKSHOPS: WorkshopSummary[] = [
   {
-    id: "ws-repair",
+    id: "repair-conversation",
     title: "The repair conversation",
     sessionCount: 4,
     startsLabel: "starts Nov 11",
@@ -86,7 +86,7 @@ export const WORKSHOPS: WorkshopSummary[] = [
     ],
   },
   {
-    id: "ws-attachment",
+    id: "attachment-kindly",
     title: "Reading your own attachment, kindly",
     sessionCount: 3,
     startsLabel: "starts Dec 2",

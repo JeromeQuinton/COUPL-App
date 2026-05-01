@@ -149,23 +149,32 @@ function GrowthDashboard() {
               <Link
                 to="/growth/$id"
                 params={{ id: w.id }}
-                className="flex items-stretch gap-3 rounded-[16px] bg-paper p-3 shadow-elev-1 transition-colors hover:bg-lavender-50"
+                className="block rounded-[16px] bg-paper p-4 shadow-elev-1 transition-colors hover:bg-lavender-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500"
               >
-                <div
-                  aria-hidden
-                  className="h-[64px] w-[64px] flex-shrink-0 rounded-[12px]"
-                  style={{ background: w.swatch }}
-                />
-                <div className="flex flex-1 flex-col justify-center">
-                  <p className="font-display text-[15px] font-semibold leading-tight text-ink">
-                    {w.title}
-                  </p>
-                  <p className="mt-1 font-body text-[12.5px] text-slate">
-                    {w.sessionCount} sessions · {w.startsLabel}
-                  </p>
-                  <p className="mt-0.5 font-body text-[12px] text-stone">
-                    With {w.practitioner}, {w.practitionerCredential}
-                  </p>
+                <div className="flex items-stretch gap-3">
+                  <div
+                    aria-hidden
+                    className="h-[64px] w-[64px] flex-shrink-0 rounded-[12px]"
+                    style={{ background: w.swatch }}
+                  />
+                  <div className="flex flex-1 flex-col justify-center">
+                    <p className="font-display text-[15px] font-semibold leading-tight text-ink">
+                      {w.title}
+                    </p>
+                    <p className="mt-1 font-body text-[12.5px] text-slate">
+                      {w.sessionCount} sessions · {w.startsLabel}
+                    </p>
+                    <p className="mt-0.5 font-body text-[12px] text-stone">
+                      Led by {w.practitioner}, {w.practitionerCredential}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-3 font-body text-[13px] leading-relaxed text-ink/80">
+                  {w.blurb}
+                </p>
+                <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-plum-700 px-4 py-2 font-display text-[13px] font-medium text-paper shadow-elev-1">
+                  View workshop
+                  <ArrowRight size={14} strokeWidth={2} />
                 </div>
               </Link>
             </li>
