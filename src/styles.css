@@ -130,6 +130,19 @@
   --danger: #B8312F;
   --info: #2F6FB8;
 
+  /* COUPL master ambient gradient (DR-040 / brand cohesion).
+   * Single source of truth for all top-level tab backdrops:
+   * Home, Discover, Growth, Connections, Profile. Soft lavender mist →
+   * blush rose → pale plum diffusion. Do not fork per-screen. */
+  --gradient-ambient:
+    linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%);
+  --gradient-ambient-editorial:
+    linear-gradient(180deg, #F6E7F2 0%, #FCEEF0 45%, #EFE2F4 100%);
+  --gradient-ambient-radial-tr:
+    radial-gradient(120% 80% at 90% 0%, color-mix(in oklab, var(--lavender-100) 70%, transparent) 0%, transparent 70%);
+  --gradient-ambient-radial-bl:
+    radial-gradient(110% 70% at 5% 100%, color-mix(in oklab, var(--blush) 55%, transparent) 0%, transparent 70%);
+
   /* Elevation tokens (§2.5) — plum-tinted shadows */
   --elevation-1: 0 1px 2px rgba(91, 43, 102, 0.08);
   --elevation-2: 0 4px 12px rgba(91, 43, 102, 0.12);
