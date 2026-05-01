@@ -50,7 +50,7 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
             loading="lazy"
             onError={() => setImgErrored(true)}
             className="h-full w-full object-cover"
-            style={{ filter: "grayscale(0.85) contrast(1.18) brightness(0.92)" }}
+            style={{ filter: "grayscale(1) contrast(1.35) brightness(0.88)" }}
           />
         ) : null}
       </div>
