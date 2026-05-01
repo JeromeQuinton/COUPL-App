@@ -37,9 +37,13 @@ export function AttuneDialog({
   profileName: string;
 }) {
   const [comment, setComment] = useState("");
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    if (open) setComment("");
+    if (open) {
+      setComment("");
+      setSending(false);
+    }
   }, [open]);
 
   const header =
@@ -57,8 +61,14 @@ export function AttuneDialog({
         : "What attuned you to this photo?";
 
   const handleSend = () => {
+    if (sending) return;
     const trimmed = comment.trim();
-    onSend(trimmed.length === 0 ? undefined : trimmed);
+    setSending(true);
+    // Brief "Attune Sent" pending state before handing off to the
+    // confirmation overlay (DR-033). Keeps perceived continuity.
+    window.setTimeout(() => {
+      onSend(trimmed.length === 0 ? undefined : trimmed);
+    }, 220);
   };
 
   return (
@@ -120,9 +130,11 @@ export function AttuneDialog({
         <button
           type="button"
           onClick={handleSend}
-          className="mt-4 w-full rounded-full bg-plum-500 px-5 py-3 font-display text-[15px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300"
+          disabled={sending}
+          aria-live="polite"
+          className="mt-4 w-full rounded-full bg-plum-500 px-5 py-3 font-display text-[15px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300 disabled:opacity-90"
         >
-          Send Attune
+          {sending ? "Attune Sent" : "Send Attune"}
         </button>
       </SheetContent>
     </Sheet>
