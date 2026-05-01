@@ -100,7 +100,7 @@ function DiscoverScreen() {
 
   return (
     <div
-      className="flex flex-col px-4 pt-5"
+      className="mx-auto flex w-full max-w-[420px] flex-col px-4 pt-5"
       style={{
         minHeight: "100dvh",
         paddingTop: "calc(env(safe-area-inset-top) + 1.25rem)",
