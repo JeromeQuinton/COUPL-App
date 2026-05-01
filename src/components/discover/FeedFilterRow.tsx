@@ -2,13 +2,14 @@ import { Lock, SlidersHorizontal } from "lucide-react";
 import type { UserTier } from "@/lib/user_tier";
 
 /**
- * Filter taxonomy per DR-025.
+ * FeedFilterRow — editorial keyline filters (DR-BRAND-V2-A/D).
  *
- * - Intent + Distance: locked tier-defaults for free users (open upgrade
- *   sheet on tap); paid users open a picker (stub for now).
- * - Values / Lifestyle / Pacing: toggleable on feed.
- *   Free tier = single-select (one active at a time).
- *   Paid tier = multi-select (stackable).
+ * Square 4px-radius keylines, mono uppercase labels. Active = ink fill +
+ * blush text; inactive = blush fill + ink text. The leftmost
+ * SlidersHorizontal icon button at the right end opens the More Filters
+ * sheet (Lifestyle, etc.).
+ *
+ * Filter logic / state shape preserved — visual rebuild only.
  */
 
 export type ToggleFilter = "Values" | "Lifestyle" | "Pacing";
@@ -24,7 +25,11 @@ type Props = {
   onMoreFilters: () => void;
 };
 
-const TOGGLES: ToggleFilter[] = ["Values", "Lifestyle", "Pacing"];
+// "Lifestyle" overflows to the More Filters sheet — not surfaced here.
+const VISIBLE_TOGGLES: ToggleFilter[] = ["Values", "Pacing"];
+
+const KEYLINE_BASE =
+  "inline-flex h-10 items-center justify-center rounded-[4px] border-[1.5px] px-3 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors";
 
 export function FeedFilterRow({
   tier,
@@ -38,51 +43,59 @@ export function FeedFilterRow({
   const isFree = tier === "free";
 
   return (
-    <div className="flex flex-col gap-2.5" role="group" aria-label="Feed filters">
-      <div className="flex flex-wrap gap-2">
-        <LockedChip
-          label={`Intent · ${intentLabel}`}
-          locked={isFree}
-          onTap={() => onLockedTap("Intent")}
-        />
-        <LockedChip
-          label={`Distance · ${distanceLabel}`}
-          locked={isFree}
-          onTap={() => onLockedTap("Distance")}
-        />
-        {TOGGLES.map((f) => {
-          const active = activeToggles.has(f);
-          return (
-            <button
-              key={f}
-              type="button"
-              aria-pressed={active}
-              onClick={() => onToggle(f)}
-              className={
-                active
-                  ? "rounded-full bg-ink px-4 py-2 font-display text-[13px] font-medium text-blush shadow-elev-1"
-                  : "rounded-full border border-ink bg-blush/60 px-4 py-2 font-display text-[13px] font-medium text-ink transition-colors hover:bg-blush"
-              }
-            >
-              {f}
-            </button>
-          );
-        })}
-      </div>
+    <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Feed filters">
+      <LockedKey
+        label={collapseIntent(intentLabel)}
+        locked={isFree}
+        onTap={() => onLockedTap("Intent")}
+      />
+      <LockedKey
+        label={collapseDistance(distanceLabel)}
+        locked={isFree}
+        onTap={() => onLockedTap("Distance")}
+      />
+      {VISIBLE_TOGGLES.map((f) => {
+        const active = activeToggles.has(f);
+        return (
+          <button
+            key={f}
+            type="button"
+            aria-pressed={active}
+            onClick={() => onToggle(f)}
+            className={
+              active
+                ? `${KEYLINE_BASE} border-ink bg-ink text-blush`
+                : `${KEYLINE_BASE} border-ink bg-blush text-ink hover:bg-ink/5`
+            }
+          >
+            {f.toUpperCase()}
+          </button>
+        );
+      })}
 
       <button
         type="button"
         onClick={onMoreFilters}
-        className="inline-flex items-center gap-1.5 self-start rounded-full px-2 py-1 font-body text-[13px] font-medium text-ink transition-colors hover:text-plum-500"
+        aria-label="More filters"
+        className={`${KEYLINE_BASE} ml-auto border-ink bg-blush text-ink hover:bg-ink/5`}
       >
         <SlidersHorizontal aria-hidden width={14} height={14} strokeWidth={1.75} />
-        More filters
       </button>
     </div>
   );
 }
 
-function LockedChip({
+function collapseIntent(label: string) {
+  // "Long-term" / "Long Term" → "LONG-TERM"
+  return label.replace(/\s+/g, "-").toUpperCase();
+}
+
+function collapseDistance(label: string) {
+  // "25km" → "25 KM"
+  return label.replace(/(\d+)\s*km/i, "$1 KM").toUpperCase();
+}
+
+function LockedKey({
   label,
   locked,
   onTap,
@@ -95,10 +108,10 @@ function LockedChip({
     <button
       type="button"
       onClick={onTap}
-      className="inline-flex items-center gap-1.5 rounded-full border border-ink bg-blush/60 px-4 py-2 font-display text-[13px] font-medium text-ink transition-colors hover:bg-blush"
+      className={`${KEYLINE_BASE} gap-1.5 border-ink bg-blush text-ink hover:bg-ink/5`}
     >
       {locked && (
-        <Lock aria-hidden width={12} height={12} strokeWidth={2} className="text-stone" />
+        <Lock aria-hidden width={11} height={11} strokeWidth={2} className="text-stone" />
       )}
       {label}
     </button>
