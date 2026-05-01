@@ -126,7 +126,7 @@ export function AttuneDateCard({
 
   return (
     <div className="flex flex-col gap-3">
-      <section className="rounded-[20px] bg-paper p-5 shadow-elev-1">
+      <section className="rounded-[20px] bg-blush p-5 shadow-elev-1">
         {/* Compact summary header — always visible. Tapping anywhere
             in this row toggles the expanded body. */}
         <button
@@ -134,7 +134,7 @@ export function AttuneDateCard({
           onClick={() => setExpanded((e) => !e)}
           aria-expanded={expanded}
           aria-controls="attune-date-body"
-          className="-m-1 flex w-[calc(100%+0.5rem)] items-center gap-3 rounded-xl p-1 text-left transition-colors hover:bg-lavender-50/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300/40"
+          className="-m-1 flex w-[calc(100%+0.5rem)] items-center gap-3 rounded-xl p-1 text-left transition-colors hover:bg-blush/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
         >
           <div className="min-w-0 flex-1">
             <h2 className="font-display text-[16px] font-semibold leading-tight text-ink">
@@ -214,14 +214,14 @@ export function AttuneDateCard({
                   width={14}
                   height={14}
                   strokeWidth={2}
-                  className="text-plum-700"
+                  className="text-ink"
                 />
               </button>
             </PopoverTrigger>
             <PopoverContent
               align="start"
               sideOffset={6}
-              className="w-auto min-w-[180px] rounded-2xl border border-line bg-paper p-1.5 shadow-elev-1"
+              className="w-auto min-w-[180px] rounded-2xl border border-ink bg-blush p-1.5 shadow-elev-1"
             >
               <p className="px-3 pb-1 pt-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-stone">
                 Choose a time
@@ -241,8 +241,8 @@ export function AttuneDateCard({
                         className={
                           "w-full rounded-xl px-3 py-2 text-left font-body text-[13px] transition-colors " +
                           (active
-                            ? "bg-lavender-100 text-plum-700"
-                            : "text-ink hover:bg-lavender-50")
+                            ? "bg-blush text-ink"
+                            : "text-ink hover:bg-blush")
                         }
                       >
                         {opt.label}
@@ -275,14 +275,14 @@ export function AttuneDateCard({
                     width={14}
                     height={14}
                     strokeWidth={2}
-                    className="text-plum-700"
+                    className="text-ink"
                   />
                 </button>
               </PopoverTrigger>
               <PopoverContent
                 align="start"
                 sideOffset={6}
-                className="w-auto min-w-[220px] rounded-2xl border border-line bg-paper p-1.5 shadow-elev-1"
+                className="w-auto min-w-[220px] rounded-2xl border border-ink bg-blush p-1.5 shadow-elev-1"
               >
                 <p className="px-3 pb-1 pt-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-stone">
                   What kind of meet-up?
@@ -302,8 +302,8 @@ export function AttuneDateCard({
                           className={
                             "w-full rounded-xl px-3 py-2 text-left font-body text-[13px] transition-colors " +
                             (active
-                              ? "bg-lavender-100 text-plum-700"
-                              : "text-ink hover:bg-lavender-50")
+                              ? "bg-blush text-ink"
+                              : "text-ink hover:bg-blush")
                           }
                         >
                           {opt.label}
@@ -331,7 +331,7 @@ export function AttuneDateCard({
                 onChange={(e) => setComment(e.target.value.slice(0, 140))}
                 maxLength={140}
                 placeholder="Add a comment"
-                className="w-full rounded-full border border-line bg-paper px-4 py-3 font-body text-[13px] text-ink placeholder:text-stone focus:border-plum-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300/40"
+                className="w-full rounded-full border border-ink bg-blush px-4 py-3 font-body text-[13px] text-ink placeholder:text-stone focus:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
               />
               <button
                 type="button"
@@ -345,7 +345,7 @@ export function AttuneDateCard({
                 }}
                 disabled={!canSend || disabled}
                 aria-label="Attune with date proposal"
-                className="w-full rounded-full bg-gradient-to-r from-plum-500 to-plum-700 px-4 py-3 font-body text-[14px] font-medium text-paper shadow-elev-1 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300 disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-full bg-gradient-to-r from-plum-500 to-plum-700 px-4 py-3 font-body text-[14px] font-medium text-blush shadow-elev-1 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-ink disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Attune
               </button>
@@ -424,4 +424,4 @@ function ExpandedBody({
 // Matches Introduction Card Chip styling (Long-term / Relationship /
 // Open to depth) with an added chevron for affordance.
 const chipClass =
-  "inline-flex w-fit max-w-full items-center gap-1.5 rounded-full bg-lavender-100 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700 transition-colors hover:bg-lavender-200/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300/40";
+  "inline-flex w-fit max-w-full items-center gap-1.5 rounded-full bg-blush px-3 py-1.5 font-body text-[12px] font-medium text-ink transition-colors hover:bg-blush/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40";

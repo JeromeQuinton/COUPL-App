@@ -77,7 +77,7 @@ export function CompatibilityOverviewCard({
             <InfoButton termKey="compatibility_overview" />
           </span>
           <span
-            className="font-body text-[14px] font-medium text-plum-700"
+            className="font-body text-[14px] font-medium text-ink"
             style={{ marginLeft: "12px" }}
           >
             {overall}% Aligned overall
@@ -95,7 +95,7 @@ export function CompatibilityOverviewCard({
           <button
             type="button"
             onClick={() => setExpanded(true)}
-            className="self-start font-body text-[13px] font-medium text-plum-700"
+            className="self-start font-body text-[13px] font-medium text-ink"
             aria-expanded={false}
             aria-controls="compat-overview-bars"
           >
@@ -122,12 +122,12 @@ export function CompatibilityOverviewCard({
                   </span>
                   <InfoButton termKey={r.termKey} />
                 </div>
-                <span className="font-display text-[13px] font-semibold text-plum-700">
+                <span className="font-display text-[13px] font-semibold text-ink">
                   {r.alignment}%
                 </span>
               </div>
               <div
-                className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
+                className="relative h-2 w-full overflow-hidden rounded-full bg-blush"
                 role="progressbar"
                 aria-valuemin={0}
                 aria-valuemax={100}
@@ -152,7 +152,7 @@ export function CompatibilityOverviewCard({
           <button
             type="button"
             onClick={() => setExpanded(false)}
-            className="self-start font-body text-[13px] font-medium text-plum-700"
+            className="self-start font-body text-[13px] font-medium text-ink"
             aria-expanded={true}
             aria-controls="compat-overview-bars"
           >

@@ -13,8 +13,8 @@ export function EmptyStateFooter({
 }) {
   if (tier === "paid") {
     return (
-      <div className="rounded-[20px] bg-paper/70 px-5 py-5 text-center shadow-elev-1">
-        <p className="font-display text-[15px] font-semibold text-plum-700">
+      <div className="rounded-[20px] bg-blush/70 px-5 py-5 text-center shadow-elev-1">
+        <p className="font-display text-[15px] font-semibold text-ink">
           You've seen today's recommendations.
         </p>
         <p className="pt-1.5 font-body text-[13px] text-slate">
@@ -25,8 +25,8 @@ export function EmptyStateFooter({
   }
 
   return (
-    <div className="flex flex-col items-stretch gap-3 rounded-[20px] bg-paper/70 px-5 py-5 text-center shadow-elev-1">
-      <p className="font-display text-[15px] font-semibold text-plum-700">
+    <div className="flex flex-col items-stretch gap-3 rounded-[20px] bg-blush/70 px-5 py-5 text-center shadow-elev-1">
+      <p className="font-display text-[15px] font-semibold text-ink">
         You've seen today's recommendations.
       </p>
       <p className="font-body text-[13px] text-slate">
@@ -35,7 +35,7 @@ export function EmptyStateFooter({
       <button
         type="button"
         onClick={onUpgrade}
-        className="mx-auto mt-1 rounded-full bg-plum-500 px-5 py-2.5 font-display text-[14px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+        className="mx-auto mt-1 rounded-full bg-ink px-5 py-2.5 font-display text-[14px] font-medium text-blush shadow-elev-1 transition-colors hover:bg-ink/90"
       >
         Upgrade
       </button>
