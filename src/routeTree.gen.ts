@@ -37,7 +37,7 @@ import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
-import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id.insights.connection-languages'
+import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -179,9 +179,9 @@ const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
 } as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
-    id: '/insights/connection-languages',
-    path: '/insights/connection-languages',
-    getParentRoute: () => MainDiscoverIdRoute,
+    id: '/$id_/insights/connection-languages',
+    path: '/$id/insights/connection-languages',
+    getParentRoute: () => MainDiscoverRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -205,7 +205,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
-  '/discover/$id': typeof MainDiscoverIdRouteWithChildren
+  '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
@@ -232,7 +232,7 @@ export interface FileRoutesByTo {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
-  '/discover/$id': typeof MainDiscoverIdRouteWithChildren
+  '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
@@ -264,13 +264,13 @@ export interface FileRoutesById {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
-  '/_main/discover/$id': typeof MainDiscoverIdRouteWithChildren
+  '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/_main/home/check-in': typeof MainHomeCheckInRoute
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
-  '/_main/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -359,7 +359,7 @@ export interface FileRouteTypes {
     | '/_main/home/coach'
     | '/_main/home/reflection'
     | '/_main/discover/'
-    | '/_main/discover/$id/insights/connection-languages'
+    | '/_main/discover/$id_/insights/connection-languages'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -567,12 +567,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIdRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
-    '/_main/discover/$id/insights/connection-languages': {
-      id: '/_main/discover/$id/insights/connection-languages'
-      path: '/insights/connection-languages'
+    '/_main/discover/$id_/insights/connection-languages': {
+      id: '/_main/discover/$id_/insights/connection-languages'
+      path: '/$id/insights/connection-languages'
       fullPath: '/discover/$id/insights/connection-languages'
       preLoaderRoute: typeof MainDiscoverIdInsightsConnectionLanguagesRouteImport
-      parentRoute: typeof MainDiscoverIdRoute
+      parentRoute: typeof MainDiscoverRoute
     }
   }
 }
@@ -587,29 +587,19 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
-interface MainDiscoverIdRouteChildren {
+interface MainDiscoverRouteChildren {
+  MainDiscoverIdRoute: typeof MainDiscoverIdRoute
+  MainDiscoverQuietDayRoute: typeof MainDiscoverQuietDayRoute
+  MainDiscoverIndexRoute: typeof MainDiscoverIndexRoute
   MainDiscoverIdInsightsConnectionLanguagesRoute: typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 
-const MainDiscoverIdRouteChildren: MainDiscoverIdRouteChildren = {
-  MainDiscoverIdInsightsConnectionLanguagesRoute:
-    MainDiscoverIdInsightsConnectionLanguagesRoute,
-}
-
-const MainDiscoverIdRouteWithChildren = MainDiscoverIdRoute._addFileChildren(
-  MainDiscoverIdRouteChildren,
-)
-
-interface MainDiscoverRouteChildren {
-  MainDiscoverIdRoute: typeof MainDiscoverIdRouteWithChildren
-  MainDiscoverQuietDayRoute: typeof MainDiscoverQuietDayRoute
-  MainDiscoverIndexRoute: typeof MainDiscoverIndexRoute
-}
-
 const MainDiscoverRouteChildren: MainDiscoverRouteChildren = {
-  MainDiscoverIdRoute: MainDiscoverIdRouteWithChildren,
+  MainDiscoverIdRoute: MainDiscoverIdRoute,
   MainDiscoverQuietDayRoute: MainDiscoverQuietDayRoute,
   MainDiscoverIndexRoute: MainDiscoverIndexRoute,
+  MainDiscoverIdInsightsConnectionLanguagesRoute:
+    MainDiscoverIdInsightsConnectionLanguagesRoute,
 }
 
 const MainDiscoverRouteWithChildren = MainDiscoverRoute._addFileChildren(

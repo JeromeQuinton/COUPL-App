@@ -16,7 +16,7 @@ import { RelationalInsightExplainer } from "@/components/discover/insights/Relat
  * (DR-023). No clinical or diagnostic claims.
  */
 export const Route = createFileRoute(
-  "/_main/discover/$id/insights/connection-languages",
+  "/_main/discover/$id_/insights/connection-languages",
 )({
   head: () => ({
     meta: [
