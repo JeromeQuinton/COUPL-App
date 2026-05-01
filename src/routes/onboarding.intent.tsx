@@ -53,10 +53,7 @@ function IntentScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!intent) return;
-    // Phase 1: next chapter screens (pace / values / etc.) not built yet.
-    // Bouncing back to the existing complete screen so the flow doesn't
-    // dead-end during review.
-    navigate({ to: "/onboarding/complete" });
+    navigate({ to: "/onboarding/pace" });
   };
 
   return (
