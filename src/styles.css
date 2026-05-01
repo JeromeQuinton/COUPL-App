@@ -85,6 +85,7 @@
   --color-line: var(--line);
   --color-cloud: var(--cloud);
   --color-paper: var(--paper);
+  --color-blush: var(--blush);
   --color-success: var(--success);
   --color-caution: var(--caution);
   --color-danger: var(--danger);
@@ -123,6 +124,7 @@
   --line: #CCCCCC;
   --cloud: #F7F7F7;
   --paper: #FFFFFF;
+  --blush: #F4E1CC;   /* COUPL editorial peach base (DR-BRAND-V2-A) */
   --success: #2F8F46;
   --caution: #D47F1E;
   --danger: #B8312F;
@@ -146,14 +148,14 @@
   --space-12: 48px;
 
   /* Semantic shadcn aliases mapped onto COUPL palette */
-  --background: var(--paper);
+  --background: var(--blush);            /* DR-BRAND-V2-A */
   --foreground: var(--ink);
-  --card: var(--paper);
+  --card: var(--blush);                  /* DR-BRAND-V2-A */
   --card-foreground: var(--ink);
   --popover: var(--paper);
   --popover-foreground: var(--ink);
-  --primary: var(--plum-500);
-  --primary-foreground: var(--paper);
+  --primary: var(--ink);                 /* DR-BRAND-V2-B */
+  --primary-foreground: var(--blush);    /* DR-BRAND-V2-B */
   --secondary: var(--lavender-100);
   --secondary-foreground: var(--plum-700);
   --muted: var(--cloud);
@@ -162,7 +164,8 @@
   --accent-foreground: var(--plum-700);
   --destructive: var(--danger);
   --destructive-foreground: var(--paper);
-  --border: var(--line);
+  --border: var(--ink);                  /* DR-BRAND-V2-B keylines on blush */
+  --border-soft: var(--line);            /* opt-in soft grey via .border-[var(--border-soft)] */
   --input: var(--line);
   --ring: var(--plum-300);
   --chart-1: var(--plum-500);
@@ -196,12 +199,20 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "ss02"; /* Inter stylistic sets */
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     color: var(--color-ink);
     letter-spacing: -0.01em;
+  }
+
+  /* Italic display variant — Fraunces opsz 72, SOFT 100, WONK 1
+     for editorial pull-quote treatment inside headlines. */
+  h1 em, h2 em, h3 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 72, "SOFT" 100, "WONK" 1;
   }
 }
 
@@ -233,6 +244,34 @@
   .shadow-elev-1 { box-shadow: var(--elevation-1); }
   .shadow-elev-2 { box-shadow: var(--elevation-2); }
   .shadow-elev-3 { box-shadow: var(--elevation-3); }
+
+  /* Editorial mono label (DR-BRAND-V2-D) — tracked all-caps for section
+     headers (RETURN, EMAIL, COACH · NOTICED, etc.) and metadata. Warm
+     plum reads as rust on the peach base. */
+  .text-label-mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.3;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--plum-500);
+  }
+
+  /* Onboarding chapter progression (DR-BRAND-V2-D) — numeral + hairline
+     rule pair for chapter headers ("01 — INTENT", etc.). */
+  .text-chapter-numeral {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--slate);
+  }
+  .text-chapter-rule {
+    display: inline-block;
+    height: 1px;
+    background: var(--ink);
+    flex: 1;
+    margin-left: 8px;
+  }
 }
 
 /*
