@@ -62,9 +62,7 @@ function PhotosScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!canSubmit) return;
-    // Prompts step (07) not built yet — bounce to the existing complete
-    // screen so the flow doesn't dead-end during review.
-    navigate({ to: "/onboarding/complete" });
+    navigate({ to: "/onboarding/prompts" });
   };
 
   return (

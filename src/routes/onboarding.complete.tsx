@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
 import { clearDraft } from "@/lib/onboarding_store";
 
 export const Route = createFileRoute("/onboarding/complete")({
@@ -23,20 +23,33 @@ function CompleteScreen() {
   }, []);
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-[640px] flex-col items-center justify-center px-6 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-lavender-100">
-        <CheckCircle2 className="h-8 w-8 text-plum-500" aria-hidden />
+    <div className="mx-auto flex min-h-screen max-w-[640px] flex-col items-center justify-center bg-paper px-6 text-center">
+      <div
+        aria-hidden
+        className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-plum-500 bg-paper"
+      >
+        <Check className="h-9 w-9 text-plum-500" strokeWidth={2.25} />
       </div>
-      <h1 className="mt-6 text-display-xl text-ink">You're set up.</h1>
-      <p className="mt-3 max-w-md text-body-lg text-slate">
-        We'll use what you shared to surface considered, well-aligned
-        recommendations. Take your time — there's no rush here.
+      <h1 className="mt-8 text-display-xxl text-ink">
+        You're in,
+        <br />
+        Mira.
+      </h1>
+      <p className="mt-4 max-w-sm text-body-lg text-slate">
+        Photos are with our humans. We'll text you within 24h. Until then,
+        you can read, reflect, and set up your first prompt.
       </p>
       <Link
-        to="/discover"
-        className="mt-8 inline-flex h-12 items-center justify-center rounded-[12px] bg-plum-500 px-6 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+        to="/home"
+        className="mt-8 inline-flex h-12 w-full max-w-xs items-center justify-center rounded-[12px] bg-plum-500 px-6 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
       >
-        See your recommendations
+        Take me to Home
+      </Link>
+      <Link
+        to="/onboarding/photo-review"
+        className="mt-3 text-label-mono"
+      >
+        See review status
       </Link>
     </div>
   );
