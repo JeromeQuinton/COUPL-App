@@ -88,13 +88,14 @@ function ThreadScreen() {
               {c.daysAgoLabel} · {c.dayLabel}
             </p>
           </div>
-          <button
-            type="button"
-            aria-label="Conversation options"
+          <Link
+            to="/connections/$id/ending"
+            params={{ id }}
+            aria-label="End this conversation well"
             className="rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
           >
             <MoreHorizontal className="h-5 w-5" />
-          </button>
+          </Link>
         </header>
 
         {/* Timeline */}
