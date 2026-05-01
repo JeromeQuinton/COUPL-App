@@ -12,29 +12,16 @@ export function GrowthBackdrop({
   children: ReactNode;
   tone?: "warm" | "editorial";
 }) {
-  if (tone === "editorial") {
-    return (
-      <div
-        className="relative"
-        style={{
-          minHeight: "100dvh",
-          background:
-            "linear-gradient(180deg, color-mix(in oklab, var(--paper) 88%, var(--blush)) 0%, var(--paper) 60%, color-mix(in oklab, var(--paper) 92%, var(--lavender-50)) 100%)",
-        }}
-      >
-        <div className="relative">{children}</div>
-      </div>
-    );
-  }
+  // DR-040 / brand cohesion: Growth shares Discover's master gradient —
+  // soft lavender → blush → pale plum — so the two surfaces feel born
+  // from the same system. `tone="editorial"` keeps the same palette
+  // with a slightly cooler top so editorial cards lift cleanly.
+  const bg =
+    tone === "editorial"
+      ? "linear-gradient(180deg, #F6E7F2 0%, #FCEEF0 45%, #EFE2F4 100%)"
+      : "linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%)";
   return (
-    <div
-      className="relative"
-      style={{
-        minHeight: "100dvh",
-        background:
-          "linear-gradient(180deg, color-mix(in oklab, var(--paper) 90%, var(--blush)) 0%, color-mix(in oklab, var(--paper) 96%, var(--lavender-50)) 55%, color-mix(in oklab, var(--blush) 22%, var(--paper)) 100%)",
-      }}
-    >
+    <div className="relative" style={{ minHeight: "100dvh", background: bg }}>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[360px]"
