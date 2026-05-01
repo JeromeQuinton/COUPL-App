@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
@@ -19,6 +19,7 @@ import { AttuneDialog } from "@/components/discover/attune/AttuneDialog";
 import { AttuneSentConfirmation } from "@/components/discover/attune/AttuneSentConfirmation";
 import { useAttuneState, type AttuneTarget as AttuneStateTarget } from "@/hooks/use-attune-state";
 import { useFeedExclusions } from "@/hooks/use-feed-exclusions";
+import { useInView } from "@/hooks/use-in-view";
 import {
   Sheet,
   SheetContent,
@@ -77,6 +78,16 @@ function ProfileDetailScreen() {
   const [confirmation, setConfirmation] = useState<
     { visible: boolean; targetType: "profile" | "module" | "photo" }
   >({ visible: false, targetType: "profile" });
+
+  // Prompt 5.1: track Photo 1's intersection with the viewport so the
+  // sticky header can reveal Name · Age once the hero scrolls past.
+  // rootMargin offsets the header height (~56px) so the trigger fires
+  // when Photo 1's bottom passes the header's bottom edge.
+  const photo1Ref = useRef<HTMLDivElement>(null);
+  const photo1InView = useInView(photo1Ref, {
+    rootMargin: "-56px 0px 0px 0px",
+  });
+  const headerReveal = !photo1InView;
 
   const goBack = () => {
     if (window.history.length > 1) router.history.back();
@@ -157,25 +168,30 @@ function ProfileDetailScreen() {
     >
       <ProfileDetailHeader
         onBack={goBack}
+        revealName={headerReveal}
+        name={profile.name}
+        age={profile.age}
       />
 
       <div className="flex flex-col gap-4 pt-4">
         {/* DR-046: Photo 1 is NOT a Module Attune surface. Rendered directly
          * (no AttuneTarget wrapper) with the four-corner hero overlay
          * replacing the deleted IntroductionCard. */}
-        <ProfilePhoto
-          hue={profile.photos[0].hue}
-          alt={profile.photos[0].alt}
-          src={profile.photos[0].src}
-          hero={{
-            name: profile.name,
-            age: profile.age,
-            region: profile.region,
-            verified: profile.verified,
-            attunedValue: profile.compatibility,
-            trustScore: profile.trustScore,
-          }}
-        />
+        <div ref={photo1Ref}>
+          <ProfilePhoto
+            hue={profile.photos[0].hue}
+            alt={profile.photos[0].alt}
+            src={profile.photos[0].src}
+            hero={{
+              name: profile.name,
+              age: profile.age,
+              region: profile.region,
+              verified: profile.verified,
+              attunedValue: profile.compatibility,
+              trustScore: profile.trustScore,
+            }}
+          />
+        </div>
 
         {/* DR-057: About me is not an attune-able surface — no AttuneTarget wrapper. */}
         <AboutMeCard

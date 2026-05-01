@@ -1,47 +1,47 @@
-## Recommendation: replace the singletons with TanStack Query, not a server-mirroring singleton
+## Lovable Prompt 5.1 — Sticky header reveal plan
 
-Short answer to the three questions:
+Applies decisions: DR-047 (Photo 1 hero overlays unchanged), DR-054 (sticky bottom bar unchanged).
 
-1. **No, the `useSyncExternalStore` + module-singleton + pub/sub pattern does not translate cleanly.** It works today only because it is a pure in-memory cache — there is no fetch, no staleness, no error state, no concurrent writer, no auth scoping. Once the server is the source of truth, every one of those concerns appears, and the singleton becomes a hand-rolled cache that has to be invalidated, refetched, hydrated for SSR, and reconciled with optimistic updates. That is exactly what TanStack Query already does, and the project already has it wired (TanStack Start docs in our context describe `QueryClientProvider` in `__root.tsx` and `queryClient` on router context).
+### Goal
+When the user scrolls past Photo 1 on `/discover/$id`, cross-fade the profile's `Name · Age` into the sticky top header (centred between back arrow and filter icon). Snap instantly under `prefers-reduced-motion: reduce`. Photo 1's BL overlay is not moved.
 
-2. **Server-as-source-of-truth pushes us to a different primitive: TanStack Query + server functions, with optimistic mutations.** Not "refetch on every navigation". The right shape is: queries own the read side, mutations own the write side, and `queryClient.setQueryData` + `invalidateQueries` is the equivalent of today's `notify()`.
+### Files to edit
+1. `src/routes/_main.discover.$id.tsx` — wire a ref to the Photo 1 wrapper, observe it, pass reveal state + name/age to header.
+2. `src/components/discover/profile/ProfileDetailHeader.tsx` — accept `revealName`, `name`, `age` props; render centre slot with opacity transition.
 
-3. **For the "Maya now excluded" cross-route propagation:** the feed subscribes to a `useQuery(["discover", "feed"])`. The Attune mutation on the detail route, on success, calls `queryClient.setQueryData(["discover","feed"], old => old.filter(p => p.id !== id))` (optimistic) and `invalidateQueries(["discover","feed"])` (authoritative refetch in the background). When the user navigates back, the feed already reflects the change from cache — no flash, no full network round-trip blocking the UI. This is structurally identical to today's pub/sub flow, just with the cache and the network both owned by Query.
+No new files. No new tokens. Uses existing `src/hooks/use-in-view.ts` (already IntersectionObserver-based and SSR-safe).
 
-## What changes shape, concretely
+### Implementation details
 
-| Concern | Today | After |
-|---|---|---|
-| Feed read | `SAMPLE_FEED.filter(...)` against in-memory `Set` | `useQuery(["discover","feed",filters])` → server fn returning already-filtered list |
-| Exclusions | `useFeedExclusions` singleton `Set<string>` | Server-side: rows in an `interactions` table (`not_today`, `attune`). No client store. |
-| Dismissed/invited pill state | `discoverSessionState` singleton + pub/sub | Derived from the same server query (status comes back per profile) |
-| Attune state per profile | `useAttuneState` singleton `Map` | `useQuery(["attune", profileId])` + `useMutation(sendAttune)` |
-| Cross-route propagation | `notify()` → `useSyncExternalStore` rerender | `queryClient.setQueryData` (optimistic) + `invalidateQueries` |
-| Dev Reset | `clearExclusions()` + `discoverSessionState.reset()` | Server fn that deletes the viewer's session-scoped interaction rows + `queryClient.invalidateQueries(["discover"])` |
+**1. Detail route (`_main.discover.$id.tsx`)**
+- Import `useRef` and `useInView`.
+- Create `const photo1Ref = useRef<HTMLDivElement>(null);`
+- Wrap the existing first `<ProfilePhoto hero={...} />` in a `<div ref={photo1Ref}>` (since `ProfilePhoto` doesn't forward refs and we don't want to change its API).
+- `const photo1InView = useInView(photo1Ref, { rootMargin: "-56px 0px 0px 0px" });`
+- `const headerReveal = !photo1InView;`
+- Pass `revealName={headerReveal}`, `name={profile.name}`, `age={profile.age}` to `<ProfileDetailHeader />`.
 
-## Three architectural decisions to ratify before any code
+**2. `ProfileDetailHeader.tsx`**
+- Extend props: `revealName?: boolean; name?: string; age?: number;`
+- Layout stays `flex items-center justify-between`. Insert a centred absolute span (or restructure to a 3-column grid) so the back/filter buttons don't shift:
+  - Use `relative` on the inner row; absolute-position the centre label with `left-1/2 -translate-x-1/2`, `pointer-events-none`.
+- Treatment: `font-body text-[15px] font-medium text-ink` (project uses Inter as body — verify in `styles.css`; if a different token, swap to the equivalent existing token rather than introducing literals).
+- Transition: `transition-opacity duration-200 ease-out` with `opacity-100` when `revealName` else `opacity-0`. Add `motion-reduce:transition-none` so reduced-motion users get an instant snap.
+- `aria-hidden={!revealName}` on the label so SR doesn't announce it while invisible.
+- Render the label only when `name && typeof age === "number"` to keep the existing call sites (if any) from breaking.
 
-- **DR-NEW-A — TanStack Query becomes the canonical client cache for all server-backed Discover state.** The three module singletons (`use-feed-exclusions`, `discover_session_state`, `use-attune-state`) are deleted, not wrapped. Wrapping them would create two sources of truth and re-introduce the reset-by-clear-app-data hole.
+### Acceptance
+- Scroll on `/discover/p-maya-1`: header label hidden at top; "Maya · 34" fades in once Photo 1's bottom passes the header; fades out on scroll back up.
+- Back arrow + filter icon don't reflow when label appears.
+- DevTools "Emulate prefers-reduced-motion: reduce" → label snaps with no transition.
+- No new colour or font literals (uses `text-ink`, existing body font).
+- Forbidden vocabulary (swipe/deck/match/etc.) not introduced.
 
-- **DR-NEW-B — Mutations are optimistic by default on the Discover surface.** Not Today and Attune both feel instant today (singleton write is synchronous). To preserve that feel against a network call, every mutation uses `onMutate` to update the feed cache, `onError` to roll back, `onSettled` to invalidate. This is non-negotiable for the "silent transition" feel DR-033/DR-036 require.
+### After diff
+- Run typecheck.
+- Screenshots: header at top (no label), header after scroll past Photo 1 (label centred), reduced-motion verification.
+- No new architectural decisions expected — purely additive to existing header component; reuses existing `useInView` hook.
 
-- **DR-NEW-C — Server is the only authority for tier, quota, exclusions, and Attune history.** Client never decides "is this profile excluded" or "have I attuned" — it only renders what the server returns. This closes the revenue-gating hole you flagged. `CURRENT_TIER` and `CURRENT_USER_PREFERENCES` constants in `src/lib/` get deleted in the same pass; both become server-derived values returned by a `getViewerContext` server fn.
-
-## What stays
-
-- `useState` for ephemeral UI: `AttuneDateCard` form fields, popover open flags, `MoreFiltersSheet` open flag, `EmptyStateNudge` dismissal, `info` sheet state, `confirmation` visibility, `primaryDialogOpen`. None of these are revenue-gating; all are correctly client-local. No change.
-
-- The `AttuneSentConfirmation` 800ms overlay timing, the navigate-back-to-feed flow, and the AttuneTarget wrapper API. The mutation slots into `completeAttune` with the same callback signature; only the body changes.
-
-## What this does NOT cover (out of scope for this turn)
-
-- The actual server fn implementations (`recordNotToday`, `sendAttune`, `getDiscoverFeed`, `getViewerContext`, `resetDevSession`).
-- The Supabase schema for `interactions` / `attunes` / `viewer_session` (already sketched in project knowledge under "Detail-view assessment data architecture").
-- 7-day Not Today re-emergence window (DR-territory, separate decision).
-- Auth wiring — replacing `VIEWER_ID_V0` with `requireSupabaseAuth` middleware context.
-
-Each of those is a follow-up prompt once you ratify DR-NEW-A/B/C.
-
-## Bottom line
-
-The current pattern is a fine Phase-1 stub but it is the wrong shape to extend. Don't preserve it. Replace the three singletons with TanStack Query + server functions + optimistic mutations. The cross-route "Maya is gone" behaviour is preserved through `setQueryData` in the mutation's `onMutate`, which is the direct equivalent of today's `notify()` — the difference is that the cache is now backed by an authoritative server query that survives reload, clear-app-data, and device switch.
+### Risks / notes
+- `useInView` initial state is `true` (SSR-safe), so `headerReveal` starts `false` — correct first-paint behaviour (header chrome only).
+- `rootMargin: "-56px 0px 0px 0px"` assumes ~56px header height; current header is `py-3` + safe-area, so 56px is a reasonable approximation for the trigger line. If visual feel is off, tune to `-64px` in a follow-up.
