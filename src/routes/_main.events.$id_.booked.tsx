@@ -14,8 +14,16 @@ export const Route = createFileRoute("/_main/events/$id_/booked")({
 function BookedPage() {
   const { id } = useParams({ from: "/_main/events/$id_/booked" });
   const e = getEvent(id) ?? FEATURED_EVENT;
-  const dayName = e.dateLabel.split(" · ")[0];
-  const cap = dayName.charAt(0) + dayName.slice(1).toLowerCase() + "day";
+  const DAY_NAMES: Record<string, string> = {
+    SUN: "Sunday",
+    MON: "Monday",
+    TUE: "Tuesday",
+    WED: "Wednesday",
+    THU: "Thursday",
+    FRI: "Friday",
+    SAT: "Saturday",
+  };
+  const cap = DAY_NAMES[e.dateLabel.split(" · ")[0]] ?? "soon";
 
   return (
     <EventsBackdrop>
