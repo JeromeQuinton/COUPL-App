@@ -58,7 +58,7 @@ function HomeScreen() {
         />
 
         <CoachCard
-          coach="Reni"
+          coach="Signal"
           title="Open with a noticing, not a question."
           when="Tuesday, 9:14am"
           readTime="2 min read"
