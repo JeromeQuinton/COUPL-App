@@ -39,6 +39,7 @@ import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discove
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
+import { Route as MainConnectionsIdPauseRouteImport } from './routes/_main.connections.$id_.pause'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -189,6 +190,11 @@ const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
   path: '/$id/attuned',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainConnectionsIdPauseRoute = MainConnectionsIdPauseRouteImport.update({
+  id: '/$id_/pause',
+  path: '/$id/pause',
+  getParentRoute: () => MainConnectionsRoute,
+} as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
     id: '/$id_/insights/connection-languages',
@@ -224,6 +230,7 @@ export interface FileRoutesByFullPath {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover/': typeof MainDiscoverIndexRoute
+  '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover': typeof MainDiscoverIndexRoute
+  '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -287,6 +295,7 @@ export interface FileRoutesById {
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
+  '/_main/connections/$id_/pause': typeof MainConnectionsIdPauseRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -320,6 +329,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover/'
+    | '/connections/$id/pause'
     | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
   fileRoutesByTo: FileRoutesByTo
@@ -349,6 +359,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover'
+    | '/connections/$id/pause'
     | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
   id:
@@ -382,6 +393,7 @@ export interface FileRouteTypes {
     | '/_main/home/coach'
     | '/_main/home/reflection'
     | '/_main/discover/'
+    | '/_main/connections/$id_/pause'
     | '/_main/discover/$id_/attuned'
     | '/_main/discover/$id_/insights/connection-languages'
   fileRoutesById: FileRoutesById
@@ -605,6 +617,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIdAttunedRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/connections/$id_/pause': {
+      id: '/_main/connections/$id_/pause'
+      path: '/$id/pause'
+      fullPath: '/connections/$id/pause'
+      preLoaderRoute: typeof MainConnectionsIdPauseRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
       path: '/$id/insights/connection-languages'
@@ -627,10 +646,12 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface MainConnectionsRouteChildren {
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
+  MainConnectionsIdPauseRoute: typeof MainConnectionsIdPauseRoute
 }
 
 const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdRoute: MainConnectionsIdRoute,
+  MainConnectionsIdPauseRoute: MainConnectionsIdPauseRoute,
 }
 
 const MainConnectionsRouteWithChildren = MainConnectionsRoute._addFileChildren(
