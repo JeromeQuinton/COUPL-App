@@ -39,7 +39,7 @@ export function ProfileDetailHeader({
         {showLabel ? (
           <span
             aria-hidden={!revealName}
-            className={`pointer-events-none absolute left-1/2 -translate-x-1/2 font-body text-[15px] font-medium text-ink transition-opacity duration-200 ease-out motion-reduce:transition-none ${
+            className={`pointer-events-none absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-display text-[17px] font-medium leading-none tracking-[-0.005em] text-ink transition-opacity duration-200 ease-out motion-reduce:transition-none ${
               revealName ? "opacity-100" : "opacity-0"
             }`}
           >
