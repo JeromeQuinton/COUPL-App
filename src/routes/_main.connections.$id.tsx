@@ -118,7 +118,7 @@ function ThreadScreen() {
             />
             {draft.trim().length > 0 ? (
               <Link
-                to="/connections/$id/pause"
+                to="/connections/$id_/pause"
                 params={{ id }}
                 aria-label="Review before sending"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-plum-500 text-paper transition-colors hover:bg-plum-700"
