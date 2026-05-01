@@ -142,15 +142,28 @@ export const SAFETY_ROWS: SafetyRow[] = [
 
 /* ---------------- Decision audit log ---------------- */
 
-export type AuditFilter = "all" | "nudges" | "filters" | "safety";
+export type AuditFilter =
+  | "all"
+  | "nudges"
+  | "safety"
+  | "pacing"
+  | "visibility";
+
+export type AuditCategory = Exclude<AuditFilter, "all">;
+
+export type AuditSeverity = "ambient" | "considered" | "protective";
 
 export type AuditEntry = {
   id: string;
-  ref: string; // e.g. NUD-501
-  category: Exclude<AuditFilter, "all">;
-  when: string; // "Today 14:22" | "Yesterday 22:14"
+  ref: string;
+  category: AuditCategory;
+  when: string;
   title: string;
-  detail: string;
+  action: string; // what the AI did
+  response: string; // what the user did
+  why: string; // why it mattered
+  emotion: string; // emotional category
+  severity: AuditSeverity;
 };
 
 export const AUDIT_ENTRIES: AuditEntry[] = [
@@ -158,32 +171,88 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     id: "nud-501",
     ref: "NUD-501",
     category: "nudges",
-    when: "Today 14:22",
-    title: "Coach Card",
-    detail: "Acknowledge shown · dismissed",
+    when: "Today · 14:22",
+    title: "Coach card surfaced",
+    action: "Suggested an acknowledgement before replying to Maya.",
+    response: "Dismissed without sending.",
+    why: "You'd been quiet for two days — repair tends to land lighter when named.",
+    emotion: "Reassurance",
+    severity: "ambient",
   },
   {
     id: "fil-201",
     ref: "FIL-201",
-    category: "filters",
-    when: "Today 09:01",
-    title: "Discover",
-    detail: "Profile filtered · low-attune mode",
+    category: "visibility",
+    when: "Today · 09:01",
+    title: "Profile gently filtered",
+    action: "Held back one recommendation outside your stated capacity.",
+    response: "No action required.",
+    why: "You set a calmer week. We protected the feed accordingly.",
+    emotion: "Protection",
+    severity: "considered",
   },
   {
     id: "nud-477",
     ref: "NUD-477",
     category: "nudges",
-    when: "Yesterday 22:14",
-    title: "Draft Intercept",
-    detail: "Sent anyway",
+    when: "Yesterday · 22:14",
+    title: "Draft intercept offered",
+    action: "Paused a late-night message and offered a softer rewrite.",
+    response: "Sent the original anyway.",
+    why: "Late sends with high intensity are the ones people most often regret.",
+    emotion: "Restraint",
+    severity: "considered",
   },
   {
     id: "pca-012",
     ref: "PCA-012",
+    category: "pacing",
+    when: "Yesterday · 08:00",
+    title: "Daily cap reached",
+    action: "Closed today's recommendations at your chosen limit.",
+    response: "Returned this morning.",
+    why: "Pacing is your boundary — we hold it even when the feed could go further.",
+    emotion: "Steadiness",
+    severity: "protective",
+  },
+  {
+    id: "saf-088",
+    ref: "SAF-088",
     category: "safety",
-    when: "Yesterday 08:00",
-    title: "Pacing",
-    detail: "Daily cap reached",
+    when: "Mon · 19:42",
+    title: "Tone check before send",
+    action: "Flagged a phrase that often reads sharper than intended.",
+    response: "Edited and sent.",
+    why: "Small rewordings keep early conversations safe to stay open in.",
+    emotion: "Care",
+    severity: "protective",
+  },
+];
+
+/* Top-of-screen summary — counts by domain over the last 7 days. */
+export type AuditSummaryStat = {
+  id: AuditCategory;
+  label: string;
+  value: number;
+};
+
+export const AUDIT_SUMMARY: AuditSummaryStat[] = [
+  { id: "nudges", label: "Nudges", value: 12 },
+  { id: "safety", label: "Safety", value: 3 },
+  { id: "pacing", label: "Pacing", value: 5 },
+  { id: "visibility", label: "Visibility", value: 7 },
+];
+
+/* Behavioural patterns surfaced from your last 30 days of decisions. */
+export const AUDIT_PATTERNS: { id: string; title: string; body: string }[] = [
+  {
+    id: "pat-evening",
+    title: "You override us most after 10pm.",
+    body: "Six of your last eight overrides happened late. We'll start surfacing drafts a touch earlier.",
+  },
+  {
+    id: "pat-pacing",
+    title: "Pacing limits land well with you.",
+    body: "You've kept your daily cap for three weeks straight — the feed stays calmer because of it.",
   },
 ];
