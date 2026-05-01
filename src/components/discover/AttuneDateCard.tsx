@@ -48,6 +48,9 @@ export function AttuneDateCard({
   dateType: initialType,
   comment: initialComment,
   dateIdeas,
+  dateSummary,
+  datePreferences,
+  profileName,
   onAttune,
   disabled = false,
 }: {
@@ -55,6 +58,17 @@ export function AttuneDateCard({
   dateType?: DateType;
   comment?: string;
   dateIdeas?: string[];
+  /** One-line summary rendered in the collapsed state. */
+  dateSummary?: string;
+  /** Structured prefs rendered at the top of the expanded body. */
+  datePreferences?: {
+    locationFlexibility?: string;
+    timingWindow?: string;
+    durationPreference?: string;
+    anythingElse?: string;
+  };
+  /** Used in the expanded section header ("<Name>'s preferences"). */
+  profileName?: string;
   /**
    * Called when the user taps the inline Attune CTA. Receives the
    * composed proposal so the parent can fire the standard 800ms
@@ -74,6 +88,12 @@ export function AttuneDateCard({
   const [timeOpen, setTimeOpen] = useState(false);
   const [typeOpen, setTypeOpen] = useState(false);
   /**
+   * Collapsed by default per progressive-disclosure spec. Component-local
+   * state — never persisted across navigation; landing on a profile fresh
+   * always starts collapsed.
+   */
+  const [expanded, setExpanded] = useState(false);
+  /**
    * "Engagement" gate (per spec): the comment field + Attune CTA stay
    * hidden until the user opens either picker OR makes a selection.
    * Once true, sticky for the card session — clearing selections does
@@ -92,14 +112,94 @@ export function AttuneDateCard({
   const showNudge = !dateIdeas || dateIdeas.length === 0;
   const canSend = Boolean(time) || Boolean(type);
 
+  const summaryLine =
+    dateSummary ?? "Tap to suggest a time and a kind of meet-up";
+  const prefsHeader = profileName
+    ? `${profileName}'s preferences`
+    : "Their preferences";
+  const hasAnyPref =
+    datePreferences &&
+    (datePreferences.locationFlexibility ||
+      datePreferences.timingWindow ||
+      datePreferences.durationPreference ||
+      datePreferences.anythingElse);
+
   return (
     <div className="flex flex-col gap-3">
       <section className="rounded-[20px] bg-paper p-5 shadow-elev-1">
-        <h2 className="font-display text-[16px] font-semibold leading-tight text-ink">
-          When we meet
-        </h2>
+        {/* Compact summary header — always visible. Tapping anywhere
+            in this row toggles the expanded body. */}
+        <button
+          type="button"
+          onClick={() => setExpanded((e) => !e)}
+          aria-expanded={expanded}
+          aria-controls="attune-date-body"
+          className="-m-1 flex w-[calc(100%+0.5rem)] items-center gap-3 rounded-xl p-1 text-left transition-colors hover:bg-lavender-50/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300/40"
+        >
+          <div className="min-w-0 flex-1">
+            <h2 className="font-display text-[16px] font-semibold leading-tight text-ink">
+              When we meet
+            </h2>
+            <p className="mt-1 truncate font-body text-[14px] font-normal text-stone">
+              {summaryLine}
+            </p>
+          </div>
+          <ChevronDown
+            aria-hidden
+            width={16}
+            height={16}
+            strokeWidth={2}
+            className={`shrink-0 text-plum-500 transition-transform duration-200 ease-out motion-reduce:transition-none ${
+              expanded ? "rotate-180" : "rotate-0"
+            }`}
+          />
+        </button>
 
-        <div className="mt-4 flex flex-col gap-3">
+        {expanded ? (
+          <ExpandedBody>
+            <div id="attune-date-body" className="mt-4 flex flex-col gap-4">
+              {hasAnyPref ? (
+                <div className="flex flex-col gap-2">
+                  <p className="font-body text-[13px] font-medium text-stone">
+                    {prefsHeader}
+                  </p>
+                  <ul className="flex flex-col gap-1.5 font-body text-[13px] text-ink">
+                    {datePreferences?.locationFlexibility ? (
+                      <li>
+                        <span className="text-stone">Where · </span>
+                        {datePreferences.locationFlexibility}
+                      </li>
+                    ) : null}
+                    {datePreferences?.timingWindow ? (
+                      <li>
+                        <span className="text-stone">When · </span>
+                        {datePreferences.timingWindow}
+                      </li>
+                    ) : null}
+                    {datePreferences?.durationPreference ? (
+                      <li>
+                        <span className="text-stone">How long · </span>
+                        {datePreferences.durationPreference}
+                      </li>
+                    ) : null}
+                    {datePreferences?.anythingElse ? (
+                      <li>
+                        <span className="text-stone">Notes · </span>
+                        {datePreferences.anythingElse}
+                      </li>
+                    ) : null}
+                  </ul>
+                </div>
+              ) : null}
+
+              {hasAnyPref ? <div className="h-px w-full bg-line" /> : null}
+
+              <div className="flex flex-col gap-3">
+                <p className="font-body text-[13px] font-medium text-stone">
+                  Your proposal
+                </p>
+
+                <Popover
           <Popover
             open={timeOpen}
             onOpenChange={(o) => {
