@@ -78,10 +78,10 @@ export function MetricDisplay({
             </button>
           ) : null}
         </div>
-        <span className="font-display text-[13px] font-semibold text-plum-700">{display}</span>
+        <span className="font-display text-[13px] font-semibold text-ink">{display}</span>
       </div>
       <div
-        className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
+        className="relative h-2 w-full overflow-hidden rounded-full bg-blush"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}

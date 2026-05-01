@@ -26,8 +26,8 @@ export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
       type="button"
       onClick={handle}
       aria-disabled={isDismissed}
-      className={`w-full rounded-[20px] bg-paper p-3 text-left shadow-elev-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500 ${
-        isDismissed ? "opacity-50 grayscale" : "hover:bg-lavender-50"
+      className={`w-full rounded-[20px] bg-blush p-3 text-left shadow-elev-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
+        isDismissed ? "opacity-50 grayscale" : "hover:bg-blush"
       }`}
     >
       <div className="flex gap-3">
@@ -35,7 +35,9 @@ export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
         <div
           className="relative h-[72px] w-[72px] flex-shrink-0 overflow-hidden rounded-[14px]"
           style={{
-            background: `linear-gradient(150deg, ${profile.hue} 0%, var(--lavender-100) 60%, #E8D5EC 100%)`,
+            // V2 reskin: solid blush placeholder. `profile.hue` retained as a
+            // prop pending phase-2 polish (subtle two-stop blush gradient TBD).
+            background: "var(--blush)",
           }}
         >
           {showPhoto ? (
@@ -52,7 +54,7 @@ export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
         {/* Body */}
         <div className="flex flex-1 flex-col gap-1.5 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-display text-[17px] font-semibold leading-tight text-plum-700">
+            <h3 className="font-display text-[17px] font-semibold leading-tight text-ink">
               {profile.name}, {profile.age}
             </h3>
             <AlignmentPill band={profile.band} />
@@ -65,16 +67,16 @@ export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
           </p>
           <div className="mt-1 flex justify-end">
             {isInvited ? (
-              <span className="rounded-full bg-plum-500 px-3 py-1 font-body text-[12px] font-medium text-paper">
+              <span className="rounded-full bg-ink px-3 py-1 font-body text-[12px] font-medium text-blush">
                 Invited
               </span>
             ) : isDismissed ? (
-              <span className="rounded-full border border-line px-3 py-1 font-body text-[12px] font-medium text-stone">
+              <span className="rounded-full border border-ink px-3 py-1 font-body text-[12px] font-medium text-stone">
                 Not today
               </span>
             ) : (
               <span
-                className="rounded-full border border-plum-300 px-3 py-1 font-body text-[12px] font-medium text-plum-500"
+                className="rounded-full border border-ink px-3 py-1 font-body text-[12px] font-medium text-plum-500"
                 aria-hidden
               >
                 View

@@ -17,7 +17,7 @@ export function SectionCard({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-[20px] bg-paper p-5 shadow-elev-1">
+    <section className="rounded-[20px] bg-blush p-5 shadow-elev-1">
       <header className="mb-3 flex items-start justify-between gap-3">
         <div className="flex flex-col gap-0.5">
           <h2 className="font-body text-[16px] font-semibold leading-tight text-ink">

@@ -48,13 +48,13 @@ export function AboutMeCard({
   const dots = PACING_DOTS[pacing] ?? 2;
   const rhythmWord = DOT_WORDS[dots - 1];
   return (
-    <section className="rounded-[20px] bg-paper p-5 shadow-elev-1">
+    <section className="rounded-[20px] bg-blush p-5 shadow-elev-1">
       <div className="flex flex-col" style={{ gap: "14px" }}>
         <div className="flex items-center justify-between" style={{ gap: "8px", marginBottom: "2px" }}>
-          <span className="bg-lavender-100 px-3 py-1.5 text-[12px] font-medium text-plum-700 rounded-full">
+          <span className="bg-blush px-3 py-1.5 text-[12px] font-medium text-ink rounded-full">
             {intent}
           </span>
-          <span className="bg-lavender-100 px-3 py-1.5 text-[12px] font-medium text-plum-700 rounded-full inline-flex items-center gap-1.5">
+          <span className="bg-blush px-3 py-1.5 text-[12px] font-medium text-ink rounded-full inline-flex items-center gap-1.5">
             <span>{pacing}</span>
             <span
               aria-hidden
@@ -104,7 +104,7 @@ export function AboutMeCard({
           </p>
         ) : null}
         <div className="mt-2">
-          <h3 className="font-display text-[13px] font-semibold text-plum-700">
+          <h3 className="font-display text-[13px] font-semibold text-ink">
             What they're seeking in a partner
           </h3>
           <p className="mt-1 font-body text-[14px] leading-relaxed text-ink">

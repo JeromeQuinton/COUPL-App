@@ -24,10 +24,10 @@ export function EmptyStateNudge({
   if (dismissed) return null;
 
   return (
-    <div className="relative flex items-center gap-3 rounded-[16px] bg-lavender-100/70 p-4">
+    <div className="relative flex items-center gap-3 rounded-[16px] bg-blush/70 p-4">
       <a
         href={ctaDestination}
-        className="flex-shrink-0 rounded-full bg-paper px-4 py-2 font-body text-[13px] font-medium text-plum-700 shadow-elev-1 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300"
+        className="flex-shrink-0 rounded-full bg-blush px-4 py-2 font-body text-[13px] font-medium text-ink shadow-elev-1 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
       >
         {ctaLabel}
       </a>

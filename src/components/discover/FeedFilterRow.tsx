@@ -60,8 +60,8 @@ export function FeedFilterRow({
               onClick={() => onToggle(f)}
               className={
                 active
-                  ? "rounded-full bg-plum-500 px-4 py-2 font-display text-[13px] font-medium text-paper shadow-elev-1"
-                  : "rounded-full border border-plum-300 bg-paper/60 px-4 py-2 font-display text-[13px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
+                  ? "rounded-full bg-ink px-4 py-2 font-display text-[13px] font-medium text-blush shadow-elev-1"
+                  : "rounded-full border border-ink bg-blush/60 px-4 py-2 font-display text-[13px] font-medium text-ink transition-colors hover:bg-blush"
               }
             >
               {f}
@@ -73,7 +73,7 @@ export function FeedFilterRow({
       <button
         type="button"
         onClick={onMoreFilters}
-        className="inline-flex items-center gap-1.5 self-start rounded-full px-2 py-1 font-body text-[13px] font-medium text-plum-700 transition-colors hover:text-plum-500"
+        className="inline-flex items-center gap-1.5 self-start rounded-full px-2 py-1 font-body text-[13px] font-medium text-ink transition-colors hover:text-plum-500"
       >
         <SlidersHorizontal aria-hidden width={14} height={14} strokeWidth={1.75} />
         More filters
@@ -95,7 +95,7 @@ function LockedChip({
     <button
       type="button"
       onClick={onTap}
-      className="inline-flex items-center gap-1.5 rounded-full border border-plum-300 bg-paper/60 px-4 py-2 font-display text-[13px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
+      className="inline-flex items-center gap-1.5 rounded-full border border-ink bg-blush/60 px-4 py-2 font-display text-[13px] font-medium text-ink transition-colors hover:bg-blush"
     >
       {locked && (
         <Lock aria-hidden width={12} height={12} strokeWidth={2} className="text-stone" />

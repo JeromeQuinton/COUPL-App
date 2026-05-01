@@ -17,7 +17,7 @@ export function ConversationStartersCard({ starters }: { starters: string[] }) {
           return (
             <li
               key={s}
-              className="relative flex items-start gap-2 rounded-2xl bg-lavender-50 py-3 pl-4"
+              className="relative flex items-start gap-2 rounded-2xl bg-blush py-3 pl-4"
               style={{ paddingRight: 56 }}
             >
               <Icon
