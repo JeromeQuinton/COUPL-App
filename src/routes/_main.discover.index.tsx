@@ -1,14 +1,13 @@
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Users } from "lucide-react";
 import { FeedHeader } from "@/components/discover/FeedHeader";
 import {
   FeedFilterRow,
   type LockedFilter,
   type ToggleFilter,
 } from "@/components/discover/FeedFilterRow";
+import { FeedSubhead } from "@/components/discover/FeedSubhead";
 import { MoreFiltersSheet } from "@/components/discover/MoreFiltersSheet";
-import { TierIndicator } from "@/components/discover/TierIndicator";
 import { EmptyStateFooter } from "@/components/discover/EmptyStateFooter";
 import { ProfileCard } from "@/components/discover/ProfileCard";
 import {
@@ -111,9 +110,7 @@ function DiscoverScreen() {
       }}
     >
       <div className="flex flex-col gap-5">
-        <FeedHeader />
-
-        <TierIndicator tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
+        <FeedHeader tier={tier} />
 
         <FeedFilterRow
           tier={tier}
@@ -125,33 +122,20 @@ function DiscoverScreen() {
           onMoreFilters={() => setMoreOpen(true)}
         />
 
-        <section aria-labelledby="aligned-profiles-heading" className="flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <Users
-                aria-hidden
-                width={18}
-                height={18}
-                strokeWidth={1.75}
-                className="text-ink"
-              />
-              <h2
-                id="aligned-profiles-heading"
-                className="font-display text-[17px] font-semibold"
-              >
-                Aligned profiles
-              </h2>
-            </div>
-          </div>
+        <FeedSubhead tier={tier} shown={profiles.length} cap={cap} />
 
-          <ul className="flex flex-col gap-3">
-            {profiles.map((p) => (
-              <li key={p.id}>
-                <ProfileCard profile={p} onOpen={handleOpen} status={statusFor(p.id)} />
-              </li>
-            ))}
-          </ul>
-        </section>
+        <ul className="flex flex-col gap-3">
+          {profiles.map((p, i) => (
+            <li key={p.id}>
+              <ProfileCard
+                profile={p}
+                position={i + 1}
+                onOpen={handleOpen}
+                status={statusFor(p.id)}
+              />
+            </li>
+          ))}
+        </ul>
 
         <EmptyStateFooter tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
 
