@@ -52,8 +52,6 @@ import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
-import { Route as MainConnectionsIdPauseRouteImport } from './routes/_main.connections.$id_.pause'
-import { Route as MainConnectionsIdEndingRouteImport } from './routes/_main.connections.$id_.ending'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -270,16 +268,6 @@ const MainConnectionsIdReflectionRoute =
     path: '/$id/reflection',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
-const MainConnectionsIdPauseRoute = MainConnectionsIdPauseRouteImport.update({
-  id: '/$id_/pause',
-  path: '/$id/pause',
-  getParentRoute: () => MainConnectionsRoute,
-} as any)
-const MainConnectionsIdEndingRoute = MainConnectionsIdEndingRouteImport.update({
-  id: '/$id_/ending',
-  path: '/$id/ending',
-  getParentRoute: () => MainConnectionsRoute,
-} as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
     id: '/$id_/insights/connection-languages',
@@ -324,8 +312,6 @@ export interface FileRoutesByFullPath {
   '/events/': typeof MainEventsIndexRoute
   '/growth/': typeof MainGrowthIndexRoute
   '/profile/': typeof MainProfileIndexRoute
-  '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
-  '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -366,8 +352,6 @@ export interface FileRoutesByTo {
   '/events': typeof MainEventsIndexRoute
   '/growth': typeof MainGrowthIndexRoute
   '/profile': typeof MainProfileIndexRoute
-  '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
-  '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -415,8 +399,6 @@ export interface FileRoutesById {
   '/_main/events/': typeof MainEventsIndexRoute
   '/_main/growth/': typeof MainGrowthIndexRoute
   '/_main/profile/': typeof MainProfileIndexRoute
-  '/_main/connections/$id_/ending': typeof MainConnectionsIdEndingRoute
-  '/_main/connections/$id_/pause': typeof MainConnectionsIdPauseRoute
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
@@ -463,8 +445,6 @@ export interface FileRouteTypes {
     | '/events/'
     | '/growth/'
     | '/profile/'
-    | '/connections/$id/ending'
-    | '/connections/$id/pause'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -505,8 +485,6 @@ export interface FileRouteTypes {
     | '/events'
     | '/growth'
     | '/profile'
-    | '/connections/$id/ending'
-    | '/connections/$id/pause'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -553,8 +531,6 @@ export interface FileRouteTypes {
     | '/_main/events/'
     | '/_main/growth/'
     | '/_main/profile/'
-    | '/_main/connections/$id_/ending'
-    | '/_main/connections/$id_/pause'
     | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/attuned'
     | '/_main/events/$id_/booked'
@@ -873,20 +849,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdReflectionRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
-    '/_main/connections/$id_/pause': {
-      id: '/_main/connections/$id_/pause'
-      path: '/$id/pause'
-      fullPath: '/connections/$id/pause'
-      preLoaderRoute: typeof MainConnectionsIdPauseRouteImport
-      parentRoute: typeof MainConnectionsRoute
-    }
-    '/_main/connections/$id_/ending': {
-      id: '/_main/connections/$id_/ending'
-      path: '/$id/ending'
-      fullPath: '/connections/$id/ending'
-      preLoaderRoute: typeof MainConnectionsIdEndingRouteImport
-      parentRoute: typeof MainConnectionsRoute
-    }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
       path: '/$id/insights/connection-languages'
@@ -909,15 +871,11 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface MainConnectionsRouteChildren {
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
-  MainConnectionsIdEndingRoute: typeof MainConnectionsIdEndingRoute
-  MainConnectionsIdPauseRoute: typeof MainConnectionsIdPauseRoute
   MainConnectionsIdReflectionRoute: typeof MainConnectionsIdReflectionRoute
 }
 
 const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdRoute: MainConnectionsIdRoute,
-  MainConnectionsIdEndingRoute: MainConnectionsIdEndingRoute,
-  MainConnectionsIdPauseRoute: MainConnectionsIdPauseRoute,
   MainConnectionsIdReflectionRoute: MainConnectionsIdReflectionRoute,
 }
 
