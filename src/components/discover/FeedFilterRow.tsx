@@ -1,4 +1,3 @@
-import { SlidersHorizontal } from "lucide-react";
 import type { UserTier } from "@/lib/user_tier";
 
 /**
@@ -47,8 +46,9 @@ export function FeedFilterRow({
   onMoreFilters,
 }: Props) {
   void tier;
+  void onMoreFilters;
   return (
-    <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Feed filters">
+    <div className="flex w-full items-center justify-between gap-2" role="group" aria-label="Feed filters">
       <LockedKey
         label={collapseIntent(intentLabel)}
         active={intentActive}
@@ -77,15 +77,6 @@ export function FeedFilterRow({
           </button>
         );
       })}
-
-      <button
-        type="button"
-        onClick={onMoreFilters}
-        aria-label="More filters"
-        className={`${KEYLINE_BASE} ml-auto border-ink bg-blush text-ink hover:bg-ink/5`}
-      >
-        <SlidersHorizontal aria-hidden width={14} height={14} strokeWidth={1.75} />
-      </button>
     </div>
   );
 }
