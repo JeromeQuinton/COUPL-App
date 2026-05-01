@@ -105,8 +105,7 @@ function DiscoverScreen() {
         minHeight: "100dvh",
         paddingTop: "calc(env(safe-area-inset-top) + 1.25rem)",
         paddingBottom: "calc(env(safe-area-inset-bottom) + 120px)",
-        background:
-          "linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%)",
+        background: "var(--blush)",
       }}
     >
       <div className="flex flex-col gap-5">
