@@ -79,15 +79,19 @@ function ProfileDetailScreen() {
     { visible: boolean; targetType: "profile" | "module" | "photo" }
   >({ visible: false, targetType: "profile" });
 
-  // Prompt 5.1: track Photo 1's intersection with the viewport so the
-  // sticky header can reveal Name · Age once the hero scrolls past.
-  // rootMargin offsets the header height (~56px) so the trigger fires
-  // when Photo 1's bottom passes the header's bottom edge.
+  // Prompt 5.1 (fix): track whether Photo 1 still overlaps a thin band
+  // just under the sticky header. We shrink the viewport's top by the
+  // header height (~56px) AND shrink the bottom so only a 1px sliver
+  // remains as the "root". `isIntersecting` is then true only while
+  // Photo 1 is still crossing that line — i.e. its bottom edge has not
+  // yet passed above the header. The previous version only shrunk the
+  // top, so a tall hero stayed "in view" long after its bottom scrolled
+  // past the header, and the reveal never fired.
   const photo1Ref = useRef<HTMLDivElement>(null);
-  const photo1InView = useInView(photo1Ref, {
-    rootMargin: "-56px 0px 0px 0px",
+  const photo1CrossingHeader = useInView(photo1Ref, {
+    rootMargin: "-56px 0px -100% 0px",
   });
-  const headerReveal = !photo1InView;
+  const headerReveal = !photo1CrossingHeader;
 
   const goBack = () => {
     if (window.history.length > 1) router.history.back();
