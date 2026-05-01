@@ -79,19 +79,19 @@ function ProfileDetailScreen() {
     { visible: boolean; targetType: "profile" | "module" | "photo" }
   >({ visible: false, targetType: "profile" });
 
-  // Prompt 5.1 (fix): track whether Photo 1 still overlaps a thin band
-  // just under the sticky header. We shrink the viewport's top by the
-  // header height (~56px) AND shrink the bottom so only a 1px sliver
-  // remains as the "root". `isIntersecting` is then true only while
-  // Photo 1 is still crossing that line — i.e. its bottom edge has not
-  // yet passed above the header. The previous version only shrunk the
-  // top, so a tall hero stayed "in view" long after its bottom scrolled
-  // past the header, and the reveal never fired.
+  // Prompt 5.1 (fix v2): observe Photo 1 against a viewport whose top is
+  // shrunk by the sticky header height (~56px). While ANY part of Photo 1
+  // overlaps the band [56px, viewportBottom], it's "in view" and the
+  // header stays empty. The instant Photo 1's bottom edge passes above
+  // the 56px line, isIntersecting flips false and the name+age reveal
+  // fires. (The previous "-100%" bottom margin collapsed the root to a
+  // negative-area band so the observer never reported intersection
+  // state changes — bug.)
   const photo1Ref = useRef<HTMLDivElement>(null);
-  const photo1CrossingHeader = useInView(photo1Ref, {
-    rootMargin: "-56px 0px -100% 0px",
+  const photo1InView = useInView(photo1Ref, {
+    rootMargin: "-56px 0px 0px 0px",
   });
-  const headerReveal = !photo1CrossingHeader;
+  const headerReveal = !photo1InView;
 
   const goBack = () => {
     if (window.history.length > 1) router.history.back();
