@@ -36,9 +36,13 @@ import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.i
 import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.reflection'
 import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
+import { Route as MainEventsIdRouteImport } from './routes/_main.events.$id'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
+import { Route as MainEventsIdRoundupRouteImport } from './routes/_main.events.$id_.roundup'
+import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$id_.checkin'
+import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainConnectionsIdPauseRouteImport } from './routes/_main.connections.$id_.pause'
 import { Route as MainConnectionsIdEndingRouteImport } from './routes/_main.connections.$id_.ending'
@@ -177,6 +181,11 @@ const MainHomeCheckInRoute = MainHomeCheckInRouteImport.update({
   path: '/check-in',
   getParentRoute: () => MainHomeRoute,
 } as any)
+const MainEventsIdRoute = MainEventsIdRouteImport.update({
+  id: '/events/$id',
+  path: '/events/$id',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainDiscoverQuietDayRoute = MainDiscoverQuietDayRouteImport.update({
   id: '/quiet-day',
   path: '/quiet-day',
@@ -191,6 +200,21 @@ const MainConnectionsIdRoute = MainConnectionsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => MainConnectionsRoute,
+} as any)
+const MainEventsIdRoundupRoute = MainEventsIdRoundupRouteImport.update({
+  id: '/events/$id_/roundup',
+  path: '/events/$id/roundup',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainEventsIdCheckinRoute = MainEventsIdCheckinRouteImport.update({
+  id: '/events/$id_/checkin',
+  path: '/events/$id/checkin',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainEventsIdBookedRoute = MainEventsIdBookedRouteImport.update({
+  id: '/events/$id_/booked',
+  path: '/events/$id/booked',
+  getParentRoute: () => MainRoute,
 } as any)
 const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
   id: '/$id_/attuned',
@@ -238,6 +262,7 @@ export interface FileRoutesByFullPath {
   '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
+  '/events/$id': typeof MainEventsIdRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
@@ -246,6 +271,9 @@ export interface FileRoutesByFullPath {
   '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
+  '/events/$id/booked': typeof MainEventsIdBookedRoute
+  '/events/$id/checkin': typeof MainEventsIdCheckinRoute
+  '/events/$id/roundup': typeof MainEventsIdRoundupRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRoutesByTo {
@@ -270,6 +298,7 @@ export interface FileRoutesByTo {
   '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
+  '/events/$id': typeof MainEventsIdRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
@@ -278,6 +307,9 @@ export interface FileRoutesByTo {
   '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
+  '/events/$id/booked': typeof MainEventsIdBookedRoute
+  '/events/$id/checkin': typeof MainEventsIdCheckinRoute
+  '/events/$id/roundup': typeof MainEventsIdRoundupRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRoutesById {
@@ -307,6 +339,7 @@ export interface FileRoutesById {
   '/_main/connections/$id': typeof MainConnectionsIdRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
+  '/_main/events/$id': typeof MainEventsIdRoute
   '/_main/home/check-in': typeof MainHomeCheckInRoute
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
@@ -315,6 +348,9 @@ export interface FileRoutesById {
   '/_main/connections/$id_/ending': typeof MainConnectionsIdEndingRoute
   '/_main/connections/$id_/pause': typeof MainConnectionsIdPauseRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
+  '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
+  '/_main/events/$id_/checkin': typeof MainEventsIdCheckinRoute
+  '/_main/events/$id_/roundup': typeof MainEventsIdRoundupRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRouteTypes {
@@ -343,6 +379,7 @@ export interface FileRouteTypes {
     | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
+    | '/events/$id'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
@@ -351,6 +388,9 @@ export interface FileRouteTypes {
     | '/connections/$id/ending'
     | '/connections/$id/pause'
     | '/discover/$id/attuned'
+    | '/events/$id/booked'
+    | '/events/$id/checkin'
+    | '/events/$id/roundup'
     | '/discover/$id/insights/connection-languages'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -375,6 +415,7 @@ export interface FileRouteTypes {
     | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
+    | '/events/$id'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
@@ -383,6 +424,9 @@ export interface FileRouteTypes {
     | '/connections/$id/ending'
     | '/connections/$id/pause'
     | '/discover/$id/attuned'
+    | '/events/$id/booked'
+    | '/events/$id/checkin'
+    | '/events/$id/roundup'
     | '/discover/$id/insights/connection-languages'
   id:
     | '__root__'
@@ -411,6 +455,7 @@ export interface FileRouteTypes {
     | '/_main/connections/$id'
     | '/_main/discover/$id'
     | '/_main/discover/quiet-day'
+    | '/_main/events/$id'
     | '/_main/home/check-in'
     | '/_main/home/coach'
     | '/_main/home/reflection'
@@ -419,6 +464,9 @@ export interface FileRouteTypes {
     | '/_main/connections/$id_/ending'
     | '/_main/connections/$id_/pause'
     | '/_main/discover/$id_/attuned'
+    | '/_main/events/$id_/booked'
+    | '/_main/events/$id_/checkin'
+    | '/_main/events/$id_/roundup'
     | '/_main/discover/$id_/insights/connection-languages'
   fileRoutesById: FileRoutesById
 }
@@ -620,6 +668,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainHomeCheckInRouteImport
       parentRoute: typeof MainHomeRoute
     }
+    '/_main/events/$id': {
+      id: '/_main/events/$id'
+      path: '/events/$id'
+      fullPath: '/events/$id'
+      preLoaderRoute: typeof MainEventsIdRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/discover/quiet-day': {
       id: '/_main/discover/quiet-day'
       path: '/quiet-day'
@@ -640,6 +695,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/connections/$id'
       preLoaderRoute: typeof MainConnectionsIdRouteImport
       parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/events/$id_/roundup': {
+      id: '/_main/events/$id_/roundup'
+      path: '/events/$id/roundup'
+      fullPath: '/events/$id/roundup'
+      preLoaderRoute: typeof MainEventsIdRoundupRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/events/$id_/checkin': {
+      id: '/_main/events/$id_/checkin'
+      path: '/events/$id/checkin'
+      fullPath: '/events/$id/checkin'
+      preLoaderRoute: typeof MainEventsIdCheckinRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/events/$id_/booked': {
+      id: '/_main/events/$id_/booked'
+      path: '/events/$id/booked'
+      fullPath: '/events/$id/booked'
+      preLoaderRoute: typeof MainEventsIdBookedRouteImport
+      parentRoute: typeof MainRoute
     }
     '/_main/discover/$id_/attuned': {
       id: '/_main/discover/$id_/attuned'
@@ -741,7 +817,11 @@ interface MainRouteChildren {
   MainGrowthRoute: typeof MainGrowthRoute
   MainHomeRoute: typeof MainHomeRouteWithChildren
   MainProfileRoute: typeof MainProfileRoute
+  MainEventsIdRoute: typeof MainEventsIdRoute
   MainEventsIndexRoute: typeof MainEventsIndexRoute
+  MainEventsIdBookedRoute: typeof MainEventsIdBookedRoute
+  MainEventsIdCheckinRoute: typeof MainEventsIdCheckinRoute
+  MainEventsIdRoundupRoute: typeof MainEventsIdRoundupRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
@@ -750,7 +830,11 @@ const MainRouteChildren: MainRouteChildren = {
   MainGrowthRoute: MainGrowthRoute,
   MainHomeRoute: MainHomeRouteWithChildren,
   MainProfileRoute: MainProfileRoute,
+  MainEventsIdRoute: MainEventsIdRoute,
   MainEventsIndexRoute: MainEventsIndexRoute,
+  MainEventsIdBookedRoute: MainEventsIdBookedRoute,
+  MainEventsIdCheckinRoute: MainEventsIdCheckinRoute,
+  MainEventsIdRoundupRoute: MainEventsIdRoundupRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
