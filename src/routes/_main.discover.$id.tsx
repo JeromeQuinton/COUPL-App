@@ -118,10 +118,18 @@ function ProfileDetailScreen() {
   );
 
   const handleConfirmationDismissed = useCallback(() => {
+    const wasProfileAttune = confirmation.targetType === "profile";
     setConfirmation((c) => ({ ...c, visible: false }));
     excludeProfile(id);
-    navigate({ to: "/discover" });
-  }, [excludeProfile, id, navigate]);
+    // Phase 1: simulate mutual reciprocation on profile-level Attune so
+    // the Mutual Attunement Toast is reachable. Phase 4 will check
+    // `connections.state === 'mutual'` server-side before routing here.
+    if (wasProfileAttune) {
+      navigate({ to: "/discover/$id/attuned", params: { id } });
+    } else {
+      navigate({ to: "/discover" });
+    }
+  }, [confirmation.targetType, excludeProfile, id, navigate]);
 
   const openInfo = (label: string, body: string) => setInfo({ label, body });
 

@@ -37,6 +37,7 @@ import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
+import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -177,6 +178,11 @@ const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
+  id: '/$id_/attuned',
+  path: '/$id/attuned',
+  getParentRoute: () => MainDiscoverRoute,
+} as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
     id: '/$id_/insights/connection-languages',
@@ -211,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover/': typeof MainDiscoverIndexRoute
+  '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRoutesByTo {
@@ -238,6 +245,7 @@ export interface FileRoutesByTo {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover': typeof MainDiscoverIndexRoute
+  '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRoutesById {
@@ -270,6 +278,7 @@ export interface FileRoutesById {
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
+  '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRouteTypes {
@@ -301,6 +310,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover/'
+    | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -328,6 +338,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover'
+    | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
   id:
     | '__root__'
@@ -359,6 +370,7 @@ export interface FileRouteTypes {
     | '/_main/home/coach'
     | '/_main/home/reflection'
     | '/_main/discover/'
+    | '/_main/discover/$id_/attuned'
     | '/_main/discover/$id_/insights/connection-languages'
   fileRoutesById: FileRoutesById
 }
@@ -567,6 +579,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIdRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/discover/$id_/attuned': {
+      id: '/_main/discover/$id_/attuned'
+      path: '/$id/attuned'
+      fullPath: '/discover/$id/attuned'
+      preLoaderRoute: typeof MainDiscoverIdAttunedRouteImport
+      parentRoute: typeof MainDiscoverRoute
+    }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
       path: '/$id/insights/connection-languages'
@@ -591,6 +610,7 @@ interface MainDiscoverRouteChildren {
   MainDiscoverIdRoute: typeof MainDiscoverIdRoute
   MainDiscoverQuietDayRoute: typeof MainDiscoverQuietDayRoute
   MainDiscoverIndexRoute: typeof MainDiscoverIndexRoute
+  MainDiscoverIdAttunedRoute: typeof MainDiscoverIdAttunedRoute
   MainDiscoverIdInsightsConnectionLanguagesRoute: typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 
@@ -598,6 +618,7 @@ const MainDiscoverRouteChildren: MainDiscoverRouteChildren = {
   MainDiscoverIdRoute: MainDiscoverIdRoute,
   MainDiscoverQuietDayRoute: MainDiscoverQuietDayRoute,
   MainDiscoverIndexRoute: MainDiscoverIndexRoute,
+  MainDiscoverIdAttunedRoute: MainDiscoverIdAttunedRoute,
   MainDiscoverIdInsightsConnectionLanguagesRoute:
     MainDiscoverIdInsightsConnectionLanguagesRoute,
 }
