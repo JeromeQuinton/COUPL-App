@@ -8,22 +8,22 @@ import type { AlignmentBand } from "@/data/discover_feed_sample";
 const STYLES: Record<AlignmentBand, { bg: string; text: string; border: string }> = {
   "Strongly Aligned": {
     bg: "bg-transparent",
-    text: "text-ink",
+    text: "text-plum-500",
     border: "border-ink",
   },
   "Well Aligned": {
     bg: "bg-transparent",
-    text: "text-slate",
+    text: "text-plum-500",
     border: "border-slate",
   },
   Aligned: {
     bg: "bg-transparent",
-    text: "text-stone",
+    text: "text-plum-500",
     border: "border-stone",
   },
   "Early Signal": {
     bg: "bg-transparent",
-    text: "text-stone",
+    text: "text-plum-500",
     border: "border-stone",
   },
 };
