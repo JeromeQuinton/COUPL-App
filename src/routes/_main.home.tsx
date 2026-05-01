@@ -21,14 +21,23 @@ function HomeScreen() {
 
   return (
     <div className="relative px-5 pb-12 pt-8">
-      {/* Ambient page wash — soft lavender-into-blush bloom anchored top-right.
-          Pointer-events-none so it never intercepts taps. Page-scoped only. */}
+      {/* Ambient page wash — two layered glows give Home its premium
+          "psychological surface" tone. Page-scoped only; pointer-events-none
+          so taps pass straight through to cards beneath. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[480px]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[640px]"
         style={{
           background:
-            "radial-gradient(120% 80% at 85% 0%, color-mix(in oklab, var(--lavender-100) 70%, transparent) 0%, color-mix(in oklab, var(--lavender-50) 35%, transparent) 35%, transparent 70%)",
+            "radial-gradient(130% 90% at 88% -5%, color-mix(in oklab, var(--lavender-100) 95%, transparent) 0%, color-mix(in oklab, var(--lavender-100) 55%, transparent) 30%, color-mix(in oklab, var(--lavender-50) 30%, transparent) 55%, transparent 80%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 h-[520px]"
+        style={{
+          background:
+            "radial-gradient(110% 70% at 8% 100%, color-mix(in oklab, var(--blush) 80%, transparent) 0%, color-mix(in oklab, var(--plum-300) 22%, transparent) 35%, transparent 70%)",
         }}
       />
 
@@ -58,7 +67,7 @@ function HomeScreen() {
         />
 
         <CoachCard
-          coach="Reni"
+          coach="Signal"
           title="Open with a noticing, not a question."
           when="Tuesday, 9:14am"
           readTime="2 min read"

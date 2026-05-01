@@ -4,7 +4,7 @@ import { ChevronLeft } from "lucide-react";
 export const Route = createFileRoute("/_main/home/coach")({
   head: () => ({
     meta: [
-      { title: "From Reni — COUPL" },
+      { title: "From Signal — COUPL" },
       {
         name: "description",
         content:
@@ -36,7 +36,7 @@ function CoachLessonScreen() {
             R
           </span>
           <div>
-            <p className="text-label-mono">From Reni · Your coach</p>
+            <p className="text-label-mono">From Signal · Your coach</p>
             <p className="text-body-sm text-slate">Tuesday, 9:14am · 2 min</p>
           </div>
         </div>
