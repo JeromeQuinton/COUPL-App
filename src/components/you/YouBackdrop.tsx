@@ -13,10 +13,13 @@ export function YouBackdrop({
   children: ReactNode;
   tone?: "calm" | "serious";
 }) {
+  // DR-040 / brand cohesion: Profile + safety surfaces share the master
+  // ambient gradient with Discover/Home/Growth/Connections. `tone="serious"`
+  // shifts to the editorial variant for safety/pause flows.
   const bg =
     tone === "serious"
-      ? "linear-gradient(180deg, color-mix(in oklab, var(--paper) 96%, var(--lavender-100)) 0%, var(--paper) 65%, color-mix(in oklab, var(--paper) 94%, var(--blush)) 100%)"
-      : "linear-gradient(180deg, color-mix(in oklab, var(--paper) 92%, var(--blush)) 0%, color-mix(in oklab, var(--paper) 96%, var(--lavender-50)) 60%, color-mix(in oklab, var(--blush) 18%, var(--paper)) 100%)";
+      ? "var(--gradient-ambient-editorial)"
+      : "var(--gradient-ambient)";
   return (
     <div
       className="relative"
@@ -24,11 +27,13 @@ export function YouBackdrop({
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[320px]"
-        style={{
-          background:
-            "radial-gradient(110% 70% at 80% 0%, color-mix(in oklab, var(--lavender-100) 45%, transparent) 0%, transparent 70%)",
-        }}
+        className="pointer-events-none absolute inset-x-0 top-0 h-[420px]"
+        style={{ background: "var(--gradient-ambient-radial-tr)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[360px]"
+        style={{ background: "var(--gradient-ambient-radial-bl)" }}
       />
       <div className="relative">{children}</div>
     </div>
