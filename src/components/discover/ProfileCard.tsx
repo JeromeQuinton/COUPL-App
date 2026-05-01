@@ -17,8 +17,7 @@ type Props = {
  *
  * Layout: full-card-height square photo on the left, 16px-padded
  * editorial body on the right. The whole card is the tap target —
- * no separate "View" button. `profile.hue` is retained on FeedProfile
- * but ignored visually for now.
+ * no separate "View" button.
  */
 export function ProfileCard({ profile, position, onOpen, status = "active" }: Props) {
   const handle = () => onOpen(profile.id);
@@ -50,7 +49,7 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
             loading="lazy"
             onError={() => setImgErrored(true)}
             className="h-full w-full object-cover"
-            style={{ filter: "grayscale(0.4) saturate(0.85)" }}
+            style={{ filter: "grayscale(0.65) saturate(0.7) contrast(1.05)" }}
           />
         ) : null}
         <span
