@@ -56,14 +56,14 @@ function OnboardingError() {
                 params: { step: lastStep },
               })
             }
-            className="inline-flex h-12 items-center justify-center rounded-[12px] bg-plum-500 px-5 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+            className="inline-flex h-12 items-center justify-center rounded-[12px] bg-ink px-5 text-body-md font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90"
           >
             Try again
           </button>
         ) : null}
         <Link
           to="/onboarding"
-          className="inline-flex h-12 items-center justify-center rounded-[12px] border border-line bg-paper px-5 text-body-md font-medium text-ink transition-colors hover:bg-cloud"
+          className="inline-flex h-12 items-center justify-center rounded-[12px] border border-ink bg-blush px-5 text-body-md font-medium text-ink transition-colors hover:bg-cloud"
         >
           Back to start
         </Link>

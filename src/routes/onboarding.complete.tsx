@@ -34,7 +34,7 @@ function CompleteScreen() {
       </p>
       <Link
         to="/discover"
-        className="mt-8 inline-flex h-12 items-center justify-center rounded-[12px] bg-plum-500 px-6 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+        className="mt-8 inline-flex h-12 items-center justify-center rounded-[12px] bg-ink px-6 text-body-md font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90"
       >
         See your recommendations
       </Link>

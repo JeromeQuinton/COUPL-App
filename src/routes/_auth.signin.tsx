@@ -26,19 +26,19 @@ function SignInScreen() {
       <div className="space-y-3">
         <button
           type="button"
-          className="h-12 w-full rounded-[12px] bg-plum-500 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
+          className="h-12 w-full rounded-[12px] bg-ink text-body-md font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90"
         >
           Continue with email
         </button>
         <button
           type="button"
-          className="h-12 w-full rounded-[12px] border border-line bg-paper text-body-md font-medium text-ink transition-colors hover:bg-cloud"
+          className="h-12 w-full rounded-[12px] border border-ink bg-blush text-body-md font-medium text-ink transition-colors hover:bg-cloud"
         >
           Continue with Google
         </button>
         <button
           type="button"
-          className="h-12 w-full rounded-[12px] border border-line bg-paper text-body-md font-medium text-ink transition-colors hover:bg-cloud"
+          className="h-12 w-full rounded-[12px] border border-ink bg-blush text-body-md font-medium text-ink transition-colors hover:bg-cloud"
         >
           Continue with Apple
         </button>

@@ -6,7 +6,7 @@ export const Route = createFileRoute("/_auth")({
 
 function AuthLayout() {
   return (
-    <div className="min-h-screen bg-paper text-ink">
+    <div className="min-h-screen bg-blush text-ink">
       <Outlet />
     </div>
   );
