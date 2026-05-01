@@ -46,6 +46,7 @@ import { Route as MainEventsIdRoundupRouteImport } from './routes/_main.events.$
 import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$id_.checkin'
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
+import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
 import { Route as MainConnectionsIdPauseRouteImport } from './routes/_main.connections.$id_.pause'
 import { Route as MainConnectionsIdEndingRouteImport } from './routes/_main.connections.$id_.ending'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
@@ -233,6 +234,12 @@ const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
   path: '/$id/attuned',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainConnectionsIdReflectionRoute =
+  MainConnectionsIdReflectionRouteImport.update({
+    id: '/$id_/reflection',
+    path: '/$id/reflection',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
 const MainConnectionsIdPauseRoute = MainConnectionsIdPauseRouteImport.update({
   id: '/$id_/pause',
   path: '/$id/pause',
@@ -284,6 +291,7 @@ export interface FileRoutesByFullPath {
   '/growth/': typeof MainGrowthIndexRoute
   '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
+  '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
@@ -321,6 +329,7 @@ export interface FileRoutesByTo {
   '/growth': typeof MainGrowthIndexRoute
   '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
+  '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
@@ -364,6 +373,7 @@ export interface FileRoutesById {
   '/_main/growth/': typeof MainGrowthIndexRoute
   '/_main/connections/$id_/ending': typeof MainConnectionsIdEndingRoute
   '/_main/connections/$id_/pause': typeof MainConnectionsIdPauseRoute
+  '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
   '/_main/events/$id_/checkin': typeof MainEventsIdCheckinRoute
@@ -406,6 +416,7 @@ export interface FileRouteTypes {
     | '/growth/'
     | '/connections/$id/ending'
     | '/connections/$id/pause'
+    | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
     | '/events/$id/checkin'
@@ -443,6 +454,7 @@ export interface FileRouteTypes {
     | '/growth'
     | '/connections/$id/ending'
     | '/connections/$id/pause'
+    | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
     | '/events/$id/checkin'
@@ -485,6 +497,7 @@ export interface FileRouteTypes {
     | '/_main/growth/'
     | '/_main/connections/$id_/ending'
     | '/_main/connections/$id_/pause'
+    | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/attuned'
     | '/_main/events/$id_/booked'
     | '/_main/events/$id_/checkin'
@@ -760,6 +773,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIdAttunedRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/connections/$id_/reflection': {
+      id: '/_main/connections/$id_/reflection'
+      path: '/$id/reflection'
+      fullPath: '/connections/$id/reflection'
+      preLoaderRoute: typeof MainConnectionsIdReflectionRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/connections/$id_/pause': {
       id: '/_main/connections/$id_/pause'
       path: '/$id/pause'
@@ -798,12 +818,14 @@ interface MainConnectionsRouteChildren {
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
   MainConnectionsIdEndingRoute: typeof MainConnectionsIdEndingRoute
   MainConnectionsIdPauseRoute: typeof MainConnectionsIdPauseRoute
+  MainConnectionsIdReflectionRoute: typeof MainConnectionsIdReflectionRoute
 }
 
 const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdRoute: MainConnectionsIdRoute,
   MainConnectionsIdEndingRoute: MainConnectionsIdEndingRoute,
   MainConnectionsIdPauseRoute: MainConnectionsIdPauseRoute,
+  MainConnectionsIdReflectionRoute: MainConnectionsIdReflectionRoute,
 }
 
 const MainConnectionsRouteWithChildren = MainConnectionsRoute._addFileChildren(
