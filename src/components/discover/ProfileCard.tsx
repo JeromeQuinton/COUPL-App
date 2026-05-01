@@ -35,7 +35,9 @@ export function ProfileCard({ profile, onOpen, status = "active" }: Props) {
         <div
           className="relative h-[72px] w-[72px] flex-shrink-0 overflow-hidden rounded-[14px]"
           style={{
-            background: `linear-gradient(150deg, ${profile.hue} 0%, var(--lavender-100) 60%, #E8D5EC 100%)`,
+            // V2 reskin: solid blush placeholder. `profile.hue` retained as a
+            // prop pending phase-2 polish (subtle two-stop blush gradient TBD).
+            background: "var(--blush)",
           }}
         >
           {showPhoto ? (
