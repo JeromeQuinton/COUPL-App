@@ -156,8 +156,8 @@ export function AttuneDateCard({
         </button>
 
         {expanded ? (
-          <ExpandedBody>
-            <div id="attune-date-body" className="mt-4 flex flex-col gap-4">
+          <ExpandedBody id="attune-date-body">
+            <div className="flex flex-col gap-4">
               {hasAnyPref ? (
                 <div className="flex flex-col gap-2">
                   <p className="font-body text-[13px] font-medium text-stone">
