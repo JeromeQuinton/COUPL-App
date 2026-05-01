@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { AlignmentPill } from "@/components/discover/AlignmentPill";
 import type { FeedProfile } from "@/data/discover_feed_sample";
 import type { DiscoverCardStatus } from "@/lib/discover_session_state";
@@ -33,14 +33,14 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
       type="button"
       onClick={handle}
       aria-disabled={isDismissed}
-      className={`group flex w-full items-stretch overflow-hidden rounded-[4px] border border-ink bg-cream text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
+      className={`group relative flex w-full items-stretch rounded-[4px] border border-ink bg-cream text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ink ${
         isDismissed ? "opacity-50 grayscale" : "hover:bg-ink/[0.02]"
       }`}
-      style={{ minHeight: "160px" }}
+      style={{ minHeight: "120px", marginBottom: "10px" }}
     >
-      {/* Left: square photo, full card height. */}
+      {/* Left: portrait photo, full card height. */}
       <div
-        className="relative h-[144px] w-[144px] flex-shrink-0 self-center overflow-hidden bg-cream"
+        className="relative h-[112px] w-[96px] flex-shrink-0 self-center overflow-hidden bg-cream"
         style={{ boxShadow: "inset 0 0 0 1px rgba(26,26,26,0.08)" }}
       >
         {showPhoto ? (
@@ -53,21 +53,23 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
             style={{ filter: "grayscale(0.85) contrast(1.18) brightness(0.92)" }}
           />
         ) : null}
-        <span
-          className="absolute left-2 top-2 rounded-[2px] font-mono text-[11px] font-medium uppercase leading-none text-blush"
-          style={{
-            background: "rgba(26,26,26,0.92)",
-            padding: "4px 8px",
-            letterSpacing: "0.08em",
-          }}
-          aria-hidden
-        >
-          {positionLabel}
-        </span>
       </div>
+      {/* Numeric tag — breaks the frame at top-left of photo. */}
+      <span
+        className="absolute left-0 top-0 z-10 rounded-[2px] font-mono text-[11px] font-medium uppercase leading-none text-blush"
+        style={{
+          background: "rgba(26,26,26,0.92)",
+          padding: "4px 8px",
+          letterSpacing: "0.08em",
+          transform: "translate(-4px, -4px)",
+        }}
+        aria-hidden
+      >
+        {positionLabel}
+      </span>
 
       {/* Right: editorial body. */}
-      <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 py-4 pl-4 pr-4">
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 py-3" style={{ paddingLeft: "14px", paddingRight: "14px" }}>
         <h3 className="font-display text-[18px] font-semibold leading-tight text-ink">
           {profile.name}, {profile.age}
         </h3>
@@ -76,18 +78,23 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
         </p>
 
         <p
-          className="font-display italic text-ink line-clamp-2"
+          className="font-display italic text-ink"
           style={{
-            fontSize: "15px",
+            fontSize: "14px",
             lineHeight: 1.4,
             letterSpacing: "-0.005em",
-            marginTop: "8px",
+            marginTop: "4px",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           “{profile.observation}”
         </p>
 
-        <div className="flex items-center justify-between gap-2" style={{ marginTop: "8px" }}>
+        <div className="flex items-center justify-between gap-2" style={{ marginTop: "6px" }}>
           <AlignmentPill band={profile.band} />
           {isInvited ? (
             <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink">
@@ -98,13 +105,18 @@ export function ProfileCard({ profile, position, onOpen, status = "active" }: Pr
               Not today
             </span>
           ) : (
-            <ChevronRight
+            <span
               aria-hidden
-              width={18}
-              height={18}
-              strokeWidth={1.5}
-              className="text-ink"
-            />
+              className="-mr-3 flex items-center justify-center"
+              style={{ minWidth: "44px", minHeight: "44px" }}
+            >
+              <ArrowRight
+                width={16}
+                height={16}
+                strokeWidth={1.5}
+                className="text-ink"
+              />
+            </span>
           )}
         </div>
       </div>
