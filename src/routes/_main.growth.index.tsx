@@ -47,10 +47,10 @@ function GrowthDashboard() {
       {/* Current arc card */}
       <section className="px-5">
         <article
-          className="rounded-[20px] border border-blush/60 p-5 shadow-elev-1"
+          className="rounded-[20px] border border-plum-300/40 p-5 shadow-elev-1 backdrop-blur-sm"
           style={{
             background:
-              "linear-gradient(160deg, color-mix(in oklab, var(--blush) 55%, var(--paper)) 0%, color-mix(in oklab, var(--blush) 30%, var(--paper)) 100%)",
+              "linear-gradient(160deg, color-mix(in oklab, var(--lavender-100) 55%, var(--paper)) 0%, color-mix(in oklab, var(--blush) 28%, var(--paper)) 100%)",
           }}
         >
           <p className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-plum-700/80">
