@@ -40,6 +40,7 @@ import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainConnectionsIdPauseRouteImport } from './routes/_main.connections.$id_.pause'
+import { Route as MainConnectionsIdEndingRouteImport } from './routes/_main.connections.$id_.ending'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -195,6 +196,11 @@ const MainConnectionsIdPauseRoute = MainConnectionsIdPauseRouteImport.update({
   path: '/$id/pause',
   getParentRoute: () => MainConnectionsRoute,
 } as any)
+const MainConnectionsIdEndingRoute = MainConnectionsIdEndingRouteImport.update({
+  id: '/$id_/ending',
+  path: '/$id/ending',
+  getParentRoute: () => MainConnectionsRoute,
+} as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
     id: '/$id_/insights/connection-languages',
@@ -230,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover/': typeof MainDiscoverIndexRoute
+  '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
@@ -260,6 +267,7 @@ export interface FileRoutesByTo {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover': typeof MainDiscoverIndexRoute
+  '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
@@ -295,6 +303,7 @@ export interface FileRoutesById {
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
+  '/_main/connections/$id_/ending': typeof MainConnectionsIdEndingRoute
   '/_main/connections/$id_/pause': typeof MainConnectionsIdPauseRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
@@ -329,6 +338,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover/'
+    | '/connections/$id/ending'
     | '/connections/$id/pause'
     | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
@@ -359,6 +369,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover'
+    | '/connections/$id/ending'
     | '/connections/$id/pause'
     | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
@@ -393,6 +404,7 @@ export interface FileRouteTypes {
     | '/_main/home/coach'
     | '/_main/home/reflection'
     | '/_main/discover/'
+    | '/_main/connections/$id_/ending'
     | '/_main/connections/$id_/pause'
     | '/_main/discover/$id_/attuned'
     | '/_main/discover/$id_/insights/connection-languages'
@@ -624,6 +636,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdPauseRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/connections/$id_/ending': {
+      id: '/_main/connections/$id_/ending'
+      path: '/$id/ending'
+      fullPath: '/connections/$id/ending'
+      preLoaderRoute: typeof MainConnectionsIdEndingRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
       path: '/$id/insights/connection-languages'
@@ -646,11 +665,13 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface MainConnectionsRouteChildren {
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
+  MainConnectionsIdEndingRoute: typeof MainConnectionsIdEndingRoute
   MainConnectionsIdPauseRoute: typeof MainConnectionsIdPauseRoute
 }
 
 const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdRoute: MainConnectionsIdRoute,
+  MainConnectionsIdEndingRoute: MainConnectionsIdEndingRoute,
   MainConnectionsIdPauseRoute: MainConnectionsIdPauseRoute,
 }
 
