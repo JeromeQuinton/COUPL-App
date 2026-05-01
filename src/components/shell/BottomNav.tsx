@@ -1,9 +1,9 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { Home, Compass, CalendarHeart, Users, User } from "lucide-react";
+import { Home, Compass, Sprout, Users, User } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 
 type Tab = {
-  to: "/home" | "/discover" | "/events" | "/connections" | "/profile";
+  to: "/home" | "/discover" | "/growth" | "/connections" | "/profile";
   label: string;
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
 };
@@ -11,7 +11,7 @@ type Tab = {
 const TABS: Tab[] = [
   { to: "/home", label: "Home", Icon: Home },
   { to: "/discover", label: "Discover", Icon: Compass },
-  { to: "/events", label: "Events", Icon: CalendarHeart },
+  { to: "/growth", label: "Growth", Icon: Sprout },
   { to: "/connections", label: "Connections", Icon: Users },
   { to: "/profile", label: "Profile", Icon: User },
 ];
