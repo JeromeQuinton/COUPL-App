@@ -72,7 +72,7 @@ export function MetricDisplay({
               type="button"
               onClick={() => onInfo(label, infoText)}
               aria-label={`About ${label}`}
-              className="inline-flex h-4 w-4 items-center justify-center rounded-full text-stone transition-colors hover:text-plum-500"
+              className="inline-flex h-4 w-4 items-center justify-center rounded-full text-stone transition-colors hover:text-rust"
             >
               <Info aria-hidden width={13} height={13} strokeWidth={1.75} />
             </button>

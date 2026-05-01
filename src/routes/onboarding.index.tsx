@@ -58,7 +58,7 @@ function OnboardingLanding() {
       <OfflineBanner />
       <div className="flex flex-1 flex-col px-6 pb-10 pt-16">
         <div className="flex-1">
-          <p className="text-body-sm uppercase tracking-[0.18em] text-plum-500">
+          <p className="text-body-sm uppercase tracking-[0.18em] text-rust">
             COUPL
           </p>
           <h1 className="mt-3 text-display-xl text-ink">

@@ -25,7 +25,7 @@ export function WhatLightsThemUpCard({
                 width={12}
                 height={12}
                 strokeWidth={2}
-                className="text-plum-500"
+                className="text-rust"
                 fill="currentColor"
               />
             ) : null}

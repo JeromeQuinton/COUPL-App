@@ -149,7 +149,7 @@ export function AttuneDateCard({
             width={16}
             height={16}
             strokeWidth={2}
-            className={`shrink-0 text-plum-500 transition-transform duration-200 ease-out motion-reduce:transition-none ${
+            className={`shrink-0 text-rust transition-transform duration-200 ease-out motion-reduce:transition-none ${
               expanded ? "rotate-180" : "rotate-0"
             }`}
           />

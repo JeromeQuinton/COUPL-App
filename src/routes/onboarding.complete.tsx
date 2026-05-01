@@ -25,7 +25,7 @@ function CompleteScreen() {
   return (
     <div className="mx-auto flex min-h-screen max-w-[640px] flex-col items-center justify-center px-6 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-lavender-100">
-        <CheckCircle2 className="h-8 w-8 text-plum-500" aria-hidden />
+        <CheckCircle2 className="h-8 w-8 text-ink" aria-hidden />
       </div>
       <h1 className="mt-6 text-display-xl text-ink">You're set up.</h1>
       <p className="mt-3 max-w-md text-body-lg text-slate">

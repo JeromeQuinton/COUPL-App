@@ -25,7 +25,7 @@ export function ConversationStartersCard({ starters }: { starters: string[] }) {
                 width={14}
                 height={14}
                 strokeWidth={1.75}
-                className="mt-1 flex-shrink-0 text-plum-500"
+                className="mt-1 flex-shrink-0 text-rust"
               />
               <span className="font-body text-[13px] italic text-ink">
                 &ldquo;{s}&rdquo;
