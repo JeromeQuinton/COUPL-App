@@ -48,17 +48,41 @@ export function AttuneDateCard({
   dateType: initialType,
   comment: initialComment,
   dateIdeas,
+  onAttune,
+  disabled = false,
 }: {
   timeWindow?: TimeWindow;
   dateType?: DateType;
   comment?: string;
   dateIdeas?: string[];
+  /**
+   * Called when the user taps the inline Attune CTA. Receives the
+   * composed proposal so the parent can fire the standard 800ms
+   * confirmation overlay (DR-033).
+   */
+  onAttune?: (proposal: {
+    timeWindow?: TimeWindow;
+    dateType?: DateType;
+    comment?: string;
+  }) => void;
+  /** When true (e.g. profile already attuned this session), CTA is inert. */
+  disabled?: boolean;
 }) {
   const [time, setTime] = useState<TimeWindow | undefined>(initialTime);
   const [type, setType] = useState<DateType | undefined>(initialType);
   const [comment, setComment] = useState<string>(initialComment ?? "");
   const [timeOpen, setTimeOpen] = useState(false);
   const [typeOpen, setTypeOpen] = useState(false);
+  /**
+   * "Engagement" gate (per spec): the comment field + Attune CTA stay
+   * hidden until the user opens either picker OR makes a selection.
+   * Once true, sticky for the card session — clearing selections does
+   * not re-hide the controls.
+   */
+  const [engaged, setEngaged] = useState<boolean>(
+    Boolean(initialTime) || Boolean(initialType) || Boolean(initialComment),
+  );
+  const engage = () => setEngaged(true);
 
   const timeLabel =
     TIME_OPTIONS.find((o) => o.value === time)?.label ?? "Choose a time";
@@ -66,6 +90,7 @@ export function AttuneDateCard({
     DATE_TYPE_OPTIONS.find((o) => o.value === type)?.label ?? "a first meeting";
 
   const showNudge = !dateIdeas || dateIdeas.length === 0;
+  const canSend = Boolean(time) || Boolean(type);
 
   return (
     <div className="flex flex-col gap-3">
@@ -75,7 +100,13 @@ export function AttuneDateCard({
         </h2>
 
         <div className="mt-4 flex flex-col gap-3">
-          <Popover open={timeOpen} onOpenChange={setTimeOpen}>
+          <Popover
+            open={timeOpen}
+            onOpenChange={(o) => {
+              setTimeOpen(o);
+              if (o) engage();
+            }}
+          >
             <PopoverTrigger asChild>
               <button type="button" className={chipClass} aria-label={timeLabel}>
                 <span className="truncate">{timeLabel}</span>
@@ -106,6 +137,7 @@ export function AttuneDateCard({
                         onClick={() => {
                           setTime(opt.value);
                           setTimeOpen(false);
+                          engage();
                         }}
                         className={
                           "w-full rounded-xl px-3 py-2 text-left font-body text-[13px] transition-colors " +
@@ -125,7 +157,13 @@ export function AttuneDateCard({
 
           <div className="flex items-center gap-2">
             <span className="font-body text-[13px] text-slate">for</span>
-            <Popover open={typeOpen} onOpenChange={setTypeOpen}>
+            <Popover
+              open={typeOpen}
+              onOpenChange={(o) => {
+                setTypeOpen(o);
+                if (o) engage();
+              }}
+            >
               <PopoverTrigger asChild>
                 <button
                   type="button"
@@ -160,6 +198,7 @@ export function AttuneDateCard({
                           onClick={() => {
                             setType(opt.value);
                             setTypeOpen(false);
+                            engage();
                           }}
                           className={
                             "w-full rounded-xl px-3 py-2 text-left font-body text-[13px] transition-colors " +
@@ -178,14 +217,41 @@ export function AttuneDateCard({
             </Popover>
           </div>
 
-          <input
-            type="text"
-            value={comment}
-            onChange={(e) => setComment(e.target.value.slice(0, 140))}
-            maxLength={140}
-            placeholder="Add a comment"
-            className="mt-1 w-full rounded-full border border-line bg-paper px-4 py-3 font-body text-[13px] text-ink placeholder:text-stone focus:border-plum-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300/40"
-          />
+          {/*
+           * Comment + Attune CTA reveal as a unit once the user has
+           * engaged with either picker (open OR selected). 200ms ease-out
+           * fade; reduced-motion users get an instant snap. Once revealed,
+           * stays revealed for the card session — clearing selections
+           * does not re-hide.
+           */}
+          {engaged ? (
+            <div className="mt-1 flex flex-col gap-3 opacity-0 transition-opacity duration-200 ease-out animate-[dateCardReveal_200ms_ease-out_forwards] motion-reduce:animate-none motion-reduce:opacity-100">
+              <input
+                type="text"
+                value={comment}
+                onChange={(e) => setComment(e.target.value.slice(0, 140))}
+                maxLength={140}
+                placeholder="Add a comment"
+                className="w-full rounded-full border border-line bg-paper px-4 py-3 font-body text-[13px] text-ink placeholder:text-stone focus:border-plum-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300/40"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  if (!canSend || disabled) return;
+                  onAttune?.({
+                    timeWindow: time,
+                    dateType: type,
+                    comment: comment.trim() ? comment.trim() : undefined,
+                  });
+                }}
+                disabled={!canSend || disabled}
+                aria-label="Attune with date proposal"
+                className="w-full rounded-full bg-gradient-to-r from-plum-500 to-plum-700 px-4 py-3 font-body text-[14px] font-medium text-paper shadow-elev-1 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Attune
+              </button>
+            </div>
+          ) : null}
         </div>
       </section>
 
