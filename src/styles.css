@@ -258,7 +258,7 @@
     line-height: 1.3;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--plum-500);
+    color: var(--rust);
   }
 
   /* Onboarding chapter progression (DR-BRAND-V2-D) — numeral + hairline
