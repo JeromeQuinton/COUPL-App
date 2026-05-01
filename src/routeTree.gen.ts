@@ -14,6 +14,7 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
+import { Route as OnboardingVerifyRouteImport } from './routes/onboarding.verify'
 import { Route as OnboardingErrorRouteImport } from './routes/onboarding.error'
 import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
 import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
@@ -47,6 +48,11 @@ const IndexRoute = IndexRouteImport.update({
 const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingVerifyRoute = OnboardingVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const OnboardingErrorRoute = OnboardingErrorRouteImport.update({
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
+  '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/': typeof MainDiscoverIndexRoute
@@ -131,6 +138,7 @@ export interface FileRoutesByTo {
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
+  '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover': typeof MainDiscoverIndexRoute
@@ -150,6 +158,7 @@ export interface FileRoutesById {
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
+  '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/onboarding/$step'
     | '/onboarding/complete'
     | '/onboarding/error'
+    | '/onboarding/verify'
     | '/onboarding/'
     | '/discover/$id'
     | '/discover/'
@@ -182,6 +192,7 @@ export interface FileRouteTypes {
     | '/onboarding/$step'
     | '/onboarding/complete'
     | '/onboarding/error'
+    | '/onboarding/verify'
     | '/onboarding'
     | '/discover/$id'
     | '/discover'
@@ -200,6 +211,7 @@ export interface FileRouteTypes {
     | '/onboarding/$step'
     | '/onboarding/complete'
     | '/onboarding/error'
+    | '/onboarding/verify'
     | '/onboarding/'
     | '/_main/discover/$id'
     | '/_main/discover/'
@@ -247,6 +259,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/onboarding/'
       preLoaderRoute: typeof OnboardingIndexRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/verify': {
+      id: '/onboarding/verify'
+      path: '/verify'
+      fullPath: '/onboarding/verify'
+      preLoaderRoute: typeof OnboardingVerifyRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/onboarding/error': {
@@ -375,6 +394,7 @@ interface OnboardingRouteChildren {
   OnboardingStepRoute: typeof OnboardingStepRoute
   OnboardingCompleteRoute: typeof OnboardingCompleteRoute
   OnboardingErrorRoute: typeof OnboardingErrorRoute
+  OnboardingVerifyRoute: typeof OnboardingVerifyRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
@@ -382,6 +402,7 @@ const OnboardingRouteChildren: OnboardingRouteChildren = {
   OnboardingStepRoute: OnboardingStepRoute,
   OnboardingCompleteRoute: OnboardingCompleteRoute,
   OnboardingErrorRoute: OnboardingErrorRoute,
+  OnboardingVerifyRoute: OnboardingVerifyRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
 }
 
