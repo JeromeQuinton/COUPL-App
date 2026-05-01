@@ -3,7 +3,7 @@
  *
  * Stub data only — Phase 4 sources from `connections`, `messages`, and
  * `coach_prompts` tables. Vocabulary is canonical: Connection, Attune,
- * Day N of 7, Cool-off, Closed. No "match", no "swipe".
+ * Day N of 7, Cool-off, Closed. Canonical vocabulary only (DR-023).
  */
 
 export type ConnectionState = "active" | "cool-off" | "closed";

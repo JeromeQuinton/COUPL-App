@@ -6,7 +6,7 @@ type Props = {
   level: number;
   /** e.g. "Some bandwidth". */
   label: string;
-  /** Short helper, e.g. "a handful of strong matches". */
+  /** Short helper, e.g. "a handful of strong recommendations". */
   hint?: string;
   /** Days remaining in the current capacity window. */
   daysLeft?: number;

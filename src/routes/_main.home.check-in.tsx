@@ -30,16 +30,16 @@ function bandwidthLabel(v: number): { label: string; copy: string } {
   if (v < 25)
     return {
       label: "Low bandwidth.",
-      copy: "We'll pause new conversations and surface only the strongest matches.",
+      copy: "We'll pause new conversations and surface only the strongest recommendations.",
     };
   if (v < 75)
     return {
       label: "Some bandwidth.",
-      copy: "We'll show 2–3 strong matches and pause new conversations after 5pm.",
+      copy: "We'll show 2–3 strong recommendations and pause new conversations after 5pm.",
     };
   return {
     label: "Full bandwidth.",
-    copy: "We'll surface a wider range, including newer matches.",
+    copy: "We'll surface a wider range, including newer recommendations.",
   };
 }
 

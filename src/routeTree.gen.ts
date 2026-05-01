@@ -48,6 +48,7 @@ import { Route as MainEventsIdRouteImport } from './routes/_main.events.$id'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
+import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
 import { Route as MainEventsIdRoundupRouteImport } from './routes/_main.events.$id_.roundup'
 import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$id_.checkin'
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
@@ -251,6 +252,11 @@ const MainConnectionsIdRoute = MainConnectionsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => MainConnectionsRoute,
 } as any)
+const MainProfileSafetyReportRoute = MainProfileSafetyReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => MainProfileSafetyRoute,
+} as any)
 const MainEventsIdRoundupRoute = MainEventsIdRoundupRouteImport.update({
   id: '/events/$id_/roundup',
   path: '/events/$id/roundup',
@@ -335,7 +341,7 @@ export interface FileRoutesByFullPath {
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/edit': typeof MainProfileEditRoute
   '/profile/pause': typeof MainProfilePauseRoute
-  '/profile/safety': typeof MainProfileSafetyRoute
+  '/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/discover/': typeof MainDiscoverIndexRoute
   '/events/': typeof MainEventsIndexRoute
   '/growth/': typeof MainGrowthIndexRoute
@@ -348,6 +354,7 @@ export interface FileRoutesByFullPath {
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
   '/events/$id/roundup': typeof MainEventsIdRoundupRoute
+  '/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRoutesByTo {
@@ -379,7 +386,7 @@ export interface FileRoutesByTo {
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/edit': typeof MainProfileEditRoute
   '/profile/pause': typeof MainProfilePauseRoute
-  '/profile/safety': typeof MainProfileSafetyRoute
+  '/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/discover': typeof MainDiscoverIndexRoute
   '/events': typeof MainEventsIndexRoute
   '/growth': typeof MainGrowthIndexRoute
@@ -392,6 +399,7 @@ export interface FileRoutesByTo {
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
   '/events/$id/roundup': typeof MainEventsIdRoundupRoute
+  '/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRoutesById {
@@ -430,7 +438,7 @@ export interface FileRoutesById {
   '/_main/profile/audit-log': typeof MainProfileAuditLogRoute
   '/_main/profile/edit': typeof MainProfileEditRoute
   '/_main/profile/pause': typeof MainProfilePauseRoute
-  '/_main/profile/safety': typeof MainProfileSafetyRoute
+  '/_main/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/_main/discover/': typeof MainDiscoverIndexRoute
   '/_main/events/': typeof MainEventsIndexRoute
   '/_main/growth/': typeof MainGrowthIndexRoute
@@ -443,6 +451,7 @@ export interface FileRoutesById {
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
   '/_main/events/$id_/checkin': typeof MainEventsIdCheckinRoute
   '/_main/events/$id_/roundup': typeof MainEventsIdRoundupRoute
+  '/_main/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRouteTypes {
@@ -493,6 +502,7 @@ export interface FileRouteTypes {
     | '/events/$id/booked'
     | '/events/$id/checkin'
     | '/events/$id/roundup'
+    | '/profile/safety/report'
     | '/discover/$id/insights/connection-languages'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -537,6 +547,7 @@ export interface FileRouteTypes {
     | '/events/$id/booked'
     | '/events/$id/checkin'
     | '/events/$id/roundup'
+    | '/profile/safety/report'
     | '/discover/$id/insights/connection-languages'
   id:
     | '__root__'
@@ -587,6 +598,7 @@ export interface FileRouteTypes {
     | '/_main/events/$id_/booked'
     | '/_main/events/$id_/checkin'
     | '/_main/events/$id_/roundup'
+    | '/_main/profile/safety/report'
     | '/_main/discover/$id_/insights/connection-languages'
   fileRoutesById: FileRoutesById
 }
@@ -872,6 +884,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/profile/safety/report': {
+      id: '/_main/profile/safety/report'
+      path: '/report'
+      fullPath: '/profile/safety/report'
+      preLoaderRoute: typeof MainProfileSafetyReportRouteImport
+      parentRoute: typeof MainProfileSafetyRoute
+    }
     '/_main/events/$id_/roundup': {
       id: '/_main/events/$id_/roundup'
       path: '/events/$id/roundup'
@@ -1019,12 +1038,23 @@ const MainHomeRouteWithChildren = MainHomeRoute._addFileChildren(
   MainHomeRouteChildren,
 )
 
+interface MainProfileSafetyRouteChildren {
+  MainProfileSafetyReportRoute: typeof MainProfileSafetyReportRoute
+}
+
+const MainProfileSafetyRouteChildren: MainProfileSafetyRouteChildren = {
+  MainProfileSafetyReportRoute: MainProfileSafetyReportRoute,
+}
+
+const MainProfileSafetyRouteWithChildren =
+  MainProfileSafetyRoute._addFileChildren(MainProfileSafetyRouteChildren)
+
 interface MainProfileRouteChildren {
   MainProfileAuditRoute: typeof MainProfileAuditRoute
   MainProfileAuditLogRoute: typeof MainProfileAuditLogRoute
   MainProfileEditRoute: typeof MainProfileEditRoute
   MainProfilePauseRoute: typeof MainProfilePauseRoute
-  MainProfileSafetyRoute: typeof MainProfileSafetyRoute
+  MainProfileSafetyRoute: typeof MainProfileSafetyRouteWithChildren
   MainProfileIndexRoute: typeof MainProfileIndexRoute
 }
 
@@ -1033,7 +1063,7 @@ const MainProfileRouteChildren: MainProfileRouteChildren = {
   MainProfileAuditLogRoute: MainProfileAuditLogRoute,
   MainProfileEditRoute: MainProfileEditRoute,
   MainProfilePauseRoute: MainProfilePauseRoute,
-  MainProfileSafetyRoute: MainProfileSafetyRoute,
+  MainProfileSafetyRoute: MainProfileSafetyRouteWithChildren,
   MainProfileIndexRoute: MainProfileIndexRoute,
 }
 

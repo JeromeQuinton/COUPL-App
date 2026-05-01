@@ -62,7 +62,7 @@ function HomeScreen() {
         <CapacityCard
           level={0.55}
           label="Some bandwidth"
-          hint="a handful of strong matches"
+          hint="a handful of strong recommendations"
           daysLeft={2}
         />
 
