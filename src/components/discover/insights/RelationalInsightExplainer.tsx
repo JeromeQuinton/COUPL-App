@@ -54,16 +54,22 @@ export function RelationalInsightExplainer({
         }}
       />
 
-      <div className="relative">
+      <div className="relative mx-auto w-full max-w-[440px]">
         {backLink}
 
-        <header className="mt-5">
-          <p className="text-label-mono">{eyebrow}</p>
-          <h1 className="mt-3 text-display-xl text-ink">{title}</h1>
-          <p className="mt-3 text-body-md text-slate">{intro}</p>
+        <header className="mt-4">
+          <p className="text-[10.5px] font-medium uppercase tracking-[0.18em] text-plum-500">
+            {eyebrow}
+          </p>
+          <h1 className="mt-2 text-display-lg leading-[1.05] text-ink">
+            {title}
+          </h1>
+          <p className="mt-2.5 max-w-[360px] text-body-sm leading-relaxed text-slate">
+            {intro}
+          </p>
         </header>
 
-        <div className="mt-6 space-y-4 pb-6">{children}</div>
+        <div className="mt-5 space-y-3 pb-4">{children}</div>
       </div>
     </div>
   );
