@@ -41,7 +41,7 @@ export function InfoButton({
         aria-label={`More information about ${content.termName}`}
         className={
           (inline ? "inline-flex align-middle " : "inline-flex ") +
-          "relative h-4 w-4 items-center justify-center rounded-full border border-rust/40 text-rust opacity-80 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+          "relative h-4 w-4 items-center justify-center rounded-full border border-plum-500/40 text-plum-500 opacity-80 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500/40"
         }
       >
         <Info aria-hidden width={11} height={11} strokeWidth={2} />
@@ -52,7 +52,7 @@ export function InfoButton({
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent
           side="bottom"
-          className="rounded-t-[24px] border-t border-ink bg-blush px-5 pb-8 pt-6"
+          className="rounded-t-[24px] border-t border-line bg-paper px-5 pb-8 pt-6"
         >
           <SheetHeader className="text-left">
             <SheetTitle className="font-display text-[18px] font-semibold text-ink">
@@ -63,7 +63,7 @@ export function InfoButton({
           <div className="mt-4 h-px w-full bg-line/60" />
 
           <section className="mt-4 flex flex-col gap-2">
-            <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-ink">
+            <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-plum-700">
               What this means
             </h3>
             <p className="font-body text-[14px] leading-relaxed text-ink">
@@ -72,7 +72,7 @@ export function InfoButton({
           </section>
 
           <section className="mt-5 flex flex-col gap-2">
-            <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-ink">
+            <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-plum-700">
               What it means for you
             </h3>
             <p className="font-body text-[14px] leading-relaxed text-ink">
@@ -83,7 +83,7 @@ export function InfoButton({
           {content.ctaLabel && content.ctaDestination ? (
             <a
               href={content.ctaDestination}
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-ink px-5 py-3 font-body text-[14px] font-medium text-blush transition-opacity hover:opacity-90"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-plum-500 px-5 py-3 font-body text-[14px] font-medium text-paper transition-opacity hover:opacity-90"
             >
               {content.ctaLabel}
             </a>

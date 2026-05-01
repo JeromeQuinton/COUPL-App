@@ -52,7 +52,7 @@ function InvalidStep() {
       </p>
       <a
         href="/onboarding"
-        className="mt-6 inline-flex h-12 items-center justify-center rounded-[12px] bg-ink px-5 text-body-md font-medium text-blush"
+        className="mt-6 inline-flex h-12 items-center justify-center rounded-[12px] bg-plum-500 px-5 text-body-md font-medium text-paper"
       >
         Restart onboarding
       </a>
@@ -256,14 +256,14 @@ function StepScreen() {
       </OnboardingShell>
 
       <footer
-        className="fixed bottom-0 left-1/2 z-30 w-full max-w-[640px] -translate-x-1/2 border-t border-ink bg-blush px-6 pt-4"
+        className="fixed bottom-0 left-1/2 z-30 w-full max-w-[640px] -translate-x-1/2 border-t border-line bg-paper px-6 pt-4"
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)" }}
       >
         <button
           type="submit"
           form="onboarding-form"
           disabled={submitting}
-          className="flex h-12 w-full items-center justify-center rounded-[12px] bg-ink text-body-md font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+          className="flex h-12 w-full items-center justify-center rounded-[12px] bg-plum-500 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting
             ? "Submitting…"
@@ -349,7 +349,7 @@ function StartFields({
         autoFocus
         aria-invalid={!!errors.displayName}
         aria-describedby={errors.displayName ? "displayName-err" : undefined}
-        className="h-12 w-full rounded-[12px] border border-ink bg-blush px-4 text-body-md text-ink outline-none focus:border-plum-500 focus:ring-2 focus:ring-plum-300"
+        className="h-12 w-full rounded-[12px] border border-line bg-paper px-4 text-body-md text-ink outline-none focus:border-plum-500 focus:ring-2 focus:ring-plum-300"
       />
       {errors.displayName ? (
         <p
@@ -475,7 +475,7 @@ function ValuesFields({
               className={`inline-flex cursor-pointer items-center rounded-full border px-4 py-2 text-body-md transition-colors ${
                 active
                   ? "border-plum-500 bg-lavender-100 text-plum-700"
-                  : "border-ink bg-blush text-ink hover:bg-cloud"
+                  : "border-line bg-paper text-ink hover:bg-cloud"
               }`}
             >
               <input
@@ -511,7 +511,7 @@ function ReviewSummary({ draft }: { draft: OnboardingDraft }) {
     { label: "Values", value: draft.values?.join(", ") || "—" },
   ];
   return (
-    <dl className="divide-y divide-line rounded-[16px] border border-ink bg-blush">
+    <dl className="divide-y divide-line rounded-[16px] border border-line bg-paper">
       {rows.map((r) => (
         <div
           key={r.label}
@@ -546,7 +546,7 @@ function RadioGroup({
         {options.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-start gap-3 rounded-[12px] border border-ink bg-blush p-4 transition-colors hover:bg-cloud has-[input:checked]:border-plum-500 has-[input:checked]:bg-lavender-50"
+            className="flex cursor-pointer items-start gap-3 rounded-[12px] border border-line bg-paper p-4 transition-colors hover:bg-cloud has-[input:checked]:border-plum-500 has-[input:checked]:bg-lavender-50"
           >
             <input
               type="radio"

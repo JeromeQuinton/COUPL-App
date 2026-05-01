@@ -81,7 +81,7 @@ function Cell({ label, value }: { label: string; value: string }) {
       <span className="font-body text-[11px] uppercase tracking-wide text-stone">
         {label}
       </span>
-      <span className="inline-flex w-fit items-center rounded-full bg-blush px-3 py-1.5 font-body text-[12px] font-medium text-ink">
+      <span className="inline-flex w-fit items-center rounded-full bg-lavender-100 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700">
         {value}
       </span>
     </div>

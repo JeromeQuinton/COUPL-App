@@ -77,7 +77,7 @@ export function CompatibilityOverviewCard({
             <InfoButton termKey="compatibility_overview" />
           </span>
           <span
-            className="font-body text-[14px] font-medium text-ink"
+            className="font-body text-[14px] font-medium text-plum-700"
             style={{ marginLeft: "12px" }}
           >
             {overall}% Aligned overall
@@ -95,7 +95,7 @@ export function CompatibilityOverviewCard({
           <button
             type="button"
             onClick={() => setExpanded(true)}
-            className="self-start font-body text-[13px] font-medium text-ink"
+            className="self-start font-body text-[13px] font-medium text-plum-700"
             aria-expanded={false}
             aria-controls="compat-overview-bars"
           >
@@ -115,19 +115,19 @@ export function CompatibilityOverviewCard({
                     width={14}
                     height={14}
                     strokeWidth={1.75}
-                    className="flex-shrink-0 text-rust"
+                    className="flex-shrink-0 text-plum-500"
                   />
                   <span className="font-body text-[13px] font-medium text-ink">
                     {r.label}
                   </span>
                   <InfoButton termKey={r.termKey} />
                 </div>
-                <span className="font-display text-[13px] font-semibold text-ink">
+                <span className="font-display text-[13px] font-semibold text-plum-700">
                   {r.alignment}%
                 </span>
               </div>
               <div
-                className="relative h-2 w-full overflow-hidden rounded-full bg-blush"
+                className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
                 role="progressbar"
                 aria-valuemin={0}
                 aria-valuemax={100}
@@ -152,7 +152,7 @@ export function CompatibilityOverviewCard({
           <button
             type="button"
             onClick={() => setExpanded(false)}
-            className="self-start font-body text-[13px] font-medium text-ink"
+            className="self-start font-body text-[13px] font-medium text-plum-700"
             aria-expanded={true}
             aria-controls="compat-overview-bars"
           >

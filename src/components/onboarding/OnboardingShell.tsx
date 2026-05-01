@@ -47,13 +47,13 @@ export function OnboardingShell({
 
   return (
     <div
-      className="mx-auto flex min-h-screen max-w-[640px] flex-col bg-blush"
+      className="mx-auto flex min-h-screen max-w-[640px] flex-col bg-paper"
       style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 96px)" }}
     >
       <OfflineBanner />
 
       {/* Sticky header with back + progress */}
-      <header className="sticky top-0 z-20 -mx-0 bg-blush/85 px-6 pb-3 pt-4 backdrop-blur-md">
+      <header className="sticky top-0 z-20 -mx-0 bg-paper/85 px-6 pb-3 pt-4 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -75,7 +75,7 @@ export function OnboardingShell({
           aria-valuenow={Math.round(progress)}
         >
           <div
-            className="h-full rounded-full bg-ink transition-[width] duration-300 ease-[var(--ease-coupl)]"
+            className="h-full rounded-full bg-plum-500 transition-[width] duration-300 ease-[var(--ease-coupl)]"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -91,7 +91,7 @@ export function OnboardingShell({
 
       {footer ? (
         <footer
-          className="fixed bottom-0 left-1/2 z-20 w-full max-w-[640px] -translate-x-1/2 border-t border-ink bg-blush px-6 pt-4"
+          className="fixed bottom-0 left-1/2 z-20 w-full max-w-[640px] -translate-x-1/2 border-t border-line bg-paper px-6 pt-4"
           style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)" }}
         >
           {footer}

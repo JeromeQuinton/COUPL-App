@@ -1,44 +1,31 @@
-import type { UserTier } from "@/lib/user_tier";
+import { Sparkles } from "lucide-react";
 
 /**
- * FeedHeader — editorial periodical masthead (DR-BRAND-V2-A/D).
- *
- * Issue label + date row → Fraunces "Discover." headline → ink hairline.
- * Issue number is derived deterministically from the calendar day so
- * the masthead reads as a daily edition without backend wiring.
+ * FeedHeader — top of /discover (DR-024).
+ * Filters now live in <FeedFilterRow />. This component renders the
+ * brand line, display heading, and the standing tone-setter pill.
  */
-function todayParts() {
-  const d = new Date();
-  const start = new Date(d.getFullYear(), 0, 0);
-  const diff = d.getTime() - start.getTime();
-  const issueNo = Math.floor(diff / 86_400_000); // day of year
-  const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"][d.getDay()];
-  const dd = String(d.getDate()).padStart(2, "0");
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  return { issueNo, dateLabel: `${weekday} · ${dd}.${mm}` };
-}
-
-export function FeedHeader({ tier }: { tier: UserTier }) {
-  const { issueNo, dateLabel } = todayParts();
-  const issueLabel =
-    tier === "free"
-      ? `ISSUE Nº ${issueNo}`
-      : `ATELIER · ISSUE Nº ${issueNo}`;
-
+export function FeedHeader() {
   return (
-    <header className="flex flex-col gap-3">
-      <div className="flex items-baseline justify-between gap-3">
-        <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-rust">
-          {issueLabel}
-        </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">
-          {dateLabel}
+    <header className="flex flex-col gap-4">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <Sparkles aria-hidden width={18} height={18} className="text-plum-700" strokeWidth={1.75} />
+          <span className="font-display text-[17px] font-semibold text-plum-700">Curated For You</span>
+        </div>
+        <span className="rounded-full border border-plum-300/60 bg-paper/60 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700">
+          Aligned · Mindful
         </span>
       </div>
 
-      <h1 className="text-display-xl text-ink">Discover.</h1>
-
-      <hr className="border-0 border-t border-ink" aria-hidden />
+      <div className="flex flex-col gap-2">
+        <h1 className="font-display text-[28px] font-semibold leading-tight text-ink">
+          Discover people who move at your pace.
+        </h1>
+        <p className="font-body text-[14px] leading-relaxed text-slate">
+          Your feed of aligned profiles. Refine by intent, values, lifestyle, and pacing.
+        </p>
+      </div>
     </header>
   );
 }

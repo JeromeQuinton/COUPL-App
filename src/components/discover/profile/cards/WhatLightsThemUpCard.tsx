@@ -17,7 +17,7 @@ export function WhatLightsThemUpCard({
         {interests.map((i) => (
           <span
             key={i.label}
-            className="inline-flex items-center gap-1.5 rounded-full bg-blush px-3 py-1.5 font-body text-[12px] font-medium text-ink"
+            className="inline-flex items-center gap-1.5 rounded-full bg-lavender-100 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700"
           >
             {i.favorite ? (
               <Heart
@@ -25,7 +25,7 @@ export function WhatLightsThemUpCard({
                 width={12}
                 height={12}
                 strokeWidth={2}
-                className="text-rust"
+                className="text-plum-500"
                 fill="currentColor"
               />
             ) : null}

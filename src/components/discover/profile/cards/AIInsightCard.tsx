@@ -17,7 +17,7 @@ export function AIInsightCard({ insight }: { insight: string }) {
             width={14}
             height={14}
             strokeWidth={1.75}
-            className="text-rust"
+            className="text-plum-500"
           />
         </span>
       }

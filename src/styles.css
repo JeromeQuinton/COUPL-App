@@ -86,8 +86,6 @@
   --color-cloud: var(--cloud);
   --color-paper: var(--paper);
   --color-blush: var(--blush);
-  --color-cream: var(--cream);
-  --color-rust: var(--rust);
   --color-success: var(--success);
   --color-caution: var(--caution);
   --color-danger: var(--danger);
@@ -126,9 +124,7 @@
   --line: #CCCCCC;
   --cloud: #F7F7F7;
   --paper: #FFFFFF;
-  --rust: #C8412F;    /* editorial brick-rust accent */
   --blush: #F4E1CC;   /* COUPL editorial peach base (DR-BRAND-V2-A) */
-  --cream: #F9E6C4;   /* card surface — softer warmth, less yellow */
   --success: #2F8F46;
   --caution: #D47F1E;
   --danger: #B8312F;
@@ -154,7 +150,7 @@
   /* Semantic shadcn aliases mapped onto COUPL palette */
   --background: var(--blush);            /* DR-BRAND-V2-A */
   --foreground: var(--ink);
-  --card: var(--cream);                  /* two-tone surface system */
+  --card: var(--blush);                  /* DR-BRAND-V2-A */
   --card-foreground: var(--ink);
   --popover: var(--paper);
   --popover-foreground: var(--ink);
@@ -258,7 +254,7 @@
     line-height: 1.3;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--rust);
+    color: var(--plum-500);
   }
 
   /* Onboarding chapter progression (DR-BRAND-V2-D) — numeral + hairline

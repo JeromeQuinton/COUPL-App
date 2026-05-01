@@ -24,10 +24,10 @@ export function EmptyStateNudge({
   if (dismissed) return null;
 
   return (
-    <div className="relative flex items-center gap-3 rounded-[16px] bg-blush/70 p-4">
+    <div className="relative flex items-center gap-3 rounded-[16px] bg-lavender-100/70 p-4">
       <a
         href={ctaDestination}
-        className="flex-shrink-0 rounded-full bg-blush px-4 py-2 font-body text-[13px] font-medium text-ink shadow-elev-1 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+        className="flex-shrink-0 rounded-full bg-paper px-4 py-2 font-body text-[13px] font-medium text-plum-700 shadow-elev-1 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300"
       >
         {ctaLabel}
       </a>
@@ -39,7 +39,7 @@ export function EmptyStateNudge({
           type="button"
           onClick={() => setDismissed(true)}
           aria-label="Dismiss"
-          className="absolute right-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-full text-stone transition-colors hover:text-rust"
+          className="absolute right-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-full text-stone transition-colors hover:text-plum-500"
         >
           <X aria-hidden width={14} height={14} strokeWidth={2} />
         </button>

@@ -46,7 +46,7 @@ export function MoreFiltersSheet({ open, onOpenChange, tier, onUpgrade }: Props)
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="bottom"
-        className="rounded-t-[24px] border-t border-ink bg-blush px-5 pb-8 pt-6 max-h-[85vh] overflow-y-auto"
+        className="rounded-t-[24px] border-t border-line bg-paper px-5 pb-8 pt-6 max-h-[85vh] overflow-y-auto"
       >
         <SheetHeader className="mb-4 text-left">
           <SheetTitle className="font-display text-[20px] font-semibold text-ink">
@@ -85,11 +85,11 @@ export function MoreFiltersSheet({ open, onOpenChange, tier, onUpgrade }: Props)
         </Section>
 
         {isFree && (
-          <div className="sticky bottom-0 -mx-5 mt-4 border-t border-ink bg-blush/95 px-5 pt-4 pb-1 backdrop-blur">
+          <div className="sticky bottom-0 -mx-5 mt-4 border-t border-line bg-paper/95 px-5 pt-4 pb-1 backdrop-blur">
             <button
               type="button"
               onClick={onUpgrade}
-              className="w-full rounded-full bg-ink px-5 py-3 font-display text-[15px] font-medium text-blush shadow-elev-1 transition-colors hover:bg-ink/90"
+              className="w-full rounded-full bg-plum-500 px-5 py-3 font-display text-[15px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
             >
               Upgrade to apply
             </button>
@@ -115,11 +115,11 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex flex-col gap-3 border-t border-ink py-4 first-of-type:border-t-0 first-of-type:pt-0">
+    <section className="flex flex-col gap-3 border-t border-line py-4 first-of-type:border-t-0 first-of-type:pt-0">
       <div className="flex items-center justify-between gap-3">
-        <h3 className="font-display text-[15px] font-semibold text-ink">{title}</h3>
+        <h3 className="font-display text-[15px] font-semibold text-plum-700">{title}</h3>
         {paid && (
-          <span className="inline-flex items-center gap-1 rounded-full bg-blush px-2.5 py-1 font-body text-[11px] font-medium text-ink">
+          <span className="inline-flex items-center gap-1 rounded-full bg-lavender-100 px-2.5 py-1 font-body text-[11px] font-medium text-plum-700">
             {isFree && <Lock aria-hidden width={11} height={11} strokeWidth={2} />}
             Paid
           </span>
@@ -135,8 +135,8 @@ function PaidPlaceholderChip({ label, disabled }: { label: string; disabled: boo
     <span
       className={
         disabled
-          ? "rounded-full border border-ink bg-cloud px-3 py-1.5 font-body text-[12px] font-medium text-stone"
-          : "rounded-full border border-ink bg-blush px-3 py-1.5 font-body text-[12px] font-medium text-ink"
+          ? "rounded-full border border-line bg-cloud px-3 py-1.5 font-body text-[12px] font-medium text-stone"
+          : "rounded-full border border-plum-300 bg-paper px-3 py-1.5 font-body text-[12px] font-medium text-plum-700"
       }
     >
       {label}
@@ -149,8 +149,8 @@ function PaidPlaceholderRow({ label, disabled }: { label: string; disabled: bool
     <div
       className={
         disabled
-          ? "flex items-center justify-between rounded-[14px] border border-ink bg-cloud px-4 py-3 font-body text-[13px] text-stone"
-          : "flex items-center justify-between rounded-[14px] border border-ink bg-blush px-4 py-3 font-body text-[13px] text-ink"
+          ? "flex items-center justify-between rounded-[14px] border border-line bg-cloud px-4 py-3 font-body text-[13px] text-stone"
+          : "flex items-center justify-between rounded-[14px] border border-plum-300 bg-paper px-4 py-3 font-body text-[13px] text-plum-700"
       }
     >
       <span>{label}</span>
@@ -159,7 +159,7 @@ function PaidPlaceholderRow({ label, disabled }: { label: string; disabled: bool
         className={
           disabled
             ? "h-5 w-9 rounded-full bg-line"
-            : "h-5 w-9 rounded-full bg-blush"
+            : "h-5 w-9 rounded-full bg-lavender-100"
         }
       />
     </div>

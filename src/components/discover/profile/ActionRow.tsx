@@ -23,12 +23,12 @@ export function ActionRow({
   const wrapperRadius = isCompact ? "rounded-none" : "rounded-[20px]";
   const wrapperShadow = isCompact ? "" : "shadow-elev-1";
   return (
-    <div className={`bg-blush border-t border-ink/10 ${wrapperPadding} ${wrapperRadius} ${wrapperShadow}`}>
+    <div className={`bg-paper ${wrapperPadding} ${wrapperRadius} ${wrapperShadow}`}>
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
           onClick={onNotToday}
-          className={`rounded-full border border-ink bg-blush ${buttonPadding} font-body text-[14px] font-medium text-ink transition-colors hover:bg-ink/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink`}
+          className={`rounded-full border border-plum-300 bg-paper ${buttonPadding} font-body text-[14px] font-medium text-plum-700 transition-colors hover:bg-lavender-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300`}
         >
           Not Today
         </button>
@@ -36,7 +36,7 @@ export function ActionRow({
           type="button"
           onClick={onInvite}
           aria-label="Attune"
-          className={`rounded-full bg-ink ${buttonPadding} font-body text-[14px] font-medium text-blush shadow-elev-1 transition-colors hover:bg-ink/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink`}
+          className={`rounded-full bg-plum-500 ${buttonPadding} font-body text-[14px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-300`}
         >
           Attune
         </button>

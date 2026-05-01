@@ -82,7 +82,7 @@ export function AlignmentRing({
         </svg>
         <div
           className={`absolute inset-0 flex items-center justify-center font-display font-semibold ${
-            brandGradient ? "text-white text-[28px]" : "text-ink text-[16px]"
+            brandGradient ? "text-white text-[28px]" : "text-plum-700 text-[16px]"
           }`}
           aria-label={label ? `${label} ${v}%` : `${v}%`}
         >

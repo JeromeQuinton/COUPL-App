@@ -1,13 +1,14 @@
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Users } from "lucide-react";
 import { FeedHeader } from "@/components/discover/FeedHeader";
 import {
   FeedFilterRow,
   type LockedFilter,
   type ToggleFilter,
 } from "@/components/discover/FeedFilterRow";
-import { FeedSubhead } from "@/components/discover/FeedSubhead";
 import { MoreFiltersSheet } from "@/components/discover/MoreFiltersSheet";
+import { TierIndicator } from "@/components/discover/TierIndicator";
 import { EmptyStateFooter } from "@/components/discover/EmptyStateFooter";
 import { ProfileCard } from "@/components/discover/ProfileCard";
 import {
@@ -100,43 +101,57 @@ function DiscoverScreen() {
 
   return (
     <div
-      className="mx-auto flex w-full max-w-[420px] flex-col px-4 pt-5"
+      className="flex flex-col px-4 pt-5"
       style={{
         minHeight: "100dvh",
         paddingTop: "calc(env(safe-area-inset-top) + 1.25rem)",
         paddingBottom: "calc(env(safe-area-inset-bottom) + 120px)",
-        background: "var(--blush)",
+        background:
+          "linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%)",
       }}
     >
       <div className="flex flex-col gap-5">
-        <FeedHeader tier={tier} />
+        <FeedHeader />
+
+        <TierIndicator tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
 
         <FeedFilterRow
           tier={tier}
           intentLabel={prefs.intent}
           distanceLabel={`${prefs.distanceKm}km`}
-          intentActive={Boolean(prefs.intent)}
-          distanceActive={typeof prefs.distanceKm === "number"}
           activeToggles={activeToggles}
           onToggle={handleToggle}
           onLockedTap={handleLockedTap}
           onMoreFilters={() => setMoreOpen(true)}
         />
 
-        <FeedSubhead tier={tier} shown={profiles.length} />
-
-        <ul className="flex flex-col gap-3">
-          {profiles.map((p, i) => (
-            <li key={p.id}>
-              <ProfileCard
-                profile={p}
-                position={i + 1}
-                onOpen={handleOpen}
-                status={statusFor(p.id)}
+        <section aria-labelledby="aligned-profiles-heading" className="flex flex-col gap-3">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <Users
+                aria-hidden
+                width={18}
+                height={18}
+                strokeWidth={1.75}
+                className="text-plum-700"
               />
-            </li>
-          ))}
-        </ul>
+              <h2
+                id="aligned-profiles-heading"
+                className="font-display text-[17px] font-semibold text-plum-700"
+              >
+                Aligned profiles
+              </h2>
+            </div>
+          </div>
+
+          <ul className="flex flex-col gap-3">
+            {profiles.map((p) => (
+              <li key={p.id}>
+                <ProfileCard profile={p} onOpen={handleOpen} status={statusFor(p.id)} />
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <EmptyStateFooter tier={tier} onUpgrade={() => setUpgradeOpen(true)} />
 
@@ -147,7 +162,7 @@ function DiscoverScreen() {
               clearExclusions();
               discoverSessionState.reset();
             }}
-            className="font-body text-[12px] text-stone underline-offset-2 transition-colors hover:text-rust hover:underline"
+            className="font-body text-[12px] text-stone underline-offset-2 transition-colors hover:text-plum-500 hover:underline"
           >
             Dev: Reset feed
           </button>
@@ -170,7 +185,7 @@ function DiscoverScreen() {
       >
         <SheetContent
           side="bottom"
-          className="rounded-t-[24px] border-t border-ink bg-blush px-5 pb-8 pt-6"
+          className="rounded-t-[24px] border-t border-line bg-paper px-5 pb-8 pt-6"
         >
           <SheetHeader className="text-left">
             <SheetTitle className="font-display text-[20px] font-semibold text-ink">
@@ -187,7 +202,7 @@ function DiscoverScreen() {
           <button
             type="button"
             onClick={() => setUpgradeOpen(false)}
-            className="mt-5 w-full rounded-full bg-ink px-5 py-3 font-display text-[15px] font-medium text-blush shadow-elev-1 transition-colors hover:opacity-90"
+            className="mt-5 w-full rounded-full bg-plum-500 px-5 py-3 font-display text-[15px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
           >
             See paid plans
           </button>

@@ -114,7 +114,7 @@ function Ring({ trait }: { trait: Trait }) {
           />
         </svg>
         <div
-          className="absolute inset-0 flex items-center justify-center font-display text-[16px] font-semibold text-ink"
+          className="absolute inset-0 flex items-center justify-center font-display text-[16px] font-semibold text-plum-700"
           aria-label={`${trait.label} ${v}%`}
         >
           {v}%

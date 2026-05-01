@@ -72,16 +72,16 @@ export function MetricDisplay({
               type="button"
               onClick={() => onInfo(label, infoText)}
               aria-label={`About ${label}`}
-              className="inline-flex h-4 w-4 items-center justify-center rounded-full text-stone transition-colors hover:text-rust"
+              className="inline-flex h-4 w-4 items-center justify-center rounded-full text-stone transition-colors hover:text-plum-500"
             >
               <Info aria-hidden width={13} height={13} strokeWidth={1.75} />
             </button>
           ) : null}
         </div>
-        <span className="font-display text-[13px] font-semibold text-ink">{display}</span>
+        <span className="font-display text-[13px] font-semibold text-plum-700">{display}</span>
       </div>
       <div
-        className="relative h-2 w-full overflow-hidden rounded-full bg-blush"
+        className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}

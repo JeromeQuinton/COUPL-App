@@ -50,13 +50,13 @@ export const Route = createFileRoute("/_main/discover/$id")({
 function ProfileNotFound() {
   return (
     <div className="flex min-h-[60dvh] flex-col items-center justify-center gap-4 px-6 text-center">
-      <h1 className="font-display text-[20px] font-semibold">Profile not found</h1>
+      <h1 className="font-display text-[20px] font-semibold text-plum-700">Profile not found</h1>
       <p className="font-body text-[14px] text-slate">
         This recommendation isn't available right now.
       </p>
       <Link
         to="/discover"
-        className="rounded-full bg-ink px-5 py-2.5 font-body text-[14px] font-medium text-blush"
+        className="rounded-full bg-plum-500 px-5 py-2.5 font-body text-[14px] font-medium text-paper"
       >
         Back to Discover
       </Link>
@@ -376,7 +376,7 @@ function ProfileDetailScreen() {
       <Sheet open={info !== null} onOpenChange={(o) => !o && setInfo(null)}>
         <SheetContent
           side="bottom"
-          className="rounded-t-[24px] border-t border-ink bg-blush px-5 pb-8 pt-6"
+          className="rounded-t-[24px] border-t border-line bg-paper px-5 pb-8 pt-6"
         >
           <SheetHeader className="text-left">
             <SheetTitle className="font-display text-[18px] font-semibold text-ink">
