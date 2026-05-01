@@ -35,6 +35,7 @@ import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.i
 import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.reflection'
 import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
+import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -165,6 +166,11 @@ const MainHomeCheckInRoute = MainHomeCheckInRouteImport.update({
   path: '/check-in',
   getParentRoute: () => MainHomeRoute,
 } as any)
+const MainDiscoverQuietDayRoute = MainDiscoverQuietDayRouteImport.update({
+  id: '/quiet-day',
+  path: '/quiet-day',
+  getParentRoute: () => MainDiscoverRoute,
+} as any)
 const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -193,6 +199,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
@@ -218,6 +225,7 @@ export interface FileRoutesByTo {
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
@@ -248,6 +256,7 @@ export interface FileRoutesById {
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
+  '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/_main/home/check-in': typeof MainHomeCheckInRoute
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
@@ -277,6 +286,7 @@ export interface FileRouteTypes {
     | '/onboarding/verify'
     | '/onboarding/'
     | '/discover/$id'
+    | '/discover/quiet-day'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
@@ -302,6 +312,7 @@ export interface FileRouteTypes {
     | '/onboarding/verify'
     | '/onboarding'
     | '/discover/$id'
+    | '/discover/quiet-day'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
@@ -331,6 +342,7 @@ export interface FileRouteTypes {
     | '/onboarding/verify'
     | '/onboarding/'
     | '/_main/discover/$id'
+    | '/_main/discover/quiet-day'
     | '/_main/home/check-in'
     | '/_main/home/coach'
     | '/_main/home/reflection'
@@ -528,6 +540,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainHomeCheckInRouteImport
       parentRoute: typeof MainHomeRoute
     }
+    '/_main/discover/quiet-day': {
+      id: '/_main/discover/quiet-day'
+      path: '/quiet-day'
+      fullPath: '/discover/quiet-day'
+      preLoaderRoute: typeof MainDiscoverQuietDayRouteImport
+      parentRoute: typeof MainDiscoverRoute
+    }
     '/_main/discover/$id': {
       id: '/_main/discover/$id'
       path: '/$id'
@@ -550,11 +569,13 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface MainDiscoverRouteChildren {
   MainDiscoverIdRoute: typeof MainDiscoverIdRoute
+  MainDiscoverQuietDayRoute: typeof MainDiscoverQuietDayRoute
   MainDiscoverIndexRoute: typeof MainDiscoverIndexRoute
 }
 
 const MainDiscoverRouteChildren: MainDiscoverRouteChildren = {
   MainDiscoverIdRoute: MainDiscoverIdRoute,
+  MainDiscoverQuietDayRoute: MainDiscoverQuietDayRoute,
   MainDiscoverIndexRoute: MainDiscoverIndexRoute,
 }
 
