@@ -33,6 +33,26 @@ export type ProfileDetail = {
   dateIdeas?: string[];
 
   /**
+   * One-line, human-readable summary of this profile's stated date
+   * preferences. Renders as the collapsed-state subtitle of
+   * <AttuneDateCard/>. Format: "[primary activity] · [time pattern] ·
+   * [location label]". Sentence case, no terminal punctuation.
+   */
+  dateSummary?: string;
+
+  /**
+   * Structured date preferences surfaced inside the expanded
+   * <AttuneDateCard/> under "Maya's preferences". All optional so the
+   * card degrades cleanly when fixtures are sparse.
+   */
+  datePreferences?: {
+    locationFlexibility?: string;
+    timingWindow?: string;
+    durationPreference?: string;
+    anythingElse?: string;
+  };
+
+  /**
    * Up to 5 portrait slots. Phase 1 uses lavender/blush gradient seeds
    * as fallback when `src` is missing. Each photo may carry an optional
    * user-authored `caption` rendered via `<PhotoCaption />`.
