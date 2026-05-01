@@ -32,14 +32,31 @@ export function CoachCard({
     <Link
       to="/home/coach"
       className={cn(
-        "group block rounded-[20px] bg-beeswax-100 p-5 transition-colors hover:bg-beeswax-300/60",
+        "group relative block overflow-hidden rounded-[20px] border border-beeswax-300/60 p-5 shadow-elev-1 transition-shadow hover:shadow-elev-2",
         className,
       )}
+      style={{
+        background:
+          "linear-gradient(155deg, var(--beeswax-100) 0%, color-mix(in oklab, var(--beeswax-300) 28%, var(--beeswax-100)) 60%, color-mix(in oklab, var(--plum-300) 8%, var(--beeswax-100)) 100%)",
+      }}
     >
-      <div className="flex items-center gap-3">
+      {/* Editorial monogram seal — premium guidance feel */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-50"
+        style={{
+          background:
+            "radial-gradient(circle, color-mix(in oklab, var(--beeswax-300) 60%, transparent) 0%, transparent 70%)",
+        }}
+      />
+      <div className="relative flex items-center gap-3">
         <span
           aria-hidden
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-beeswax-300 text-ink text-body-sm font-semibold"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-ink text-body-sm font-semibold shadow-elev-1 ring-1 ring-plum-300/30"
+          style={{
+            background:
+              "linear-gradient(135deg, var(--beeswax-300) 0%, color-mix(in oklab, var(--plum-300) 25%, var(--beeswax-300)) 100%)",
+          }}
         >
           {coach.charAt(0)}
         </span>
@@ -50,11 +67,19 @@ export function CoachCard({
           </p>
         </div>
       </div>
-      <h3 className="mt-4 text-display-xl text-ink">{title}</h3>
+      <h3 className="relative mt-4 text-display-xl text-ink">{title}</h3>
       {preview ? (
-        <p className="mt-2 text-body-md text-slate">{preview}</p>
+        <p className="relative mt-2 text-body-md text-slate">{preview}</p>
       ) : null}
-      <p className="mt-4 text-label-mono">{readTime} →</p>
+      <p className="relative mt-4 inline-flex items-center gap-1 text-label-mono">
+        {readTime}
+        <span
+          aria-hidden
+          className="transition-transform group-hover:translate-x-0.5"
+        >
+          →
+        </span>
+      </p>
     </Link>
   );
 }
