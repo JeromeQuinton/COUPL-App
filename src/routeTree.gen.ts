@@ -52,6 +52,9 @@ import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
+import { Route as MainConnectionsIdDraftPauseRouteImport } from './routes/_main.connections.$id_.draft-pause'
+import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.connections.$id_.cool-off'
+import { Route as MainConnectionsIdCleanEndingRouteImport } from './routes/_main.connections.$id_.clean-ending'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -268,6 +271,24 @@ const MainConnectionsIdReflectionRoute =
     path: '/$id/reflection',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainConnectionsIdDraftPauseRoute =
+  MainConnectionsIdDraftPauseRouteImport.update({
+    id: '/$id_/draft-pause',
+    path: '/$id/draft-pause',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
+const MainConnectionsIdCoolOffRoute =
+  MainConnectionsIdCoolOffRouteImport.update({
+    id: '/$id_/cool-off',
+    path: '/$id/cool-off',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
+const MainConnectionsIdCleanEndingRoute =
+  MainConnectionsIdCleanEndingRouteImport.update({
+    id: '/$id_/clean-ending',
+    path: '/$id/clean-ending',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
     id: '/$id_/insights/connection-languages',
@@ -312,6 +333,9 @@ export interface FileRoutesByFullPath {
   '/events/': typeof MainEventsIndexRoute
   '/growth/': typeof MainGrowthIndexRoute
   '/profile/': typeof MainProfileIndexRoute
+  '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -352,6 +376,9 @@ export interface FileRoutesByTo {
   '/events': typeof MainEventsIndexRoute
   '/growth': typeof MainGrowthIndexRoute
   '/profile': typeof MainProfileIndexRoute
+  '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -399,6 +426,9 @@ export interface FileRoutesById {
   '/_main/events/': typeof MainEventsIndexRoute
   '/_main/growth/': typeof MainGrowthIndexRoute
   '/_main/profile/': typeof MainProfileIndexRoute
+  '/_main/connections/$id_/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/_main/connections/$id_/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/_main/connections/$id_/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
@@ -445,6 +475,9 @@ export interface FileRouteTypes {
     | '/events/'
     | '/growth/'
     | '/profile/'
+    | '/connections/$id/clean-ending'
+    | '/connections/$id/cool-off'
+    | '/connections/$id/draft-pause'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -485,6 +518,9 @@ export interface FileRouteTypes {
     | '/events'
     | '/growth'
     | '/profile'
+    | '/connections/$id/clean-ending'
+    | '/connections/$id/cool-off'
+    | '/connections/$id/draft-pause'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -531,6 +567,9 @@ export interface FileRouteTypes {
     | '/_main/events/'
     | '/_main/growth/'
     | '/_main/profile/'
+    | '/_main/connections/$id_/clean-ending'
+    | '/_main/connections/$id_/cool-off'
+    | '/_main/connections/$id_/draft-pause'
     | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/attuned'
     | '/_main/events/$id_/booked'
@@ -849,6 +888,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdReflectionRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/connections/$id_/draft-pause': {
+      id: '/_main/connections/$id_/draft-pause'
+      path: '/$id/draft-pause'
+      fullPath: '/connections/$id/draft-pause'
+      preLoaderRoute: typeof MainConnectionsIdDraftPauseRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/connections/$id_/cool-off': {
+      id: '/_main/connections/$id_/cool-off'
+      path: '/$id/cool-off'
+      fullPath: '/connections/$id/cool-off'
+      preLoaderRoute: typeof MainConnectionsIdCoolOffRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/connections/$id_/clean-ending': {
+      id: '/_main/connections/$id_/clean-ending'
+      path: '/$id/clean-ending'
+      fullPath: '/connections/$id/clean-ending'
+      preLoaderRoute: typeof MainConnectionsIdCleanEndingRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
       path: '/$id/insights/connection-languages'
@@ -871,11 +931,17 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface MainConnectionsRouteChildren {
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
+  MainConnectionsIdCleanEndingRoute: typeof MainConnectionsIdCleanEndingRoute
+  MainConnectionsIdCoolOffRoute: typeof MainConnectionsIdCoolOffRoute
+  MainConnectionsIdDraftPauseRoute: typeof MainConnectionsIdDraftPauseRoute
   MainConnectionsIdReflectionRoute: typeof MainConnectionsIdReflectionRoute
 }
 
 const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdRoute: MainConnectionsIdRoute,
+  MainConnectionsIdCleanEndingRoute: MainConnectionsIdCleanEndingRoute,
+  MainConnectionsIdCoolOffRoute: MainConnectionsIdCoolOffRoute,
+  MainConnectionsIdDraftPauseRoute: MainConnectionsIdDraftPauseRoute,
   MainConnectionsIdReflectionRoute: MainConnectionsIdReflectionRoute,
 }
 

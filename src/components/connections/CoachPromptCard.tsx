@@ -8,6 +8,8 @@ type Props = {
   body: string;
   onPrimary?: () => void;
   onSecondary?: () => void;
+  /** When true, renders the wireframe-aligned "why this matters · dismiss ×" footer. */
+  wireframe?: boolean;
 };
 
 export function CoachPromptCard({
@@ -15,6 +17,7 @@ export function CoachPromptCard({
   body,
   onPrimary,
   onSecondary,
+  wireframe,
 }: Props) {
   return (
     <article
@@ -38,7 +41,26 @@ export function CoachPromptCard({
         </p>
       </header>
       <p className="mt-2.5 text-[13.5px] leading-relaxed text-ink">{body}</p>
-      {(onPrimary || onSecondary) && (
+      {wireframe ? (
+        <div className="mt-3 flex items-center justify-between">
+          <button
+            type="button"
+            onClick={onPrimary}
+            className="text-[12px] font-medium text-plum-700 underline decoration-plum-300/50 underline-offset-[3px] hover:text-plum-500"
+          >
+            why this matters
+          </button>
+          <button
+            type="button"
+            onClick={onSecondary}
+            className="inline-flex items-center gap-1 text-[12px] font-medium text-stone hover:text-plum-500"
+            aria-label="Dismiss coach card"
+          >
+            dismiss <span aria-hidden>×</span>
+          </button>
+        </div>
+      ) : (
+        (onPrimary || onSecondary) && (
         <div className="mt-3 flex items-center gap-4">
           {onPrimary && (
             <button
@@ -59,6 +81,7 @@ export function CoachPromptCard({
             </button>
           )}
         </div>
+        )
       )}
     </article>
   );

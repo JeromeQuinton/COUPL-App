@@ -77,15 +77,9 @@ function ThreadScreen() {
           <div className="min-w-0 flex-1">
             <p className="font-display text-[15px] font-semibold text-ink">
               {c.name}
-              <span
-                aria-label="Verified"
-                className="ml-1 text-[11px] text-plum-500"
-              >
-                ●
-              </span>
             </p>
             <p className="text-[11.5px] text-slate">
-              {c.daysAgoLabel} · {c.dayLabel}
+              Connected · Coach on
             </p>
           </div>
           <Link
@@ -152,7 +146,15 @@ function renderMessage(m: ThreadMessage) {
     );
   }
   if (m.kind === "coach") {
-    return <CoachPromptCard title={m.title} body={m.body} onPrimary={() => {}} onSecondary={() => {}} />;
+    return (
+      <CoachPromptCard
+        title={m.title}
+        body={m.body}
+        wireframe
+        onPrimary={() => {}}
+        onSecondary={() => {}}
+      />
+    );
   }
   return <MessageBubble message={m} />;
 }
