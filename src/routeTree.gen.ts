@@ -37,7 +37,10 @@ import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
+import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
+import { Route as MainConnectionsIdPauseRouteImport } from './routes/_main.connections.$id_.pause'
+import { Route as MainConnectionsIdEndingRouteImport } from './routes/_main.connections.$id_.ending'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -178,10 +181,25 @@ const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainConnectionsIdRoute = MainConnectionsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => MainConnectionsRoute,
+} as any)
 const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
   id: '/$id_/attuned',
   path: '/$id/attuned',
   getParentRoute: () => MainDiscoverRoute,
+} as any)
+const MainConnectionsIdPauseRoute = MainConnectionsIdPauseRouteImport.update({
+  id: '/$id_/pause',
+  path: '/$id/pause',
+  getParentRoute: () => MainConnectionsRoute,
+} as any)
+const MainConnectionsIdEndingRoute = MainConnectionsIdEndingRouteImport.update({
+  id: '/$id_/ending',
+  path: '/$id/ending',
+  getParentRoute: () => MainConnectionsRoute,
 } as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
@@ -194,7 +212,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/signin': typeof AuthSigninRoute
-  '/connections': typeof MainConnectionsRoute
+  '/connections': typeof MainConnectionsRouteWithChildren
   '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRouteWithChildren
@@ -211,19 +229,22 @@ export interface FileRoutesByFullPath {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
+  '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover/': typeof MainDiscoverIndexRoute
+  '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
+  '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signin': typeof AuthSigninRoute
-  '/connections': typeof MainConnectionsRoute
+  '/connections': typeof MainConnectionsRouteWithChildren
   '/growth': typeof MainGrowthRoute
   '/home': typeof MainHomeRouteWithChildren
   '/profile': typeof MainProfileRoute
@@ -239,12 +260,15 @@ export interface FileRoutesByTo {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
+  '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover': typeof MainDiscoverIndexRoute
+  '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
+  '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -255,7 +279,7 @@ export interface FileRoutesById {
   '/_main': typeof MainRouteWithChildren
   '/onboarding': typeof OnboardingRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
-  '/_main/connections': typeof MainConnectionsRoute
+  '/_main/connections': typeof MainConnectionsRouteWithChildren
   '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRoute
   '/_main/home': typeof MainHomeRouteWithChildren
@@ -272,12 +296,15 @@ export interface FileRoutesById {
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
+  '/_main/connections/$id': typeof MainConnectionsIdRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/_main/home/check-in': typeof MainHomeCheckInRoute
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
+  '/_main/connections/$id_/ending': typeof MainConnectionsIdEndingRoute
+  '/_main/connections/$id_/pause': typeof MainConnectionsIdPauseRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -304,12 +331,15 @@ export interface FileRouteTypes {
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
+    | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
     | '/discover/'
+    | '/connections/$id/ending'
+    | '/connections/$id/pause'
     | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
   fileRoutesByTo: FileRoutesByTo
@@ -332,12 +362,15 @@ export interface FileRouteTypes {
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding'
+    | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
     | '/discover'
+    | '/connections/$id/ending'
+    | '/connections/$id/pause'
     | '/discover/$id/attuned'
     | '/discover/$id/insights/connection-languages'
   id:
@@ -364,12 +397,15 @@ export interface FileRouteTypes {
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
+    | '/_main/connections/$id'
     | '/_main/discover/$id'
     | '/_main/discover/quiet-day'
     | '/_main/home/check-in'
     | '/_main/home/coach'
     | '/_main/home/reflection'
     | '/_main/discover/'
+    | '/_main/connections/$id_/ending'
+    | '/_main/connections/$id_/pause'
     | '/_main/discover/$id_/attuned'
     | '/_main/discover/$id_/insights/connection-languages'
   fileRoutesById: FileRoutesById
@@ -579,12 +615,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIdRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/connections/$id': {
+      id: '/_main/connections/$id'
+      path: '/$id'
+      fullPath: '/connections/$id'
+      preLoaderRoute: typeof MainConnectionsIdRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/discover/$id_/attuned': {
       id: '/_main/discover/$id_/attuned'
       path: '/$id/attuned'
       fullPath: '/discover/$id/attuned'
       preLoaderRoute: typeof MainDiscoverIdAttunedRouteImport
       parentRoute: typeof MainDiscoverRoute
+    }
+    '/_main/connections/$id_/pause': {
+      id: '/_main/connections/$id_/pause'
+      path: '/$id/pause'
+      fullPath: '/connections/$id/pause'
+      preLoaderRoute: typeof MainConnectionsIdPauseRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/connections/$id_/ending': {
+      id: '/_main/connections/$id_/ending'
+      path: '/$id/ending'
+      fullPath: '/connections/$id/ending'
+      preLoaderRoute: typeof MainConnectionsIdEndingRouteImport
+      parentRoute: typeof MainConnectionsRoute
     }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
@@ -605,6 +662,22 @@ const AuthRouteChildren: AuthRouteChildren = {
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface MainConnectionsRouteChildren {
+  MainConnectionsIdRoute: typeof MainConnectionsIdRoute
+  MainConnectionsIdEndingRoute: typeof MainConnectionsIdEndingRoute
+  MainConnectionsIdPauseRoute: typeof MainConnectionsIdPauseRoute
+}
+
+const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
+  MainConnectionsIdRoute: MainConnectionsIdRoute,
+  MainConnectionsIdEndingRoute: MainConnectionsIdEndingRoute,
+  MainConnectionsIdPauseRoute: MainConnectionsIdPauseRoute,
+}
+
+const MainConnectionsRouteWithChildren = MainConnectionsRoute._addFileChildren(
+  MainConnectionsRouteChildren,
+)
 
 interface MainDiscoverRouteChildren {
   MainDiscoverIdRoute: typeof MainDiscoverIdRoute
@@ -644,7 +717,7 @@ const MainHomeRouteWithChildren = MainHomeRoute._addFileChildren(
 )
 
 interface MainRouteChildren {
-  MainConnectionsRoute: typeof MainConnectionsRoute
+  MainConnectionsRoute: typeof MainConnectionsRouteWithChildren
   MainDiscoverRoute: typeof MainDiscoverRouteWithChildren
   MainGrowthRoute: typeof MainGrowthRoute
   MainHomeRoute: typeof MainHomeRouteWithChildren
@@ -652,7 +725,7 @@ interface MainRouteChildren {
 }
 
 const MainRouteChildren: MainRouteChildren = {
-  MainConnectionsRoute: MainConnectionsRoute,
+  MainConnectionsRoute: MainConnectionsRouteWithChildren,
   MainDiscoverRoute: MainDiscoverRouteWithChildren,
   MainGrowthRoute: MainGrowthRoute,
   MainHomeRoute: MainHomeRouteWithChildren,
