@@ -17,7 +17,7 @@ const OPTIONS: Option[] = [
   {
     value: "some",
     label: "Some bandwidth",
-    hint: "A handful of strong matches only.",
+    hint: "A handful of strong recommendations only.",
   },
   {
     value: "low",
