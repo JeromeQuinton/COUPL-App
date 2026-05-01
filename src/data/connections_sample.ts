@@ -233,6 +233,7 @@ export const SAMPLE_DRAFT = {
 export type EndingTemplate = {
   id: string;
   title: string;
+  blurb: string;
   template: string;
 };
 

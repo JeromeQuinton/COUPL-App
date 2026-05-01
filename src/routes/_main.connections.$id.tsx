@@ -89,7 +89,7 @@ function ThreadScreen() {
             </p>
           </div>
           <Link
-            to="/connections/$id/ending"
+            to="/connections/$id/clean-ending"
             params={{ id }}
             aria-label="End this conversation well"
             className="rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
@@ -119,7 +119,7 @@ function ThreadScreen() {
             />
             {draft.trim().length > 0 ? (
               <Link
-                to="/connections/$id/pause"
+                to="/connections/$id/draft-pause"
                 params={{ id }}
                 aria-label="Review before sending"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-plum-500 text-paper transition-colors hover:bg-plum-700"
