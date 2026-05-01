@@ -200,7 +200,6 @@ export function AttuneDateCard({
                 </p>
 
                 <Popover
-          <Popover
             open={timeOpen}
             onOpenChange={(o) => {
               setTimeOpen(o);
