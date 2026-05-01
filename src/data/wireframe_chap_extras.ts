@@ -100,6 +100,7 @@ export type SafetyRow = {
   sub: string;
   to:
     | "/profile/safety"
+    | "/profile/safety/report"
     | "/profile/audit-log"
     | "/profile/edit"
     | "/profile/pause"
@@ -111,7 +112,7 @@ export const SAFETY_ROWS: SafetyRow[] = [
     id: "report",
     title: "Report a concern",
     sub: "Confidential, evidence-supported",
-    to: "/profile/safety",
+    to: "/profile/safety/report",
   },
   {
     id: "block",
@@ -123,7 +124,7 @@ export const SAFETY_ROWS: SafetyRow[] = [
     id: "share",
     title: "Safety share",
     sub: "Share live location with a trusted contact",
-    to: "/profile/safety",
+    to: "/profile/safety/report",
   },
   {
     id: "verify",
