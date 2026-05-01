@@ -123,6 +123,7 @@
   --line: #CCCCCC;
   --cloud: #F7F7F7;
   --paper: #FFFFFF;
+  --blush: #F4E1CC;   /* COUPL editorial peach base (DR-BRAND-V2-A) */
   --success: #2F8F46;
   --caution: #D47F1E;
   --danger: #B8312F;
@@ -146,14 +147,14 @@
   --space-12: 48px;
 
   /* Semantic shadcn aliases mapped onto COUPL palette */
-  --background: var(--paper);
+  --background: var(--blush);            /* DR-BRAND-V2-A */
   --foreground: var(--ink);
-  --card: var(--paper);
+  --card: var(--blush);                  /* DR-BRAND-V2-A */
   --card-foreground: var(--ink);
   --popover: var(--paper);
   --popover-foreground: var(--ink);
-  --primary: var(--plum-500);
-  --primary-foreground: var(--paper);
+  --primary: var(--ink);                 /* DR-BRAND-V2-B */
+  --primary-foreground: var(--blush);    /* DR-BRAND-V2-B */
   --secondary: var(--lavender-100);
   --secondary-foreground: var(--plum-700);
   --muted: var(--cloud);
@@ -162,7 +163,8 @@
   --accent-foreground: var(--plum-700);
   --destructive: var(--danger);
   --destructive-foreground: var(--paper);
-  --border: var(--line);
+  --border: var(--ink);                  /* DR-BRAND-V2-B keylines on blush */
+  --border-soft: var(--line);            /* opt-in soft grey via .border-[var(--border-soft)] */
   --input: var(--line);
   --ring: var(--plum-300);
   --chart-1: var(--plum-500);
