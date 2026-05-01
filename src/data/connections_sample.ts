@@ -25,6 +25,17 @@ export type ConnectionSummary = {
 
 export const CONNECTIONS: ConnectionSummary[] = [
   {
+    id: "avery",
+    name: "Avery",
+    initial: "A",
+    hue: "lavender",
+    state: "active",
+    dayLabel: "Day 4 · Coach on",
+    daysAgoLabel: "Connected 4 days ago",
+    lastTouch: "now",
+    preview: "That's a really lovely Sunday.",
+  },
+  {
     id: "asha",
     name: "Asha",
     initial: "A",
@@ -98,6 +109,30 @@ export type ThreadMessage =
     };
 
 export const THREADS: Record<string, ThreadMessage[]> = {
+  avery: [
+    { kind: "time", label: "SUNDAY, 11:02AM" },
+    {
+      kind: "coach",
+      title: "Coach · Acknowledge",
+      body:
+        "A change in rhythm has been noticed. Nothing you need to fix.",
+    },
+    {
+      kind: "msg",
+      from: "them",
+      text: "Hey. The pottery photo — was that your studio?",
+    },
+    {
+      kind: "msg",
+      from: "me",
+      text: "Yeah, my friend's. I go on Sundays.",
+    },
+    {
+      kind: "msg",
+      from: "them",
+      text: "That's a really lovely Sunday.",
+    },
+  ],
   asha: [
     { kind: "time", label: "TUESDAY, 9:14AM" },
     {
@@ -203,27 +238,46 @@ export type EndingTemplate = {
 
 export const ENDING_TEMPLATES: EndingTemplate[] = [
   {
-    id: "not-fit",
-    title: "Not the right fit, no fault",
+    id: "lost-chemistry",
+    title: "Lost chemistry",
+    blurb: "It was good. The spark didn't land.",
     template:
-      "It was nice to meet you. I'm not feeling a fit but I appreciated the care you brought.",
+      "Hi {name} — I really enjoyed meeting you. The spark wasn't quite there for me, and I want to be honest rather than fade. Wishing you well.",
   },
   {
-    id: "pausing",
-    title: "I'm pausing dating for now",
+    id: "life-change",
+    title: "Life change",
+    blurb: "My life shifted. I can't show up properly.",
     template:
-      "I'm taking a step back from the app for a while. Wishing you well.",
+      "Hi {name} — life has shifted in a way that means I can't show up the way you deserve right now. This is about me, not you. Take care.",
   },
   {
-    id: "friends",
-    title: "I'd like to be friends",
+    id: "role-mismatch",
+    title: "Role mismatch",
+    blurb: "We want different shapes of relationship.",
     template:
-      "I don't feel romantic chemistry but I really enjoyed talking to you.",
-  },
-  {
-    id: "off",
-    title: "Something felt off",
-    template:
-      "Routes to safety review. Marco won't be told.",
+      "Hi {name} — I think we're looking for different shapes of relationship, and I want to be honest about that early. I appreciated our conversations.",
   },
 ];
+
+// ----------------------------- Cool-off ----------------------------------
+
+export type CoolOffOption = {
+  id: string;
+  title: string;
+  sub: string;
+};
+
+export const COOL_OFF_OPTIONS: CoolOffOption[] = [
+  { id: "wait", title: "Wait it out", sub: "Re-decide tomorrow" },
+  { id: "one-message", title: "Send one clean message", sub: "A separate, single send" },
+  { id: "block", title: "Block fully", sub: "Permanent. No notification to them." },
+  { id: "release", title: "Release", sub: "Reinstate connection. No fanfare." },
+];
+
+export const SAMPLE_COOL_OFF = {
+  targetId: "avery",
+  hoursLeft: 23,
+  minutesLeft: 14,
+  toldThem: false,
+};
