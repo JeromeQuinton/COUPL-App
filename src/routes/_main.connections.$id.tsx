@@ -15,7 +15,7 @@ import {
  * /connections/$id — live conversation thread.
  *
  * Calm iMessage-style timeline with embedded CoachPromptCard. Send
- * action routes to /connections/$id/pause when the draft trips a
+ * action routes to /connections/$id/draft-pause when the draft trips a
  * pattern (Phase 1 stub: any non-empty draft routes to the intercept
  * so the flow is demonstrable). Phase 4 will run the real classifier
  * server-side and only intercept when needed.
@@ -77,19 +77,13 @@ function ThreadScreen() {
           <div className="min-w-0 flex-1">
             <p className="font-display text-[15px] font-semibold text-ink">
               {c.name}
-              <span
-                aria-label="Verified"
-                className="ml-1 text-[11px] text-plum-500"
-              >
-                ●
-              </span>
             </p>
             <p className="text-[11.5px] text-slate">
-              {c.daysAgoLabel} · {c.dayLabel}
+              Connected · Coach on
             </p>
           </div>
           <Link
-            to="/connections/$id/ending"
+            to="/connections/$id/clean-ending"
             params={{ id }}
             aria-label="End this conversation well"
             className="rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
@@ -119,7 +113,7 @@ function ThreadScreen() {
             />
             {draft.trim().length > 0 ? (
               <Link
-                to="/connections/$id/pause"
+                to="/connections/$id/draft-pause"
                 params={{ id }}
                 aria-label="Review before sending"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-plum-500 text-paper transition-colors hover:bg-plum-700"
@@ -152,7 +146,15 @@ function renderMessage(m: ThreadMessage) {
     );
   }
   if (m.kind === "coach") {
-    return <CoachPromptCard title={m.title} body={m.body} onPrimary={() => {}} onSecondary={() => {}} />;
+    return (
+      <CoachPromptCard
+        title={m.title}
+        body={m.body}
+        wireframe
+        onPrimary={() => {}}
+        onSecondary={() => {}}
+      />
+    );
   }
   return <MessageBubble message={m} />;
 }
