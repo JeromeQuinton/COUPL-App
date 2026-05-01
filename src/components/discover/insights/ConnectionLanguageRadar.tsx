@@ -20,12 +20,12 @@ type Props = {
  * and (later) any 5-axis psych dimension. Pure SVG, no chart lib.
  * Premium calm: soft grid, no axis numbers, label-only.
  */
-export function ConnectionLanguageRadar({ points, caption, size = 280 }: Props) {
+export function ConnectionLanguageRadar({ points, caption, size = 240 }: Props) {
   const gradientId = useId();
   const cx = size / 2;
   const cy = size / 2;
-  const radius = size * 0.32;
-  const labelRadius = radius + 28;
+  const radius = size * 0.34;
+  const labelRadius = radius + 22;
 
   const angleFor = (i: number) =>
     -Math.PI / 2 + (i * 2 * Math.PI) / points.length;
@@ -56,15 +56,24 @@ export function ConnectionLanguageRadar({ points, caption, size = 280 }: Props) 
 
   return (
     <div
-      className="relative overflow-hidden rounded-[20px] border border-plum-300/30 p-5 shadow-elev-1"
+      className="relative overflow-hidden rounded-[22px] border border-plum-300/45 px-4 pt-5 pb-4 shadow-elev-1"
       style={{
         background:
-          "linear-gradient(160deg, var(--paper) 0%, color-mix(in oklab, var(--lavender-50) 90%, var(--paper)) 100%)",
+          "linear-gradient(160deg, var(--paper) 0%, color-mix(in oklab, var(--lavender-50) 88%, var(--paper)) 60%, color-mix(in oklab, var(--lavender-100) 55%, var(--paper)) 100%)",
       }}
     >
+      {/* Ambient glow behind chart */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, color-mix(in oklab, var(--lavender-100) 55%, transparent) 0%, transparent 70%)",
+        }}
+      />
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        className="mx-auto block w-full max-w-[320px]"
+        className="relative mx-auto block w-full max-w-[260px]"
         role="img"
         aria-label={`Connection language pattern across ${points.map((p) => p.label).join(", ")}`}
       >
@@ -165,7 +174,27 @@ export function ConnectionLanguageRadar({ points, caption, size = 280 }: Props) 
       </svg>
 
       {caption ? (
-        <p className="mt-3 text-center text-label-mono">{caption}</p>
+        <div className="relative mt-3 flex items-center justify-center gap-2">
+          <span
+            aria-hidden
+            className="h-px w-6"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, color-mix(in oklab, var(--plum-300) 60%, transparent))",
+            }}
+          />
+          <p className="text-[10.5px] font-medium uppercase tracking-[0.22em] text-plum-700">
+            {caption}
+          </p>
+          <span
+            aria-hidden
+            className="h-px w-6"
+            style={{
+              background:
+                "linear-gradient(90deg, color-mix(in oklab, var(--plum-300) 60%, transparent), transparent)",
+            }}
+          />
+        </div>
       ) : null}
     </div>
   );
