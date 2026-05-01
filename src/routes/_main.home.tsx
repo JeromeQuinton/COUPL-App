@@ -20,21 +20,36 @@ function HomeScreen() {
   const openConvosCount = 3;
 
   return (
-    <div className="px-5 pb-12 pt-8">
-      <header className="flex items-start justify-between">
+    <div className="relative px-5 pb-12 pt-8">
+      {/* Ambient page wash — soft lavender-into-blush bloom anchored top-right.
+          Pointer-events-none so it never intercepts taps. Page-scoped only. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[480px]"
+        style={{
+          background:
+            "radial-gradient(120% 80% at 85% 0%, color-mix(in oklab, var(--lavender-100) 70%, transparent) 0%, color-mix(in oklab, var(--lavender-50) 35%, transparent) 35%, transparent 70%)",
+        }}
+      />
+
+      <header className="relative flex items-start justify-between">
         <div>
-          <p className="text-body-sm text-slate">Tuesday, slow morning</p>
+          <p className="text-label-mono">Tuesday · Slow morning</p>
           <h1 className="mt-2 text-display-xl text-ink">Hi, {userName}.</h1>
         </div>
         <span
           aria-hidden
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-lavender-100 text-body-sm font-semibold text-plum-500"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-body-sm font-semibold text-plum-700 shadow-elev-1 ring-1 ring-plum-300/40"
+          style={{
+            background:
+              "linear-gradient(135deg, var(--lavender-50) 0%, var(--lavender-100) 100%)",
+          }}
         >
           {userName.charAt(0)}
         </span>
       </header>
 
-      <section className="mt-6 space-y-4">
+      <section className="relative mt-6 space-y-4">
         <CapacityCard
           level={0.55}
           label="Some bandwidth"
@@ -54,13 +69,25 @@ function HomeScreen() {
         />
       </section>
 
-      <section className="mt-8">
+      <section className="relative mt-8">
+        {/* Hairline plum divider — quiet section break, premium tone */}
+        <div
+          aria-hidden
+          className="mb-4 h-px w-full"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--plum-300) 45%, transparent) 50%, transparent 100%)",
+          }}
+        />
         <Link
           to="/connections"
-          className="flex items-center justify-between rounded-[16px] border border-ink bg-paper px-4 py-3 transition-colors hover:bg-cloud"
+          className="group flex items-center justify-between rounded-[16px] border border-plum-300/35 bg-paper/80 px-4 py-3 backdrop-blur-sm transition-colors hover:border-plum-300/70 hover:bg-paper"
         >
           <span className="text-label-mono">Open conversations</span>
-          <span className="text-body-md font-medium text-ink">
+          <span
+            aria-label={`${openConvosCount} open conversations`}
+            className="flex h-7 min-w-7 items-center justify-center rounded-full bg-plum-500 px-2 text-body-sm font-semibold text-paper"
+          >
             {openConvosCount}
           </span>
         </Link>
