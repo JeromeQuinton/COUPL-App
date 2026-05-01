@@ -8,7 +8,7 @@ import type { UserTier } from "@/lib/user_tier";
  *   sheet on tap); paid users open a picker (stub for now).
  * - Values / Lifestyle / Pacing: toggleable on feed.
  *   Free tier = single-select (one active at a time).
- *   Paid tier = multi-select (stackable).
+ *   Paid tier = multi-select (combinable).
  */
 
 export type ToggleFilter = "Values" | "Lifestyle" | "Pacing";
