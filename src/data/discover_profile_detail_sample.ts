@@ -33,6 +33,26 @@ export type ProfileDetail = {
   dateIdeas?: string[];
 
   /**
+   * One-line, human-readable summary of this profile's stated date
+   * preferences. Renders as the collapsed-state subtitle of
+   * <AttuneDateCard/>. Format: "[primary activity] · [time pattern] ·
+   * [location label]". Sentence case, no terminal punctuation.
+   */
+  dateSummary?: string;
+
+  /**
+   * Structured date preferences surfaced inside the expanded
+   * <AttuneDateCard/> under "Maya's preferences". All optional so the
+   * card degrades cleanly when fixtures are sparse.
+   */
+  datePreferences?: {
+    locationFlexibility?: string;
+    timingWindow?: string;
+    durationPreference?: string;
+    anythingElse?: string;
+  };
+
+  /**
    * Up to 5 portrait slots. Phase 1 uses lavender/blush gradient seeds
    * as fallback when `src` is missing. Each photo may carry an optional
    * user-authored `caption` rendered via `<PhotoCaption />`.
@@ -135,6 +155,13 @@ export const SAMPLE_PROFILE_DETAILS: Record<string, ProfileDetail> = {
     pacing: "Open to depth",
     // Intentionally undefined so the EmptyStateNudge renders for QA.
     dateIdeas: undefined,
+    dateSummary: "Walk + coffee · Sundays · Borough or Bermondsey",
+    datePreferences: {
+      locationFlexibility: "South-east London, happy to travel one zone",
+      timingWindow: "Weekend mornings or early afternoons",
+      durationPreference: "60–90 minutes for a first meeting",
+      anythingElse: "Outdoors if the weather plays along.",
+    },
 
     photos: [
       {

@@ -285,6 +285,9 @@ function ProfileDetailScreen() {
         )}
         <AttuneDateCard
           dateIdeas={profile.dateIdeas}
+          dateSummary={profile.dateSummary}
+          datePreferences={profile.datePreferences}
+          profileName={profile.name}
           onAttune={(proposal) => {
             const bits: string[] = [];
             if (proposal.timeWindow) {
