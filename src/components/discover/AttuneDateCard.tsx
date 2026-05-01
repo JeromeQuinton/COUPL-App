@@ -351,7 +351,10 @@ export function AttuneDateCard({
               </button>
             </RevealGroup>
           ) : null}
-        </div>
+              </div>
+            </div>
+          </ExpandedBody>
+        ) : null}
       </section>
 
       {showNudge ? (
@@ -380,6 +383,36 @@ function RevealGroup({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={`mt-1 flex flex-col gap-3 transition-opacity duration-200 ease-out motion-reduce:transition-none ${
+        mounted ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * 220ms opacity-only reveal wrapper for the expanded card body. Height
+ * animation is intentionally skipped — wrapping content in a fixed
+ * max-height transition would clip the popovers and the comment field's
+ * focus ring. Reduced-motion users get an instant snap.
+ */
+function ExpandedBody({
+  id,
+  children,
+}: {
+  id?: string;
+  children: React.ReactNode;
+}) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const r = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(r);
+  }, []);
+  return (
+    <div
+      id={id}
+      className={`mt-4 transition-opacity duration-200 ease-out motion-reduce:transition-none ${
         mounted ? "opacity-100" : "opacity-0"
       }`}
     >
