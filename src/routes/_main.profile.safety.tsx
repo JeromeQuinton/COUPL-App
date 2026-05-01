@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Outlet, createFileRoute, Link, useLocation } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
@@ -18,6 +18,12 @@ export const Route = createFileRoute("/_main/profile/safety")({
 });
 
 function SafetyHubScreen() {
+  const { pathname } = useLocation();
+  // When a sub-route (e.g. /profile/safety/report) is matched, defer
+  // rendering to the child via Outlet rather than showing the hub.
+  if (pathname !== "/profile/safety") {
+    return <Outlet />;
+  }
   return (
     <YouBackdrop tone="serious">
       <StatusBar
