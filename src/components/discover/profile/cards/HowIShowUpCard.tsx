@@ -15,7 +15,7 @@ export function HowIShowUpCard({ text }: { text: string }) {
             width={14}
             height={14}
             strokeWidth={2}
-            className="text-plum-500"
+            className="text-rust"
             fill="currentColor"
           />
         </span>

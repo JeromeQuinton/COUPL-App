@@ -115,7 +115,7 @@ export function CompatibilityOverviewCard({
                     width={14}
                     height={14}
                     strokeWidth={1.75}
-                    className="flex-shrink-0 text-plum-500"
+                    className="flex-shrink-0 text-rust"
                   />
                   <span className="font-body text-[13px] font-medium text-ink">
                     {r.label}

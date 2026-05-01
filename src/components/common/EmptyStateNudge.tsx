@@ -39,7 +39,7 @@ export function EmptyStateNudge({
           type="button"
           onClick={() => setDismissed(true)}
           aria-label="Dismiss"
-          className="absolute right-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-full text-stone transition-colors hover:text-plum-500"
+          className="absolute right-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-full text-stone transition-colors hover:text-rust"
         >
           <X aria-hidden width={14} height={14} strokeWidth={2} />
         </button>

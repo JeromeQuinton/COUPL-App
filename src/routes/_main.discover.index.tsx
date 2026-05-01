@@ -147,7 +147,7 @@ function DiscoverScreen() {
               clearExclusions();
               discoverSessionState.reset();
             }}
-            className="font-body text-[12px] text-stone underline-offset-2 transition-colors hover:text-plum-500 hover:underline"
+            className="font-body text-[12px] text-stone underline-offset-2 transition-colors hover:text-rust hover:underline"
           >
             Dev: Reset feed
           </button>

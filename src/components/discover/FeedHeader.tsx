@@ -28,7 +28,7 @@ export function FeedHeader({ tier }: { tier: UserTier }) {
   return (
     <header className="flex flex-col gap-3">
       <div className="flex items-baseline justify-between gap-3">
-        <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-plum-500">
+        <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-rust">
           {issueLabel}
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-slate">

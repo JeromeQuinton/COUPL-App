@@ -41,7 +41,7 @@ export function InfoButton({
         aria-label={`More information about ${content.termName}`}
         className={
           (inline ? "inline-flex align-middle " : "inline-flex ") +
-          "relative h-4 w-4 items-center justify-center rounded-full border border-plum-500/40 text-plum-500 opacity-80 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+          "relative h-4 w-4 items-center justify-center rounded-full border border-rust/40 text-rust opacity-80 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
         }
       >
         <Info aria-hidden width={11} height={11} strokeWidth={2} />
