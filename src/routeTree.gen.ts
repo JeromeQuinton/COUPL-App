@@ -31,6 +31,7 @@ import { Route as MainGrowthRouteImport } from './routes/_main.growth'
 import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
 import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
 import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
+import { Route as MainEventsIndexRouteImport } from './routes/_main.events.index'
 import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.index'
 import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.reflection'
 import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
@@ -151,6 +152,11 @@ const AuthSigninRoute = AuthSigninRouteImport.update({
   path: '/signin',
   getParentRoute: () => AuthRoute,
 } as any)
+const MainEventsIndexRoute = MainEventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainDiscoverIndexRoute = MainDiscoverIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -236,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover/': typeof MainDiscoverIndexRoute
+  '/events/': typeof MainEventsIndexRoute
   '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
@@ -267,6 +274,7 @@ export interface FileRoutesByTo {
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
   '/discover': typeof MainDiscoverIndexRoute
+  '/events': typeof MainEventsIndexRoute
   '/connections/$id/ending': typeof MainConnectionsIdEndingRoute
   '/connections/$id/pause': typeof MainConnectionsIdPauseRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
@@ -303,6 +311,7 @@ export interface FileRoutesById {
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
+  '/_main/events/': typeof MainEventsIndexRoute
   '/_main/connections/$id_/ending': typeof MainConnectionsIdEndingRoute
   '/_main/connections/$id_/pause': typeof MainConnectionsIdPauseRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
@@ -338,6 +347,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover/'
+    | '/events/'
     | '/connections/$id/ending'
     | '/connections/$id/pause'
     | '/discover/$id/attuned'
@@ -369,6 +379,7 @@ export interface FileRouteTypes {
     | '/home/coach'
     | '/home/reflection'
     | '/discover'
+    | '/events'
     | '/connections/$id/ending'
     | '/connections/$id/pause'
     | '/discover/$id/attuned'
@@ -404,6 +415,7 @@ export interface FileRouteTypes {
     | '/_main/home/coach'
     | '/_main/home/reflection'
     | '/_main/discover/'
+    | '/_main/events/'
     | '/_main/connections/$id_/ending'
     | '/_main/connections/$id_/pause'
     | '/_main/discover/$id_/attuned'
@@ -573,6 +585,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSigninRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_main/events/': {
+      id: '/_main/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof MainEventsIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/discover/': {
       id: '/_main/discover/'
       path: '/'
@@ -722,6 +741,7 @@ interface MainRouteChildren {
   MainGrowthRoute: typeof MainGrowthRoute
   MainHomeRoute: typeof MainHomeRouteWithChildren
   MainProfileRoute: typeof MainProfileRoute
+  MainEventsIndexRoute: typeof MainEventsIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
@@ -730,6 +750,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainGrowthRoute: MainGrowthRoute,
   MainHomeRoute: MainHomeRouteWithChildren,
   MainProfileRoute: MainProfileRoute,
+  MainEventsIndexRoute: MainEventsIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
