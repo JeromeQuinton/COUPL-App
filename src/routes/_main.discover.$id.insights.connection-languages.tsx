@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChevronLeft } from "lucide-react";
 import { ConnectionLanguageRadar } from "@/components/discover/insights/ConnectionLanguageRadar";
 import { InsightPatternCard } from "@/components/discover/insights/InsightPatternCard";
 import { RelationalInsightExplainer } from "@/components/discover/insights/RelationalInsightExplainer";
@@ -75,11 +76,17 @@ function ConnectionLanguagesScreen() {
       eyebrow="Connection Languages"
       title="The five ways people show up."
       intro="Not love languages. Not personality types. Patterns we noticed across thousands of relationships that lasted."
-      backTo="/discover/$id"
-      backLabel="Profile"
-      // Pass id through so the back link returns to this profile
-      // (Link inside the explainer uses `to` + we forward via key prop trick:
-      //  the explainer accepts a string `to` only — wrap below for params).
+      backLink={
+        <Link
+          to="/discover/$id"
+          params={{ id }}
+          className="-ml-2 inline-flex items-center gap-1 rounded-md px-2 py-1 text-body-md text-ink hover:bg-paper/60"
+          aria-label="Back to profile"
+        >
+          <ChevronLeft className="h-4 w-4" aria-hidden />
+          <span>Profile</span>
+        </Link>
+      }
     >
       <ConnectionLanguageRadar points={RADAR} caption="Your pattern" />
 
@@ -97,8 +104,6 @@ function ConnectionLanguagesScreen() {
       <p className="px-2 pt-4 text-center text-body-sm text-slate">
         Patterns describe how someone gives and receives connection — not who they are.
       </p>
-      {/* Hidden — used to keep `id` referenced for Phase 4 loader wiring. */}
-      <span hidden data-profile-id={id} />
     </RelationalInsightExplainer>
   );
 }

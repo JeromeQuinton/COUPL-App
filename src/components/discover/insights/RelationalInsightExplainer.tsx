@@ -7,10 +7,8 @@ type Props = {
   eyebrow: string;
   title: string;
   intro: string;
-  /** Where the back link returns to. */
-  backTo: string;
-  /** Label shown next to the back chevron. */
-  backLabel?: string;
+  /** Back link node — caller owns routing so params stay type-safe. */
+  backLink: ReactNode;
   children: ReactNode;
 };
 
@@ -24,8 +22,7 @@ export function RelationalInsightExplainer({
   eyebrow,
   title,
   intro,
-  backTo,
-  backLabel = "Profile",
+  backLink,
   children,
 }: Props) {
   return (
@@ -58,14 +55,7 @@ export function RelationalInsightExplainer({
       />
 
       <div className="relative">
-        <Link
-          to={backTo}
-          className="-ml-2 inline-flex items-center gap-1 rounded-md px-2 py-1 text-body-md text-ink hover:bg-paper/60"
-          aria-label={`Back to ${backLabel}`}
-        >
-          <ChevronLeft className="h-4 w-4" aria-hidden />
-          <span>{backLabel}</span>
-        </Link>
+        {backLink}
 
         <header className="mt-5">
           <p className="text-label-mono">{eyebrow}</p>
@@ -76,5 +66,35 @@ export function RelationalInsightExplainer({
         <div className="mt-6 space-y-4 pb-6">{children}</div>
       </div>
     </div>
+  );
+}
+
+/**
+ * Convenience helper — pre-styled back link in the explainer's
+ * idiom. Caller provides the `to`/`params`/`label`.
+ */
+export function ExplainerBackLink({
+  to,
+  params,
+  label = "Profile",
+}: {
+  // Loosely typed so the helper is reusable across explainer routes.
+  // Type-safety lives at the call site via the consuming `<Link>`.
+  to: string;
+  params?: Record<string, string>;
+  label?: string;
+}) {
+  return (
+    <Link
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      to={to as any}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      params={params as any}
+      className="-ml-2 inline-flex items-center gap-1 rounded-md px-2 py-1 text-body-md text-ink hover:bg-paper/60"
+      aria-label={`Back to ${label}`}
+    >
+      <ChevronLeft className="h-4 w-4" aria-hidden />
+      <span>{label}</span>
+    </Link>
   );
 }
