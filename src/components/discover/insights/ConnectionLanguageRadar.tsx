@@ -24,8 +24,8 @@ export function ConnectionLanguageRadar({ points, caption, size = 280 }: Props) 
   const gradientId = useId();
   const cx = size / 2;
   const cy = size / 2;
-  const radius = size * 0.36;
-  const labelRadius = radius + 26;
+  const radius = size * 0.32;
+  const labelRadius = radius + 28;
 
   const angleFor = (i: number) =>
     -Math.PI / 2 + (i * 2 * Math.PI) / points.length;
