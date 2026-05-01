@@ -29,17 +29,17 @@ type Slot = {
 const REQUIRED_INITIAL: Slot[] = [
   {
     tag: "Face",
-    gradient: "bg-gradient-to-br from-sky-200 to-indigo-300",
+    gradient: "bg-gradient-to-br from-lavender-100 to-plum-300",
     filled: true,
   },
   {
     tag: "Motion",
-    gradient: "bg-gradient-to-br from-emerald-200 to-teal-400",
+    gradient: "bg-gradient-to-br from-lavender-50 to-plum-500",
     filled: true,
   },
   {
     tag: "Meaning",
-    gradient: "bg-gradient-to-br from-amber-200 to-orange-400",
+    gradient: "bg-gradient-to-br from-beeswax-100 to-beeswax-300",
     filled: true,
   },
 ];
@@ -95,9 +95,9 @@ function PhotosScreen() {
           ))}
         </div>
 
-        <div className="mt-6 flex gap-3 rounded-[14px] bg-amber-50 p-4 text-body-sm text-ink">
+        <div className="mt-6 flex gap-3 rounded-[14px] bg-beeswax-100 p-4 text-body-sm text-ink">
           <Info
-            className="mt-0.5 h-4 w-4 shrink-0 text-amber-700"
+            className="mt-0.5 h-4 w-4 shrink-0 text-caution"
             aria-hidden
           />
           <p>

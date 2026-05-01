@@ -31,7 +31,7 @@ export function OnboardingProgressCircle({
             cy={size / 2}
             r={r}
             fill="none"
-            stroke="hsl(var(--lavender-100, 280 60% 94%))"
+            stroke="currentColor"
             strokeWidth={stroke}
             className="text-lavender-100"
           />

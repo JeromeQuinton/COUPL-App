@@ -33,7 +33,7 @@ export function PhotoSlot({
         "relative aspect-[4/5] w-full overflow-hidden rounded-[16px] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-plum-300",
         filled
           ? "shadow-elev-1"
-          : "border-2 border-dashed border-lavender-200 bg-paper hover:bg-lavender-50",
+          : "border-2 border-dashed border-lavender-100 bg-paper hover:bg-lavender-50",
       )}
       aria-label={filled ? `Photo: ${tag ?? "filled"}` : "Add a photo"}
     >
