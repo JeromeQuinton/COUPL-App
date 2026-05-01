@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Eye, Heart, MessageCircle, Sparkles, ShieldCheck, Lock } from "lucide-react";
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType } from "react";
+import type { LucideProps } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { AUDIT_ENTRIES, VISIBILITY_STATS } from "@/data/you_sample";
@@ -10,7 +11,7 @@ export const Route = createFileRoute("/_main/profile/audit")({
   component: AuditPage,
 });
 
-const TYPE_ICON: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+const TYPE_ICON: Record<string, ComponentType<LucideProps>> = {
   view: Eye,
   attune: Heart,
   coach: Sparkles,
