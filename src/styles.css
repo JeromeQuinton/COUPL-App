@@ -86,6 +86,7 @@
   --color-cloud: var(--cloud);
   --color-paper: var(--paper);
   --color-blush: var(--blush);
+  --color-cream: var(--cream);
   --color-success: var(--success);
   --color-caution: var(--caution);
   --color-danger: var(--danger);
@@ -125,6 +126,7 @@
   --cloud: #F7F7F7;
   --paper: #FFFFFF;
   --blush: #F4E1CC;   /* COUPL editorial peach base (DR-BRAND-V2-A) */
+  --cream: #F9E8CD;   /* card surface — lighter and warmer than blush */
   --success: #2F8F46;
   --caution: #D47F1E;
   --danger: #B8312F;
@@ -150,7 +152,7 @@
   /* Semantic shadcn aliases mapped onto COUPL palette */
   --background: var(--blush);            /* DR-BRAND-V2-A */
   --foreground: var(--ink);
-  --card: var(--blush);                  /* DR-BRAND-V2-A */
+  --card: var(--cream);                  /* two-tone surface system */
   --card-foreground: var(--ink);
   --popover: var(--paper);
   --popover-foreground: var(--ink);
