@@ -1,4 +1,4 @@
-import { Lock, SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import type { UserTier } from "@/lib/user_tier";
 
 /**
@@ -40,18 +40,15 @@ export function FeedFilterRow({
   onLockedTap,
   onMoreFilters,
 }: Props) {
-  const isFree = tier === "free";
-
+  void tier;
   return (
     <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Feed filters">
       <LockedKey
         label={collapseIntent(intentLabel)}
-        locked={isFree}
         onTap={() => onLockedTap("Intent")}
       />
       <LockedKey
         label={collapseDistance(distanceLabel)}
-        locked={isFree}
         onTap={() => onLockedTap("Distance")}
       />
       {VISIBLE_TOGGLES.map((f) => {
@@ -97,11 +94,9 @@ function collapseDistance(label: string) {
 
 function LockedKey({
   label,
-  locked,
   onTap,
 }: {
   label: string;
-  locked: boolean;
   onTap: () => void;
 }) {
   return (
@@ -110,9 +105,6 @@ function LockedKey({
       onClick={onTap}
       className={`${KEYLINE_BASE} gap-1.5 border-ink bg-blush text-ink hover:bg-ink/5`}
     >
-      {locked && (
-        <Lock aria-hidden width={11} height={11} strokeWidth={2} className="text-stone" />
-      )}
       {label}
     </button>
   );

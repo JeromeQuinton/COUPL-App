@@ -121,7 +121,7 @@ function DiscoverScreen() {
           onMoreFilters={() => setMoreOpen(true)}
         />
 
-        <FeedSubhead tier={tier} shown={profiles.length} cap={cap} />
+        <FeedSubhead tier={tier} shown={profiles.length} />
 
         <ul className="flex flex-col gap-3">
           {profiles.map((p, i) => (
