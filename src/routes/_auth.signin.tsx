@@ -14,7 +14,7 @@ function SignInScreen() {
   return (
     <div className="mx-auto flex min-h-screen max-w-[640px] flex-col px-6 pb-10 pt-16">
       <div className="flex-1">
-        <p className="text-body-sm uppercase tracking-[0.18em] text-plum-500">
+        <p className="text-body-sm uppercase tracking-[0.18em] text-rust">
           COUPL
         </p>
         <h1 className="mt-3 text-display-xl text-ink">Welcome back.</h1>
@@ -44,7 +44,7 @@ function SignInScreen() {
         </button>
         <p className="pt-3 text-center text-body-sm text-stone">
           New here?{" "}
-          <Link to="/onboarding" className="text-plum-500 underline-offset-4 hover:underline">
+          <Link to="/onboarding" className="text-ink underline-offset-4 hover:underline">
             Begin onboarding
           </Link>
         </p>
