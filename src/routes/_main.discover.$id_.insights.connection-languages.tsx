@@ -90,7 +90,7 @@ function ConnectionLanguagesScreen() {
     >
       <ConnectionLanguageRadar points={RADAR} caption="Your pattern" />
 
-      <section className="space-y-3 pt-2" aria-label="Pattern detail">
+      <section className="space-y-2.5 pt-1" aria-label="Pattern detail">
         {PATTERNS.map((p) => (
           <InsightPatternCard
             key={p.title}
@@ -101,9 +101,18 @@ function ConnectionLanguagesScreen() {
         ))}
       </section>
 
-      <p className="px-2 pt-4 text-center text-body-sm text-slate">
-        Patterns describe how someone gives and receives connection — not who they are.
-      </p>
+      <aside
+        className="mt-4 rounded-[14px] border border-dashed border-plum-300/45 px-4 py-3 backdrop-blur-sm"
+        style={{
+          background:
+            "linear-gradient(150deg, color-mix(in oklab, var(--paper) 85%, transparent) 0%, color-mix(in oklab, var(--lavender-50) 70%, transparent) 100%)",
+        }}
+      >
+        <p className="text-center text-[12.5px] leading-relaxed text-slate">
+          Patterns describe how someone gives and receives connection —{" "}
+          <span className="text-plum-700">not who they are.</span>
+        </p>
+      </aside>
     </RelationalInsightExplainer>
   );
 }
