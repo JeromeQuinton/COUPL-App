@@ -24,6 +24,7 @@ import { Route as OnboardingNameRouteImport } from './routes/onboarding.name'
 import { Route as OnboardingIntentRouteImport } from './routes/onboarding.intent'
 import { Route as OnboardingErrorRouteImport } from './routes/onboarding.error'
 import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
+import { Route as OnboardingChecksRouteImport } from './routes/onboarding.checks'
 import { Route as OnboardingCapacityRouteImport } from './routes/onboarding.capacity'
 import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
@@ -131,6 +132,11 @@ const OnboardingErrorRoute = OnboardingErrorRouteImport.update({
 const OnboardingCompleteRoute = OnboardingCompleteRouteImport.update({
   id: '/complete',
   path: '/complete',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingChecksRoute = OnboardingChecksRouteImport.update({
+  id: '/checks',
+  path: '/checks',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const OnboardingCapacityRoute = OnboardingCapacityRouteImport.update({
@@ -325,6 +331,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
+  '/onboarding/checks': typeof OnboardingChecksRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
@@ -371,6 +378,7 @@ export interface FileRoutesByTo {
   '/home': typeof MainHomeRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
+  '/onboarding/checks': typeof OnboardingChecksRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
@@ -424,6 +432,7 @@ export interface FileRoutesById {
   '/_main/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
+  '/onboarding/checks': typeof OnboardingChecksRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
@@ -476,6 +485,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/onboarding/$step'
     | '/onboarding/capacity'
+    | '/onboarding/checks'
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
@@ -522,6 +532,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/onboarding/$step'
     | '/onboarding/capacity'
+    | '/onboarding/checks'
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
@@ -574,6 +585,7 @@ export interface FileRouteTypes {
     | '/_main/profile'
     | '/onboarding/$step'
     | '/onboarding/capacity'
+    | '/onboarding/checks'
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
@@ -726,6 +738,13 @@ declare module '@tanstack/react-router' {
       path: '/complete'
       fullPath: '/onboarding/complete'
       preLoaderRoute: typeof OnboardingCompleteRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/checks': {
+      id: '/onboarding/checks'
+      path: '/checks'
+      fullPath: '/onboarding/checks'
+      preLoaderRoute: typeof OnboardingChecksRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/onboarding/capacity': {
@@ -1121,6 +1140,7 @@ const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 interface OnboardingRouteChildren {
   OnboardingStepRoute: typeof OnboardingStepRoute
   OnboardingCapacityRoute: typeof OnboardingCapacityRoute
+  OnboardingChecksRoute: typeof OnboardingChecksRoute
   OnboardingCompleteRoute: typeof OnboardingCompleteRoute
   OnboardingErrorRoute: typeof OnboardingErrorRoute
   OnboardingIntentRoute: typeof OnboardingIntentRoute
@@ -1137,6 +1157,7 @@ interface OnboardingRouteChildren {
 const OnboardingRouteChildren: OnboardingRouteChildren = {
   OnboardingStepRoute: OnboardingStepRoute,
   OnboardingCapacityRoute: OnboardingCapacityRoute,
+  OnboardingChecksRoute: OnboardingChecksRoute,
   OnboardingCompleteRoute: OnboardingCompleteRoute,
   OnboardingErrorRoute: OnboardingErrorRoute,
   OnboardingIntentRoute: OnboardingIntentRoute,
