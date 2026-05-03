@@ -58,11 +58,11 @@ function IntentScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!intent) return;
-    navigate({ to: "/onboarding/name" });
+    navigate({ to: "/onboarding/pace" });
   };
 
   return (
-    <OnboardingFrame backTo="/onboarding/verify">
+    <OnboardingFrame backTo="/onboarding/name">
       <form id="intent-form" onSubmit={onSubmit}>
         <StepEyebrow step={3} />
         <h1 className="mt-3 text-display-xl text-ink">

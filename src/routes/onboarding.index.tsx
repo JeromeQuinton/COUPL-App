@@ -41,7 +41,7 @@ function SplashScreen() {
   const onEmailSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email.trim()) return;
-    navigate({ to: "/onboarding/verify" });
+    navigate({ to: "/onboarding/verify", search: { method: "email" } });
   };
 
   return (
@@ -93,14 +93,18 @@ function SplashScreen() {
 
           <button
             type="button"
-            onClick={() => navigate({ to: "/onboarding/verify" })}
+            onClick={() =>
+              navigate({ to: "/onboarding/verify", search: { method: "phone" } })
+            }
             className="w-full rounded-[14px] border border-line bg-paper px-4 py-3 text-body-md text-ink hover:bg-cloud"
           >
             Continue with phone
           </button>
           <button
             type="button"
-            onClick={() => navigate({ to: "/onboarding/verify" })}
+            onClick={() =>
+              navigate({ to: "/onboarding/verify", search: { method: "apple" } })
+            }
             className="w-full rounded-[14px] border border-line bg-paper px-4 py-3 text-body-md text-ink hover:bg-cloud"
           >
             Continue with Apple
