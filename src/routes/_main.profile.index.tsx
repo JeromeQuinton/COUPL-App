@@ -125,6 +125,21 @@ function ProfileScreen() {
             sub="Tone, frequency, intercepts"
           />
           <ProfileLinkRow
+            to="/profile/account"
+            title="Account"
+            sub="Email, phone, password, 2FA"
+          />
+          <ProfileLinkRow
+            to="/profile/notifications"
+            title="Notifications"
+            sub="What gets your attention"
+          />
+          <ProfileLinkRow
+            to="/profile/help"
+            title="Help"
+            sub="Topics + contact"
+          />
+          <ProfileLinkRow
             to="/membership"
             title="Membership"
             sub="Free · upgrade for depth"
@@ -163,7 +178,10 @@ function ProfileLinkRow({
     | "/profile/coach-settings"
     | "/membership"
     | "/host"
-    | "/profile/data/export";
+    | "/profile/data/export"
+    | "/profile/account"
+    | "/profile/notifications"
+    | "/profile/help";
   title: string;
   sub?: string;
 }) {

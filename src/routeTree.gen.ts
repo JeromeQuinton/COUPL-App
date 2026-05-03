@@ -54,9 +54,12 @@ import { Route as MainVideoPermissionsRouteImport } from './routes/_main.video.p
 import { Route as MainProfileVisibilityRouteImport } from './routes/_main.profile.visibility'
 import { Route as MainProfileSafetyRouteImport } from './routes/_main.profile.safety'
 import { Route as MainProfilePauseRouteImport } from './routes/_main.profile.pause'
+import { Route as MainProfileNotificationsRouteImport } from './routes/_main.profile.notifications'
+import { Route as MainProfileHelpRouteImport } from './routes/_main.profile.help'
 import { Route as MainProfileEditRouteImport } from './routes/_main.profile.edit'
 import { Route as MainProfileCoachSettingsRouteImport } from './routes/_main.profile.coach-settings'
 import { Route as MainProfileAuditLogRouteImport } from './routes/_main.profile.audit-log'
+import { Route as MainProfileAccountRouteImport } from './routes/_main.profile.account'
 import { Route as MainMembershipPlansRouteImport } from './routes/_main.membership.plans'
 import { Route as MainHostNewRouteImport } from './routes/_main.host.new'
 import { Route as MainHostAttendeesRouteImport } from './routes/_main.host.attendees'
@@ -346,6 +349,17 @@ const MainProfilePauseRoute = MainProfilePauseRouteImport.update({
   path: '/pause',
   getParentRoute: () => MainProfileRoute,
 } as any)
+const MainProfileNotificationsRoute =
+  MainProfileNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => MainProfileRoute,
+  } as any)
+const MainProfileHelpRoute = MainProfileHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => MainProfileRoute,
+} as any)
 const MainProfileEditRoute = MainProfileEditRouteImport.update({
   id: '/edit',
   path: '/edit',
@@ -360,6 +374,11 @@ const MainProfileCoachSettingsRoute =
 const MainProfileAuditLogRoute = MainProfileAuditLogRouteImport.update({
   id: '/audit-log',
   path: '/audit-log',
+  getParentRoute: () => MainProfileRoute,
+} as any)
+const MainProfileAccountRoute = MainProfileAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => MainProfileRoute,
 } as any)
 const MainMembershipPlansRoute = MainMembershipPlansRouteImport.update({
@@ -744,9 +763,12 @@ export interface FileRoutesByFullPath {
   '/host/attendees': typeof MainHostAttendeesRoute
   '/host/new': typeof MainHostNewRoute
   '/membership/plans': typeof MainMembershipPlansRoute
+  '/profile/account': typeof MainProfileAccountRoute
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
+  '/profile/help': typeof MainProfileHelpRoute
+  '/profile/notifications': typeof MainProfileNotificationsRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/profile/visibility': typeof MainProfileVisibilityRoute
@@ -849,9 +871,12 @@ export interface FileRoutesByTo {
   '/host/attendees': typeof MainHostAttendeesRoute
   '/host/new': typeof MainHostNewRoute
   '/membership/plans': typeof MainMembershipPlansRoute
+  '/profile/account': typeof MainProfileAccountRoute
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
+  '/profile/help': typeof MainProfileHelpRoute
+  '/profile/notifications': typeof MainProfileNotificationsRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/profile/visibility': typeof MainProfileVisibilityRoute
@@ -961,9 +986,12 @@ export interface FileRoutesById {
   '/_main/host/attendees': typeof MainHostAttendeesRoute
   '/_main/host/new': typeof MainHostNewRoute
   '/_main/membership/plans': typeof MainMembershipPlansRoute
+  '/_main/profile/account': typeof MainProfileAccountRoute
   '/_main/profile/audit-log': typeof MainProfileAuditLogRoute
   '/_main/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/_main/profile/edit': typeof MainProfileEditRoute
+  '/_main/profile/help': typeof MainProfileHelpRoute
+  '/_main/profile/notifications': typeof MainProfileNotificationsRoute
   '/_main/profile/pause': typeof MainProfilePauseRoute
   '/_main/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/_main/profile/visibility': typeof MainProfileVisibilityRoute
@@ -1072,9 +1100,12 @@ export interface FileRouteTypes {
     | '/host/attendees'
     | '/host/new'
     | '/membership/plans'
+    | '/profile/account'
     | '/profile/audit-log'
     | '/profile/coach-settings'
     | '/profile/edit'
+    | '/profile/help'
+    | '/profile/notifications'
     | '/profile/pause'
     | '/profile/safety'
     | '/profile/visibility'
@@ -1177,9 +1208,12 @@ export interface FileRouteTypes {
     | '/host/attendees'
     | '/host/new'
     | '/membership/plans'
+    | '/profile/account'
     | '/profile/audit-log'
     | '/profile/coach-settings'
     | '/profile/edit'
+    | '/profile/help'
+    | '/profile/notifications'
     | '/profile/pause'
     | '/profile/safety'
     | '/profile/visibility'
@@ -1288,9 +1322,12 @@ export interface FileRouteTypes {
     | '/_main/host/attendees'
     | '/_main/host/new'
     | '/_main/membership/plans'
+    | '/_main/profile/account'
     | '/_main/profile/audit-log'
     | '/_main/profile/coach-settings'
     | '/_main/profile/edit'
+    | '/_main/profile/help'
+    | '/_main/profile/notifications'
     | '/_main/profile/pause'
     | '/_main/profile/safety'
     | '/_main/profile/visibility'
@@ -1680,6 +1717,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfilePauseRouteImport
       parentRoute: typeof MainProfileRoute
     }
+    '/_main/profile/notifications': {
+      id: '/_main/profile/notifications'
+      path: '/notifications'
+      fullPath: '/profile/notifications'
+      preLoaderRoute: typeof MainProfileNotificationsRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
+    '/_main/profile/help': {
+      id: '/_main/profile/help'
+      path: '/help'
+      fullPath: '/profile/help'
+      preLoaderRoute: typeof MainProfileHelpRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
     '/_main/profile/edit': {
       id: '/_main/profile/edit'
       path: '/edit'
@@ -1699,6 +1750,13 @@ declare module '@tanstack/react-router' {
       path: '/audit-log'
       fullPath: '/profile/audit-log'
       preLoaderRoute: typeof MainProfileAuditLogRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
+    '/_main/profile/account': {
+      id: '/_main/profile/account'
+      path: '/account'
+      fullPath: '/profile/account'
+      preLoaderRoute: typeof MainProfileAccountRouteImport
       parentRoute: typeof MainProfileRoute
     }
     '/_main/membership/plans': {
@@ -2270,9 +2328,12 @@ const MainProfileSafetyRouteWithChildren =
   MainProfileSafetyRoute._addFileChildren(MainProfileSafetyRouteChildren)
 
 interface MainProfileRouteChildren {
+  MainProfileAccountRoute: typeof MainProfileAccountRoute
   MainProfileAuditLogRoute: typeof MainProfileAuditLogRoute
   MainProfileCoachSettingsRoute: typeof MainProfileCoachSettingsRoute
   MainProfileEditRoute: typeof MainProfileEditRoute
+  MainProfileHelpRoute: typeof MainProfileHelpRoute
+  MainProfileNotificationsRoute: typeof MainProfileNotificationsRoute
   MainProfilePauseRoute: typeof MainProfilePauseRoute
   MainProfileSafetyRoute: typeof MainProfileSafetyRouteWithChildren
   MainProfileVisibilityRoute: typeof MainProfileVisibilityRoute
@@ -2284,9 +2345,12 @@ interface MainProfileRouteChildren {
 }
 
 const MainProfileRouteChildren: MainProfileRouteChildren = {
+  MainProfileAccountRoute: MainProfileAccountRoute,
   MainProfileAuditLogRoute: MainProfileAuditLogRoute,
   MainProfileCoachSettingsRoute: MainProfileCoachSettingsRoute,
   MainProfileEditRoute: MainProfileEditRoute,
+  MainProfileHelpRoute: MainProfileHelpRoute,
+  MainProfileNotificationsRoute: MainProfileNotificationsRoute,
   MainProfilePauseRoute: MainProfilePauseRoute,
   MainProfileSafetyRoute: MainProfileSafetyRouteWithChildren,
   MainProfileVisibilityRoute: MainProfileVisibilityRoute,
