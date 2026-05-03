@@ -39,7 +39,7 @@ function CompleteScreen() {
         Photos are being checked now. You'll have full access in a couple of minutes. Take a breath.
       </p>
       <Link
-        to="/home"
+        to="/system/push-permissions"
         className="mt-8 inline-flex h-12 w-full max-w-xs items-center justify-center rounded-[12px] bg-plum-500 px-6 text-body-md font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
       >
         Take me to Home
