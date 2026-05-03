@@ -25,6 +25,24 @@ export type ConnectionSummary = {
 
 export const CONNECTIONS: ConnectionSummary[] = [
   {
+    id: "ava",
+    name: "Ava",
+    initial: "A",
+    hue: "lavender",
+  },
+  {
+    id: "maya",
+    name: "Maya",
+    initial: "M",
+    hue: "blush",
+  },
+  {
+    id: "jade",
+    name: "Jade",
+    initial: "J",
+    hue: "beeswax",
+  },
+  {
     id: "avery",
     name: "Avery",
     initial: "A",
@@ -137,7 +155,7 @@ export type ThreadMessage =
     };
 
 export const THREADS: Record<string, ThreadMessage[]> = {
-  avery: [
+  ava: [
     { kind: "time", label: "SUNDAY, 11:02AM" },
     {
       kind: "coach",
@@ -160,6 +178,18 @@ export const THREADS: Record<string, ThreadMessage[]> = {
       from: "them",
       text: "That's a really lovely Sunday.",
     },
+  ],
+  maya: [
+    { kind: "time", label: "TODAY, 10:01AM" },
+    { kind: "msg", from: "them", text: "Loved that book rec.", time: "10:01" },
+    { kind: "msg", from: "me", text: "Yeah? Which bit landed?", time: "10:04", read: true },
+  ],
+  jade: [
+    { kind: "time", label: "FIVE DAYS AGO", },
+    { kind: "msg", from: "them", text: "How's your week?", time: "08:12" },
+  ],
+  avery: [
+    { kind: "msg", from: "them", text: "Saved here for backwards-compat. See ava for the demo.", time: "00:00" },
   ],
   asha: [
     { kind: "time", label: "TUESDAY, 9:14AM" },
