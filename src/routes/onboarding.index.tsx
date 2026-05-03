@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import couplLogo from "@/assets/coupl-logo.png";
 
 export const Route = createFileRoute("/onboarding/")({
   head: () => ({
@@ -51,11 +52,7 @@ function SplashScreen() {
     >
       <div className="flex min-h-[80vh] flex-col">
         <div className="flex-1 pt-12">
-          <img
-            src="/brand/coupl-logo.png"
-            alt="COUPL"
-            className="h-10 w-auto"
-          />
+          <img src={couplLogo} alt="COUPL" className="h-10 w-auto" />
           <p className="mt-4 max-w-[18rem] text-body-lg text-slate">
             Slow dating for people who want to be known.
           </p>
