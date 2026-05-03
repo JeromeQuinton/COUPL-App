@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Bell, Calendar } from "lucide-react";
 import { CapacityCard } from "@/components/home/CapacityCard";
 import { CoachCard } from "@/components/home/CoachCard";
 import { ReflectionCard } from "@/components/home/ReflectionCard";
@@ -46,16 +47,32 @@ function HomeScreen() {
           <p className="text-label-mono">Tuesday · Slow morning</p>
           <h1 className="mt-2 text-display-xl text-ink">Hi, {userName}.</h1>
         </div>
-        <span
-          aria-hidden
-          className="flex h-10 w-10 items-center justify-center rounded-full text-body-sm font-semibold text-plum-700 shadow-elev-1 ring-1 ring-plum-300/40"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--lavender-50) 0%, var(--lavender-100) 100%)",
-          }}
-        >
-          {userName.charAt(0)}
-        </span>
+        <div className="flex items-center gap-1.5">
+          <Link
+            to="/notifications"
+            aria-label="Activity"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-plum-700 transition-colors hover:bg-lavender-50"
+          >
+            <Bell className="h-5 w-5" strokeWidth={1.75} />
+          </Link>
+          <Link
+            to="/calendar"
+            aria-label="Calendar"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-plum-700 transition-colors hover:bg-lavender-50"
+          >
+            <Calendar className="h-5 w-5" strokeWidth={1.75} />
+          </Link>
+          <span
+            aria-hidden
+            className="ml-1 flex h-10 w-10 items-center justify-center rounded-full text-body-sm font-semibold text-plum-700 shadow-elev-1 ring-1 ring-plum-300/40"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--lavender-50) 0%, var(--lavender-100) 100%)",
+            }}
+          >
+            {userName.charAt(0)}
+          </span>
+        </div>
       </header>
 
       <section className="relative mt-6 space-y-4">

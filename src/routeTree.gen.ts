@@ -35,10 +35,13 @@ import { Route as OnboardingChecksRouteImport } from './routes/onboarding.checks
 import { Route as OnboardingCapacityRouteImport } from './routes/onboarding.capacity'
 import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
+import { Route as MainPolarisRouteImport } from './routes/_main.polaris'
+import { Route as MainNotificationsRouteImport } from './routes/_main.notifications'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainGrowthRouteImport } from './routes/_main.growth'
 import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
 import { Route as MainDevRoutesRouteImport } from './routes/_main.dev-routes'
+import { Route as MainCalendarRouteImport } from './routes/_main.calendar'
 import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
 import { Route as MainProfileIndexRouteImport } from './routes/_main.profile.index'
 import { Route as MainMembershipIndexRouteImport } from './routes/_main.membership.index'
@@ -80,6 +83,7 @@ import { Route as MainDatePlansIdRouteImport } from './routes/_main.date-plans.$
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainMembershipSubscriptionIndexRouteImport } from './routes/_main.membership.subscription.index'
 import { Route as MainVideoCoachBookingRouteImport } from './routes/_main.video.coach.booking'
+import { Route as MainProfileSafetyTrustedContactRouteImport } from './routes/_main.profile.safety.trusted-contact'
 import { Route as MainProfileSafetyReportsRouteImport } from './routes/_main.profile.safety.reports'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
 import { Route as MainProfileSafetyBlockedRouteImport } from './routes/_main.profile.safety.blocked'
@@ -261,6 +265,16 @@ const MainProfileRoute = MainProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => MainRoute,
 } as any)
+const MainPolarisRoute = MainPolarisRouteImport.update({
+  id: '/polaris',
+  path: '/polaris',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainNotificationsRoute = MainNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainHomeRoute = MainHomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -279,6 +293,11 @@ const MainDiscoverRoute = MainDiscoverRouteImport.update({
 const MainDevRoutesRoute = MainDevRoutesRouteImport.update({
   id: '/dev-routes',
   path: '/dev-routes',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainCalendarRoute = MainCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => MainRoute,
 } as any)
 const AuthSigninRoute = AuthSigninRouteImport.update({
@@ -493,6 +512,12 @@ const MainVideoCoachBookingRoute = MainVideoCoachBookingRouteImport.update({
   path: '/video/coach/booking',
   getParentRoute: () => MainRoute,
 } as any)
+const MainProfileSafetyTrustedContactRoute =
+  MainProfileSafetyTrustedContactRouteImport.update({
+    id: '/trusted-contact',
+    path: '/trusted-contact',
+    getParentRoute: () => MainProfileSafetyRoute,
+  } as any)
 const MainProfileSafetyReportsRoute =
   MainProfileSafetyReportsRouteImport.update({
     id: '/reports',
@@ -789,10 +814,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/onboarding': typeof OnboardingRouteWithChildren
   '/signin': typeof AuthSigninRoute
+  '/calendar': typeof MainCalendarRoute
   '/dev-routes': typeof MainDevRoutesRoute
   '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRouteWithChildren
   '/home': typeof MainHomeRouteWithChildren
+  '/notifications': typeof MainNotificationsRoute
+  '/polaris': typeof MainPolarisRoute
   '/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
@@ -892,6 +920,7 @@ export interface FileRoutesByFullPath {
   '/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
+  '/profile/safety/trusted-contact': typeof MainProfileSafetyTrustedContactRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/membership/subscription/': typeof MainMembershipSubscriptionIndexRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
@@ -910,8 +939,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signin': typeof AuthSigninRoute
+  '/calendar': typeof MainCalendarRoute
   '/dev-routes': typeof MainDevRoutesRoute
   '/home': typeof MainHomeRouteWithChildren
+  '/notifications': typeof MainNotificationsRoute
+  '/polaris': typeof MainPolarisRoute
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
   '/onboarding/checks': typeof OnboardingChecksRouteWithChildren
@@ -1010,6 +1042,7 @@ export interface FileRoutesByTo {
   '/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
+  '/profile/safety/trusted-contact': typeof MainProfileSafetyTrustedContactRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/membership/subscription': typeof MainMembershipSubscriptionIndexRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
@@ -1032,10 +1065,13 @@ export interface FileRoutesById {
   '/_main': typeof MainRouteWithChildren
   '/onboarding': typeof OnboardingRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
+  '/_main/calendar': typeof MainCalendarRoute
   '/_main/dev-routes': typeof MainDevRoutesRoute
   '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRouteWithChildren
   '/_main/home': typeof MainHomeRouteWithChildren
+  '/_main/notifications': typeof MainNotificationsRoute
+  '/_main/polaris': typeof MainPolarisRoute
   '/_main/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
@@ -1135,6 +1171,7 @@ export interface FileRoutesById {
   '/_main/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/_main/profile/safety/reports': typeof MainProfileSafetyReportsRoute
+  '/_main/profile/safety/trusted-contact': typeof MainProfileSafetyTrustedContactRoute
   '/_main/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/_main/membership/subscription/': typeof MainMembershipSubscriptionIndexRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
@@ -1156,10 +1193,13 @@ export interface FileRouteTypes {
     | '/'
     | '/onboarding'
     | '/signin'
+    | '/calendar'
     | '/dev-routes'
     | '/discover'
     | '/growth'
     | '/home'
+    | '/notifications'
+    | '/polaris'
     | '/profile'
     | '/onboarding/$step'
     | '/onboarding/capacity'
@@ -1259,6 +1299,7 @@ export interface FileRouteTypes {
     | '/profile/safety/blocked'
     | '/profile/safety/report'
     | '/profile/safety/reports'
+    | '/profile/safety/trusted-contact'
     | '/video/coach/booking'
     | '/membership/subscription/'
     | '/discover/$id/insights/connection-languages'
@@ -1277,8 +1318,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/signin'
+    | '/calendar'
     | '/dev-routes'
     | '/home'
+    | '/notifications'
+    | '/polaris'
     | '/onboarding/$step'
     | '/onboarding/capacity'
     | '/onboarding/checks'
@@ -1377,6 +1421,7 @@ export interface FileRouteTypes {
     | '/profile/safety/blocked'
     | '/profile/safety/report'
     | '/profile/safety/reports'
+    | '/profile/safety/trusted-contact'
     | '/video/coach/booking'
     | '/membership/subscription'
     | '/discover/$id/insights/connection-languages'
@@ -1398,10 +1443,13 @@ export interface FileRouteTypes {
     | '/_main'
     | '/onboarding'
     | '/_auth/signin'
+    | '/_main/calendar'
     | '/_main/dev-routes'
     | '/_main/discover'
     | '/_main/growth'
     | '/_main/home'
+    | '/_main/notifications'
+    | '/_main/polaris'
     | '/_main/profile'
     | '/onboarding/$step'
     | '/onboarding/capacity'
@@ -1501,6 +1549,7 @@ export interface FileRouteTypes {
     | '/_main/profile/safety/blocked'
     | '/_main/profile/safety/report'
     | '/_main/profile/safety/reports'
+    | '/_main/profile/safety/trusted-contact'
     | '/_main/video/coach/booking'
     | '/_main/membership/subscription/'
     | '/_main/discover/$id_/insights/connection-languages'
@@ -1711,6 +1760,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/polaris': {
+      id: '/_main/polaris'
+      path: '/polaris'
+      fullPath: '/polaris'
+      preLoaderRoute: typeof MainPolarisRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/notifications': {
+      id: '/_main/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof MainNotificationsRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/home': {
       id: '/_main/home'
       path: '/home'
@@ -1737,6 +1800,13 @@ declare module '@tanstack/react-router' {
       path: '/dev-routes'
       fullPath: '/dev-routes'
       preLoaderRoute: typeof MainDevRoutesRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/calendar': {
+      id: '/_main/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof MainCalendarRouteImport
       parentRoute: typeof MainRoute
     }
     '/_auth/signin': {
@@ -2025,6 +2095,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/video/coach/booking'
       preLoaderRoute: typeof MainVideoCoachBookingRouteImport
       parentRoute: typeof MainRoute
+    }
+    '/_main/profile/safety/trusted-contact': {
+      id: '/_main/profile/safety/trusted-contact'
+      path: '/trusted-contact'
+      fullPath: '/profile/safety/trusted-contact'
+      preLoaderRoute: typeof MainProfileSafetyTrustedContactRouteImport
+      parentRoute: typeof MainProfileSafetyRoute
     }
     '/_main/profile/safety/reports': {
       id: '/_main/profile/safety/reports'
@@ -2479,12 +2556,14 @@ interface MainProfileSafetyRouteChildren {
   MainProfileSafetyBlockedRoute: typeof MainProfileSafetyBlockedRoute
   MainProfileSafetyReportRoute: typeof MainProfileSafetyReportRouteWithChildren
   MainProfileSafetyReportsRoute: typeof MainProfileSafetyReportsRoute
+  MainProfileSafetyTrustedContactRoute: typeof MainProfileSafetyTrustedContactRoute
 }
 
 const MainProfileSafetyRouteChildren: MainProfileSafetyRouteChildren = {
   MainProfileSafetyBlockedRoute: MainProfileSafetyBlockedRoute,
   MainProfileSafetyReportRoute: MainProfileSafetyReportRouteWithChildren,
   MainProfileSafetyReportsRoute: MainProfileSafetyReportsRoute,
+  MainProfileSafetyTrustedContactRoute: MainProfileSafetyTrustedContactRoute,
 }
 
 const MainProfileSafetyRouteWithChildren =
@@ -2529,10 +2608,13 @@ const MainProfileRouteWithChildren = MainProfileRoute._addFileChildren(
 )
 
 interface MainRouteChildren {
+  MainCalendarRoute: typeof MainCalendarRoute
   MainDevRoutesRoute: typeof MainDevRoutesRoute
   MainDiscoverRoute: typeof MainDiscoverRouteWithChildren
   MainGrowthRoute: typeof MainGrowthRouteWithChildren
   MainHomeRoute: typeof MainHomeRouteWithChildren
+  MainNotificationsRoute: typeof MainNotificationsRoute
+  MainPolarisRoute: typeof MainPolarisRoute
   MainProfileRoute: typeof MainProfileRouteWithChildren
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
   MainDatePlansIdRoute: typeof MainDatePlansIdRoute
@@ -2589,10 +2671,13 @@ interface MainRouteChildren {
 }
 
 const MainRouteChildren: MainRouteChildren = {
+  MainCalendarRoute: MainCalendarRoute,
   MainDevRoutesRoute: MainDevRoutesRoute,
   MainDiscoverRoute: MainDiscoverRouteWithChildren,
   MainGrowthRoute: MainGrowthRouteWithChildren,
   MainHomeRoute: MainHomeRouteWithChildren,
+  MainNotificationsRoute: MainNotificationsRoute,
+  MainPolarisRoute: MainPolarisRoute,
   MainProfileRoute: MainProfileRouteWithChildren,
   MainConnectionsIdRoute: MainConnectionsIdRoute,
   MainDatePlansIdRoute: MainDatePlansIdRoute,

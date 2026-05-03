@@ -150,6 +150,16 @@ function ProfileScreen() {
             sub="Curated places that make a first meet easier"
           />
           <ProfileLinkRow
+            to="/calendar"
+            title="Calendar"
+            sub="Plans, workshops, events in one view"
+          />
+          <ProfileLinkRow
+            to="/polaris"
+            title="Polaris"
+            sub="Your attachment-health view"
+          />
+          <ProfileLinkRow
             to="/membership"
             title="Membership"
             sub="Free · upgrade for depth"
@@ -193,6 +203,8 @@ function ProfileLinkRow({
     | "/profile/notifications"
     | "/profile/help"
     | "/date-plans"
+    | "/polaris"
+    | "/calendar"
     | "/dev-routes";
   title: string;
   sub?: string;

@@ -103,6 +103,8 @@ export type SafetyRow = {
     | "/profile/safety/report"
     | "/profile/safety/reports"
     | "/profile/safety/blocked"
+    | "/profile/safety/trusted-contact"
+    | "/profile/verification"
     | "/profile/audit-log"
     | "/profile/edit"
     | "/profile/pause"
@@ -110,10 +112,11 @@ export type SafetyRow = {
 };
 
 export const SAFETY_ROWS: SafetyRow[] = [
+  // Crisis-first: action items at top, setup tasks below, history at bottom.
   {
     id: "report",
-    title: "Report a concern",
-    sub: "Confidential, evidence-supported",
+    title: "Submit a report",
+    sub: "Confidential. We assess every report.",
     to: "/profile/safety/report",
   },
   {
@@ -123,22 +126,28 @@ export const SAFETY_ROWS: SafetyRow[] = [
     to: "/profile/pause",
   },
   {
-    id: "share",
-    title: "Safety share",
-    sub: "Share live location with a trusted contact",
-    to: "/profile/safety/report",
+    id: "trusted-contact",
+    title: "Trusted contact",
+    sub: "Up to two people pinged when you start a safety share",
+    to: "/profile/safety/trusted-contact",
   },
   {
     id: "verify",
-    title: "Verification status",
-    sub: "ID + selfie + social",
-    to: "/profile/edit",
+    title: "Verification",
+    sub: "Photo · ID · Selfie · Social",
+    to: "/profile/verification",
   },
   {
     id: "privacy",
     title: "Privacy controls",
     sub: "What others see + when",
     to: "/profile/visibility",
+  },
+  {
+    id: "share",
+    title: "Safety share",
+    sub: "Share live location with a trusted contact during a date",
+    to: "/profile/safety/report",
   },
   {
     id: "reports",

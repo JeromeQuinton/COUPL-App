@@ -68,7 +68,7 @@ function ConnectedScreen() {
             guessing.
           </p>
 
-          <div className="mt-10 flex items-center justify-center gap-5">
+          <div className="mt-10 flex animate-in fade-in zoom-in-95 items-center justify-center gap-5 duration-500 motion-reduce:animate-none">
             <div className="flex flex-col items-center gap-2">
               <ConnectionAvatar initial="Y" hue="plum" size={64} />
               <span className="text-label-mono text-stone">You</span>
@@ -108,6 +108,13 @@ function ConnectedScreen() {
             className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
           >
             Save for later
+          </Link>
+          <Link
+            to="/discover/$id"
+            params={{ id }}
+            className="block w-full rounded-full px-5 py-2 text-center font-body text-[13px] text-plum-700 hover:underline"
+          >
+            See their profile →
           </Link>
         </div>
       </div>
