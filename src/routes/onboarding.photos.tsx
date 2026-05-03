@@ -99,7 +99,7 @@ function PhotosScreen() {
             aria-hidden
           />
           <p>
-            Heads up: photos are reviewed by humans within 24h. We block
+            Heads up: we check photos automatically — usually within minutes. We block
             heavy filters and group photo where you're not centered.
           </p>
         </div>

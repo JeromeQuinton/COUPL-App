@@ -1,14 +1,14 @@
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type ReviewStage = "auto_check" | "first_reviewer" | "second_reviewer" | "released";
+export type ReviewStage = "auto_check" | "quick_check" | "deep_check" | "released";
 
 type Stage = { id: ReviewStage; label: string };
 
 const STAGES: Stage[] = [
   { id: "auto_check", label: "Auto-check" },
-  { id: "first_reviewer", label: "First reviewer" },
-  { id: "second_reviewer", label: "Second reviewer" },
+  { id: "quick_check", label: "Quick check" },
+  { id: "deep_check", label: "Deep check" },
   { id: "released", label: "Released" },
 ];
 
@@ -18,7 +18,7 @@ type Props = {
 };
 
 /**
- * Four-step horizontal tracker for the human photo review pipeline.
+ * Four-step horizontal tracker for the automated photo review pipeline.
  * Editorial palette: completed dots use plum, active uses plum-300,
  * pending uses lavender-100. No animation — calm progress, not a
  * loading bar.

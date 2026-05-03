@@ -88,7 +88,7 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
   {
     id: "a-6",
     type: "trust",
-    title: "Photo review completed by Yara (Trust team)",
+    title: "Photo check completed automatically",
     timeLabel: "Sun 11:05 PM",
   },
 ];
