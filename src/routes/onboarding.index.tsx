@@ -1,7 +1,7 @@
+import { useState, type FormEvent } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
-import couplLogo from "@/assets/coupl-logo.png";
 
 export const Route = createFileRoute("/onboarding/")({
   head: () => ({
@@ -36,6 +36,13 @@ export const Route = createFileRoute("/onboarding/")({
  */
 function SplashScreen() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+
+  const onEmailSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    navigate({ to: "/onboarding/verify" });
+  };
 
   return (
     <OnboardingFrame
@@ -52,27 +59,52 @@ function SplashScreen() {
     >
       <div className="flex min-h-[80vh] flex-col">
         <div className="flex-1 pt-12">
-          <img src={couplLogo} alt="COUPL" className="h-10 w-auto" />
+          <img
+            src="/brand/coupltransparent.png"
+            alt="COUPL"
+            className="w-full max-w-[280px] h-auto"
+          />
           <p className="mt-4 max-w-[18rem] text-body-lg text-slate">
             Slow dating for people who want to be known.
           </p>
         </div>
 
-        <div className="space-y-3">
-          <OnboardingButton
+        <div className="space-y-4">
+          <form onSubmit={onEmailSubmit} className="space-y-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              aria-label="Email"
+              required
+              className="w-full rounded-[14px] border border-line bg-paper px-4 py-3.5 text-body-md text-ink placeholder:text-stone focus:border-plum-500 focus:outline-none"
+            />
+            <OnboardingButton type="submit" variant="primary">
+              Continue with email
+            </OnboardingButton>
+          </form>
+
+          <div className="flex items-center gap-3 text-body-sm text-stone">
+            <span className="h-px flex-1 bg-line" />
+            <span>or</span>
+            <span className="h-px flex-1 bg-line" />
+          </div>
+
+          <button
             type="button"
-            variant="primary"
             onClick={() => navigate({ to: "/onboarding/verify" })}
+            className="w-full rounded-[14px] border border-line bg-paper px-4 py-3 text-body-md text-ink hover:bg-cloud"
           >
             Continue with phone
-          </OnboardingButton>
-          <OnboardingButton
+          </button>
+          <button
             type="button"
-            variant="secondary"
             onClick={() => navigate({ to: "/onboarding/verify" })}
+            className="w-full rounded-[14px] border border-line bg-paper px-4 py-3 text-body-md text-ink hover:bg-cloud"
           >
             Continue with Apple
-          </OnboardingButton>
+          </button>
         </div>
       </div>
     </OnboardingFrame>
