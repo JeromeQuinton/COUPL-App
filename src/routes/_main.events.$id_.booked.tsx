@@ -88,11 +88,20 @@ function BookedPage() {
           Back to events
         </Link>
 
+        {/* Attendees pre-event link */}
+        <Link
+          to="/events/$id/attendees"
+          params={{ id: e.id }}
+          className="mt-4 text-[11.5px] uppercase tracking-[0.14em] text-plum-500/80 hover:text-plum-700"
+        >
+          See who's coming →
+        </Link>
+
         {/* Quiet link to live check-in (Phase 1 demo) */}
         <Link
           to="/events/$id/checkin"
           params={{ id: e.id }}
-          className="mt-4 text-[11.5px] uppercase tracking-[0.14em] text-plum-500/80 hover:text-plum-700"
+          className="mt-2 text-[11.5px] uppercase tracking-[0.14em] text-plum-500/80 hover:text-plum-700"
         >
           Preview check-in →
         </Link>

@@ -122,7 +122,7 @@ function EventDetailPage() {
       {/* Sticky CTA */}
       <div className="sticky bottom-24 z-30 mt-8 px-5 pb-6">
         <Link
-          to="/events/$id/booked"
+          to="/events/$id/reserve"
           params={{ id: e.id }}
           className="flex w-full items-center justify-center rounded-full bg-plum-700 py-4 text-[15px] font-medium text-paper shadow-[0_8px_24px_rgba(61,26,71,0.28)] transition-colors hover:bg-plum-500"
         >
