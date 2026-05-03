@@ -162,10 +162,11 @@ function AttunedToastScreen() {
           }}
         >
           <Link
-            to="/connections"
+            to="/connections/$id/connected"
+            params={{ id }}
             className="flex items-center justify-center rounded-full bg-white px-6 py-3.5 font-display text-[16px] font-medium text-[#1a0d20] shadow-[0_8px_30px_rgba(212,169,102,0.25)] transition-transform hover:scale-[1.01] active:scale-[0.99]"
           >
-            Open conversation
+            Continue
           </Link>
           <button
             type="button"
