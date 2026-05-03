@@ -36,7 +36,7 @@ function CapacityScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!capacity) return;
-    navigate({ to: "/onboarding/complete" });
+    navigate({ to: "/onboarding/checks" });
   };
 
   return (
