@@ -75,6 +75,7 @@ import { Route as MainConnectionsIdRouteImport } from './routes/_main.connection
 import { Route as MainVideoCoachBookingRouteImport } from './routes/_main.video.coach.booking'
 import { Route as MainProfileSafetyReportsRouteImport } from './routes/_main.profile.safety.reports'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
+import { Route as MainProfileSafetyBlockedRouteImport } from './routes/_main.profile.safety.blocked'
 import { Route as MainProfileDataReadyRouteImport } from './routes/_main.profile.data.ready'
 import { Route as MainProfileDataPreparingRouteImport } from './routes/_main.profile.data.preparing'
 import { Route as MainProfileDataExportRouteImport } from './routes/_main.profile.data.export'
@@ -453,6 +454,12 @@ const MainProfileSafetyReportRoute = MainProfileSafetyReportRouteImport.update({
   path: '/report',
   getParentRoute: () => MainProfileSafetyRoute,
 } as any)
+const MainProfileSafetyBlockedRoute =
+  MainProfileSafetyBlockedRouteImport.update({
+    id: '/blocked',
+    path: '/blocked',
+    getParentRoute: () => MainProfileSafetyRoute,
+  } as any)
 const MainProfileDataReadyRoute = MainProfileDataReadyRouteImport.update({
   id: '/data/ready',
   path: '/data/ready',
@@ -784,6 +791,7 @@ export interface FileRoutesByFullPath {
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
+  '/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
@@ -888,6 +896,7 @@ export interface FileRoutesByTo {
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
+  '/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
@@ -999,6 +1008,7 @@ export interface FileRoutesById {
   '/_main/profile/data/export': typeof MainProfileDataExportRoute
   '/_main/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/_main/profile/data/ready': typeof MainProfileDataReadyRoute
+  '/_main/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/_main/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/_main/video/coach/booking': typeof MainVideoCoachBookingRoute
@@ -1109,6 +1119,7 @@ export interface FileRouteTypes {
     | '/profile/data/export'
     | '/profile/data/preparing'
     | '/profile/data/ready'
+    | '/profile/safety/blocked'
     | '/profile/safety/report'
     | '/profile/safety/reports'
     | '/video/coach/booking'
@@ -1213,6 +1224,7 @@ export interface FileRouteTypes {
     | '/profile/data/export'
     | '/profile/data/preparing'
     | '/profile/data/ready'
+    | '/profile/safety/blocked'
     | '/profile/safety/report'
     | '/profile/safety/reports'
     | '/video/coach/booking'
@@ -1323,6 +1335,7 @@ export interface FileRouteTypes {
     | '/_main/profile/data/export'
     | '/_main/profile/data/preparing'
     | '/_main/profile/data/ready'
+    | '/_main/profile/safety/blocked'
     | '/_main/profile/safety/report'
     | '/_main/profile/safety/reports'
     | '/_main/video/coach/booking'
@@ -1814,6 +1827,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileSafetyReportRouteImport
       parentRoute: typeof MainProfileSafetyRoute
     }
+    '/_main/profile/safety/blocked': {
+      id: '/_main/profile/safety/blocked'
+      path: '/blocked'
+      fullPath: '/profile/safety/blocked'
+      preLoaderRoute: typeof MainProfileSafetyBlockedRouteImport
+      parentRoute: typeof MainProfileSafetyRoute
+    }
     '/_main/profile/data/ready': {
       id: '/_main/profile/data/ready'
       path: '/data/ready'
@@ -2235,11 +2255,13 @@ const MainProfileSafetyReportRouteWithChildren =
   )
 
 interface MainProfileSafetyRouteChildren {
+  MainProfileSafetyBlockedRoute: typeof MainProfileSafetyBlockedRoute
   MainProfileSafetyReportRoute: typeof MainProfileSafetyReportRouteWithChildren
   MainProfileSafetyReportsRoute: typeof MainProfileSafetyReportsRoute
 }
 
 const MainProfileSafetyRouteChildren: MainProfileSafetyRouteChildren = {
+  MainProfileSafetyBlockedRoute: MainProfileSafetyBlockedRoute,
   MainProfileSafetyReportRoute: MainProfileSafetyReportRouteWithChildren,
   MainProfileSafetyReportsRoute: MainProfileSafetyReportsRoute,
 }
