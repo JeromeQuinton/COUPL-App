@@ -58,6 +58,7 @@ import { Route as OnboardingChecksIdSelectRouteImport } from './routes/onboardin
 import { Route as OnboardingChecksIdScanRouteImport } from './routes/onboarding.checks.id-scan'
 import { Route as MainVideoPermissionsRouteImport } from './routes/_main.video.permissions'
 import { Route as MainProfileVisibilityRouteImport } from './routes/_main.profile.visibility'
+import { Route as MainProfileVerificationRouteImport } from './routes/_main.profile.verification'
 import { Route as MainProfileSafetyRouteImport } from './routes/_main.profile.safety'
 import { Route as MainProfilePauseRouteImport } from './routes/_main.profile.pause'
 import { Route as MainProfileNotificationsRouteImport } from './routes/_main.profile.notifications'
@@ -80,6 +81,7 @@ import { Route as MainGrowthIdRouteImport } from './routes/_main.growth.$id'
 import { Route as MainEventsIdRouteImport } from './routes/_main.events.$id'
 import { Route as MainDiscoverSavedRouteImport } from './routes/_main.discover.saved'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
+import { Route as MainDiscoverMembershipPromptRouteImport } from './routes/_main.discover.membership-prompt'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainDatePlansIdRouteImport } from './routes/_main.date-plans.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
@@ -89,6 +91,7 @@ import { Route as MainProfileSafetyTrustedContactRouteImport } from './routes/_m
 import { Route as MainProfileSafetyReportsRouteImport } from './routes/_main.profile.safety.reports'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
 import { Route as MainProfileSafetyBlockedRouteImport } from './routes/_main.profile.safety.blocked'
+import { Route as MainProfileHelpTopicIdRouteImport } from './routes/_main.profile.help.$topicId'
 import { Route as MainProfileDataReadyRouteImport } from './routes/_main.profile.data.ready'
 import { Route as MainProfileDataPreparingRouteImport } from './routes/_main.profile.data.preparing'
 import { Route as MainProfileDataExportRouteImport } from './routes/_main.profile.data.export'
@@ -108,6 +111,7 @@ import { Route as MainEventsIdReserveRouteImport } from './routes/_main.events.$
 import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$id_.checkin'
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
 import { Route as MainEventsIdAttendeesRouteImport } from './routes/_main.events.$id_.attendees'
+import { Route as MainDiscoverIdCompatibilityRouteImport } from './routes/_main.discover.$id_.compatibility'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainDiscoverIdAboutRouteImport } from './routes/_main.discover.$id_.about'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
@@ -385,6 +389,11 @@ const MainProfileVisibilityRoute = MainProfileVisibilityRouteImport.update({
   path: '/visibility',
   getParentRoute: () => MainProfileRoute,
 } as any)
+const MainProfileVerificationRoute = MainProfileVerificationRouteImport.update({
+  id: '/verification',
+  path: '/verification',
+  getParentRoute: () => MainProfileRoute,
+} as any)
 const MainProfileSafetyRoute = MainProfileSafetyRouteImport.update({
   id: '/safety',
   path: '/safety',
@@ -498,6 +507,12 @@ const MainDiscoverQuietDayRoute = MainDiscoverQuietDayRouteImport.update({
   path: '/quiet-day',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainDiscoverMembershipPromptRoute =
+  MainDiscoverMembershipPromptRouteImport.update({
+    id: '/membership-prompt',
+    path: '/membership-prompt',
+    getParentRoute: () => MainDiscoverRoute,
+  } as any)
 const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -547,6 +562,11 @@ const MainProfileSafetyBlockedRoute =
     path: '/blocked',
     getParentRoute: () => MainProfileSafetyRoute,
   } as any)
+const MainProfileHelpTopicIdRoute = MainProfileHelpTopicIdRouteImport.update({
+  id: '/$topicId',
+  path: '/$topicId',
+  getParentRoute: () => MainProfileHelpRoute,
+} as any)
 const MainProfileDataReadyRoute = MainProfileDataReadyRouteImport.update({
   id: '/data/ready',
   path: '/data/ready',
@@ -649,6 +669,12 @@ const MainEventsIdAttendeesRoute = MainEventsIdAttendeesRouteImport.update({
   path: '/events/$id/attendees',
   getParentRoute: () => MainRoute,
 } as any)
+const MainDiscoverIdCompatibilityRoute =
+  MainDiscoverIdCompatibilityRouteImport.update({
+    id: '/$id_/compatibility',
+    path: '/$id/compatibility',
+    getParentRoute: () => MainDiscoverRoute,
+  } as any)
 const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
   id: '/$id_/attuned',
   path: '/$id/attuned',
@@ -859,6 +885,7 @@ export interface FileRoutesByFullPath {
   '/connections/$id': typeof MainConnectionsIdRoute
   '/date-plans/$id': typeof MainDatePlansIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/discover/membership-prompt': typeof MainDiscoverMembershipPromptRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/discover/saved': typeof MainDiscoverSavedRoute
   '/events/$id': typeof MainEventsIdRoute
@@ -877,10 +904,11 @@ export interface FileRoutesByFullPath {
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
-  '/profile/help': typeof MainProfileHelpRoute
+  '/profile/help': typeof MainProfileHelpRouteWithChildren
   '/profile/notifications': typeof MainProfileNotificationsRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
+  '/profile/verification': typeof MainProfileVerificationRoute
   '/profile/visibility': typeof MainProfileVisibilityRoute
   '/video/permissions': typeof MainVideoPermissionsRoute
   '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
@@ -912,6 +940,7 @@ export interface FileRoutesByFullPath {
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/about': typeof MainDiscoverIdAboutRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
+  '/discover/$id/compatibility': typeof MainDiscoverIdCompatibilityRoute
   '/events/$id/attendees': typeof MainEventsIdAttendeesRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
@@ -931,6 +960,7 @@ export interface FileRoutesByFullPath {
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
+  '/profile/help/$topicId': typeof MainProfileHelpTopicIdRoute
   '/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
@@ -983,6 +1013,7 @@ export interface FileRoutesByTo {
   '/connections/$id': typeof MainConnectionsIdRoute
   '/date-plans/$id': typeof MainDatePlansIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
+  '/discover/membership-prompt': typeof MainDiscoverMembershipPromptRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/discover/saved': typeof MainDiscoverSavedRoute
   '/events/$id': typeof MainEventsIdRoute
@@ -1001,10 +1032,11 @@ export interface FileRoutesByTo {
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
-  '/profile/help': typeof MainProfileHelpRoute
+  '/profile/help': typeof MainProfileHelpRouteWithChildren
   '/profile/notifications': typeof MainProfileNotificationsRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
+  '/profile/verification': typeof MainProfileVerificationRoute
   '/profile/visibility': typeof MainProfileVisibilityRoute
   '/video/permissions': typeof MainVideoPermissionsRoute
   '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
@@ -1036,6 +1068,7 @@ export interface FileRoutesByTo {
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/about': typeof MainDiscoverIdAboutRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
+  '/discover/$id/compatibility': typeof MainDiscoverIdCompatibilityRoute
   '/events/$id/attendees': typeof MainEventsIdAttendeesRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
@@ -1055,6 +1088,7 @@ export interface FileRoutesByTo {
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
+  '/profile/help/$topicId': typeof MainProfileHelpTopicIdRoute
   '/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
@@ -1114,6 +1148,7 @@ export interface FileRoutesById {
   '/_main/connections/$id': typeof MainConnectionsIdRoute
   '/_main/date-plans/$id': typeof MainDatePlansIdRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
+  '/_main/discover/membership-prompt': typeof MainDiscoverMembershipPromptRoute
   '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/_main/discover/saved': typeof MainDiscoverSavedRoute
   '/_main/events/$id': typeof MainEventsIdRoute
@@ -1132,10 +1167,11 @@ export interface FileRoutesById {
   '/_main/profile/audit-log': typeof MainProfileAuditLogRoute
   '/_main/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/_main/profile/edit': typeof MainProfileEditRoute
-  '/_main/profile/help': typeof MainProfileHelpRoute
+  '/_main/profile/help': typeof MainProfileHelpRouteWithChildren
   '/_main/profile/notifications': typeof MainProfileNotificationsRoute
   '/_main/profile/pause': typeof MainProfilePauseRoute
   '/_main/profile/safety': typeof MainProfileSafetyRouteWithChildren
+  '/_main/profile/verification': typeof MainProfileVerificationRoute
   '/_main/profile/visibility': typeof MainProfileVisibilityRoute
   '/_main/video/permissions': typeof MainVideoPermissionsRoute
   '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
@@ -1167,6 +1203,7 @@ export interface FileRoutesById {
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/about': typeof MainDiscoverIdAboutRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
+  '/_main/discover/$id_/compatibility': typeof MainDiscoverIdCompatibilityRoute
   '/_main/events/$id_/attendees': typeof MainEventsIdAttendeesRoute
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
   '/_main/events/$id_/checkin': typeof MainEventsIdCheckinRoute
@@ -1186,6 +1223,7 @@ export interface FileRoutesById {
   '/_main/profile/data/export': typeof MainProfileDataExportRoute
   '/_main/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/_main/profile/data/ready': typeof MainProfileDataReadyRoute
+  '/_main/profile/help/$topicId': typeof MainProfileHelpTopicIdRoute
   '/_main/profile/safety/blocked': typeof MainProfileSafetyBlockedRoute
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/_main/profile/safety/reports': typeof MainProfileSafetyReportsRoute
@@ -1244,6 +1282,7 @@ export interface FileRouteTypes {
     | '/connections/$id'
     | '/date-plans/$id'
     | '/discover/$id'
+    | '/discover/membership-prompt'
     | '/discover/quiet-day'
     | '/discover/saved'
     | '/events/$id'
@@ -1266,6 +1305,7 @@ export interface FileRouteTypes {
     | '/profile/notifications'
     | '/profile/pause'
     | '/profile/safety'
+    | '/profile/verification'
     | '/profile/visibility'
     | '/video/permissions'
     | '/onboarding/checks/id-scan'
@@ -1297,6 +1337,7 @@ export interface FileRouteTypes {
     | '/connections/$id/reflection'
     | '/discover/$id/about'
     | '/discover/$id/attuned'
+    | '/discover/$id/compatibility'
     | '/events/$id/attendees'
     | '/events/$id/booked'
     | '/events/$id/checkin'
@@ -1316,6 +1357,7 @@ export interface FileRouteTypes {
     | '/profile/data/export'
     | '/profile/data/preparing'
     | '/profile/data/ready'
+    | '/profile/help/$topicId'
     | '/profile/safety/blocked'
     | '/profile/safety/report'
     | '/profile/safety/reports'
@@ -1368,6 +1410,7 @@ export interface FileRouteTypes {
     | '/connections/$id'
     | '/date-plans/$id'
     | '/discover/$id'
+    | '/discover/membership-prompt'
     | '/discover/quiet-day'
     | '/discover/saved'
     | '/events/$id'
@@ -1390,6 +1433,7 @@ export interface FileRouteTypes {
     | '/profile/notifications'
     | '/profile/pause'
     | '/profile/safety'
+    | '/profile/verification'
     | '/profile/visibility'
     | '/video/permissions'
     | '/onboarding/checks/id-scan'
@@ -1421,6 +1465,7 @@ export interface FileRouteTypes {
     | '/connections/$id/reflection'
     | '/discover/$id/about'
     | '/discover/$id/attuned'
+    | '/discover/$id/compatibility'
     | '/events/$id/attendees'
     | '/events/$id/booked'
     | '/events/$id/checkin'
@@ -1440,6 +1485,7 @@ export interface FileRouteTypes {
     | '/profile/data/export'
     | '/profile/data/preparing'
     | '/profile/data/ready'
+    | '/profile/help/$topicId'
     | '/profile/safety/blocked'
     | '/profile/safety/report'
     | '/profile/safety/reports'
@@ -1498,6 +1544,7 @@ export interface FileRouteTypes {
     | '/_main/connections/$id'
     | '/_main/date-plans/$id'
     | '/_main/discover/$id'
+    | '/_main/discover/membership-prompt'
     | '/_main/discover/quiet-day'
     | '/_main/discover/saved'
     | '/_main/events/$id'
@@ -1520,6 +1567,7 @@ export interface FileRouteTypes {
     | '/_main/profile/notifications'
     | '/_main/profile/pause'
     | '/_main/profile/safety'
+    | '/_main/profile/verification'
     | '/_main/profile/visibility'
     | '/_main/video/permissions'
     | '/onboarding/checks/id-scan'
@@ -1551,6 +1599,7 @@ export interface FileRouteTypes {
     | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/about'
     | '/_main/discover/$id_/attuned'
+    | '/_main/discover/$id_/compatibility'
     | '/_main/events/$id_/attendees'
     | '/_main/events/$id_/booked'
     | '/_main/events/$id_/checkin'
@@ -1570,6 +1619,7 @@ export interface FileRouteTypes {
     | '/_main/profile/data/export'
     | '/_main/profile/data/preparing'
     | '/_main/profile/data/ready'
+    | '/_main/profile/help/$topicId'
     | '/_main/profile/safety/blocked'
     | '/_main/profile/safety/report'
     | '/_main/profile/safety/reports'
@@ -1945,6 +1995,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileVisibilityRouteImport
       parentRoute: typeof MainProfileRoute
     }
+    '/_main/profile/verification': {
+      id: '/_main/profile/verification'
+      path: '/verification'
+      fullPath: '/profile/verification'
+      preLoaderRoute: typeof MainProfileVerificationRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
     '/_main/profile/safety': {
       id: '/_main/profile/safety'
       path: '/safety'
@@ -2099,6 +2156,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverQuietDayRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/discover/membership-prompt': {
+      id: '/_main/discover/membership-prompt'
+      path: '/membership-prompt'
+      fullPath: '/discover/membership-prompt'
+      preLoaderRoute: typeof MainDiscoverMembershipPromptRouteImport
+      parentRoute: typeof MainDiscoverRoute
+    }
     '/_main/discover/$id': {
       id: '/_main/discover/$id'
       path: '/$id'
@@ -2161,6 +2225,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/profile/safety/blocked'
       preLoaderRoute: typeof MainProfileSafetyBlockedRouteImport
       parentRoute: typeof MainProfileSafetyRoute
+    }
+    '/_main/profile/help/$topicId': {
+      id: '/_main/profile/help/$topicId'
+      path: '/$topicId'
+      fullPath: '/profile/help/$topicId'
+      preLoaderRoute: typeof MainProfileHelpTopicIdRouteImport
+      parentRoute: typeof MainProfileHelpRoute
     }
     '/_main/profile/data/ready': {
       id: '/_main/profile/data/ready'
@@ -2294,6 +2365,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/events/$id/attendees'
       preLoaderRoute: typeof MainEventsIdAttendeesRouteImport
       parentRoute: typeof MainRoute
+    }
+    '/_main/discover/$id_/compatibility': {
+      id: '/_main/discover/$id_/compatibility'
+      path: '/$id/compatibility'
+      fullPath: '/discover/$id/compatibility'
+      preLoaderRoute: typeof MainDiscoverIdCompatibilityRouteImport
+      parentRoute: typeof MainDiscoverRoute
     }
     '/_main/discover/$id_/attuned': {
       id: '/_main/discover/$id_/attuned'
@@ -2513,21 +2591,25 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface MainDiscoverRouteChildren {
   MainDiscoverIdRoute: typeof MainDiscoverIdRoute
+  MainDiscoverMembershipPromptRoute: typeof MainDiscoverMembershipPromptRoute
   MainDiscoverQuietDayRoute: typeof MainDiscoverQuietDayRoute
   MainDiscoverSavedRoute: typeof MainDiscoverSavedRoute
   MainDiscoverIndexRoute: typeof MainDiscoverIndexRoute
   MainDiscoverIdAboutRoute: typeof MainDiscoverIdAboutRoute
   MainDiscoverIdAttunedRoute: typeof MainDiscoverIdAttunedRoute
+  MainDiscoverIdCompatibilityRoute: typeof MainDiscoverIdCompatibilityRoute
   MainDiscoverIdInsightsConnectionLanguagesRoute: typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
 
 const MainDiscoverRouteChildren: MainDiscoverRouteChildren = {
   MainDiscoverIdRoute: MainDiscoverIdRoute,
+  MainDiscoverMembershipPromptRoute: MainDiscoverMembershipPromptRoute,
   MainDiscoverQuietDayRoute: MainDiscoverQuietDayRoute,
   MainDiscoverSavedRoute: MainDiscoverSavedRoute,
   MainDiscoverIndexRoute: MainDiscoverIndexRoute,
   MainDiscoverIdAboutRoute: MainDiscoverIdAboutRoute,
   MainDiscoverIdAttunedRoute: MainDiscoverIdAttunedRoute,
+  MainDiscoverIdCompatibilityRoute: MainDiscoverIdCompatibilityRoute,
   MainDiscoverIdInsightsConnectionLanguagesRoute:
     MainDiscoverIdInsightsConnectionLanguagesRoute,
 }
@@ -2578,6 +2660,18 @@ const MainHomeRouteWithChildren = MainHomeRoute._addFileChildren(
   MainHomeRouteChildren,
 )
 
+interface MainProfileHelpRouteChildren {
+  MainProfileHelpTopicIdRoute: typeof MainProfileHelpTopicIdRoute
+}
+
+const MainProfileHelpRouteChildren: MainProfileHelpRouteChildren = {
+  MainProfileHelpTopicIdRoute: MainProfileHelpTopicIdRoute,
+}
+
+const MainProfileHelpRouteWithChildren = MainProfileHelpRoute._addFileChildren(
+  MainProfileHelpRouteChildren,
+)
+
 interface MainProfileSafetyReportRouteChildren {
   MainProfileSafetyReportSubmitRoute: typeof MainProfileSafetyReportSubmitRoute
 }
@@ -2614,10 +2708,11 @@ interface MainProfileRouteChildren {
   MainProfileAuditLogRoute: typeof MainProfileAuditLogRoute
   MainProfileCoachSettingsRoute: typeof MainProfileCoachSettingsRoute
   MainProfileEditRoute: typeof MainProfileEditRoute
-  MainProfileHelpRoute: typeof MainProfileHelpRoute
+  MainProfileHelpRoute: typeof MainProfileHelpRouteWithChildren
   MainProfileNotificationsRoute: typeof MainProfileNotificationsRoute
   MainProfilePauseRoute: typeof MainProfilePauseRoute
   MainProfileSafetyRoute: typeof MainProfileSafetyRouteWithChildren
+  MainProfileVerificationRoute: typeof MainProfileVerificationRoute
   MainProfileVisibilityRoute: typeof MainProfileVisibilityRoute
   MainProfileIndexRoute: typeof MainProfileIndexRoute
   MainProfileDataDoneRoute: typeof MainProfileDataDoneRoute
@@ -2631,10 +2726,11 @@ const MainProfileRouteChildren: MainProfileRouteChildren = {
   MainProfileAuditLogRoute: MainProfileAuditLogRoute,
   MainProfileCoachSettingsRoute: MainProfileCoachSettingsRoute,
   MainProfileEditRoute: MainProfileEditRoute,
-  MainProfileHelpRoute: MainProfileHelpRoute,
+  MainProfileHelpRoute: MainProfileHelpRouteWithChildren,
   MainProfileNotificationsRoute: MainProfileNotificationsRoute,
   MainProfilePauseRoute: MainProfilePauseRoute,
   MainProfileSafetyRoute: MainProfileSafetyRouteWithChildren,
+  MainProfileVerificationRoute: MainProfileVerificationRoute,
   MainProfileVisibilityRoute: MainProfileVisibilityRoute,
   MainProfileIndexRoute: MainProfileIndexRoute,
   MainProfileDataDoneRoute: MainProfileDataDoneRoute,

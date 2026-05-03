@@ -237,10 +237,19 @@ function ProfileDetailScreen() {
           "compatibility_overview",
           "Compatibility Overview",
           `How aligned you are with ${profile.name}.`,
-          <CompatibilityOverviewCard
-            values={profile.compatibilityOverview}
-            profileName={profile.name}
-          />,
+          <div>
+            <CompatibilityOverviewCard
+              values={profile.compatibilityOverview}
+              profileName={profile.name}
+            />
+            <Link
+              to="/discover/$id/compatibility"
+              params={{ id }}
+              className="mt-2 inline-flex font-body text-[12.5px] text-plum-700 hover:underline"
+            >
+              See all five lenses →
+            </Link>
+          </div>,
         )}
         {wrapModule(
           "ai_insight",

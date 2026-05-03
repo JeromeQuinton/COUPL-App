@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowUp, ChevronLeft, ImageIcon, Mic, MoreHorizontal, Smile, Video } from "lucide-react";
+import { VoiceMemoSheet } from "@/components/connections/VoiceMemoSheet";
 import { ConnectionAvatar } from "@/components/connections/Avatar";
 import { CoachPromptCard } from "@/components/connections/CoachPromptCard";
 import { MessageBubble } from "@/components/connections/MessageBubble";
@@ -57,6 +58,7 @@ function ThreadScreen() {
   const messages = THREADS[id] ?? [];
   const [draft, setDraft] = useState("");
   const [peekOpen, setPeekOpen] = useState(false);
+  const [voiceOpen, setVoiceOpen] = useState(false);
 
   return (
     <PageBackdrop>
@@ -171,6 +173,7 @@ function ThreadScreen() {
             <button
               type="button"
               aria-label="Record voice note"
+              onClick={() => setVoiceOpen(true)}
               className="flex size-9 shrink-0 items-center justify-center rounded-full text-slate hover:bg-lavender-100 hover:text-plum-700 transition-colors"
             >
               <Mic className="size-5" />
@@ -214,6 +217,7 @@ function ThreadScreen() {
           </div>
         </div>
       </div>
+      <VoiceMemoSheet open={voiceOpen} onClose={() => setVoiceOpen(false)} onSend={() => setVoiceOpen(false)} />
       <ProfilePeek
         open={peekOpen}
         onClose={() => setPeekOpen(false)}

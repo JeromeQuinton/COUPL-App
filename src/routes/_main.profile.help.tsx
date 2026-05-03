@@ -8,12 +8,18 @@ export const Route = createFileRoute("/_main/profile/help")({
   component: HelpHome,
 });
 
-const TOPICS = [
-  { id: "starting", icon: Compass, label: "Getting started", helper: "First-week walkthroughs and onboarding hiccups." },
-  { id: "safety", icon: Shield, label: "Safety", helper: "Reporting, blocking, verification, in-person meets." },
-  { id: "membership", icon: BadgeCheck, label: "Membership", helper: "Plans, cancellation, billing, refunds." },
-  { id: "events", icon: CalendarDays, label: "Events", helper: "Booking, hosting, attending, refunds." },
-  { id: "technical", icon: Cog, label: "Technical issues", helper: "Login, sync, performance, devices." },
+const TOPICS: {
+  id: string;
+  topicId: string;
+  icon: typeof Compass;
+  label: string;
+  helper: string;
+}[] = [
+  { id: "starting", topicId: "getting-started", icon: Compass, label: "Getting started", helper: "First-week walkthroughs and onboarding hiccups." },
+  { id: "attune", topicId: "how-attune-works", icon: BadgeCheck, label: "How Attune works", helper: "What the signal means and how mutuality works." },
+  { id: "pause", topicId: "pause-vs-cancel", icon: Cog, label: "Pause vs cancel", helper: "What stays, what doesn't, and the seven-day window." },
+  { id: "safety", topicId: "what-we-do-with-reports", icon: Shield, label: "What we do with reports", helper: "How we assess, what we tell the other person." },
+  { id: "verify", topicId: "verifying-your-photos", icon: CalendarDays, label: "Verifying your photos", helper: "How the automatic check works and what to try." },
 ];
 
 function HelpHome() {
@@ -39,9 +45,9 @@ function HelpHome() {
           const Icon = t.icon;
           return (
             <li key={t.id}>
-              <button
-                type="button"
-                // TODO: stream-5-next help topic pages
+              <Link
+                to="/profile/help/$topicId"
+                params={{ topicId: t.topicId }}
                 className="flex w-full items-start gap-3 rounded-[14px] bg-paper px-4 py-3.5 text-left shadow-elev-1 transition-colors hover:bg-lavender-50"
               >
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-lavender-100 text-plum-700">
@@ -52,7 +58,7 @@ function HelpHome() {
                   <p className="mt-0.5 font-body text-[12px] text-stone">{t.helper}</p>
                 </div>
                 <ChevronRight size={16} className="self-center text-stone" />
-              </button>
+              </Link>
             </li>
           );
         })}
@@ -61,7 +67,7 @@ function HelpHome() {
       <div className="px-5 pt-8 pb-12">
         <button
           type="button"
-          // TODO: stream-5-next contact route
+          // TODO: contact route
           className="w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[14px] text-ink hover:bg-lavender-50"
         >
           Contact us
