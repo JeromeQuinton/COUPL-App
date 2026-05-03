@@ -19,23 +19,28 @@ export const Route = createFileRoute("/onboarding/intent")({
   component: IntentScreen,
 });
 
-type IntentValue = "long_term" | "exploring" | "friendship";
+type IntentValue = "long_term" | "exploring" | "honest_dating" | "friendship";
 
 const OPTIONS: Array<{ value: IntentValue; label: string; hint: string }> = [
   {
     value: "long_term",
-    label: "Long, real partnership",
-    hint: "Open to one person. Patient with the search.",
+    label: "Long-term partnership",
+    hint: "Building toward depth and commitment.",
   },
   {
     value: "exploring",
-    label: "Slowly figuring it out",
-    hint: "Curious. Ready to learn what fits.",
+    label: "Relationship, exploring",
+    hint: "Open to where it leads.",
+  },
+  {
+    value: "honest_dating",
+    label: "Honest dating",
+    hint: "Meeting real people, no pretence.",
   },
   {
     value: "friendship",
-    label: "Someone to grow with",
-    hint: "Friendship-first, romance possible.",
+    label: "Friendship first",
+    hint: "Connection without pressure.",
   },
 ];
 
@@ -53,7 +58,7 @@ function IntentScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!intent) return;
-    navigate({ to: "/onboarding/pace" });
+    navigate({ to: "/onboarding/name" });
   };
 
   return (
@@ -61,10 +66,10 @@ function IntentScreen() {
       <form id="intent-form" onSubmit={onSubmit}>
         <StepEyebrow step={3} />
         <h1 className="mt-3 text-display-xl text-ink">
-          What are you here for?
+          What brings you here?
         </h1>
         <p className="mt-2 text-body-md text-slate">
-          Pick the one that's truest today. You can change this anytime.
+          You can change this anytime. No-one is shown your intent without context.
         </p>
 
         <fieldset className="mt-8 space-y-3">
@@ -81,6 +86,10 @@ function IntentScreen() {
             />
           ))}
         </fieldset>
+
+        <p className="mt-6 text-body-sm text-slate">
+          There's no right answer. The clearer you are with yourself, the more useful this becomes — for you and for the people you meet.
+        </p>
       </form>
 
       <div className="mt-8">

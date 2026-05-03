@@ -20,9 +20,11 @@ import { Route as OnboardingPromptsRouteImport } from './routes/onboarding.promp
 import { Route as OnboardingPhotosRouteImport } from './routes/onboarding.photos'
 import { Route as OnboardingPhotoReviewRouteImport } from './routes/onboarding.photo-review'
 import { Route as OnboardingPaceRouteImport } from './routes/onboarding.pace'
+import { Route as OnboardingNameRouteImport } from './routes/onboarding.name'
 import { Route as OnboardingIntentRouteImport } from './routes/onboarding.intent'
 import { Route as OnboardingErrorRouteImport } from './routes/onboarding.error'
 import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
+import { Route as OnboardingChecksRouteImport } from './routes/onboarding.checks'
 import { Route as OnboardingCapacityRouteImport } from './routes/onboarding.capacity'
 import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
@@ -112,6 +114,11 @@ const OnboardingPaceRoute = OnboardingPaceRouteImport.update({
   path: '/pace',
   getParentRoute: () => OnboardingRoute,
 } as any)
+const OnboardingNameRoute = OnboardingNameRouteImport.update({
+  id: '/name',
+  path: '/name',
+  getParentRoute: () => OnboardingRoute,
+} as any)
 const OnboardingIntentRoute = OnboardingIntentRouteImport.update({
   id: '/intent',
   path: '/intent',
@@ -125,6 +132,11 @@ const OnboardingErrorRoute = OnboardingErrorRouteImport.update({
 const OnboardingCompleteRoute = OnboardingCompleteRouteImport.update({
   id: '/complete',
   path: '/complete',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingChecksRoute = OnboardingChecksRouteImport.update({
+  id: '/checks',
+  path: '/checks',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const OnboardingCapacityRoute = OnboardingCapacityRouteImport.update({
@@ -319,9 +331,11 @@ export interface FileRoutesByFullPath {
   '/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
+  '/onboarding/checks': typeof OnboardingChecksRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
+  '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/pace': typeof OnboardingPaceRoute
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
@@ -364,9 +378,11 @@ export interface FileRoutesByTo {
   '/home': typeof MainHomeRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
+  '/onboarding/checks': typeof OnboardingChecksRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
+  '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/pace': typeof OnboardingPaceRoute
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
@@ -416,9 +432,11 @@ export interface FileRoutesById {
   '/_main/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
+  '/onboarding/checks': typeof OnboardingChecksRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
+  '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/pace': typeof OnboardingPaceRoute
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
@@ -467,9 +485,11 @@ export interface FileRouteTypes {
     | '/profile'
     | '/onboarding/$step'
     | '/onboarding/capacity'
+    | '/onboarding/checks'
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
+    | '/onboarding/name'
     | '/onboarding/pace'
     | '/onboarding/photo-review'
     | '/onboarding/photos'
@@ -512,9 +532,11 @@ export interface FileRouteTypes {
     | '/home'
     | '/onboarding/$step'
     | '/onboarding/capacity'
+    | '/onboarding/checks'
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
+    | '/onboarding/name'
     | '/onboarding/pace'
     | '/onboarding/photo-review'
     | '/onboarding/photos'
@@ -563,9 +585,11 @@ export interface FileRouteTypes {
     | '/_main/profile'
     | '/onboarding/$step'
     | '/onboarding/capacity'
+    | '/onboarding/checks'
     | '/onboarding/complete'
     | '/onboarding/error'
     | '/onboarding/intent'
+    | '/onboarding/name'
     | '/onboarding/pace'
     | '/onboarding/photo-review'
     | '/onboarding/photos'
@@ -688,6 +712,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingPaceRouteImport
       parentRoute: typeof OnboardingRoute
     }
+    '/onboarding/name': {
+      id: '/onboarding/name'
+      path: '/name'
+      fullPath: '/onboarding/name'
+      preLoaderRoute: typeof OnboardingNameRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
     '/onboarding/intent': {
       id: '/onboarding/intent'
       path: '/intent'
@@ -707,6 +738,13 @@ declare module '@tanstack/react-router' {
       path: '/complete'
       fullPath: '/onboarding/complete'
       preLoaderRoute: typeof OnboardingCompleteRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/checks': {
+      id: '/onboarding/checks'
+      path: '/checks'
+      fullPath: '/onboarding/checks'
+      preLoaderRoute: typeof OnboardingChecksRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/onboarding/capacity': {
@@ -1102,9 +1140,11 @@ const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 interface OnboardingRouteChildren {
   OnboardingStepRoute: typeof OnboardingStepRoute
   OnboardingCapacityRoute: typeof OnboardingCapacityRoute
+  OnboardingChecksRoute: typeof OnboardingChecksRoute
   OnboardingCompleteRoute: typeof OnboardingCompleteRoute
   OnboardingErrorRoute: typeof OnboardingErrorRoute
   OnboardingIntentRoute: typeof OnboardingIntentRoute
+  OnboardingNameRoute: typeof OnboardingNameRoute
   OnboardingPaceRoute: typeof OnboardingPaceRoute
   OnboardingPhotoReviewRoute: typeof OnboardingPhotoReviewRoute
   OnboardingPhotosRoute: typeof OnboardingPhotosRoute
@@ -1117,9 +1157,11 @@ interface OnboardingRouteChildren {
 const OnboardingRouteChildren: OnboardingRouteChildren = {
   OnboardingStepRoute: OnboardingStepRoute,
   OnboardingCapacityRoute: OnboardingCapacityRoute,
+  OnboardingChecksRoute: OnboardingChecksRoute,
   OnboardingCompleteRoute: OnboardingCompleteRoute,
   OnboardingErrorRoute: OnboardingErrorRoute,
   OnboardingIntentRoute: OnboardingIntentRoute,
+  OnboardingNameRoute: OnboardingNameRoute,
   OnboardingPaceRoute: OnboardingPaceRoute,
   OnboardingPhotoReviewRoute: OnboardingPhotoReviewRoute,
   OnboardingPhotosRoute: OnboardingPhotosRoute,

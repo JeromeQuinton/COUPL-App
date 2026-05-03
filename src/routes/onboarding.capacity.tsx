@@ -36,13 +36,13 @@ function CapacityScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!capacity) return;
-    navigate({ to: "/onboarding/complete" });
+    navigate({ to: "/onboarding/checks" });
   };
 
   return (
     <OnboardingFrame backTo="/onboarding/prompts">
       <form id="capacity-form" onSubmit={onSubmit}>
-        <StepEyebrow step={8} />
+        <StepEyebrow step={9} />
         <h1 className="mt-3 text-display-xl text-ink">
           How are you, actually?
         </h1>

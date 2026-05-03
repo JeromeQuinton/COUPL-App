@@ -51,7 +51,7 @@ function PaceScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/intent">
       <form id="pace-form" onSubmit={onSubmit}>
-        <StepEyebrow step={4} />
+        <StepEyebrow step={5} />
         <h1 className="mt-3 text-display-xl text-ink">
           What pace feels kind?
         </h1>

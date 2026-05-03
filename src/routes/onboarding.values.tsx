@@ -63,7 +63,7 @@ function ValuesScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/pace">
       <form id="values-form" onSubmit={onSubmit}>
-        <StepEyebrow step={5} />
+        <StepEyebrow step={6} />
         <h1 className="mt-3 text-display-xl text-ink">
           Pick four values you live by
         </h1>
