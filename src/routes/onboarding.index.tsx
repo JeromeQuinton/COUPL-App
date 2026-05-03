@@ -60,9 +60,9 @@ function SplashScreen() {
       <div className="flex min-h-[80vh] flex-col">
         <div className="flex-1 pt-12">
           <img
-            src="/brand/coupltransparent.png"
+            src="/coupltransparentpng.png"
             alt="COUPL"
-            className="w-full max-w-[280px] h-auto"
+            className="block w-full max-w-[280px] h-auto"
           />
           <p className="mt-4 max-w-[18rem] text-body-lg text-slate">
             Slow dating for people who want to be known.
