@@ -50,6 +50,7 @@ import { Route as OnboardingChecksLivenessHelpRouteImport } from './routes/onboa
 import { Route as OnboardingChecksLivenessRouteImport } from './routes/onboarding.checks.liveness'
 import { Route as OnboardingChecksIdSelectRouteImport } from './routes/onboarding.checks.id-select'
 import { Route as OnboardingChecksIdScanRouteImport } from './routes/onboarding.checks.id-scan'
+import { Route as MainVideoPermissionsRouteImport } from './routes/_main.video.permissions'
 import { Route as MainProfileVisibilityRouteImport } from './routes/_main.profile.visibility'
 import { Route as MainProfileSafetyRouteImport } from './routes/_main.profile.safety'
 import { Route as MainProfilePauseRouteImport } from './routes/_main.profile.pause'
@@ -70,6 +71,7 @@ import { Route as MainEventsIdRouteImport } from './routes/_main.events.$id'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
+import { Route as MainVideoCoachBookingRouteImport } from './routes/_main.video.coach.booking'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
 import { Route as MainProfileDataReadyRouteImport } from './routes/_main.profile.data.ready'
 import { Route as MainProfileDataPreparingRouteImport } from './routes/_main.profile.data.preparing'
@@ -100,10 +102,16 @@ import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.con
 import { Route as MainConnectionsIdConnectedRouteImport } from './routes/_main.connections.$id_.connected'
 import { Route as MainConnectionsIdCoachInsightRouteImport } from './routes/_main.connections.$id_.coach-insight'
 import { Route as MainConnectionsIdCleanEndingRouteImport } from './routes/_main.connections.$id_.clean-ending'
+import { Route as MainVideoWorkshopWorkshopIdIndexRouteImport } from './routes/_main.video.workshop.$workshopId.index'
 import { Route as MainVideoPreMeetConnectionIdIndexRouteImport } from './routes/_main.video.pre-meet.$connectionId.index'
+import { Route as MainVideoWorkshopWorkshopIdLiveRouteImport } from './routes/_main.video.workshop.$workshopId.live'
+import { Route as MainVideoWorkshopWorkshopIdEndedRouteImport } from './routes/_main.video.workshop.$workshopId.ended'
 import { Route as MainVideoPreMeetConnectionIdIncomingRouteImport } from './routes/_main.video.pre-meet.$connectionId.incoming'
 import { Route as MainVideoPreMeetConnectionIdEndedRouteImport } from './routes/_main.video.pre-meet.$connectionId.ended'
 import { Route as MainVideoPreMeetConnectionIdActiveRouteImport } from './routes/_main.video.pre-meet.$connectionId.active'
+import { Route as MainVideoCoachBookingIdLobbyRouteImport } from './routes/_main.video.coach.$bookingId.lobby'
+import { Route as MainVideoCoachBookingIdEndedRouteImport } from './routes/_main.video.coach.$bookingId.ended'
+import { Route as MainVideoCoachBookingIdActiveRouteImport } from './routes/_main.video.coach.$bookingId.active'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -313,6 +321,11 @@ const OnboardingChecksIdScanRoute = OnboardingChecksIdScanRouteImport.update({
   path: '/id-scan',
   getParentRoute: () => OnboardingChecksRoute,
 } as any)
+const MainVideoPermissionsRoute = MainVideoPermissionsRouteImport.update({
+  id: '/video/permissions',
+  path: '/video/permissions',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainProfileVisibilityRoute = MainProfileVisibilityRouteImport.update({
   id: '/visibility',
   path: '/visibility',
@@ -414,6 +427,11 @@ const MainConnectionsIdRoute = MainConnectionsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => MainConnectionsRoute,
+} as any)
+const MainVideoCoachBookingRoute = MainVideoCoachBookingRouteImport.update({
+  id: '/video/coach/booking',
+  path: '/video/coach/booking',
+  getParentRoute: () => MainRoute,
 } as any)
 const MainProfileSafetyReportRoute = MainProfileSafetyReportRouteImport.update({
   id: '/report',
@@ -581,10 +599,28 @@ const MainConnectionsIdCleanEndingRoute =
     path: '/$id/clean-ending',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainVideoWorkshopWorkshopIdIndexRoute =
+  MainVideoWorkshopWorkshopIdIndexRouteImport.update({
+    id: '/video/workshop/$workshopId/',
+    path: '/video/workshop/$workshopId/',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainVideoPreMeetConnectionIdIndexRoute =
   MainVideoPreMeetConnectionIdIndexRouteImport.update({
     id: '/video/pre-meet/$connectionId/',
     path: '/video/pre-meet/$connectionId/',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoWorkshopWorkshopIdLiveRoute =
+  MainVideoWorkshopWorkshopIdLiveRouteImport.update({
+    id: '/video/workshop/$workshopId/live',
+    path: '/video/workshop/$workshopId/live',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoWorkshopWorkshopIdEndedRoute =
+  MainVideoWorkshopWorkshopIdEndedRouteImport.update({
+    id: '/video/workshop/$workshopId/ended',
+    path: '/video/workshop/$workshopId/ended',
     getParentRoute: () => MainRoute,
   } as any)
 const MainVideoPreMeetConnectionIdIncomingRoute =
@@ -603,6 +639,24 @@ const MainVideoPreMeetConnectionIdActiveRoute =
   MainVideoPreMeetConnectionIdActiveRouteImport.update({
     id: '/video/pre-meet/$connectionId/active',
     path: '/video/pre-meet/$connectionId/active',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoCoachBookingIdLobbyRoute =
+  MainVideoCoachBookingIdLobbyRouteImport.update({
+    id: '/video/coach/$bookingId/lobby',
+    path: '/video/coach/$bookingId/lobby',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoCoachBookingIdEndedRoute =
+  MainVideoCoachBookingIdEndedRouteImport.update({
+    id: '/video/coach/$bookingId/ended',
+    path: '/video/coach/$bookingId/ended',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoCoachBookingIdActiveRoute =
+  MainVideoCoachBookingIdActiveRouteImport.update({
+    id: '/video/coach/$bookingId/active',
+    path: '/video/coach/$bookingId/active',
     getParentRoute: () => MainRoute,
   } as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
@@ -662,6 +716,7 @@ export interface FileRoutesByFullPath {
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/profile/visibility': typeof MainProfileVisibilityRoute
+  '/video/permissions': typeof MainVideoPermissionsRoute
   '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
   '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
   '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
@@ -702,11 +757,18 @@ export interface FileRoutesByFullPath {
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRoute
+  '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
+  '/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
+  '/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
   '/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
   '/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
   '/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
+  '/video/workshop/$workshopId/ended': typeof MainVideoWorkshopWorkshopIdEndedRoute
+  '/video/workshop/$workshopId/live': typeof MainVideoWorkshopWorkshopIdLiveRoute
   '/video/pre-meet/$connectionId/': typeof MainVideoPreMeetConnectionIdIndexRoute
+  '/video/workshop/$workshopId/': typeof MainVideoWorkshopWorkshopIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -754,6 +816,7 @@ export interface FileRoutesByTo {
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/profile/visibility': typeof MainProfileVisibilityRoute
+  '/video/permissions': typeof MainVideoPermissionsRoute
   '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
   '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
   '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
@@ -794,11 +857,18 @@ export interface FileRoutesByTo {
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRoute
+  '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
+  '/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
+  '/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
   '/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
   '/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
   '/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
+  '/video/workshop/$workshopId/ended': typeof MainVideoWorkshopWorkshopIdEndedRoute
+  '/video/workshop/$workshopId/live': typeof MainVideoWorkshopWorkshopIdLiveRoute
   '/video/pre-meet/$connectionId': typeof MainVideoPreMeetConnectionIdIndexRoute
+  '/video/workshop/$workshopId': typeof MainVideoWorkshopWorkshopIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -853,6 +923,7 @@ export interface FileRoutesById {
   '/_main/profile/pause': typeof MainProfilePauseRoute
   '/_main/profile/safety': typeof MainProfileSafetyRouteWithChildren
   '/_main/profile/visibility': typeof MainProfileVisibilityRoute
+  '/_main/video/permissions': typeof MainVideoPermissionsRoute
   '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
   '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
   '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
@@ -893,11 +964,18 @@ export interface FileRoutesById {
   '/_main/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/_main/profile/data/ready': typeof MainProfileDataReadyRoute
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRoute
+  '/_main/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/_main/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
+  '/_main/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
+  '/_main/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
   '/_main/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
   '/_main/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
   '/_main/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
+  '/_main/video/workshop/$workshopId/ended': typeof MainVideoWorkshopWorkshopIdEndedRoute
+  '/_main/video/workshop/$workshopId/live': typeof MainVideoWorkshopWorkshopIdLiveRoute
   '/_main/video/pre-meet/$connectionId/': typeof MainVideoPreMeetConnectionIdIndexRoute
+  '/_main/video/workshop/$workshopId/': typeof MainVideoWorkshopWorkshopIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -951,6 +1029,7 @@ export interface FileRouteTypes {
     | '/profile/pause'
     | '/profile/safety'
     | '/profile/visibility'
+    | '/video/permissions'
     | '/onboarding/checks/id-scan'
     | '/onboarding/checks/id-select'
     | '/onboarding/checks/liveness'
@@ -991,11 +1070,18 @@ export interface FileRouteTypes {
     | '/profile/data/preparing'
     | '/profile/data/ready'
     | '/profile/safety/report'
+    | '/video/coach/booking'
     | '/discover/$id/insights/connection-languages'
+    | '/video/coach/$bookingId/active'
+    | '/video/coach/$bookingId/ended'
+    | '/video/coach/$bookingId/lobby'
     | '/video/pre-meet/$connectionId/active'
     | '/video/pre-meet/$connectionId/ended'
     | '/video/pre-meet/$connectionId/incoming'
+    | '/video/workshop/$workshopId/ended'
+    | '/video/workshop/$workshopId/live'
     | '/video/pre-meet/$connectionId/'
+    | '/video/workshop/$workshopId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -1043,6 +1129,7 @@ export interface FileRouteTypes {
     | '/profile/pause'
     | '/profile/safety'
     | '/profile/visibility'
+    | '/video/permissions'
     | '/onboarding/checks/id-scan'
     | '/onboarding/checks/id-select'
     | '/onboarding/checks/liveness'
@@ -1083,11 +1170,18 @@ export interface FileRouteTypes {
     | '/profile/data/preparing'
     | '/profile/data/ready'
     | '/profile/safety/report'
+    | '/video/coach/booking'
     | '/discover/$id/insights/connection-languages'
+    | '/video/coach/$bookingId/active'
+    | '/video/coach/$bookingId/ended'
+    | '/video/coach/$bookingId/lobby'
     | '/video/pre-meet/$connectionId/active'
     | '/video/pre-meet/$connectionId/ended'
     | '/video/pre-meet/$connectionId/incoming'
+    | '/video/workshop/$workshopId/ended'
+    | '/video/workshop/$workshopId/live'
     | '/video/pre-meet/$connectionId'
+    | '/video/workshop/$workshopId'
   id:
     | '__root__'
     | '/'
@@ -1141,6 +1235,7 @@ export interface FileRouteTypes {
     | '/_main/profile/pause'
     | '/_main/profile/safety'
     | '/_main/profile/visibility'
+    | '/_main/video/permissions'
     | '/onboarding/checks/id-scan'
     | '/onboarding/checks/id-select'
     | '/onboarding/checks/liveness'
@@ -1181,11 +1276,18 @@ export interface FileRouteTypes {
     | '/_main/profile/data/preparing'
     | '/_main/profile/data/ready'
     | '/_main/profile/safety/report'
+    | '/_main/video/coach/booking'
     | '/_main/discover/$id_/insights/connection-languages'
+    | '/_main/video/coach/$bookingId/active'
+    | '/_main/video/coach/$bookingId/ended'
+    | '/_main/video/coach/$bookingId/lobby'
     | '/_main/video/pre-meet/$connectionId/active'
     | '/_main/video/pre-meet/$connectionId/ended'
     | '/_main/video/pre-meet/$connectionId/incoming'
+    | '/_main/video/workshop/$workshopId/ended'
+    | '/_main/video/workshop/$workshopId/live'
     | '/_main/video/pre-meet/$connectionId/'
+    | '/_main/video/workshop/$workshopId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1487,6 +1589,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingChecksIdScanRouteImport
       parentRoute: typeof OnboardingChecksRoute
     }
+    '/_main/video/permissions': {
+      id: '/_main/video/permissions'
+      path: '/video/permissions'
+      fullPath: '/video/permissions'
+      preLoaderRoute: typeof MainVideoPermissionsRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/profile/visibility': {
       id: '/_main/profile/visibility'
       path: '/visibility'
@@ -1626,6 +1735,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/connections/$id'
       preLoaderRoute: typeof MainConnectionsIdRouteImport
       parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/video/coach/booking': {
+      id: '/_main/video/coach/booking'
+      path: '/video/coach/booking'
+      fullPath: '/video/coach/booking'
+      preLoaderRoute: typeof MainVideoCoachBookingRouteImport
+      parentRoute: typeof MainRoute
     }
     '/_main/profile/safety/report': {
       id: '/_main/profile/safety/report'
@@ -1837,11 +1953,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdCleanEndingRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/video/workshop/$workshopId/': {
+      id: '/_main/video/workshop/$workshopId/'
+      path: '/video/workshop/$workshopId'
+      fullPath: '/video/workshop/$workshopId/'
+      preLoaderRoute: typeof MainVideoWorkshopWorkshopIdIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/video/pre-meet/$connectionId/': {
       id: '/_main/video/pre-meet/$connectionId/'
       path: '/video/pre-meet/$connectionId'
       fullPath: '/video/pre-meet/$connectionId/'
       preLoaderRoute: typeof MainVideoPreMeetConnectionIdIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/workshop/$workshopId/live': {
+      id: '/_main/video/workshop/$workshopId/live'
+      path: '/video/workshop/$workshopId/live'
+      fullPath: '/video/workshop/$workshopId/live'
+      preLoaderRoute: typeof MainVideoWorkshopWorkshopIdLiveRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/workshop/$workshopId/ended': {
+      id: '/_main/video/workshop/$workshopId/ended'
+      path: '/video/workshop/$workshopId/ended'
+      fullPath: '/video/workshop/$workshopId/ended'
+      preLoaderRoute: typeof MainVideoWorkshopWorkshopIdEndedRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/video/pre-meet/$connectionId/incoming': {
@@ -1863,6 +2000,27 @@ declare module '@tanstack/react-router' {
       path: '/video/pre-meet/$connectionId/active'
       fullPath: '/video/pre-meet/$connectionId/active'
       preLoaderRoute: typeof MainVideoPreMeetConnectionIdActiveRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/coach/$bookingId/lobby': {
+      id: '/_main/video/coach/$bookingId/lobby'
+      path: '/video/coach/$bookingId/lobby'
+      fullPath: '/video/coach/$bookingId/lobby'
+      preLoaderRoute: typeof MainVideoCoachBookingIdLobbyRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/coach/$bookingId/ended': {
+      id: '/_main/video/coach/$bookingId/ended'
+      path: '/video/coach/$bookingId/ended'
+      fullPath: '/video/coach/$bookingId/ended'
+      preLoaderRoute: typeof MainVideoCoachBookingIdEndedRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/coach/$bookingId/active': {
+      id: '/_main/video/coach/$bookingId/active'
+      path: '/video/coach/$bookingId/active'
+      fullPath: '/video/coach/$bookingId/active'
+      preLoaderRoute: typeof MainVideoCoachBookingIdActiveRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/discover/$id_/insights/connection-languages': {
@@ -2033,6 +2191,7 @@ interface MainRouteChildren {
   MainHostAttendeesRoute: typeof MainHostAttendeesRoute
   MainHostNewRoute: typeof MainHostNewRoute
   MainMembershipPlansRoute: typeof MainMembershipPlansRoute
+  MainVideoPermissionsRoute: typeof MainVideoPermissionsRoute
   MainEventsIndexRoute: typeof MainEventsIndexRoute
   MainHostIndexRoute: typeof MainHostIndexRoute
   MainMembershipIndexRoute: typeof MainMembershipIndexRoute
@@ -2047,10 +2206,17 @@ interface MainRouteChildren {
   MainHostNewWorkshopRoute: typeof MainHostNewWorkshopRoute
   MainHostNewWorkshopDetailRoute: typeof MainHostNewWorkshopDetailRoute
   MainHostNewWorkshopReviewRoute: typeof MainHostNewWorkshopReviewRoute
+  MainVideoCoachBookingRoute: typeof MainVideoCoachBookingRoute
+  MainVideoCoachBookingIdActiveRoute: typeof MainVideoCoachBookingIdActiveRoute
+  MainVideoCoachBookingIdEndedRoute: typeof MainVideoCoachBookingIdEndedRoute
+  MainVideoCoachBookingIdLobbyRoute: typeof MainVideoCoachBookingIdLobbyRoute
   MainVideoPreMeetConnectionIdActiveRoute: typeof MainVideoPreMeetConnectionIdActiveRoute
   MainVideoPreMeetConnectionIdEndedRoute: typeof MainVideoPreMeetConnectionIdEndedRoute
   MainVideoPreMeetConnectionIdIncomingRoute: typeof MainVideoPreMeetConnectionIdIncomingRoute
+  MainVideoWorkshopWorkshopIdEndedRoute: typeof MainVideoWorkshopWorkshopIdEndedRoute
+  MainVideoWorkshopWorkshopIdLiveRoute: typeof MainVideoWorkshopWorkshopIdLiveRoute
   MainVideoPreMeetConnectionIdIndexRoute: typeof MainVideoPreMeetConnectionIdIndexRoute
+  MainVideoWorkshopWorkshopIdIndexRoute: typeof MainVideoWorkshopWorkshopIdIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
@@ -2063,6 +2229,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainHostAttendeesRoute: MainHostAttendeesRoute,
   MainHostNewRoute: MainHostNewRoute,
   MainMembershipPlansRoute: MainMembershipPlansRoute,
+  MainVideoPermissionsRoute: MainVideoPermissionsRoute,
   MainEventsIndexRoute: MainEventsIndexRoute,
   MainHostIndexRoute: MainHostIndexRoute,
   MainMembershipIndexRoute: MainMembershipIndexRoute,
@@ -2077,14 +2244,21 @@ const MainRouteChildren: MainRouteChildren = {
   MainHostNewWorkshopRoute: MainHostNewWorkshopRoute,
   MainHostNewWorkshopDetailRoute: MainHostNewWorkshopDetailRoute,
   MainHostNewWorkshopReviewRoute: MainHostNewWorkshopReviewRoute,
+  MainVideoCoachBookingRoute: MainVideoCoachBookingRoute,
+  MainVideoCoachBookingIdActiveRoute: MainVideoCoachBookingIdActiveRoute,
+  MainVideoCoachBookingIdEndedRoute: MainVideoCoachBookingIdEndedRoute,
+  MainVideoCoachBookingIdLobbyRoute: MainVideoCoachBookingIdLobbyRoute,
   MainVideoPreMeetConnectionIdActiveRoute:
     MainVideoPreMeetConnectionIdActiveRoute,
   MainVideoPreMeetConnectionIdEndedRoute:
     MainVideoPreMeetConnectionIdEndedRoute,
   MainVideoPreMeetConnectionIdIncomingRoute:
     MainVideoPreMeetConnectionIdIncomingRoute,
+  MainVideoWorkshopWorkshopIdEndedRoute: MainVideoWorkshopWorkshopIdEndedRoute,
+  MainVideoWorkshopWorkshopIdLiveRoute: MainVideoWorkshopWorkshopIdLiveRoute,
   MainVideoPreMeetConnectionIdIndexRoute:
     MainVideoPreMeetConnectionIdIndexRoute,
+  MainVideoWorkshopWorkshopIdIndexRoute: MainVideoWorkshopWorkshopIdIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
