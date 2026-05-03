@@ -44,6 +44,36 @@ function GrowthDashboard() {
         </p>
       </header>
 
+      {/* Polaris hero — flagship reflection surface */}
+      <section className="px-5 pb-5">
+        <Link
+          to="/polaris"
+          className="block rounded-[20px] border border-plum-300/50 p-5 shadow-elev-1 transition-colors hover:border-plum-500"
+          style={{
+            background:
+              "linear-gradient(135deg, color-mix(in oklab, var(--lavender-100) 70%, var(--paper)) 0%, color-mix(in oklab, var(--blush) 50%, var(--paper)) 100%)",
+          }}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <p className="text-label-mono text-plum-700">POLARIS</p>
+              <p className="mt-2 font-display text-[18px] italic leading-snug text-ink">
+                This week you noticed differently.
+              </p>
+              <p className="mt-2 font-body text-[12.5px] leading-relaxed text-slate">
+                Read 30 days. Three patterns to notice.
+              </p>
+            </div>
+            <span
+              aria-hidden
+              className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-paper/70 text-plum-700 ring-1 ring-plum-300/40"
+            >
+              <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
+            </span>
+          </div>
+        </Link>
+      </section>
+
       {/* Current arc card */}
       <section className="px-5">
         <article
