@@ -27,7 +27,7 @@ function ChecksScreen() {
 
   return (
     <OnboardingFrame backTo="/onboarding/capacity">
-      <StepEyebrow step={9} />
+      <StepEyebrow step={10} />
       <h1 className="mt-3 text-display-xl text-ink">Three quick checks.</h1>
       <p className="mt-2 text-body-md text-slate">
         Verified profiles get more replies. Under 2 min.
