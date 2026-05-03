@@ -76,8 +76,6 @@ function PhotoReviewScreen() {
         <ol className="mt-5 grid grid-cols-4 gap-2">
           {STAGES.map((stage, i) => {
             const isComplete = i <= progress;
-            const isRunning = i === progress + 1 - 1 && !isComplete;
-            // running stage = the next one after the last complete
             const running = i === progress + 1 && progress < 3;
             return (
               <li
