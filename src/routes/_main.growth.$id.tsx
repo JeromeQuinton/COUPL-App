@@ -148,6 +148,15 @@ function WorkshopDetailPage() {
             Hold a place
           </Link>
         </div>
+        <div className="mt-4 flex justify-end">
+          <Link
+            to="/video/workshop/$workshopId"
+            params={{ workshopId: w.id }}
+            className="text-label-mono text-plum-700 hover:underline"
+          >
+            JOIN VIDEO SESSION →
+          </Link>
+        </div>
       </div>
     </GrowthBackdrop>
   );

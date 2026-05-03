@@ -101,6 +101,8 @@ export type SafetyRow = {
   to:
     | "/profile/safety"
     | "/profile/safety/report"
+    | "/profile/safety/reports"
+    | "/profile/safety/blocked"
     | "/profile/audit-log"
     | "/profile/edit"
     | "/profile/pause"
@@ -137,6 +139,18 @@ export const SAFETY_ROWS: SafetyRow[] = [
     title: "Privacy controls",
     sub: "What others see + when",
     to: "/profile/visibility",
+  },
+  {
+    id: "reports",
+    title: "My reports",
+    sub: "Status + history of what you've raised",
+    to: "/profile/safety/reports",
+  },
+  {
+    id: "blocked",
+    title: "Blocked accounts",
+    sub: "People you've removed — unblock here",
+    to: "/profile/safety/blocked",
   },
 ];
 

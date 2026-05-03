@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowUp, ChevronLeft, ImageIcon, Mic, MoreHorizontal, Smile } from "lucide-react";
+import { ArrowUp, ChevronLeft, ImageIcon, Mic, MoreHorizontal, Smile, Video } from "lucide-react";
 import { ConnectionAvatar } from "@/components/connections/Avatar";
 import { CoachPromptCard } from "@/components/connections/CoachPromptCard";
 import { MessageBubble } from "@/components/connections/MessageBubble";
@@ -93,6 +93,14 @@ function ThreadScreen() {
               Connected · Coach on
             </p>
           </div>
+          <Link
+            to="/video/pre-meet/$connectionId"
+            params={{ connectionId: id }}
+            aria-label="Start a video call"
+            className="rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
+          >
+            <Video className="h-5 w-5" />
+          </Link>
           <Link
             to="/connections/$id/propose-plan"
             params={{ id }}

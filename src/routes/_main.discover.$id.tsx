@@ -183,6 +183,7 @@ function ProfileDetailScreen() {
         revealName={headerReveal}
         name={profile.name}
         age={profile.age}
+        profileId={profile.id}
       />
 
       <div className="flex flex-col gap-4 pt-4">
