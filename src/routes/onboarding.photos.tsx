@@ -68,7 +68,7 @@ function PhotosScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/values">
       <form id="photos-form" onSubmit={onSubmit}>
-        <StepEyebrow step={6} />
+        <StepEyebrow step={8} />
         <h1 className="mt-3 text-display-xl text-ink">
           Three photos. No filters.
         </h1>
