@@ -24,13 +24,13 @@ function NameScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name.trim()) return;
-    navigate({ to: "/onboarding/pace" });
+    navigate({ to: "/onboarding/intent" });
   };
 
   return (
     <OnboardingFrame backTo="/onboarding/intent">
       <form id="name-form" onSubmit={onSubmit}>
-        <StepEyebrow step={4} />
+        <StepEyebrow step={2} />
         <h1 className="mt-3 text-display-xl text-ink">
           What should we call you?
         </h1>
