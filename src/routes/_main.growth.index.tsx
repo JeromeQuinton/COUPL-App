@@ -95,6 +95,45 @@ function GrowthDashboard() {
         </article>
       </section>
 
+      {/* More from Growth — Workshops list, Monthly summary, Journal */}
+      <section className="px-5 pt-7">
+        <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
+          More from Growth
+        </h3>
+        <ul className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+          <li>
+            <Link
+              to="/growth/workshops"
+              className="block rounded-[16px] bg-paper p-4 shadow-elev-1 transition-colors hover:bg-lavender-50"
+            >
+              <p className="text-label-mono">Workshops</p>
+              <p className="mt-1.5 font-display text-[14px] font-medium text-ink">All sessions</p>
+              <p className="mt-0.5 font-body text-[11.5px] text-stone">Led by practitioners.</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/growth/journal"
+              className="block rounded-[16px] bg-paper p-4 shadow-elev-1 transition-colors hover:bg-lavender-50"
+            >
+              <p className="text-label-mono">Journal</p>
+              <p className="mt-1.5 font-display text-[14px] font-medium text-ink">Your written record</p>
+              <p className="mt-0.5 font-body text-[11.5px] text-stone">Private to you.</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/growth/monthly-summary"
+              className="block rounded-[16px] bg-paper p-4 shadow-elev-1 transition-colors hover:bg-lavender-50"
+            >
+              <p className="text-label-mono">Monthly</p>
+              <p className="mt-1.5 font-display text-[14px] font-medium text-ink">A month with yourself</p>
+              <p className="mt-0.5 font-body text-[11.5px] text-stone">Read yourself back.</p>
+            </Link>
+          </li>
+        </ul>
+      </section>
+
       {/* Reflections */}
       <section className="px-5 pt-7">
         <h3 className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
