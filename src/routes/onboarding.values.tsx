@@ -57,7 +57,7 @@ function ValuesScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (selected.length !== TARGET) return;
-    navigate({ to: "/onboarding/photos" });
+    navigate({ to: "/onboarding/lifestyle" });
   };
 
   return (
