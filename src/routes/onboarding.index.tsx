@@ -51,7 +51,11 @@ function SplashScreen() {
     >
       <div className="flex min-h-[80vh] flex-col">
         <div className="flex-1 pt-12">
-          <h1 className="text-display-xxl text-ink">coupl</h1>
+          <img
+            src="/brand/coupl-logo.png"
+            alt="COUPL"
+            className="h-10 w-auto"
+          />
           <p className="mt-4 max-w-[18rem] text-body-lg text-slate">
             Slow dating for people who want to be known.
           </p>
