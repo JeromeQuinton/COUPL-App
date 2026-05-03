@@ -95,9 +95,27 @@ function ThreadScreen() {
         {/* Timeline */}
         <ol className="flex-1 space-y-3 py-5" aria-label="Conversation">
           {messages.map((m, i) => (
-            <li key={i}>{renderMessage(m)}</li>
+            <li key={i}>{renderMessage(m, id)}</li>
           ))}
         </ol>
+
+        {/* Phase 1 demo triggers — replaced by automated triggers in Phase 4 */}
+        <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
+          <Link
+            to="/connections/$id/green-flag"
+            params={{ id }}
+            className="rounded-full border border-plum-300/30 bg-paper/70 px-3 py-1 text-plum-700 hover:bg-lavender-50"
+          >
+            Show green flag (demo)
+          </Link>
+          <Link
+            to="/connections/$id/red-flag"
+            params={{ id }}
+            className="rounded-full border border-plum-300/30 bg-paper/70 px-3 py-1 text-plum-700 hover:bg-lavender-50"
+          >
+            Show red flag (demo)
+          </Link>
+        </div>
 
         {/* Composer */}
         <div
@@ -135,7 +153,7 @@ function ThreadScreen() {
   );
 }
 
-function renderMessage(m: ThreadMessage) {
+function renderMessage(m: ThreadMessage, id: string) {
   if (m.kind === "time") {
     return (
       <div className="flex items-center justify-center py-2">
@@ -147,13 +165,22 @@ function renderMessage(m: ThreadMessage) {
   }
   if (m.kind === "coach") {
     return (
-      <CoachPromptCard
-        title={m.title}
-        body={m.body}
-        wireframe
-        onPrimary={() => {}}
-        onSecondary={() => {}}
-      />
+      <div>
+        <CoachPromptCard
+          title={m.title}
+          body={m.body}
+          wireframe
+          onPrimary={() => {}}
+          onSecondary={() => {}}
+        />
+        <Link
+          to="/connections/$id/coach-insight"
+          params={{ id }}
+          className="mt-2 inline-block text-[12px] font-medium text-plum-500 underline decoration-plum-300/50 underline-offset-[3px] hover:text-plum-700"
+        >
+          Open coach note →
+        </Link>
+      </div>
     );
   }
   return <MessageBubble message={m} />;
