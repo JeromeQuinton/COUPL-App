@@ -97,6 +97,23 @@ export type ThreadMessage =
       kind: "msg";
       from: "them" | "me";
       text: string;
+      time?: string;
+      read?: boolean;
+    }
+  | {
+      kind: "photo";
+      from: "them" | "me";
+      src: string;
+      caption?: string;
+      time?: string;
+      read?: boolean;
+    }
+  | {
+      kind: "voice";
+      from: "them" | "me";
+      durationSeconds: number;
+      time?: string;
+      read?: boolean;
     }
   | {
       kind: "time";
@@ -180,6 +197,20 @@ export const THREADS: Record<string, ThreadMessage[]> = {
   ],
   marco: [
     { kind: "time", label: "YESTERDAY, 8:41PM" },
+    {
+      kind: "photo",
+      from: "them",
+      src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800",
+      caption: "Beach we walked past on Sunday.",
+      time: "20:42",
+    },
+    {
+      kind: "voice",
+      from: "me",
+      durationSeconds: 27,
+      time: "20:48",
+      read: true,
+    },
     {
       kind: "msg",
       from: "me",
