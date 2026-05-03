@@ -13,7 +13,7 @@ import {
  *   header → connection rings → pattern pills → timeline cards.
  * AD-CN-WF1: alignment % + tone chip use lavender (DR-032 informational tier).
  */
-export const Route = createFileRoute("/_main/connections")({
+export const Route = createFileRoute("/_main/connections/")({
   head: () => ({
     meta: [
       { title: "Connections — COUPL" },
