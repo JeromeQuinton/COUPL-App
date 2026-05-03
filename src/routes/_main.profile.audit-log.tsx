@@ -90,6 +90,8 @@ const STATUS_CONFIG: Record<
 function DecisionIntelligenceScreen() {
   const [filter, setFilter] = useState<AuditFilter>("all");
   const [expanded, setExpanded] = useState<string | null>(null);
+  // Phase 1: local feedback state. Phase 4 will POST to an `audit_feedback` table.
+  const [feedback, setFeedback] = useState<Record<string, "helpful" | "not">>({});
   const visible =
     filter === "all"
       ? AUDIT_ENTRIES
@@ -388,7 +390,7 @@ function DecisionIntelligenceScreen() {
                       aria-expanded={isOpen}
                       className="font-body text-[12px] font-medium text-plum-700 underline-offset-4 hover:underline"
                     >
-                      Why this mattered
+                      Why this nudge?
                     </button>
                     <span className="inline-flex items-center gap-1 font-body text-[11.5px] text-plum-700/70">
                       {isOpen ? "Hide" : "Show"}
@@ -405,8 +407,59 @@ function DecisionIntelligenceScreen() {
                     <div className="mt-2.5 grid gap-2 rounded-[14px] bg-lavender-100/60 p-3">
                       <Row label="You" value={e.response} />
                       <Row label="Why" value={e.why} />
+                      {e.reasons && e.reasons.length > 0 && (
+                        <div className="grid grid-cols-[44px_1fr] gap-2">
+                          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-plum-700/70">
+                            Codes
+                          </span>
+                          <ul className="flex flex-wrap gap-1.5">
+                            {e.reasons.map((r) => (
+                              <li
+                                key={r}
+                                className="rounded-full border border-plum-300/40 bg-paper px-2 py-[3px] font-mono text-[10.5px] text-plum-700"
+                              >
+                                {r}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   )}
+                  {/* Helpful / not helpful */}
+                  {(() => {
+                    const fb = feedback[e.id];
+                    const dimmed = fb !== undefined;
+                    return (
+                      <div
+                        className={`mt-3 flex items-center gap-2 transition-opacity ${dimmed ? "opacity-50" : ""}`}
+                      >
+                        <span className="font-body text-[11px] text-stone">
+                          {dimmed ? "Thanks — logged." : "Was this useful?"}
+                        </span>
+                        <button
+                          type="button"
+                          disabled={dimmed}
+                          onClick={() =>
+                            setFeedback((p) => ({ ...p, [e.id]: "helpful" }))
+                          }
+                          className="rounded-full border border-plum-300/40 bg-paper px-2.5 py-1 font-body text-[11px] text-plum-700 hover:bg-lavender-50 disabled:cursor-default"
+                        >
+                          Helpful
+                        </button>
+                        <button
+                          type="button"
+                          disabled={dimmed}
+                          onClick={() =>
+                            setFeedback((p) => ({ ...p, [e.id]: "not" }))
+                          }
+                          className="rounded-full border border-plum-300/40 bg-paper px-2.5 py-1 font-body text-[11px] text-plum-700 hover:bg-lavender-50 disabled:cursor-default"
+                        >
+                          Not helpful
+                        </button>
+                      </div>
+                    );
+                  })()}
                 </article>
               </li>
             );
@@ -419,6 +472,9 @@ function DecisionIntelligenceScreen() {
             </li>
           )}
         </ul>
+        <p className="mt-6 text-center font-body text-[12px] italic text-stone">
+          Nothing significant happens invisibly.
+        </p>
       </section>
 
       {/* === Your patterns === */}

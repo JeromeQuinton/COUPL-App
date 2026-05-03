@@ -115,9 +115,14 @@ function ProfileScreen() {
             sub="Every AI nudge, transparent + reversible"
           />
           <ProfileLinkRow
-            to="/profile/safety"
+            to="/profile/coach-settings"
             title="Coach settings"
             sub="Tone, frequency, intercepts"
+          />
+          <ProfileLinkRow
+            to="/profile/safety"
+            title="Safety hub"
+            sub="Pause, share, verification, privacy"
           />
         </ul>
       </section>
@@ -130,7 +135,11 @@ function ProfileLinkRow({
   title,
   sub,
 }: {
-  to: "/profile/edit" | "/profile/audit-log" | "/profile/safety";
+  to:
+    | "/profile/edit"
+    | "/profile/audit-log"
+    | "/profile/safety"
+    | "/profile/coach-settings";
   title: string;
   sub?: string;
 }) {

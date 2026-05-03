@@ -169,6 +169,8 @@ export type AuditEntry = {
   status: AuditStatus;
   confidence: number; // 0-100 — AI confidence
   signal: string; // one-word relational signal (e.g. "Connection")
+  /** Reason codes — diagnostic signals that triggered this nudge. */
+  reasons?: string[];
 };
 
 export const AUDIT_ENTRIES: AuditEntry[] = [
@@ -186,6 +188,11 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     status: "dismissed",
     confidence: 82,
     signal: "Connection",
+    reasons: [
+      "Reciprocity drop in last 48h",
+      "Pattern matches: rapid follow-up after silence",
+      "Activation Index > 0.7",
+    ],
   },
   {
     id: "fil-201",
@@ -201,6 +208,10 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     status: "applied",
     confidence: 91,
     signal: "Boundaries",
+    reasons: [
+      "Capacity setting < 50",
+      "Recommendation alignment band: Aligned (not Strongly)",
+    ],
   },
   {
     id: "nud-477",
@@ -216,6 +227,11 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     status: "override",
     confidence: 76,
     signal: "Growth",
+    reasons: [
+      "Send-time after 22:00",
+      "Intensity score > 0.65",
+      "Two questions, no statement",
+    ],
   },
   {
     id: "pca-012",
@@ -231,6 +247,7 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     status: "applied",
     confidence: 95,
     signal: "Self-Care",
+    reasons: ["Daily cap = 10", "Recommendations served = 10"],
   },
   {
     id: "saf-088",
@@ -246,6 +263,10 @@ export const AUDIT_ENTRIES: AuditEntry[] = [
     status: "applied",
     confidence: 88,
     signal: "Care",
+    reasons: [
+      "Hedging language detected",
+      "Tone classifier: ambiguous",
+    ],
   },
 ];
 
