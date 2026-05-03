@@ -9,7 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PressRouteImport } from './routes/press'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as FounderRouteImport } from './routes/founder'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as MainRouteImport } from './routes/_main'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
@@ -34,6 +37,12 @@ import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.comp
 import { Route as OnboardingChecksRouteImport } from './routes/onboarding.checks'
 import { Route as OnboardingCapacityRouteImport } from './routes/onboarding.capacity'
 import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
+import { Route as AuthVerifyPhoneRouteImport } from './routes/auth.verify-phone'
+import { Route as AuthVerifyEmailRouteImport } from './routes/auth.verify-email'
+import { Route as AuthSignUpRouteImport } from './routes/auth.sign-up'
+import { Route as AuthSignInRouteImport } from './routes/auth.sign-in'
+import { Route as AuthRecoverRouteImport } from './routes/auth.recover'
+import { Route as MainWelcomeBackRouteImport } from './routes/_main.welcome-back'
 import { Route as MainProfileRouteImport } from './routes/_main.profile'
 import { Route as MainPolarisRouteImport } from './routes/_main.polaris'
 import { Route as MainNotificationsRouteImport } from './routes/_main.notifications'
@@ -145,9 +154,24 @@ import { Route as MainVideoCoachBookingIdActiveRouteImport } from './routes/_mai
 import { Route as MainProfileSafetyReportSubmitRouteImport } from './routes/_main.profile.safety.report.submit'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FounderRoute = FounderRouteImport.update({
+  id: '/founder',
+  path: '/founder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MainRoute = MainRouteImport.update({
@@ -268,6 +292,36 @@ const OnboardingStepRoute = OnboardingStepRouteImport.update({
   id: '/$step',
   path: '/$step',
   getParentRoute: () => OnboardingRoute,
+} as any)
+const AuthVerifyPhoneRoute = AuthVerifyPhoneRouteImport.update({
+  id: '/auth/verify-phone',
+  path: '/auth/verify-phone',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthVerifyEmailRoute = AuthVerifyEmailRouteImport.update({
+  id: '/auth/verify-email',
+  path: '/auth/verify-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSignUpRoute = AuthSignUpRouteImport.update({
+  id: '/auth/sign-up',
+  path: '/auth/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSignInRoute = AuthSignInRouteImport.update({
+  id: '/auth/sign-in',
+  path: '/auth/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRecoverRoute = AuthRecoverRouteImport.update({
+  id: '/auth/recover',
+  path: '/auth/recover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MainWelcomeBackRoute = MainWelcomeBackRouteImport.update({
+  id: '/welcome-back',
+  path: '/welcome-back',
+  getParentRoute: () => MainRoute,
 } as any)
 const MainProfileRoute = MainProfileRouteImport.update({
   id: '/profile',
@@ -871,7 +925,10 @@ const MainDiscoverIdInsightsConnectionLanguagesRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/founder': typeof FounderRoute
   '/onboarding': typeof OnboardingRouteWithChildren
+  '/press': typeof PressRoute
   '/signin': typeof AuthSigninRoute
   '/calendar': typeof MainCalendarRoute
   '/coach': typeof MainCoachRoute
@@ -882,6 +939,12 @@ export interface FileRoutesByFullPath {
   '/notifications': typeof MainNotificationsRoute
   '/polaris': typeof MainPolarisRoute
   '/profile': typeof MainProfileRouteWithChildren
+  '/welcome-back': typeof MainWelcomeBackRoute
+  '/auth/recover': typeof AuthRecoverRoute
+  '/auth/sign-in': typeof AuthSignInRoute
+  '/auth/sign-up': typeof AuthSignUpRoute
+  '/auth/verify-email': typeof AuthVerifyEmailRoute
+  '/auth/verify-phone': typeof AuthVerifyPhoneRoute
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
   '/onboarding/checks': typeof OnboardingChecksRouteWithChildren
@@ -1006,6 +1069,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/founder': typeof FounderRoute
+  '/press': typeof PressRoute
   '/signin': typeof AuthSigninRoute
   '/calendar': typeof MainCalendarRoute
   '/coach': typeof MainCoachRoute
@@ -1013,6 +1079,12 @@ export interface FileRoutesByTo {
   '/home': typeof MainHomeRouteWithChildren
   '/notifications': typeof MainNotificationsRoute
   '/polaris': typeof MainPolarisRoute
+  '/welcome-back': typeof MainWelcomeBackRoute
+  '/auth/recover': typeof AuthRecoverRoute
+  '/auth/sign-in': typeof AuthSignInRoute
+  '/auth/sign-up': typeof AuthSignUpRoute
+  '/auth/verify-email': typeof AuthVerifyEmailRoute
+  '/auth/verify-phone': typeof AuthVerifyPhoneRoute
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
   '/onboarding/checks': typeof OnboardingChecksRouteWithChildren
@@ -1140,7 +1212,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_main': typeof MainRouteWithChildren
+  '/about': typeof AboutRoute
+  '/founder': typeof FounderRoute
   '/onboarding': typeof OnboardingRouteWithChildren
+  '/press': typeof PressRoute
   '/_auth/signin': typeof AuthSigninRoute
   '/_main/calendar': typeof MainCalendarRoute
   '/_main/coach': typeof MainCoachRoute
@@ -1151,6 +1226,12 @@ export interface FileRoutesById {
   '/_main/notifications': typeof MainNotificationsRoute
   '/_main/polaris': typeof MainPolarisRoute
   '/_main/profile': typeof MainProfileRouteWithChildren
+  '/_main/welcome-back': typeof MainWelcomeBackRoute
+  '/auth/recover': typeof AuthRecoverRoute
+  '/auth/sign-in': typeof AuthSignInRoute
+  '/auth/sign-up': typeof AuthSignUpRoute
+  '/auth/verify-email': typeof AuthVerifyEmailRoute
+  '/auth/verify-phone': typeof AuthVerifyPhoneRoute
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
   '/onboarding/checks': typeof OnboardingChecksRouteWithChildren
@@ -1277,7 +1358,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/founder'
     | '/onboarding'
+    | '/press'
     | '/signin'
     | '/calendar'
     | '/coach'
@@ -1288,6 +1372,12 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/polaris'
     | '/profile'
+    | '/welcome-back'
+    | '/auth/recover'
+    | '/auth/sign-in'
+    | '/auth/sign-up'
+    | '/auth/verify-email'
+    | '/auth/verify-phone'
     | '/onboarding/$step'
     | '/onboarding/capacity'
     | '/onboarding/checks'
@@ -1412,6 +1502,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/founder'
+    | '/press'
     | '/signin'
     | '/calendar'
     | '/coach'
@@ -1419,6 +1512,12 @@ export interface FileRouteTypes {
     | '/home'
     | '/notifications'
     | '/polaris'
+    | '/welcome-back'
+    | '/auth/recover'
+    | '/auth/sign-in'
+    | '/auth/sign-up'
+    | '/auth/verify-email'
+    | '/auth/verify-phone'
     | '/onboarding/$step'
     | '/onboarding/capacity'
     | '/onboarding/checks'
@@ -1545,7 +1644,10 @@ export interface FileRouteTypes {
     | '/'
     | '/_auth'
     | '/_main'
+    | '/about'
+    | '/founder'
     | '/onboarding'
+    | '/press'
     | '/_auth/signin'
     | '/_main/calendar'
     | '/_main/coach'
@@ -1556,6 +1658,12 @@ export interface FileRouteTypes {
     | '/_main/notifications'
     | '/_main/polaris'
     | '/_main/profile'
+    | '/_main/welcome-back'
+    | '/auth/recover'
+    | '/auth/sign-in'
+    | '/auth/sign-up'
+    | '/auth/verify-email'
+    | '/auth/verify-phone'
     | '/onboarding/$step'
     | '/onboarding/capacity'
     | '/onboarding/checks'
@@ -1683,7 +1791,15 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   MainRoute: typeof MainRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  FounderRoute: typeof FounderRoute
   OnboardingRoute: typeof OnboardingRouteWithChildren
+  PressRoute: typeof PressRoute
+  AuthRecoverRoute: typeof AuthRecoverRoute
+  AuthSignInRoute: typeof AuthSignInRoute
+  AuthSignUpRoute: typeof AuthSignUpRoute
+  AuthVerifyEmailRoute: typeof AuthVerifyEmailRoute
+  AuthVerifyPhoneRoute: typeof AuthVerifyPhoneRoute
   SystemOfflineRoute: typeof SystemOfflineRoute
   SystemPushPermissionsRoute: typeof SystemPushPermissionsRoute
   SystemVerificationFailedRoute: typeof SystemVerificationFailedRoute
@@ -1691,11 +1807,32 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/founder': {
+      id: '/founder'
+      path: '/founder'
+      fullPath: '/founder'
+      preLoaderRoute: typeof FounderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_main': {
@@ -1865,6 +2002,48 @@ declare module '@tanstack/react-router' {
       fullPath: '/onboarding/$step'
       preLoaderRoute: typeof OnboardingStepRouteImport
       parentRoute: typeof OnboardingRoute
+    }
+    '/auth/verify-phone': {
+      id: '/auth/verify-phone'
+      path: '/auth/verify-phone'
+      fullPath: '/auth/verify-phone'
+      preLoaderRoute: typeof AuthVerifyPhoneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/verify-email': {
+      id: '/auth/verify-email'
+      path: '/auth/verify-email'
+      fullPath: '/auth/verify-email'
+      preLoaderRoute: typeof AuthVerifyEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/sign-up': {
+      id: '/auth/sign-up'
+      path: '/auth/sign-up'
+      fullPath: '/auth/sign-up'
+      preLoaderRoute: typeof AuthSignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/sign-in': {
+      id: '/auth/sign-in'
+      path: '/auth/sign-in'
+      fullPath: '/auth/sign-in'
+      preLoaderRoute: typeof AuthSignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/recover': {
+      id: '/auth/recover'
+      path: '/auth/recover'
+      fullPath: '/auth/recover'
+      preLoaderRoute: typeof AuthRecoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_main/welcome-back': {
+      id: '/_main/welcome-back'
+      path: '/welcome-back'
+      fullPath: '/welcome-back'
+      preLoaderRoute: typeof MainWelcomeBackRouteImport
+      parentRoute: typeof MainRoute
     }
     '/_main/profile': {
       id: '/_main/profile'
@@ -2813,6 +2992,7 @@ interface MainRouteChildren {
   MainNotificationsRoute: typeof MainNotificationsRoute
   MainPolarisRoute: typeof MainPolarisRoute
   MainProfileRoute: typeof MainProfileRouteWithChildren
+  MainWelcomeBackRoute: typeof MainWelcomeBackRoute
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
   MainDatePlansIdRoute: typeof MainDatePlansIdRoute
   MainEventsIdRoute: typeof MainEventsIdRoute
@@ -2880,6 +3060,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainNotificationsRoute: MainNotificationsRoute,
   MainPolarisRoute: MainPolarisRoute,
   MainProfileRoute: MainProfileRouteWithChildren,
+  MainWelcomeBackRoute: MainWelcomeBackRoute,
   MainConnectionsIdRoute: MainConnectionsIdRoute,
   MainDatePlansIdRoute: MainDatePlansIdRoute,
   MainEventsIdRoute: MainEventsIdRoute,
@@ -3011,7 +3192,15 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   MainRoute: MainRouteWithChildren,
+  AboutRoute: AboutRoute,
+  FounderRoute: FounderRoute,
   OnboardingRoute: OnboardingRouteWithChildren,
+  PressRoute: PressRoute,
+  AuthRecoverRoute: AuthRecoverRoute,
+  AuthSignInRoute: AuthSignInRoute,
+  AuthSignUpRoute: AuthSignUpRoute,
+  AuthVerifyEmailRoute: AuthVerifyEmailRoute,
+  AuthVerifyPhoneRoute: AuthVerifyPhoneRoute,
   SystemOfflineRoute: SystemOfflineRoute,
   SystemPushPermissionsRoute: SystemPushPermissionsRoute,
   SystemVerificationFailedRoute: SystemVerificationFailedRoute,
