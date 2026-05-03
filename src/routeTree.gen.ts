@@ -75,6 +75,7 @@ import { Route as MainDiscoverSavedRouteImport } from './routes/_main.discover.s
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
+import { Route as MainMembershipSubscriptionIndexRouteImport } from './routes/_main.membership.subscription.index'
 import { Route as MainVideoCoachBookingRouteImport } from './routes/_main.video.coach.booking'
 import { Route as MainProfileSafetyReportsRouteImport } from './routes/_main.profile.safety.reports'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
@@ -83,6 +84,8 @@ import { Route as MainProfileDataReadyRouteImport } from './routes/_main.profile
 import { Route as MainProfileDataPreparingRouteImport } from './routes/_main.profile.data.preparing'
 import { Route as MainProfileDataExportRouteImport } from './routes/_main.profile.data.export'
 import { Route as MainProfileDataDoneRouteImport } from './routes/_main.profile.data.done'
+import { Route as MainMembershipSubscriptionPauseRouteImport } from './routes/_main.membership.subscription.pause'
+import { Route as MainMembershipSubscriptionCancelRouteImport } from './routes/_main.membership.subscription.cancel'
 import { Route as MainHostNewWorkshopReviewRouteImport } from './routes/_main.host.new_.workshop-review'
 import { Route as MainHostNewWorkshopDetailRouteImport } from './routes/_main.host.new_.workshop-detail'
 import { Route as MainHostNewWorkshopRouteImport } from './routes/_main.host.new_.workshop'
@@ -457,6 +460,12 @@ const MainConnectionsIdRoute = MainConnectionsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => MainConnectionsRoute,
 } as any)
+const MainMembershipSubscriptionIndexRoute =
+  MainMembershipSubscriptionIndexRouteImport.update({
+    id: '/membership/subscription/',
+    path: '/membership/subscription/',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainVideoCoachBookingRoute = MainVideoCoachBookingRouteImport.update({
   id: '/video/coach/booking',
   path: '/video/coach/booking',
@@ -500,6 +509,18 @@ const MainProfileDataDoneRoute = MainProfileDataDoneRouteImport.update({
   path: '/data/done',
   getParentRoute: () => MainProfileRoute,
 } as any)
+const MainMembershipSubscriptionPauseRoute =
+  MainMembershipSubscriptionPauseRouteImport.update({
+    id: '/membership/subscription/pause',
+    path: '/membership/subscription/pause',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainMembershipSubscriptionCancelRoute =
+  MainMembershipSubscriptionCancelRouteImport.update({
+    id: '/membership/subscription/cancel',
+    path: '/membership/subscription/cancel',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainHostNewWorkshopReviewRoute =
   MainHostNewWorkshopReviewRouteImport.update({
     id: '/host/new_/workshop-review',
@@ -809,6 +830,8 @@ export interface FileRoutesByFullPath {
   '/host/new/workshop': typeof MainHostNewWorkshopRoute
   '/host/new/workshop-detail': typeof MainHostNewWorkshopDetailRoute
   '/host/new/workshop-review': typeof MainHostNewWorkshopReviewRoute
+  '/membership/subscription/cancel': typeof MainMembershipSubscriptionCancelRoute
+  '/membership/subscription/pause': typeof MainMembershipSubscriptionPauseRoute
   '/profile/data/done': typeof MainProfileDataDoneRoute
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
@@ -817,6 +840,7 @@ export interface FileRoutesByFullPath {
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
+  '/membership/subscription/': typeof MainMembershipSubscriptionIndexRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
   '/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
   '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
@@ -917,6 +941,8 @@ export interface FileRoutesByTo {
   '/host/new/workshop': typeof MainHostNewWorkshopRoute
   '/host/new/workshop-detail': typeof MainHostNewWorkshopDetailRoute
   '/host/new/workshop-review': typeof MainHostNewWorkshopReviewRoute
+  '/membership/subscription/cancel': typeof MainMembershipSubscriptionCancelRoute
+  '/membership/subscription/pause': typeof MainMembershipSubscriptionPauseRoute
   '/profile/data/done': typeof MainProfileDataDoneRoute
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
@@ -925,6 +951,7 @@ export interface FileRoutesByTo {
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
+  '/membership/subscription': typeof MainMembershipSubscriptionIndexRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
   '/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
   '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
@@ -1032,6 +1059,8 @@ export interface FileRoutesById {
   '/_main/host/new_/workshop': typeof MainHostNewWorkshopRoute
   '/_main/host/new_/workshop-detail': typeof MainHostNewWorkshopDetailRoute
   '/_main/host/new_/workshop-review': typeof MainHostNewWorkshopReviewRoute
+  '/_main/membership/subscription/cancel': typeof MainMembershipSubscriptionCancelRoute
+  '/_main/membership/subscription/pause': typeof MainMembershipSubscriptionPauseRoute
   '/_main/profile/data/done': typeof MainProfileDataDoneRoute
   '/_main/profile/data/export': typeof MainProfileDataExportRoute
   '/_main/profile/data/preparing': typeof MainProfileDataPreparingRoute
@@ -1040,6 +1069,7 @@ export interface FileRoutesById {
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/_main/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/_main/video/coach/booking': typeof MainVideoCoachBookingRoute
+  '/_main/membership/subscription/': typeof MainMembershipSubscriptionIndexRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
   '/_main/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
   '/_main/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
@@ -1146,6 +1176,8 @@ export interface FileRouteTypes {
     | '/host/new/workshop'
     | '/host/new/workshop-detail'
     | '/host/new/workshop-review'
+    | '/membership/subscription/cancel'
+    | '/membership/subscription/pause'
     | '/profile/data/done'
     | '/profile/data/export'
     | '/profile/data/preparing'
@@ -1154,6 +1186,7 @@ export interface FileRouteTypes {
     | '/profile/safety/report'
     | '/profile/safety/reports'
     | '/video/coach/booking'
+    | '/membership/subscription/'
     | '/discover/$id/insights/connection-languages'
     | '/profile/safety/report/submit'
     | '/video/coach/$bookingId/active'
@@ -1254,6 +1287,8 @@ export interface FileRouteTypes {
     | '/host/new/workshop'
     | '/host/new/workshop-detail'
     | '/host/new/workshop-review'
+    | '/membership/subscription/cancel'
+    | '/membership/subscription/pause'
     | '/profile/data/done'
     | '/profile/data/export'
     | '/profile/data/preparing'
@@ -1262,6 +1297,7 @@ export interface FileRouteTypes {
     | '/profile/safety/report'
     | '/profile/safety/reports'
     | '/video/coach/booking'
+    | '/membership/subscription'
     | '/discover/$id/insights/connection-languages'
     | '/profile/safety/report/submit'
     | '/video/coach/$bookingId/active'
@@ -1368,6 +1404,8 @@ export interface FileRouteTypes {
     | '/_main/host/new_/workshop'
     | '/_main/host/new_/workshop-detail'
     | '/_main/host/new_/workshop-review'
+    | '/_main/membership/subscription/cancel'
+    | '/_main/membership/subscription/pause'
     | '/_main/profile/data/done'
     | '/_main/profile/data/export'
     | '/_main/profile/data/preparing'
@@ -1376,6 +1414,7 @@ export interface FileRouteTypes {
     | '/_main/profile/safety/report'
     | '/_main/profile/safety/reports'
     | '/_main/video/coach/booking'
+    | '/_main/membership/subscription/'
     | '/_main/discover/$id_/insights/connection-languages'
     | '/_main/profile/safety/report/submit'
     | '/_main/video/coach/$bookingId/active'
@@ -1864,6 +1903,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/membership/subscription/': {
+      id: '/_main/membership/subscription/'
+      path: '/membership/subscription'
+      fullPath: '/membership/subscription/'
+      preLoaderRoute: typeof MainMembershipSubscriptionIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/video/coach/booking': {
       id: '/_main/video/coach/booking'
       path: '/video/coach/booking'
@@ -1919,6 +1965,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/profile/data/done'
       preLoaderRoute: typeof MainProfileDataDoneRouteImport
       parentRoute: typeof MainProfileRoute
+    }
+    '/_main/membership/subscription/pause': {
+      id: '/_main/membership/subscription/pause'
+      path: '/membership/subscription/pause'
+      fullPath: '/membership/subscription/pause'
+      preLoaderRoute: typeof MainMembershipSubscriptionPauseRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/membership/subscription/cancel': {
+      id: '/_main/membership/subscription/cancel'
+      path: '/membership/subscription/cancel'
+      fullPath: '/membership/subscription/cancel'
+      preLoaderRoute: typeof MainMembershipSubscriptionCancelRouteImport
+      parentRoute: typeof MainRoute
     }
     '/_main/host/new_/workshop-review': {
       id: '/_main/host/new_/workshop-review'
@@ -2390,7 +2450,10 @@ interface MainRouteChildren {
   MainHostNewWorkshopRoute: typeof MainHostNewWorkshopRoute
   MainHostNewWorkshopDetailRoute: typeof MainHostNewWorkshopDetailRoute
   MainHostNewWorkshopReviewRoute: typeof MainHostNewWorkshopReviewRoute
+  MainMembershipSubscriptionCancelRoute: typeof MainMembershipSubscriptionCancelRoute
+  MainMembershipSubscriptionPauseRoute: typeof MainMembershipSubscriptionPauseRoute
   MainVideoCoachBookingRoute: typeof MainVideoCoachBookingRoute
+  MainMembershipSubscriptionIndexRoute: typeof MainMembershipSubscriptionIndexRoute
   MainVideoCoachBookingIdActiveRoute: typeof MainVideoCoachBookingIdActiveRoute
   MainVideoCoachBookingIdEndedRoute: typeof MainVideoCoachBookingIdEndedRoute
   MainVideoCoachBookingIdLobbyRoute: typeof MainVideoCoachBookingIdLobbyRoute
@@ -2428,7 +2491,10 @@ const MainRouteChildren: MainRouteChildren = {
   MainHostNewWorkshopRoute: MainHostNewWorkshopRoute,
   MainHostNewWorkshopDetailRoute: MainHostNewWorkshopDetailRoute,
   MainHostNewWorkshopReviewRoute: MainHostNewWorkshopReviewRoute,
+  MainMembershipSubscriptionCancelRoute: MainMembershipSubscriptionCancelRoute,
+  MainMembershipSubscriptionPauseRoute: MainMembershipSubscriptionPauseRoute,
   MainVideoCoachBookingRoute: MainVideoCoachBookingRoute,
+  MainMembershipSubscriptionIndexRoute: MainMembershipSubscriptionIndexRoute,
   MainVideoCoachBookingIdActiveRoute: MainVideoCoachBookingIdActiveRoute,
   MainVideoCoachBookingIdEndedRoute: MainVideoCoachBookingIdEndedRoute,
   MainVideoCoachBookingIdLobbyRoute: MainVideoCoachBookingIdLobbyRoute,
