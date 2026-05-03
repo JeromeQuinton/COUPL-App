@@ -51,7 +51,7 @@ function CompleteScreen() {
         Check progress
       </Link>
       <p className="mt-6 max-w-[28rem] text-center text-body-sm italic text-stone">
-        We use automation for most of what other apps do by hand. It's faster, more private, and cheaper to keep COUPL running. People only get involved when something needs care.
+        We use automation for everything other apps do by hand. Faster. More private. No team scrolling through your data, ever.
       </p>
     </div>
   );
