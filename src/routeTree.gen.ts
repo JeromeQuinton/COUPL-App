@@ -99,6 +99,10 @@ import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.con
 import { Route as MainConnectionsIdConnectedRouteImport } from './routes/_main.connections.$id_.connected'
 import { Route as MainConnectionsIdCoachInsightRouteImport } from './routes/_main.connections.$id_.coach-insight'
 import { Route as MainConnectionsIdCleanEndingRouteImport } from './routes/_main.connections.$id_.clean-ending'
+import { Route as MainVideoPreMeetConnectionIdIndexRouteImport } from './routes/_main.video.pre-meet.$connectionId.index'
+import { Route as MainVideoPreMeetConnectionIdIncomingRouteImport } from './routes/_main.video.pre-meet.$connectionId.incoming'
+import { Route as MainVideoPreMeetConnectionIdEndedRouteImport } from './routes/_main.video.pre-meet.$connectionId.ended'
+import { Route as MainVideoPreMeetConnectionIdActiveRouteImport } from './routes/_main.video.pre-meet.$connectionId.active'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -570,6 +574,30 @@ const MainConnectionsIdCleanEndingRoute =
     path: '/$id/clean-ending',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainVideoPreMeetConnectionIdIndexRoute =
+  MainVideoPreMeetConnectionIdIndexRouteImport.update({
+    id: '/video/pre-meet/$connectionId/',
+    path: '/video/pre-meet/$connectionId/',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoPreMeetConnectionIdIncomingRoute =
+  MainVideoPreMeetConnectionIdIncomingRouteImport.update({
+    id: '/video/pre-meet/$connectionId/incoming',
+    path: '/video/pre-meet/$connectionId/incoming',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoPreMeetConnectionIdEndedRoute =
+  MainVideoPreMeetConnectionIdEndedRouteImport.update({
+    id: '/video/pre-meet/$connectionId/ended',
+    path: '/video/pre-meet/$connectionId/ended',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainVideoPreMeetConnectionIdActiveRoute =
+  MainVideoPreMeetConnectionIdActiveRouteImport.update({
+    id: '/video/pre-meet/$connectionId/active',
+    path: '/video/pre-meet/$connectionId/active',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
     id: '/$id_/insights/connection-languages',
@@ -667,6 +695,10 @@ export interface FileRoutesByFullPath {
   '/profile/data/ready': typeof MainProfileDataReadyRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
+  '/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
+  '/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
+  '/video/pre-meet/$connectionId/': typeof MainVideoPreMeetConnectionIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -754,6 +786,10 @@ export interface FileRoutesByTo {
   '/profile/data/ready': typeof MainProfileDataReadyRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
+  '/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
+  '/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
+  '/video/pre-meet/$connectionId': typeof MainVideoPreMeetConnectionIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -848,6 +884,10 @@ export interface FileRoutesById {
   '/_main/profile/data/ready': typeof MainProfileDataReadyRoute
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/_main/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
+  '/_main/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
+  '/_main/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
+  '/_main/video/pre-meet/$connectionId/': typeof MainVideoPreMeetConnectionIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -941,6 +981,10 @@ export interface FileRouteTypes {
     | '/profile/data/ready'
     | '/profile/safety/report'
     | '/discover/$id/insights/connection-languages'
+    | '/video/pre-meet/$connectionId/active'
+    | '/video/pre-meet/$connectionId/ended'
+    | '/video/pre-meet/$connectionId/incoming'
+    | '/video/pre-meet/$connectionId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -1028,6 +1072,10 @@ export interface FileRouteTypes {
     | '/profile/data/ready'
     | '/profile/safety/report'
     | '/discover/$id/insights/connection-languages'
+    | '/video/pre-meet/$connectionId/active'
+    | '/video/pre-meet/$connectionId/ended'
+    | '/video/pre-meet/$connectionId/incoming'
+    | '/video/pre-meet/$connectionId'
   id:
     | '__root__'
     | '/'
@@ -1121,6 +1169,10 @@ export interface FileRouteTypes {
     | '/_main/profile/data/ready'
     | '/_main/profile/safety/report'
     | '/_main/discover/$id_/insights/connection-languages'
+    | '/_main/video/pre-meet/$connectionId/active'
+    | '/_main/video/pre-meet/$connectionId/ended'
+    | '/_main/video/pre-meet/$connectionId/incoming'
+    | '/_main/video/pre-meet/$connectionId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1765,6 +1817,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdCleanEndingRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/video/pre-meet/$connectionId/': {
+      id: '/_main/video/pre-meet/$connectionId/'
+      path: '/video/pre-meet/$connectionId'
+      fullPath: '/video/pre-meet/$connectionId/'
+      preLoaderRoute: typeof MainVideoPreMeetConnectionIdIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/pre-meet/$connectionId/incoming': {
+      id: '/_main/video/pre-meet/$connectionId/incoming'
+      path: '/video/pre-meet/$connectionId/incoming'
+      fullPath: '/video/pre-meet/$connectionId/incoming'
+      preLoaderRoute: typeof MainVideoPreMeetConnectionIdIncomingRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/pre-meet/$connectionId/ended': {
+      id: '/_main/video/pre-meet/$connectionId/ended'
+      path: '/video/pre-meet/$connectionId/ended'
+      fullPath: '/video/pre-meet/$connectionId/ended'
+      preLoaderRoute: typeof MainVideoPreMeetConnectionIdEndedRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/video/pre-meet/$connectionId/active': {
+      id: '/_main/video/pre-meet/$connectionId/active'
+      path: '/video/pre-meet/$connectionId/active'
+      fullPath: '/video/pre-meet/$connectionId/active'
+      preLoaderRoute: typeof MainVideoPreMeetConnectionIdActiveRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
       path: '/$id/insights/connection-languages'
@@ -1945,6 +2025,10 @@ interface MainRouteChildren {
   MainHostNewWorkshopRoute: typeof MainHostNewWorkshopRoute
   MainHostNewWorkshopDetailRoute: typeof MainHostNewWorkshopDetailRoute
   MainHostNewWorkshopReviewRoute: typeof MainHostNewWorkshopReviewRoute
+  MainVideoPreMeetConnectionIdActiveRoute: typeof MainVideoPreMeetConnectionIdActiveRoute
+  MainVideoPreMeetConnectionIdEndedRoute: typeof MainVideoPreMeetConnectionIdEndedRoute
+  MainVideoPreMeetConnectionIdIncomingRoute: typeof MainVideoPreMeetConnectionIdIncomingRoute
+  MainVideoPreMeetConnectionIdIndexRoute: typeof MainVideoPreMeetConnectionIdIndexRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
@@ -1971,6 +2055,14 @@ const MainRouteChildren: MainRouteChildren = {
   MainHostNewWorkshopRoute: MainHostNewWorkshopRoute,
   MainHostNewWorkshopDetailRoute: MainHostNewWorkshopDetailRoute,
   MainHostNewWorkshopReviewRoute: MainHostNewWorkshopReviewRoute,
+  MainVideoPreMeetConnectionIdActiveRoute:
+    MainVideoPreMeetConnectionIdActiveRoute,
+  MainVideoPreMeetConnectionIdEndedRoute:
+    MainVideoPreMeetConnectionIdEndedRoute,
+  MainVideoPreMeetConnectionIdIncomingRoute:
+    MainVideoPreMeetConnectionIdIncomingRoute,
+  MainVideoPreMeetConnectionIdIndexRoute:
+    MainVideoPreMeetConnectionIdIndexRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
