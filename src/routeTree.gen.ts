@@ -62,6 +62,7 @@ import { Route as MainConnectionsIdFirstHelloRouteImport } from './routes/_main.
 import { Route as MainConnectionsIdDraftPauseRouteImport } from './routes/_main.connections.$id_.draft-pause'
 import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.connections.$id_.cool-off'
 import { Route as MainConnectionsIdConnectedRouteImport } from './routes/_main.connections.$id_.connected'
+import { Route as MainConnectionsIdCoachInsightRouteImport } from './routes/_main.connections.$id_.coach-insight'
 import { Route as MainConnectionsIdCleanEndingRouteImport } from './routes/_main.connections.$id_.clean-ending'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
@@ -333,6 +334,12 @@ const MainConnectionsIdConnectedRoute =
     path: '/$id/connected',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainConnectionsIdCoachInsightRoute =
+  MainConnectionsIdCoachInsightRouteImport.update({
+    id: '/$id_/coach-insight',
+    path: '/$id/coach-insight',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
 const MainConnectionsIdCleanEndingRoute =
   MainConnectionsIdCleanEndingRouteImport.update({
     id: '/$id_/clean-ending',
@@ -389,6 +396,7 @@ export interface FileRoutesByFullPath {
   '/growth/': typeof MainGrowthIndexRoute
   '/profile/': typeof MainProfileIndexRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
@@ -440,6 +448,7 @@ export interface FileRoutesByTo {
   '/growth': typeof MainGrowthIndexRoute
   '/profile': typeof MainProfileIndexRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
@@ -498,6 +507,7 @@ export interface FileRoutesById {
   '/_main/growth/': typeof MainGrowthIndexRoute
   '/_main/profile/': typeof MainProfileIndexRoute
   '/_main/connections/$id_/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/_main/connections/$id_/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/_main/connections/$id_/connected': typeof MainConnectionsIdConnectedRoute
   '/_main/connections/$id_/cool-off': typeof MainConnectionsIdCoolOffRoute
   '/_main/connections/$id_/draft-pause': typeof MainConnectionsIdDraftPauseRoute
@@ -555,6 +565,7 @@ export interface FileRouteTypes {
     | '/growth/'
     | '/profile/'
     | '/connections/$id/clean-ending'
+    | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
     | '/connections/$id/draft-pause'
@@ -606,6 +617,7 @@ export interface FileRouteTypes {
     | '/growth'
     | '/profile'
     | '/connections/$id/clean-ending'
+    | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
     | '/connections/$id/draft-pause'
@@ -663,6 +675,7 @@ export interface FileRouteTypes {
     | '/_main/growth/'
     | '/_main/profile/'
     | '/_main/connections/$id_/clean-ending'
+    | '/_main/connections/$id_/coach-insight'
     | '/_main/connections/$id_/connected'
     | '/_main/connections/$id_/cool-off'
     | '/_main/connections/$id_/draft-pause'
@@ -1056,6 +1069,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdConnectedRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/connections/$id_/coach-insight': {
+      id: '/_main/connections/$id_/coach-insight'
+      path: '/$id/coach-insight'
+      fullPath: '/connections/$id/coach-insight'
+      preLoaderRoute: typeof MainConnectionsIdCoachInsightRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/connections/$id_/clean-ending': {
       id: '/_main/connections/$id_/clean-ending'
       path: '/$id/clean-ending'
@@ -1086,6 +1106,7 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 interface MainConnectionsRouteChildren {
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
   MainConnectionsIdCleanEndingRoute: typeof MainConnectionsIdCleanEndingRoute
+  MainConnectionsIdCoachInsightRoute: typeof MainConnectionsIdCoachInsightRoute
   MainConnectionsIdConnectedRoute: typeof MainConnectionsIdConnectedRoute
   MainConnectionsIdCoolOffRoute: typeof MainConnectionsIdCoolOffRoute
   MainConnectionsIdDraftPauseRoute: typeof MainConnectionsIdDraftPauseRoute
@@ -1096,6 +1117,7 @@ interface MainConnectionsRouteChildren {
 const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdRoute: MainConnectionsIdRoute,
   MainConnectionsIdCleanEndingRoute: MainConnectionsIdCleanEndingRoute,
+  MainConnectionsIdCoachInsightRoute: MainConnectionsIdCoachInsightRoute,
   MainConnectionsIdConnectedRoute: MainConnectionsIdConnectedRoute,
   MainConnectionsIdCoolOffRoute: MainConnectionsIdCoolOffRoute,
   MainConnectionsIdDraftPauseRoute: MainConnectionsIdDraftPauseRoute,
