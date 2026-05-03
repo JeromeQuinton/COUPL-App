@@ -109,14 +109,14 @@ function WorkshopComposer() {
       <div className="sticky bottom-24 z-30 px-5 pb-6 space-y-3">
         <button
           type="button"
-          onClick={() => navigate({ to: "/host" })}
+          onClick={() => navigate({ to: "/host/new/workshop-detail" })}
           className="flex w-full items-center justify-center rounded-full bg-ink py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
         >
           Continue · 3 / 4
         </button>
         <button
           type="button"
-          onClick={() => navigate({ to: "/host" })}
+          onClick={() => navigate({ to: "/host/new/workshop-detail" })}
           className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
         >
           Save as draft

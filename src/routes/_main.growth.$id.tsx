@@ -140,12 +140,13 @@ function WorkshopDetailPage() {
               $180 · sliding to $90
             </span>
           </div>
-          <button
-            type="button"
+          <Link
+            to="/growth/$id/reserve"
+            params={{ id: w.id }}
             className="rounded-full bg-plum-700 px-6 py-3 font-display text-[14.5px] font-medium text-paper shadow-elev-1 transition-colors hover:opacity-90"
           >
             Hold a place
-          </button>
+          </Link>
         </div>
       </div>
     </GrowthBackdrop>

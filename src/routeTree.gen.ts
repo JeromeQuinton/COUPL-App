@@ -75,8 +75,14 @@ import { Route as MainProfileDataReadyRouteImport } from './routes/_main.profile
 import { Route as MainProfileDataPreparingRouteImport } from './routes/_main.profile.data.preparing'
 import { Route as MainProfileDataExportRouteImport } from './routes/_main.profile.data.export'
 import { Route as MainProfileDataDoneRouteImport } from './routes/_main.profile.data.done'
+import { Route as MainHostNewWorkshopReviewRouteImport } from './routes/_main.host.new_.workshop-review'
+import { Route as MainHostNewWorkshopDetailRouteImport } from './routes/_main.host.new_.workshop-detail'
 import { Route as MainHostNewWorkshopRouteImport } from './routes/_main.host.new_.workshop'
+import { Route as MainHostNewCommunityReviewRouteImport } from './routes/_main.host.new_.community-review'
+import { Route as MainHostNewCommunityDetailRouteImport } from './routes/_main.host.new_.community-detail'
 import { Route as MainHostNewCommunityRouteImport } from './routes/_main.host.new_.community'
+import { Route as MainGrowthIdReservedRouteImport } from './routes/_main.growth.$id_.reserved'
+import { Route as MainGrowthIdReserveRouteImport } from './routes/_main.growth.$id_.reserve'
 import { Route as MainEventsIdRoundupRouteImport } from './routes/_main.events.$id_.roundup'
 import { Route as MainEventsIdReserveRouteImport } from './routes/_main.events.$id_.reserve'
 import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$id_.checkin'
@@ -430,15 +436,49 @@ const MainProfileDataDoneRoute = MainProfileDataDoneRouteImport.update({
   path: '/data/done',
   getParentRoute: () => MainProfileRoute,
 } as any)
+const MainHostNewWorkshopReviewRoute =
+  MainHostNewWorkshopReviewRouteImport.update({
+    id: '/host/new_/workshop-review',
+    path: '/host/new/workshop-review',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainHostNewWorkshopDetailRoute =
+  MainHostNewWorkshopDetailRouteImport.update({
+    id: '/host/new_/workshop-detail',
+    path: '/host/new/workshop-detail',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainHostNewWorkshopRoute = MainHostNewWorkshopRouteImport.update({
   id: '/host/new_/workshop',
   path: '/host/new/workshop',
   getParentRoute: () => MainRoute,
 } as any)
+const MainHostNewCommunityReviewRoute =
+  MainHostNewCommunityReviewRouteImport.update({
+    id: '/host/new_/community-review',
+    path: '/host/new/community-review',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainHostNewCommunityDetailRoute =
+  MainHostNewCommunityDetailRouteImport.update({
+    id: '/host/new_/community-detail',
+    path: '/host/new/community-detail',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainHostNewCommunityRoute = MainHostNewCommunityRouteImport.update({
   id: '/host/new_/community',
   path: '/host/new/community',
   getParentRoute: () => MainRoute,
+} as any)
+const MainGrowthIdReservedRoute = MainGrowthIdReservedRouteImport.update({
+  id: '/$id_/reserved',
+  path: '/$id/reserved',
+  getParentRoute: () => MainGrowthRoute,
+} as any)
+const MainGrowthIdReserveRoute = MainGrowthIdReserveRouteImport.update({
+  id: '/$id_/reserve',
+  path: '/$id/reserve',
+  getParentRoute: () => MainGrowthRoute,
 } as any)
 const MainEventsIdRoundupRoute = MainEventsIdRoundupRouteImport.update({
   id: '/events/$id_/roundup',
@@ -613,8 +653,14 @@ export interface FileRoutesByFullPath {
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
   '/events/$id/reserve': typeof MainEventsIdReserveRoute
   '/events/$id/roundup': typeof MainEventsIdRoundupRoute
+  '/growth/$id/reserve': typeof MainGrowthIdReserveRoute
+  '/growth/$id/reserved': typeof MainGrowthIdReservedRoute
   '/host/new/community': typeof MainHostNewCommunityRoute
+  '/host/new/community-detail': typeof MainHostNewCommunityDetailRoute
+  '/host/new/community-review': typeof MainHostNewCommunityReviewRoute
   '/host/new/workshop': typeof MainHostNewWorkshopRoute
+  '/host/new/workshop-detail': typeof MainHostNewWorkshopDetailRoute
+  '/host/new/workshop-review': typeof MainHostNewWorkshopReviewRoute
   '/profile/data/done': typeof MainProfileDataDoneRoute
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
@@ -694,8 +740,14 @@ export interface FileRoutesByTo {
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
   '/events/$id/reserve': typeof MainEventsIdReserveRoute
   '/events/$id/roundup': typeof MainEventsIdRoundupRoute
+  '/growth/$id/reserve': typeof MainGrowthIdReserveRoute
+  '/growth/$id/reserved': typeof MainGrowthIdReservedRoute
   '/host/new/community': typeof MainHostNewCommunityRoute
+  '/host/new/community-detail': typeof MainHostNewCommunityDetailRoute
+  '/host/new/community-review': typeof MainHostNewCommunityReviewRoute
   '/host/new/workshop': typeof MainHostNewWorkshopRoute
+  '/host/new/workshop-detail': typeof MainHostNewWorkshopDetailRoute
+  '/host/new/workshop-review': typeof MainHostNewWorkshopReviewRoute
   '/profile/data/done': typeof MainProfileDataDoneRoute
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
@@ -782,8 +834,14 @@ export interface FileRoutesById {
   '/_main/events/$id_/checkin': typeof MainEventsIdCheckinRoute
   '/_main/events/$id_/reserve': typeof MainEventsIdReserveRoute
   '/_main/events/$id_/roundup': typeof MainEventsIdRoundupRoute
+  '/_main/growth/$id_/reserve': typeof MainGrowthIdReserveRoute
+  '/_main/growth/$id_/reserved': typeof MainGrowthIdReservedRoute
   '/_main/host/new_/community': typeof MainHostNewCommunityRoute
+  '/_main/host/new_/community-detail': typeof MainHostNewCommunityDetailRoute
+  '/_main/host/new_/community-review': typeof MainHostNewCommunityReviewRoute
   '/_main/host/new_/workshop': typeof MainHostNewWorkshopRoute
+  '/_main/host/new_/workshop-detail': typeof MainHostNewWorkshopDetailRoute
+  '/_main/host/new_/workshop-review': typeof MainHostNewWorkshopReviewRoute
   '/_main/profile/data/done': typeof MainProfileDataDoneRoute
   '/_main/profile/data/export': typeof MainProfileDataExportRoute
   '/_main/profile/data/preparing': typeof MainProfileDataPreparingRoute
@@ -869,8 +927,14 @@ export interface FileRouteTypes {
     | '/events/$id/checkin'
     | '/events/$id/reserve'
     | '/events/$id/roundup'
+    | '/growth/$id/reserve'
+    | '/growth/$id/reserved'
     | '/host/new/community'
+    | '/host/new/community-detail'
+    | '/host/new/community-review'
     | '/host/new/workshop'
+    | '/host/new/workshop-detail'
+    | '/host/new/workshop-review'
     | '/profile/data/done'
     | '/profile/data/export'
     | '/profile/data/preparing'
@@ -950,8 +1014,14 @@ export interface FileRouteTypes {
     | '/events/$id/checkin'
     | '/events/$id/reserve'
     | '/events/$id/roundup'
+    | '/growth/$id/reserve'
+    | '/growth/$id/reserved'
     | '/host/new/community'
+    | '/host/new/community-detail'
+    | '/host/new/community-review'
     | '/host/new/workshop'
+    | '/host/new/workshop-detail'
+    | '/host/new/workshop-review'
     | '/profile/data/done'
     | '/profile/data/export'
     | '/profile/data/preparing'
@@ -1037,8 +1107,14 @@ export interface FileRouteTypes {
     | '/_main/events/$id_/checkin'
     | '/_main/events/$id_/reserve'
     | '/_main/events/$id_/roundup'
+    | '/_main/growth/$id_/reserve'
+    | '/_main/growth/$id_/reserved'
     | '/_main/host/new_/community'
+    | '/_main/host/new_/community-detail'
+    | '/_main/host/new_/community-review'
     | '/_main/host/new_/workshop'
+    | '/_main/host/new_/workshop-detail'
+    | '/_main/host/new_/workshop-review'
     | '/_main/profile/data/done'
     | '/_main/profile/data/export'
     | '/_main/profile/data/preparing'
@@ -1521,11 +1597,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileDataDoneRouteImport
       parentRoute: typeof MainProfileRoute
     }
+    '/_main/host/new_/workshop-review': {
+      id: '/_main/host/new_/workshop-review'
+      path: '/host/new/workshop-review'
+      fullPath: '/host/new/workshop-review'
+      preLoaderRoute: typeof MainHostNewWorkshopReviewRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/host/new_/workshop-detail': {
+      id: '/_main/host/new_/workshop-detail'
+      path: '/host/new/workshop-detail'
+      fullPath: '/host/new/workshop-detail'
+      preLoaderRoute: typeof MainHostNewWorkshopDetailRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/host/new_/workshop': {
       id: '/_main/host/new_/workshop'
       path: '/host/new/workshop'
       fullPath: '/host/new/workshop'
       preLoaderRoute: typeof MainHostNewWorkshopRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/host/new_/community-review': {
+      id: '/_main/host/new_/community-review'
+      path: '/host/new/community-review'
+      fullPath: '/host/new/community-review'
+      preLoaderRoute: typeof MainHostNewCommunityReviewRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/host/new_/community-detail': {
+      id: '/_main/host/new_/community-detail'
+      path: '/host/new/community-detail'
+      fullPath: '/host/new/community-detail'
+      preLoaderRoute: typeof MainHostNewCommunityDetailRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/host/new_/community': {
@@ -1534,6 +1638,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/host/new/community'
       preLoaderRoute: typeof MainHostNewCommunityRouteImport
       parentRoute: typeof MainRoute
+    }
+    '/_main/growth/$id_/reserved': {
+      id: '/_main/growth/$id_/reserved'
+      path: '/$id/reserved'
+      fullPath: '/growth/$id/reserved'
+      preLoaderRoute: typeof MainGrowthIdReservedRouteImport
+      parentRoute: typeof MainGrowthRoute
+    }
+    '/_main/growth/$id_/reserve': {
+      id: '/_main/growth/$id_/reserve'
+      path: '/$id/reserve'
+      fullPath: '/growth/$id/reserve'
+      preLoaderRoute: typeof MainGrowthIdReserveRouteImport
+      parentRoute: typeof MainGrowthRoute
     }
     '/_main/events/$id_/roundup': {
       id: '/_main/events/$id_/roundup'
@@ -1726,6 +1844,8 @@ interface MainGrowthRouteChildren {
   MainGrowthMonthlySummaryRoute: typeof MainGrowthMonthlySummaryRoute
   MainGrowthWorkshopsRoute: typeof MainGrowthWorkshopsRoute
   MainGrowthIndexRoute: typeof MainGrowthIndexRoute
+  MainGrowthIdReserveRoute: typeof MainGrowthIdReserveRoute
+  MainGrowthIdReservedRoute: typeof MainGrowthIdReservedRoute
 }
 
 const MainGrowthRouteChildren: MainGrowthRouteChildren = {
@@ -1734,6 +1854,8 @@ const MainGrowthRouteChildren: MainGrowthRouteChildren = {
   MainGrowthMonthlySummaryRoute: MainGrowthMonthlySummaryRoute,
   MainGrowthWorkshopsRoute: MainGrowthWorkshopsRoute,
   MainGrowthIndexRoute: MainGrowthIndexRoute,
+  MainGrowthIdReserveRoute: MainGrowthIdReserveRoute,
+  MainGrowthIdReservedRoute: MainGrowthIdReservedRoute,
 }
 
 const MainGrowthRouteWithChildren = MainGrowthRoute._addFileChildren(
@@ -1818,7 +1940,11 @@ interface MainRouteChildren {
   MainEventsIdReserveRoute: typeof MainEventsIdReserveRoute
   MainEventsIdRoundupRoute: typeof MainEventsIdRoundupRoute
   MainHostNewCommunityRoute: typeof MainHostNewCommunityRoute
+  MainHostNewCommunityDetailRoute: typeof MainHostNewCommunityDetailRoute
+  MainHostNewCommunityReviewRoute: typeof MainHostNewCommunityReviewRoute
   MainHostNewWorkshopRoute: typeof MainHostNewWorkshopRoute
+  MainHostNewWorkshopDetailRoute: typeof MainHostNewWorkshopDetailRoute
+  MainHostNewWorkshopReviewRoute: typeof MainHostNewWorkshopReviewRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
@@ -1840,7 +1966,11 @@ const MainRouteChildren: MainRouteChildren = {
   MainEventsIdReserveRoute: MainEventsIdReserveRoute,
   MainEventsIdRoundupRoute: MainEventsIdRoundupRoute,
   MainHostNewCommunityRoute: MainHostNewCommunityRoute,
+  MainHostNewCommunityDetailRoute: MainHostNewCommunityDetailRoute,
+  MainHostNewCommunityReviewRoute: MainHostNewCommunityReviewRoute,
   MainHostNewWorkshopRoute: MainHostNewWorkshopRoute,
+  MainHostNewWorkshopDetailRoute: MainHostNewWorkshopDetailRoute,
+  MainHostNewWorkshopReviewRoute: MainHostNewWorkshopReviewRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)

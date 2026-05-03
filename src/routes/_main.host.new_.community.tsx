@@ -98,7 +98,7 @@ function CommunityComposer() {
       <div className="sticky bottom-24 z-30 px-5 pb-6 space-y-3">
         <button
           type="button"
-          onClick={() => navigate({ to: "/host" })}
+          onClick={() => navigate({ to: "/host/new/community-detail" })}
           className="flex w-full items-center justify-center rounded-full bg-ink py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
         >
           Continue · 2 / 3
