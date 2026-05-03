@@ -16,6 +16,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as OnboardingVerifyRouteImport } from './routes/onboarding.verify'
 import { Route as OnboardingValuesRouteImport } from './routes/onboarding.values'
+import { Route as OnboardingReviewRouteImport } from './routes/onboarding.review'
 import { Route as OnboardingPromptsRouteImport } from './routes/onboarding.prompts'
 import { Route as OnboardingPhotosRouteImport } from './routes/onboarding.photos'
 import { Route as OnboardingPhotoReviewRouteImport } from './routes/onboarding.photo-review'
@@ -95,6 +96,11 @@ const OnboardingVerifyRoute = OnboardingVerifyRouteImport.update({
 const OnboardingValuesRoute = OnboardingValuesRouteImport.update({
   id: '/values',
   path: '/values',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingReviewRoute = OnboardingReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const OnboardingPromptsRoute = OnboardingPromptsRouteImport.update({
@@ -361,6 +367,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
   '/onboarding/prompts': typeof OnboardingPromptsRoute
+  '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
@@ -411,6 +418,7 @@ export interface FileRoutesByTo {
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
   '/onboarding/prompts': typeof OnboardingPromptsRoute
+  '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding': typeof OnboardingIndexRoute
@@ -468,6 +476,7 @@ export interface FileRoutesById {
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
   '/onboarding/prompts': typeof OnboardingPromptsRoute
+  '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
   '/onboarding/': typeof OnboardingIndexRoute
@@ -524,6 +533,7 @@ export interface FileRouteTypes {
     | '/onboarding/photo-review'
     | '/onboarding/photos'
     | '/onboarding/prompts'
+    | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
@@ -574,6 +584,7 @@ export interface FileRouteTypes {
     | '/onboarding/photo-review'
     | '/onboarding/photos'
     | '/onboarding/prompts'
+    | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding'
@@ -630,6 +641,7 @@ export interface FileRouteTypes {
     | '/onboarding/photo-review'
     | '/onboarding/photos'
     | '/onboarding/prompts'
+    | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
     | '/onboarding/'
@@ -720,6 +732,13 @@ declare module '@tanstack/react-router' {
       path: '/values'
       fullPath: '/onboarding/values'
       preLoaderRoute: typeof OnboardingValuesRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/review': {
+      id: '/onboarding/review'
+      path: '/review'
+      fullPath: '/onboarding/review'
+      preLoaderRoute: typeof OnboardingReviewRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/onboarding/prompts': {
@@ -1213,6 +1232,7 @@ interface OnboardingRouteChildren {
   OnboardingPhotoReviewRoute: typeof OnboardingPhotoReviewRoute
   OnboardingPhotosRoute: typeof OnboardingPhotosRoute
   OnboardingPromptsRoute: typeof OnboardingPromptsRoute
+  OnboardingReviewRoute: typeof OnboardingReviewRoute
   OnboardingValuesRoute: typeof OnboardingValuesRoute
   OnboardingVerifyRoute: typeof OnboardingVerifyRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
@@ -1231,6 +1251,7 @@ const OnboardingRouteChildren: OnboardingRouteChildren = {
   OnboardingPhotoReviewRoute: OnboardingPhotoReviewRoute,
   OnboardingPhotosRoute: OnboardingPhotosRoute,
   OnboardingPromptsRoute: OnboardingPromptsRoute,
+  OnboardingReviewRoute: OnboardingReviewRoute,
   OnboardingValuesRoute: OnboardingValuesRoute,
   OnboardingVerifyRoute: OnboardingVerifyRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
