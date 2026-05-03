@@ -93,6 +93,13 @@ function ThreadScreen() {
             </p>
           </div>
           <Link
+            to="/connections/$id/insights"
+            params={{ id }}
+            className="hidden text-label-mono text-plum-700 hover:underline sm:inline"
+          >
+            INSIGHTS
+          </Link>
+          <Link
             to="/connections/$id/clean-ending"
             params={{ id }}
             aria-label="End this conversation well"
