@@ -4,6 +4,7 @@ import { ArrowUp, ChevronLeft, ImageIcon, Mic, MoreHorizontal, Smile } from "luc
 import { ConnectionAvatar } from "@/components/connections/Avatar";
 import { CoachPromptCard } from "@/components/connections/CoachPromptCard";
 import { MessageBubble } from "@/components/connections/MessageBubble";
+import { PlanInviteCard } from "@/components/connections/PlanInviteCard";
 import { ProfilePeek } from "@/components/connections/ProfilePeek";
 import { TypingIndicator } from "@/components/connections/TypingIndicator";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
@@ -92,6 +93,13 @@ function ThreadScreen() {
               Connected · Coach on
             </p>
           </div>
+          <Link
+            to="/connections/$id/propose-plan"
+            params={{ id }}
+            className="hidden text-label-mono text-plum-700 hover:underline sm:inline"
+          >
+            PROPOSE
+          </Link>
           <Link
             to="/connections/$id/insights"
             params={{ id }}
@@ -215,6 +223,17 @@ function renderMessage(m: ThreadMessage, id: string) {
           {m.label}
         </span>
       </div>
+    );
+  }
+  if (m.kind === "plan_invite") {
+    return (
+      <PlanInviteCard
+        invite={m}
+        connectionId={id}
+        viewerIsRecipient={m.from === "them"}
+        onAccept={() => {}}
+        onDecline={() => {}}
+      />
     );
   }
   if (m.kind === "coach") {

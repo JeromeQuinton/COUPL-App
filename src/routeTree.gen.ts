@@ -105,11 +105,15 @@ import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discov
 import { Route as MainDiscoverIdAboutRouteImport } from './routes/_main.discover.$id_.about'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
 import { Route as MainConnectionsIdRedFlagRouteImport } from './routes/_main.connections.$id_.red-flag'
+import { Route as MainConnectionsIdProposePlanRouteImport } from './routes/_main.connections.$id_.propose-plan'
+import { Route as MainConnectionsIdPlanUpdateRouteImport } from './routes/_main.connections.$id_.plan-update'
 import { Route as MainConnectionsIdInsightsRouteImport } from './routes/_main.connections.$id_.insights'
 import { Route as MainConnectionsIdGreenFlagRouteImport } from './routes/_main.connections.$id_.green-flag'
 import { Route as MainConnectionsIdFirstHelloRouteImport } from './routes/_main.connections.$id_.first-hello'
 import { Route as MainConnectionsIdDraftPauseRouteImport } from './routes/_main.connections.$id_.draft-pause'
+import { Route as MainConnectionsIdDateQuizRouteImport } from './routes/_main.connections.$id_.date-quiz'
 import { Route as MainConnectionsIdDatePlanRouteImport } from './routes/_main.connections.$id_.date-plan'
+import { Route as MainConnectionsIdCounterPlanRouteImport } from './routes/_main.connections.$id_.counter-plan'
 import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.connections.$id_.cool-off'
 import { Route as MainConnectionsIdConnectedRouteImport } from './routes/_main.connections.$id_.connected'
 import { Route as MainConnectionsIdCoachInsightRouteImport } from './routes/_main.connections.$id_.coach-insight'
@@ -624,6 +628,18 @@ const MainConnectionsIdRedFlagRoute =
     path: '/$id/red-flag',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainConnectionsIdProposePlanRoute =
+  MainConnectionsIdProposePlanRouteImport.update({
+    id: '/$id_/propose-plan',
+    path: '/$id/propose-plan',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
+const MainConnectionsIdPlanUpdateRoute =
+  MainConnectionsIdPlanUpdateRouteImport.update({
+    id: '/$id_/plan-update',
+    path: '/$id/plan-update',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
 const MainConnectionsIdInsightsRoute =
   MainConnectionsIdInsightsRouteImport.update({
     id: '/$id_/insights',
@@ -648,10 +664,22 @@ const MainConnectionsIdDraftPauseRoute =
     path: '/$id/draft-pause',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainConnectionsIdDateQuizRoute =
+  MainConnectionsIdDateQuizRouteImport.update({
+    id: '/$id_/date-quiz',
+    path: '/$id/date-quiz',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
 const MainConnectionsIdDatePlanRoute =
   MainConnectionsIdDatePlanRouteImport.update({
     id: '/$id_/date-plan',
     path: '/$id/date-plan',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
+const MainConnectionsIdCounterPlanRoute =
+  MainConnectionsIdCounterPlanRouteImport.update({
+    id: '/$id_/counter-plan',
+    path: '/$id/counter-plan',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
 const MainConnectionsIdCoolOffRoute =
@@ -822,11 +850,15 @@ export interface FileRoutesByFullPath {
   '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/counter-plan': typeof MainConnectionsIdCounterPlanRoute
   '/connections/$id/date-plan': typeof MainConnectionsIdDatePlanRoute
+  '/connections/$id/date-quiz': typeof MainConnectionsIdDateQuizRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/green-flag': typeof MainConnectionsIdGreenFlagRoute
   '/connections/$id/insights': typeof MainConnectionsIdInsightsRoute
+  '/connections/$id/plan-update': typeof MainConnectionsIdPlanUpdateRoute
+  '/connections/$id/propose-plan': typeof MainConnectionsIdProposePlanRoute
   '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/about': typeof MainDiscoverIdAboutRoute
@@ -935,11 +967,15 @@ export interface FileRoutesByTo {
   '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/counter-plan': typeof MainConnectionsIdCounterPlanRoute
   '/connections/$id/date-plan': typeof MainConnectionsIdDatePlanRoute
+  '/connections/$id/date-quiz': typeof MainConnectionsIdDateQuizRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/green-flag': typeof MainConnectionsIdGreenFlagRoute
   '/connections/$id/insights': typeof MainConnectionsIdInsightsRoute
+  '/connections/$id/plan-update': typeof MainConnectionsIdPlanUpdateRoute
+  '/connections/$id/propose-plan': typeof MainConnectionsIdProposePlanRoute
   '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/about': typeof MainDiscoverIdAboutRoute
@@ -1055,11 +1091,15 @@ export interface FileRoutesById {
   '/_main/connections/$id_/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/_main/connections/$id_/connected': typeof MainConnectionsIdConnectedRoute
   '/_main/connections/$id_/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/_main/connections/$id_/counter-plan': typeof MainConnectionsIdCounterPlanRoute
   '/_main/connections/$id_/date-plan': typeof MainConnectionsIdDatePlanRoute
+  '/_main/connections/$id_/date-quiz': typeof MainConnectionsIdDateQuizRoute
   '/_main/connections/$id_/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/_main/connections/$id_/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/_main/connections/$id_/green-flag': typeof MainConnectionsIdGreenFlagRoute
   '/_main/connections/$id_/insights': typeof MainConnectionsIdInsightsRoute
+  '/_main/connections/$id_/plan-update': typeof MainConnectionsIdPlanUpdateRoute
+  '/_main/connections/$id_/propose-plan': typeof MainConnectionsIdProposePlanRoute
   '/_main/connections/$id_/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/about': typeof MainDiscoverIdAboutRoute
@@ -1174,11 +1214,15 @@ export interface FileRouteTypes {
     | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
+    | '/connections/$id/counter-plan'
     | '/connections/$id/date-plan'
+    | '/connections/$id/date-quiz'
     | '/connections/$id/draft-pause'
     | '/connections/$id/first-hello'
     | '/connections/$id/green-flag'
     | '/connections/$id/insights'
+    | '/connections/$id/plan-update'
+    | '/connections/$id/propose-plan'
     | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
     | '/discover/$id/about'
@@ -1287,11 +1331,15 @@ export interface FileRouteTypes {
     | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
+    | '/connections/$id/counter-plan'
     | '/connections/$id/date-plan'
+    | '/connections/$id/date-quiz'
     | '/connections/$id/draft-pause'
     | '/connections/$id/first-hello'
     | '/connections/$id/green-flag'
     | '/connections/$id/insights'
+    | '/connections/$id/plan-update'
+    | '/connections/$id/propose-plan'
     | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
     | '/discover/$id/about'
@@ -1406,11 +1454,15 @@ export interface FileRouteTypes {
     | '/_main/connections/$id_/coach-insight'
     | '/_main/connections/$id_/connected'
     | '/_main/connections/$id_/cool-off'
+    | '/_main/connections/$id_/counter-plan'
     | '/_main/connections/$id_/date-plan'
+    | '/_main/connections/$id_/date-quiz'
     | '/_main/connections/$id_/draft-pause'
     | '/_main/connections/$id_/first-hello'
     | '/_main/connections/$id_/green-flag'
     | '/_main/connections/$id_/insights'
+    | '/_main/connections/$id_/plan-update'
+    | '/_main/connections/$id_/propose-plan'
     | '/_main/connections/$id_/red-flag'
     | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/about'
@@ -2137,6 +2189,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdRedFlagRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/connections/$id_/propose-plan': {
+      id: '/_main/connections/$id_/propose-plan'
+      path: '/$id/propose-plan'
+      fullPath: '/connections/$id/propose-plan'
+      preLoaderRoute: typeof MainConnectionsIdProposePlanRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/connections/$id_/plan-update': {
+      id: '/_main/connections/$id_/plan-update'
+      path: '/$id/plan-update'
+      fullPath: '/connections/$id/plan-update'
+      preLoaderRoute: typeof MainConnectionsIdPlanUpdateRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/connections/$id_/insights': {
       id: '/_main/connections/$id_/insights'
       path: '/$id/insights'
@@ -2165,11 +2231,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdDraftPauseRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/connections/$id_/date-quiz': {
+      id: '/_main/connections/$id_/date-quiz'
+      path: '/$id/date-quiz'
+      fullPath: '/connections/$id/date-quiz'
+      preLoaderRoute: typeof MainConnectionsIdDateQuizRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/connections/$id_/date-plan': {
       id: '/_main/connections/$id_/date-plan'
       path: '/$id/date-plan'
       fullPath: '/connections/$id/date-plan'
       preLoaderRoute: typeof MainConnectionsIdDatePlanRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/connections/$id_/counter-plan': {
+      id: '/_main/connections/$id_/counter-plan'
+      path: '/$id/counter-plan'
+      fullPath: '/connections/$id/counter-plan'
+      preLoaderRoute: typeof MainConnectionsIdCounterPlanRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
     '/_main/connections/$id_/cool-off': {
@@ -2303,11 +2383,15 @@ interface MainConnectionsRouteChildren {
   MainConnectionsIdCoachInsightRoute: typeof MainConnectionsIdCoachInsightRoute
   MainConnectionsIdConnectedRoute: typeof MainConnectionsIdConnectedRoute
   MainConnectionsIdCoolOffRoute: typeof MainConnectionsIdCoolOffRoute
+  MainConnectionsIdCounterPlanRoute: typeof MainConnectionsIdCounterPlanRoute
   MainConnectionsIdDatePlanRoute: typeof MainConnectionsIdDatePlanRoute
+  MainConnectionsIdDateQuizRoute: typeof MainConnectionsIdDateQuizRoute
   MainConnectionsIdDraftPauseRoute: typeof MainConnectionsIdDraftPauseRoute
   MainConnectionsIdFirstHelloRoute: typeof MainConnectionsIdFirstHelloRoute
   MainConnectionsIdGreenFlagRoute: typeof MainConnectionsIdGreenFlagRoute
   MainConnectionsIdInsightsRoute: typeof MainConnectionsIdInsightsRoute
+  MainConnectionsIdPlanUpdateRoute: typeof MainConnectionsIdPlanUpdateRoute
+  MainConnectionsIdProposePlanRoute: typeof MainConnectionsIdProposePlanRoute
   MainConnectionsIdRedFlagRoute: typeof MainConnectionsIdRedFlagRoute
   MainConnectionsIdReflectionRoute: typeof MainConnectionsIdReflectionRoute
 }
@@ -2318,11 +2402,15 @@ const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdCoachInsightRoute: MainConnectionsIdCoachInsightRoute,
   MainConnectionsIdConnectedRoute: MainConnectionsIdConnectedRoute,
   MainConnectionsIdCoolOffRoute: MainConnectionsIdCoolOffRoute,
+  MainConnectionsIdCounterPlanRoute: MainConnectionsIdCounterPlanRoute,
   MainConnectionsIdDatePlanRoute: MainConnectionsIdDatePlanRoute,
+  MainConnectionsIdDateQuizRoute: MainConnectionsIdDateQuizRoute,
   MainConnectionsIdDraftPauseRoute: MainConnectionsIdDraftPauseRoute,
   MainConnectionsIdFirstHelloRoute: MainConnectionsIdFirstHelloRoute,
   MainConnectionsIdGreenFlagRoute: MainConnectionsIdGreenFlagRoute,
   MainConnectionsIdInsightsRoute: MainConnectionsIdInsightsRoute,
+  MainConnectionsIdPlanUpdateRoute: MainConnectionsIdPlanUpdateRoute,
+  MainConnectionsIdProposePlanRoute: MainConnectionsIdProposePlanRoute,
   MainConnectionsIdRedFlagRoute: MainConnectionsIdRedFlagRoute,
   MainConnectionsIdReflectionRoute: MainConnectionsIdReflectionRoute,
 }

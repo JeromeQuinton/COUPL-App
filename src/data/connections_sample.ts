@@ -123,6 +123,17 @@ export type ThreadMessage =
       kind: "coach";
       title: string;
       body: string;
+    }
+  | {
+      kind: "plan_invite";
+      id: string;
+      from: "them" | "me";
+      when: string; // human-readable date+time, e.g. "Saturday 16 May, 7pm"
+      where: string;
+      notes?: string;
+      status: "proposed" | "accepted" | "declined" | "countered";
+      planSourceId?: string;
+      replacesInviteId?: string;
     };
 
 export const THREADS: Record<string, ThreadMessage[]> = {
@@ -210,6 +221,15 @@ export const THREADS: Record<string, ThreadMessage[]> = {
       durationSeconds: 27,
       time: "20:48",
       read: true,
+    },
+    {
+      kind: "plan_invite",
+      id: "pi-avery-1",
+      from: "them",
+      when: "Saturday 16 May, 7pm",
+      where: "Sessions Arts Club, Clerkenwell",
+      notes: "Drinks first, dinner if it feels right.",
+      status: "proposed",
     },
     {
       kind: "msg",
