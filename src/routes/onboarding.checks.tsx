@@ -53,13 +53,13 @@ function ChecksScreen() {
       <div className="mt-8 space-y-3">
         <OnboardingButton
           type="button"
-          onClick={() => navigate({ to: "/onboarding/complete" })}
+          onClick={() => navigate({ to: "/onboarding/review" })}
         >
           Continue with social link
         </OnboardingButton>
         <button
           type="button"
-          onClick={() => navigate({ to: "/onboarding/complete" })}
+          onClick={() => navigate({ to: "/onboarding/review" })}
           className="w-full rounded-full px-5 py-3 text-body-md text-slate transition-colors hover:text-plum-500"
         >
           Skip social — verify ID only
