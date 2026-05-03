@@ -114,6 +114,7 @@ import { Route as MainEventsIdAttendeesRouteImport } from './routes/_main.events
 import { Route as MainDiscoverIdCompatibilityRouteImport } from './routes/_main.discover.$id_.compatibility'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainDiscoverIdAboutRouteImport } from './routes/_main.discover.$id_.about'
+import { Route as MainConnectionsIdSafetyShareRouteImport } from './routes/_main.connections.$id_.safety-share'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
 import { Route as MainConnectionsIdRedFlagRouteImport } from './routes/_main.connections.$id_.red-flag'
 import { Route as MainConnectionsIdProposePlanRouteImport } from './routes/_main.connections.$id_.propose-plan'
@@ -125,10 +126,12 @@ import { Route as MainConnectionsIdDraftPauseRouteImport } from './routes/_main.
 import { Route as MainConnectionsIdDateQuizRouteImport } from './routes/_main.connections.$id_.date-quiz'
 import { Route as MainConnectionsIdDatePlanRouteImport } from './routes/_main.connections.$id_.date-plan'
 import { Route as MainConnectionsIdCounterPlanRouteImport } from './routes/_main.connections.$id_.counter-plan'
+import { Route as MainConnectionsIdCoolOffActiveRouteImport } from './routes/_main.connections.$id_.cool-off-active'
 import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.connections.$id_.cool-off'
 import { Route as MainConnectionsIdConnectedRouteImport } from './routes/_main.connections.$id_.connected'
 import { Route as MainConnectionsIdCoachInsightRouteImport } from './routes/_main.connections.$id_.coach-insight'
 import { Route as MainConnectionsIdCleanEndingRouteImport } from './routes/_main.connections.$id_.clean-ending'
+import { Route as MainConnectionsIdBlockedConfirmedRouteImport } from './routes/_main.connections.$id_.blocked-confirmed'
 import { Route as MainVideoWorkshopWorkshopIdIndexRouteImport } from './routes/_main.video.workshop.$workshopId.index'
 import { Route as MainVideoPreMeetConnectionIdIndexRouteImport } from './routes/_main.video.pre-meet.$connectionId.index'
 import { Route as MainVideoWorkshopWorkshopIdLiveRouteImport } from './routes/_main.video.workshop.$workshopId.live'
@@ -685,6 +688,12 @@ const MainDiscoverIdAboutRoute = MainDiscoverIdAboutRouteImport.update({
   path: '/$id/about',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainConnectionsIdSafetyShareRoute =
+  MainConnectionsIdSafetyShareRouteImport.update({
+    id: '/connections/$id_/safety-share',
+    path: '/connections/$id/safety-share',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainConnectionsIdReflectionRoute =
   MainConnectionsIdReflectionRouteImport.update({
     id: '/connections/$id_/reflection',
@@ -751,6 +760,12 @@ const MainConnectionsIdCounterPlanRoute =
     path: '/connections/$id/counter-plan',
     getParentRoute: () => MainRoute,
   } as any)
+const MainConnectionsIdCoolOffActiveRoute =
+  MainConnectionsIdCoolOffActiveRouteImport.update({
+    id: '/connections/$id_/cool-off-active',
+    path: '/connections/$id/cool-off-active',
+    getParentRoute: () => MainRoute,
+  } as any)
 const MainConnectionsIdCoolOffRoute =
   MainConnectionsIdCoolOffRouteImport.update({
     id: '/connections/$id_/cool-off',
@@ -773,6 +788,12 @@ const MainConnectionsIdCleanEndingRoute =
   MainConnectionsIdCleanEndingRouteImport.update({
     id: '/connections/$id_/clean-ending',
     path: '/connections/$id/clean-ending',
+    getParentRoute: () => MainRoute,
+  } as any)
+const MainConnectionsIdBlockedConfirmedRoute =
+  MainConnectionsIdBlockedConfirmedRouteImport.update({
+    id: '/connections/$id_/blocked-confirmed',
+    path: '/connections/$id/blocked-confirmed',
     getParentRoute: () => MainRoute,
   } as any)
 const MainVideoWorkshopWorkshopIdIndexRoute =
@@ -923,10 +944,12 @@ export interface FileRoutesByFullPath {
   '/host/': typeof MainHostIndexRoute
   '/membership/': typeof MainMembershipIndexRoute
   '/profile/': typeof MainProfileIndexRoute
+  '/connections/$id/blocked-confirmed': typeof MainConnectionsIdBlockedConfirmedRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
   '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/cool-off-active': typeof MainConnectionsIdCoolOffActiveRoute
   '/connections/$id/counter-plan': typeof MainConnectionsIdCounterPlanRoute
   '/connections/$id/date-plan': typeof MainConnectionsIdDatePlanRoute
   '/connections/$id/date-quiz': typeof MainConnectionsIdDateQuizRoute
@@ -938,6 +961,7 @@ export interface FileRoutesByFullPath {
   '/connections/$id/propose-plan': typeof MainConnectionsIdProposePlanRoute
   '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
+  '/connections/$id/safety-share': typeof MainConnectionsIdSafetyShareRoute
   '/discover/$id/about': typeof MainDiscoverIdAboutRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/compatibility': typeof MainDiscoverIdCompatibilityRoute
@@ -1051,10 +1075,12 @@ export interface FileRoutesByTo {
   '/host': typeof MainHostIndexRoute
   '/membership': typeof MainMembershipIndexRoute
   '/profile': typeof MainProfileIndexRoute
+  '/connections/$id/blocked-confirmed': typeof MainConnectionsIdBlockedConfirmedRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
   '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/cool-off-active': typeof MainConnectionsIdCoolOffActiveRoute
   '/connections/$id/counter-plan': typeof MainConnectionsIdCounterPlanRoute
   '/connections/$id/date-plan': typeof MainConnectionsIdDatePlanRoute
   '/connections/$id/date-quiz': typeof MainConnectionsIdDateQuizRoute
@@ -1066,6 +1092,7 @@ export interface FileRoutesByTo {
   '/connections/$id/propose-plan': typeof MainConnectionsIdProposePlanRoute
   '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
+  '/connections/$id/safety-share': typeof MainConnectionsIdSafetyShareRoute
   '/discover/$id/about': typeof MainDiscoverIdAboutRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/discover/$id/compatibility': typeof MainDiscoverIdCompatibilityRoute
@@ -1186,10 +1213,12 @@ export interface FileRoutesById {
   '/_main/host/': typeof MainHostIndexRoute
   '/_main/membership/': typeof MainMembershipIndexRoute
   '/_main/profile/': typeof MainProfileIndexRoute
+  '/_main/connections/$id_/blocked-confirmed': typeof MainConnectionsIdBlockedConfirmedRoute
   '/_main/connections/$id_/clean-ending': typeof MainConnectionsIdCleanEndingRoute
   '/_main/connections/$id_/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/_main/connections/$id_/connected': typeof MainConnectionsIdConnectedRoute
   '/_main/connections/$id_/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/_main/connections/$id_/cool-off-active': typeof MainConnectionsIdCoolOffActiveRoute
   '/_main/connections/$id_/counter-plan': typeof MainConnectionsIdCounterPlanRoute
   '/_main/connections/$id_/date-plan': typeof MainConnectionsIdDatePlanRoute
   '/_main/connections/$id_/date-quiz': typeof MainConnectionsIdDateQuizRoute
@@ -1201,6 +1230,7 @@ export interface FileRoutesById {
   '/_main/connections/$id_/propose-plan': typeof MainConnectionsIdProposePlanRoute
   '/_main/connections/$id_/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
+  '/_main/connections/$id_/safety-share': typeof MainConnectionsIdSafetyShareRoute
   '/_main/discover/$id_/about': typeof MainDiscoverIdAboutRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/discover/$id_/compatibility': typeof MainDiscoverIdCompatibilityRoute
@@ -1320,10 +1350,12 @@ export interface FileRouteTypes {
     | '/host/'
     | '/membership/'
     | '/profile/'
+    | '/connections/$id/blocked-confirmed'
     | '/connections/$id/clean-ending'
     | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
+    | '/connections/$id/cool-off-active'
     | '/connections/$id/counter-plan'
     | '/connections/$id/date-plan'
     | '/connections/$id/date-quiz'
@@ -1335,6 +1367,7 @@ export interface FileRouteTypes {
     | '/connections/$id/propose-plan'
     | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
+    | '/connections/$id/safety-share'
     | '/discover/$id/about'
     | '/discover/$id/attuned'
     | '/discover/$id/compatibility'
@@ -1448,10 +1481,12 @@ export interface FileRouteTypes {
     | '/host'
     | '/membership'
     | '/profile'
+    | '/connections/$id/blocked-confirmed'
     | '/connections/$id/clean-ending'
     | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
+    | '/connections/$id/cool-off-active'
     | '/connections/$id/counter-plan'
     | '/connections/$id/date-plan'
     | '/connections/$id/date-quiz'
@@ -1463,6 +1498,7 @@ export interface FileRouteTypes {
     | '/connections/$id/propose-plan'
     | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
+    | '/connections/$id/safety-share'
     | '/discover/$id/about'
     | '/discover/$id/attuned'
     | '/discover/$id/compatibility'
@@ -1582,10 +1618,12 @@ export interface FileRouteTypes {
     | '/_main/host/'
     | '/_main/membership/'
     | '/_main/profile/'
+    | '/_main/connections/$id_/blocked-confirmed'
     | '/_main/connections/$id_/clean-ending'
     | '/_main/connections/$id_/coach-insight'
     | '/_main/connections/$id_/connected'
     | '/_main/connections/$id_/cool-off'
+    | '/_main/connections/$id_/cool-off-active'
     | '/_main/connections/$id_/counter-plan'
     | '/_main/connections/$id_/date-plan'
     | '/_main/connections/$id_/date-quiz'
@@ -1597,6 +1635,7 @@ export interface FileRouteTypes {
     | '/_main/connections/$id_/propose-plan'
     | '/_main/connections/$id_/red-flag'
     | '/_main/connections/$id_/reflection'
+    | '/_main/connections/$id_/safety-share'
     | '/_main/discover/$id_/about'
     | '/_main/discover/$id_/attuned'
     | '/_main/discover/$id_/compatibility'
@@ -2387,6 +2426,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIdAboutRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/connections/$id_/safety-share': {
+      id: '/_main/connections/$id_/safety-share'
+      path: '/connections/$id/safety-share'
+      fullPath: '/connections/$id/safety-share'
+      preLoaderRoute: typeof MainConnectionsIdSafetyShareRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/connections/$id_/reflection': {
       id: '/_main/connections/$id_/reflection'
       path: '/connections/$id/reflection'
@@ -2464,6 +2510,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdCounterPlanRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/connections/$id_/cool-off-active': {
+      id: '/_main/connections/$id_/cool-off-active'
+      path: '/connections/$id/cool-off-active'
+      fullPath: '/connections/$id/cool-off-active'
+      preLoaderRoute: typeof MainConnectionsIdCoolOffActiveRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/connections/$id_/cool-off': {
       id: '/_main/connections/$id_/cool-off'
       path: '/connections/$id/cool-off'
@@ -2490,6 +2543,13 @@ declare module '@tanstack/react-router' {
       path: '/connections/$id/clean-ending'
       fullPath: '/connections/$id/clean-ending'
       preLoaderRoute: typeof MainConnectionsIdCleanEndingRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/connections/$id_/blocked-confirmed': {
+      id: '/_main/connections/$id_/blocked-confirmed'
+      path: '/connections/$id/blocked-confirmed'
+      fullPath: '/connections/$id/blocked-confirmed'
+      preLoaderRoute: typeof MainConnectionsIdBlockedConfirmedRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/video/workshop/$workshopId/': {
@@ -2765,10 +2825,12 @@ interface MainRouteChildren {
   MainEventsIndexRoute: typeof MainEventsIndexRoute
   MainHostIndexRoute: typeof MainHostIndexRoute
   MainMembershipIndexRoute: typeof MainMembershipIndexRoute
+  MainConnectionsIdBlockedConfirmedRoute: typeof MainConnectionsIdBlockedConfirmedRoute
   MainConnectionsIdCleanEndingRoute: typeof MainConnectionsIdCleanEndingRoute
   MainConnectionsIdCoachInsightRoute: typeof MainConnectionsIdCoachInsightRoute
   MainConnectionsIdConnectedRoute: typeof MainConnectionsIdConnectedRoute
   MainConnectionsIdCoolOffRoute: typeof MainConnectionsIdCoolOffRoute
+  MainConnectionsIdCoolOffActiveRoute: typeof MainConnectionsIdCoolOffActiveRoute
   MainConnectionsIdCounterPlanRoute: typeof MainConnectionsIdCounterPlanRoute
   MainConnectionsIdDatePlanRoute: typeof MainConnectionsIdDatePlanRoute
   MainConnectionsIdDateQuizRoute: typeof MainConnectionsIdDateQuizRoute
@@ -2780,6 +2842,7 @@ interface MainRouteChildren {
   MainConnectionsIdProposePlanRoute: typeof MainConnectionsIdProposePlanRoute
   MainConnectionsIdRedFlagRoute: typeof MainConnectionsIdRedFlagRoute
   MainConnectionsIdReflectionRoute: typeof MainConnectionsIdReflectionRoute
+  MainConnectionsIdSafetyShareRoute: typeof MainConnectionsIdSafetyShareRoute
   MainEventsIdAttendeesRoute: typeof MainEventsIdAttendeesRoute
   MainEventsIdBookedRoute: typeof MainEventsIdBookedRoute
   MainEventsIdCheckinRoute: typeof MainEventsIdCheckinRoute
@@ -2829,10 +2892,13 @@ const MainRouteChildren: MainRouteChildren = {
   MainEventsIndexRoute: MainEventsIndexRoute,
   MainHostIndexRoute: MainHostIndexRoute,
   MainMembershipIndexRoute: MainMembershipIndexRoute,
+  MainConnectionsIdBlockedConfirmedRoute:
+    MainConnectionsIdBlockedConfirmedRoute,
   MainConnectionsIdCleanEndingRoute: MainConnectionsIdCleanEndingRoute,
   MainConnectionsIdCoachInsightRoute: MainConnectionsIdCoachInsightRoute,
   MainConnectionsIdConnectedRoute: MainConnectionsIdConnectedRoute,
   MainConnectionsIdCoolOffRoute: MainConnectionsIdCoolOffRoute,
+  MainConnectionsIdCoolOffActiveRoute: MainConnectionsIdCoolOffActiveRoute,
   MainConnectionsIdCounterPlanRoute: MainConnectionsIdCounterPlanRoute,
   MainConnectionsIdDatePlanRoute: MainConnectionsIdDatePlanRoute,
   MainConnectionsIdDateQuizRoute: MainConnectionsIdDateQuizRoute,
@@ -2844,6 +2910,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainConnectionsIdProposePlanRoute: MainConnectionsIdProposePlanRoute,
   MainConnectionsIdRedFlagRoute: MainConnectionsIdRedFlagRoute,
   MainConnectionsIdReflectionRoute: MainConnectionsIdReflectionRoute,
+  MainConnectionsIdSafetyShareRoute: MainConnectionsIdSafetyShareRoute,
   MainEventsIdAttendeesRoute: MainEventsIdAttendeesRoute,
   MainEventsIdBookedRoute: MainEventsIdBookedRoute,
   MainEventsIdCheckinRoute: MainEventsIdCheckinRoute,

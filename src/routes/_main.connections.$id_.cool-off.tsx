@@ -85,7 +85,21 @@ function CoolOffScreen() {
             <li key={o.id}>
               <button
                 type="button"
-                onClick={() => navigate({ to: "/connections" })}
+                onClick={() => {
+                  if (o.id === "wait") {
+                    navigate({
+                      to: "/connections/$id/cool-off-active",
+                      params: { id: SAMPLE_COOL_OFF.targetId },
+                    });
+                  } else if (o.id === "block") {
+                    navigate({
+                      to: "/connections/$id/blocked-confirmed",
+                      params: { id: SAMPLE_COOL_OFF.targetId },
+                    });
+                  } else {
+                    navigate({ to: "/connections" });
+                  }
+                }}
                 className="block w-full rounded-[16px] border border-line bg-paper px-4 py-3.5 text-left shadow-elev-1 transition-colors hover:bg-lavender-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500"
               >
                 <p className="font-display text-[15px] font-semibold text-ink">
