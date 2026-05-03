@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowUp, ChevronLeft, ImageIcon, Mic, MoreHorizontal, Smile, Video } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { VoiceMemoSheet } from "@/components/connections/VoiceMemoSheet";
 import { ConnectionAvatar } from "@/components/connections/Avatar";
 import { CoachPromptCard } from "@/components/connections/CoachPromptCard";
@@ -123,14 +130,64 @@ function ThreadScreen() {
           >
             ASK LIORA
           </Link>
-          <Link
-            to="/connections/$id/clean-ending"
-            params={{ id }}
-            aria-label="End this conversation well"
-            className="rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-          >
-            <MoreHorizontal className="h-5 w-5" />
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                aria-label="More options for this conversation"
+                className="rounded-full p-1.5 text-plum-700 hover:bg-lavender-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500"
+              >
+                <MoreHorizontal className="h-5 w-5" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              sideOffset={6}
+              className="min-w-[200px] rounded-[14px] border-plum-300/30 bg-paper/95 p-1.5 backdrop-blur-md"
+            >
+              <DropdownMenuItem
+                asChild
+                className="rounded-[10px] px-3 py-2 text-[14px] text-ink focus:bg-lavender-50 focus:text-ink"
+              >
+                <Link to="/connections/$id/notes" params={{ id }}>
+                  Notes
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-[10px] px-3 py-2 text-[14px] text-ink focus:bg-lavender-50 focus:text-ink"
+              >
+                <Link to="/connections/$id/rhythm" params={{ id }}>
+                  Rhythm
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-[10px] px-3 py-2 text-[14px] text-ink focus:bg-lavender-50 focus:text-ink"
+              >
+                <Link to="/connections/$id/moments" params={{ id }}>
+                  Moments
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-[10px] px-3 py-2 text-[14px] text-ink focus:bg-lavender-50 focus:text-ink"
+              >
+                <Link to="/connections/$id/export" params={{ id }}>
+                  Export
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className="my-1 bg-plum-300/30" />
+              <DropdownMenuItem
+                asChild
+                className="rounded-[10px] px-3 py-2 text-[14px] text-plum-700 focus:bg-lavender-50 focus:text-plum-700"
+              >
+                <Link to="/connections/$id/clean-ending" params={{ id }}>
+                  Clean ending
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </header>
 
         {/* Timeline */}
