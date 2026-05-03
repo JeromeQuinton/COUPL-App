@@ -106,6 +106,11 @@ function ProfileScreen() {
       <section className="px-5 pt-4 pb-12">
         <ul className="flex flex-col gap-2">
           <ProfileLinkRow
+            to="/dev-routes"
+            title="🧪 Dev routes (all surfaces)"
+            sub="Every shipped route, for testing. Remove before launch."
+          />
+          <ProfileLinkRow
             to="/profile/edit"
             title="Edit profile"
           />
@@ -187,7 +192,8 @@ function ProfileLinkRow({
     | "/profile/account"
     | "/profile/notifications"
     | "/profile/help"
-    | "/date-plans";
+    | "/date-plans"
+    | "/dev-routes";
   title: string;
   sub?: string;
 }) {

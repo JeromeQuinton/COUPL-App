@@ -96,14 +96,14 @@ function ThreadScreen() {
           <Link
             to="/connections/$id/propose-plan"
             params={{ id }}
-            className="hidden text-label-mono text-plum-700 hover:underline sm:inline"
+            className="text-label-mono text-plum-700 hover:underline"
           >
             PROPOSE
           </Link>
           <Link
             to="/connections/$id/insights"
             params={{ id }}
-            className="hidden text-label-mono text-plum-700 hover:underline sm:inline"
+            className="text-label-mono text-plum-700 hover:underline"
           >
             INSIGHTS
           </Link>

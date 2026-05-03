@@ -38,6 +38,7 @@ import { Route as MainProfileRouteImport } from './routes/_main.profile'
 import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainGrowthRouteImport } from './routes/_main.growth'
 import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
+import { Route as MainDevRoutesRouteImport } from './routes/_main.dev-routes'
 import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
 import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
 import { Route as MainProfileIndexRouteImport } from './routes/_main.profile.index'
@@ -273,6 +274,11 @@ const MainGrowthRoute = MainGrowthRouteImport.update({
 const MainDiscoverRoute = MainDiscoverRouteImport.update({
   id: '/discover',
   path: '/discover',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainDevRoutesRoute = MainDevRoutesRouteImport.update({
+  id: '/dev-routes',
+  path: '/dev-routes',
   getParentRoute: () => MainRoute,
 } as any)
 const MainConnectionsRoute = MainConnectionsRouteImport.update({
@@ -784,6 +790,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRouteWithChildren
   '/signin': typeof AuthSigninRoute
   '/connections': typeof MainConnectionsRouteWithChildren
+  '/dev-routes': typeof MainDevRoutesRoute
   '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRouteWithChildren
   '/home': typeof MainHomeRouteWithChildren
@@ -904,6 +911,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signin': typeof AuthSigninRoute
   '/connections': typeof MainConnectionsRouteWithChildren
+  '/dev-routes': typeof MainDevRoutesRoute
   '/home': typeof MainHomeRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
@@ -1025,6 +1033,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
   '/_main/connections': typeof MainConnectionsRouteWithChildren
+  '/_main/dev-routes': typeof MainDevRoutesRoute
   '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRouteWithChildren
   '/_main/home': typeof MainHomeRouteWithChildren
@@ -1148,6 +1157,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/signin'
     | '/connections'
+    | '/dev-routes'
     | '/discover'
     | '/growth'
     | '/home'
@@ -1268,6 +1278,7 @@ export interface FileRouteTypes {
     | '/'
     | '/signin'
     | '/connections'
+    | '/dev-routes'
     | '/home'
     | '/onboarding/$step'
     | '/onboarding/capacity'
@@ -1388,6 +1399,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/_auth/signin'
     | '/_main/connections'
+    | '/_main/dev-routes'
     | '/_main/discover'
     | '/_main/growth'
     | '/_main/home'
@@ -1718,6 +1730,13 @@ declare module '@tanstack/react-router' {
       path: '/discover'
       fullPath: '/discover'
       preLoaderRoute: typeof MainDiscoverRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/dev-routes': {
+      id: '/_main/dev-routes'
+      path: '/dev-routes'
+      fullPath: '/dev-routes'
+      preLoaderRoute: typeof MainDevRoutesRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/connections': {
@@ -2553,6 +2572,7 @@ const MainProfileRouteWithChildren = MainProfileRoute._addFileChildren(
 
 interface MainRouteChildren {
   MainConnectionsRoute: typeof MainConnectionsRouteWithChildren
+  MainDevRoutesRoute: typeof MainDevRoutesRoute
   MainDiscoverRoute: typeof MainDiscoverRouteWithChildren
   MainGrowthRoute: typeof MainGrowthRouteWithChildren
   MainHomeRoute: typeof MainHomeRouteWithChildren
@@ -2596,6 +2616,7 @@ interface MainRouteChildren {
 
 const MainRouteChildren: MainRouteChildren = {
   MainConnectionsRoute: MainConnectionsRouteWithChildren,
+  MainDevRoutesRoute: MainDevRoutesRoute,
   MainDiscoverRoute: MainDiscoverRouteWithChildren,
   MainGrowthRoute: MainGrowthRouteWithChildren,
   MainHomeRoute: MainHomeRouteWithChildren,
