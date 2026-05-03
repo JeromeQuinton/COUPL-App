@@ -62,7 +62,7 @@ function PhotosScreen() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!canSubmit) return;
-    navigate({ to: "/onboarding/prompts" });
+    navigate({ to: "/onboarding/capacity" });
   };
 
   return (
