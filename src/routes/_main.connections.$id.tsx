@@ -4,6 +4,8 @@ import { ArrowUp, ChevronLeft, ImageIcon, Mic, MoreHorizontal, Smile } from "luc
 import { ConnectionAvatar } from "@/components/connections/Avatar";
 import { CoachPromptCard } from "@/components/connections/CoachPromptCard";
 import { MessageBubble } from "@/components/connections/MessageBubble";
+import { ProfilePeek } from "@/components/connections/ProfilePeek";
+import { TypingIndicator } from "@/components/connections/TypingIndicator";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
 import {
   getConnection,
@@ -53,6 +55,7 @@ function ThreadScreen() {
   const c = getConnection(id)!;
   const messages = THREADS[id] ?? [];
   const [draft, setDraft] = useState("");
+  const [peekOpen, setPeekOpen] = useState(false);
 
   return (
     <PageBackdrop>
@@ -73,7 +76,14 @@ function ThreadScreen() {
           >
             <ChevronLeft className="h-5 w-5" />
           </Link>
-          <ConnectionAvatar initial={c.initial} hue={c.hue} size={36} />
+          <button
+            type="button"
+            onClick={() => setPeekOpen(true)}
+            aria-label={`Open ${c.name} profile preview`}
+            className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-500"
+          >
+            <ConnectionAvatar initial={c.initial} hue={c.hue} size={36} />
+          </button>
           <div className="min-w-0 flex-1">
             <p className="font-display text-[15px] font-semibold text-ink">
               {c.name}
@@ -175,6 +185,17 @@ function ThreadScreen() {
           </div>
         </div>
       </div>
+      <ProfilePeek
+        open={peekOpen}
+        onClose={() => setPeekOpen(false)}
+        name={c.name}
+        about="I notice the small things first — the way someone holds a coffee, what they laugh at twice."
+        languages={["English", "Portuguese"]}
+        topPrompt={{
+          question: "Something I'm sitting with",
+          answer: "How to want closeness without losing my own pace.",
+        }}
+      />
     </PageBackdrop>
   );
 }
