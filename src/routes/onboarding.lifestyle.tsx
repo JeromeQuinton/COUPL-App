@@ -19,27 +19,44 @@ export const Route = createFileRoute("/onboarding/lifestyle")({
   component: LifestyleScreen,
 });
 
-type LifestyleCategory = "rhythm" | "movement" | "creativity" | "outdoors";
+type LifestyleCategory = "mornings" | "evenings" | "weekends";
 
 const LIFESTYLE: Record<
   LifestyleCategory,
   { label: string; chips: string[] }
 > = {
-  rhythm: {
-    label: "Slow living",
-    chips: ["Reading", "Cooking", "Long walks", "Tea", "Vinyl"],
+  mornings: {
+    label: "Mornings",
+    chips: [
+      "Early reading",
+      "Coffee rituals",
+      "Run before work",
+      "Meditation",
+      "Journal",
+      "Podcast commute",
+    ],
   },
-  movement: {
-    label: "Movement",
-    chips: ["Yoga", "Hiking", "Climbing", "Running", "Swimming"],
+  evenings: {
+    label: "Evenings",
+    chips: [
+      "Cooking supper",
+      "Pub with friends",
+      "Bath and book",
+      "Vinyl",
+      "Evening walk",
+      "Early bed",
+    ],
   },
-  creativity: {
-    label: "Creativity",
-    chips: ["Pottery", "Writing", "Film", "Music", "Photography"],
-  },
-  outdoors: {
-    label: "Outdoors",
-    chips: ["Camping", "Sea swimming", "Gardening", "Cycling"],
+  weekends: {
+    label: "Weekends",
+    chips: [
+      "Sunday papers",
+      "Coastal walk",
+      "Hosting lunch",
+      "Live music",
+      "Allotment",
+      "Quiet forest",
+    ],
   },
 };
 
@@ -64,7 +81,7 @@ function LifestyleScreen() {
     });
   };
 
-  const canSubmit = selected.size >= 3;
+  const canSubmit = selected.size >= 5;
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,13 +94,13 @@ function LifestyleScreen() {
       <form id="lifestyle-form" onSubmit={onSubmit}>
         <StepEyebrow step={6} />
         <h1 className="mt-3 text-display-xl text-ink">
-          What&rsquo;s a usual week like?
+          Show us your week.
         </h1>
         <p className="mt-2 text-body-md text-slate">
-          Attraction is shaped by ordinary life as much as chemistry.
+          Not highlights. The shape of your mornings, evenings, and weekends.
         </p>
         <p className="mt-3 font-display italic text-body-md text-plum-500">
-          Patterns matter more than performance.
+          Compatibility lives in repetition.
         </p>
 
         <div className="mt-8 space-y-6">
@@ -107,7 +124,7 @@ function LifestyleScreen() {
         </div>
 
         <p className="mt-6 text-body-sm text-slate">
-          {selected.size} chosen · pick 3 or more
+          {selected.size} chosen · pick 5 or more across the three sections
         </p>
       </form>
 
@@ -120,7 +137,7 @@ function LifestyleScreen() {
           Continue
         </OnboardingButton>
         <p className="mt-3 text-center text-body-sm text-slate">
-          This helps us match rhythm, not just taste.
+          Rhythm reveals more than hobbies.
         </p>
       </div>
     </OnboardingFrame>
