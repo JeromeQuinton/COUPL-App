@@ -99,6 +99,8 @@ function ThreadScreen() {
           ))}
         </ol>
 
+        <TypingIndicator name={c.name} />
+
         {/* Phase 1 demo triggers — replaced by automated triggers in Phase 4 */}
         <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
           <Link
