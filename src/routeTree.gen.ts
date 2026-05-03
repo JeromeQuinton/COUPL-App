@@ -73,6 +73,7 @@ import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discove
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainVideoCoachBookingRouteImport } from './routes/_main.video.coach.booking'
+import { Route as MainProfileSafetyReportsRouteImport } from './routes/_main.profile.safety.reports'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
 import { Route as MainProfileDataReadyRouteImport } from './routes/_main.profile.data.ready'
 import { Route as MainProfileDataPreparingRouteImport } from './routes/_main.profile.data.preparing'
@@ -114,6 +115,7 @@ import { Route as MainVideoPreMeetConnectionIdActiveRouteImport } from './routes
 import { Route as MainVideoCoachBookingIdLobbyRouteImport } from './routes/_main.video.coach.$bookingId.lobby'
 import { Route as MainVideoCoachBookingIdEndedRouteImport } from './routes/_main.video.coach.$bookingId.ended'
 import { Route as MainVideoCoachBookingIdActiveRouteImport } from './routes/_main.video.coach.$bookingId.active'
+import { Route as MainProfileSafetyReportSubmitRouteImport } from './routes/_main.profile.safety.report.submit'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -440,6 +442,12 @@ const MainVideoCoachBookingRoute = MainVideoCoachBookingRouteImport.update({
   path: '/video/coach/booking',
   getParentRoute: () => MainRoute,
 } as any)
+const MainProfileSafetyReportsRoute =
+  MainProfileSafetyReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => MainProfileSafetyRoute,
+  } as any)
 const MainProfileSafetyReportRoute = MainProfileSafetyReportRouteImport.update({
   id: '/report',
   path: '/report',
@@ -671,6 +679,12 @@ const MainVideoCoachBookingIdActiveRoute =
     path: '/video/coach/$bookingId/active',
     getParentRoute: () => MainRoute,
   } as any)
+const MainProfileSafetyReportSubmitRoute =
+  MainProfileSafetyReportSubmitRouteImport.update({
+    id: '/submit',
+    path: '/submit',
+    getParentRoute: () => MainProfileSafetyReportRoute,
+  } as any)
 const MainDiscoverIdInsightsConnectionLanguagesRoute =
   MainDiscoverIdInsightsConnectionLanguagesRouteImport.update({
     id: '/$id_/insights/connection-languages',
@@ -770,9 +784,11 @@ export interface FileRoutesByFullPath {
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
-  '/profile/safety/report': typeof MainProfileSafetyReportRoute
+  '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
+  '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
   '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
   '/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
   '/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
@@ -872,9 +888,11 @@ export interface FileRoutesByTo {
   '/profile/data/export': typeof MainProfileDataExportRoute
   '/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/profile/data/ready': typeof MainProfileDataReadyRoute
-  '/profile/safety/report': typeof MainProfileSafetyReportRoute
+  '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
+  '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
   '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
   '/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
   '/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
@@ -981,9 +999,11 @@ export interface FileRoutesById {
   '/_main/profile/data/export': typeof MainProfileDataExportRoute
   '/_main/profile/data/preparing': typeof MainProfileDataPreparingRoute
   '/_main/profile/data/ready': typeof MainProfileDataReadyRoute
-  '/_main/profile/safety/report': typeof MainProfileSafetyReportRoute
+  '/_main/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
+  '/_main/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/_main/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
+  '/_main/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
   '/_main/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
   '/_main/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
   '/_main/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
@@ -1090,8 +1110,10 @@ export interface FileRouteTypes {
     | '/profile/data/preparing'
     | '/profile/data/ready'
     | '/profile/safety/report'
+    | '/profile/safety/reports'
     | '/video/coach/booking'
     | '/discover/$id/insights/connection-languages'
+    | '/profile/safety/report/submit'
     | '/video/coach/$bookingId/active'
     | '/video/coach/$bookingId/ended'
     | '/video/coach/$bookingId/lobby'
@@ -1192,8 +1214,10 @@ export interface FileRouteTypes {
     | '/profile/data/preparing'
     | '/profile/data/ready'
     | '/profile/safety/report'
+    | '/profile/safety/reports'
     | '/video/coach/booking'
     | '/discover/$id/insights/connection-languages'
+    | '/profile/safety/report/submit'
     | '/video/coach/$bookingId/active'
     | '/video/coach/$bookingId/ended'
     | '/video/coach/$bookingId/lobby'
@@ -1300,8 +1324,10 @@ export interface FileRouteTypes {
     | '/_main/profile/data/preparing'
     | '/_main/profile/data/ready'
     | '/_main/profile/safety/report'
+    | '/_main/profile/safety/reports'
     | '/_main/video/coach/booking'
     | '/_main/discover/$id_/insights/connection-languages'
+    | '/_main/profile/safety/report/submit'
     | '/_main/video/coach/$bookingId/active'
     | '/_main/video/coach/$bookingId/ended'
     | '/_main/video/coach/$bookingId/lobby'
@@ -1774,6 +1800,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainVideoCoachBookingRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/profile/safety/reports': {
+      id: '/_main/profile/safety/reports'
+      path: '/reports'
+      fullPath: '/profile/safety/reports'
+      preLoaderRoute: typeof MainProfileSafetyReportsRouteImport
+      parentRoute: typeof MainProfileSafetyRoute
+    }
     '/_main/profile/safety/report': {
       id: '/_main/profile/safety/report'
       path: '/report'
@@ -2061,6 +2094,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainVideoCoachBookingIdActiveRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/profile/safety/report/submit': {
+      id: '/_main/profile/safety/report/submit'
+      path: '/submit'
+      fullPath: '/profile/safety/report/submit'
+      preLoaderRoute: typeof MainProfileSafetyReportSubmitRouteImport
+      parentRoute: typeof MainProfileSafetyReportRoute
+    }
     '/_main/discover/$id_/insights/connection-languages': {
       id: '/_main/discover/$id_/insights/connection-languages'
       path: '/$id/insights/connection-languages'
@@ -2180,12 +2220,28 @@ const MainHomeRouteWithChildren = MainHomeRoute._addFileChildren(
   MainHomeRouteChildren,
 )
 
+interface MainProfileSafetyReportRouteChildren {
+  MainProfileSafetyReportSubmitRoute: typeof MainProfileSafetyReportSubmitRoute
+}
+
+const MainProfileSafetyReportRouteChildren: MainProfileSafetyReportRouteChildren =
+  {
+    MainProfileSafetyReportSubmitRoute: MainProfileSafetyReportSubmitRoute,
+  }
+
+const MainProfileSafetyReportRouteWithChildren =
+  MainProfileSafetyReportRoute._addFileChildren(
+    MainProfileSafetyReportRouteChildren,
+  )
+
 interface MainProfileSafetyRouteChildren {
-  MainProfileSafetyReportRoute: typeof MainProfileSafetyReportRoute
+  MainProfileSafetyReportRoute: typeof MainProfileSafetyReportRouteWithChildren
+  MainProfileSafetyReportsRoute: typeof MainProfileSafetyReportsRoute
 }
 
 const MainProfileSafetyRouteChildren: MainProfileSafetyRouteChildren = {
-  MainProfileSafetyReportRoute: MainProfileSafetyReportRoute,
+  MainProfileSafetyReportRoute: MainProfileSafetyReportRouteWithChildren,
+  MainProfileSafetyReportsRoute: MainProfileSafetyReportsRoute,
 }
 
 const MainProfileSafetyRouteWithChildren =
