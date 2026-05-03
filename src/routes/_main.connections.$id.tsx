@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ChevronLeft, MoreHorizontal, Send } from "lucide-react";
+import { ArrowUp, ChevronLeft, ImageIcon, Mic, MoreHorizontal, Smile } from "lucide-react";
 import { ConnectionAvatar } from "@/components/connections/Avatar";
 import { CoachPromptCard } from "@/components/connections/CoachPromptCard";
 import { MessageBubble } from "@/components/connections/MessageBubble";
@@ -118,33 +118,57 @@ function ThreadScreen() {
         </div>
 
         {/* Composer */}
-        <div
-          className="sticky bottom-[88px] -mx-4 border-t border-plum-300/15 bg-paper/90 px-4 py-3 backdrop-blur-md"
-        >
-          <div className="flex items-center gap-2 rounded-full border border-plum-300/30 bg-paper px-4 py-2">
-            <input
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              placeholder="Take your time…"
-              className="flex-1 bg-transparent text-[14px] text-ink placeholder:text-stone focus:outline-none"
-              aria-label="Message draft"
-            />
+        <div className="sticky bottom-[88px] -mx-4 border-t border-line bg-paper px-4 py-3">
+          <div className="flex items-end gap-2">
+            <button
+              type="button"
+              aria-label="Attach photo"
+              className="flex size-9 shrink-0 items-center justify-center rounded-full text-slate hover:bg-lavender-100 hover:text-plum-700 transition-colors"
+            >
+              <ImageIcon className="size-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Record voice note"
+              className="flex size-9 shrink-0 items-center justify-center rounded-full text-slate hover:bg-lavender-100 hover:text-plum-700 transition-colors"
+            >
+              <Mic className="size-5" />
+            </button>
+            <div className="flex flex-1 items-end rounded-2xl border border-line bg-paper focus-within:border-plum-500 transition-colors">
+              <textarea
+                rows={1}
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                placeholder="Take your time…"
+                className="flex-1 resize-none bg-transparent px-4 py-2 text-ink placeholder:text-stone focus:outline-none"
+                aria-label="Message draft"
+              />
+              <button
+                type="button"
+                aria-label="Add emoji"
+                className="mr-1 flex size-8 items-center justify-center rounded-full text-slate hover:bg-lavender-100 hover:text-plum-700 transition-colors"
+              >
+                <Smile className="size-4" />
+              </button>
+            </div>
             {draft.trim().length > 0 ? (
               <Link
                 to="/connections/$id/draft-pause"
                 params={{ id }}
-                aria-label="Review before sending"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-plum-500 text-paper transition-colors hover:bg-plum-700"
+                aria-label="Send"
+                className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-paper hover:bg-plum-700 transition-colors"
               >
-                <Send className="h-3.5 w-3.5" />
+                <ArrowUp className="size-5" />
               </Link>
             ) : (
-              <span
-                aria-hidden
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-plum-500/30 text-paper"
+              <button
+                type="button"
+                aria-label="Send"
+                disabled
+                className="flex size-9 shrink-0 items-center justify-center rounded-full bg-stone text-paper opacity-60 cursor-not-allowed"
               >
-                <Send className="h-3.5 w-3.5" />
-              </span>
+                <ArrowUp className="size-5" />
+              </button>
             )}
           </div>
         </div>
