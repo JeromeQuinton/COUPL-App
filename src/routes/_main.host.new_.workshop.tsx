@@ -58,7 +58,7 @@ function WorkshopComposer() {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             rows={3}
-            placeholder='"What's a thing you've stopped pretending about?"'
+            placeholder="What's a thing you've stopped pretending about?"
             className="mt-2 w-full resize-none rounded-[14px] border border-line bg-paper px-4 py-3 font-body text-[14px] italic text-ink placeholder:not-italic placeholder:text-stone focus:border-plum-500 focus:outline-none"
           />
           <p className="mt-2 font-body text-[12px] italic text-stone">

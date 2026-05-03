@@ -14,13 +14,17 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
+import { Route as SystemVerificationFailedRouteImport } from './routes/system.verification-failed'
 import { Route as SystemPushPermissionsRouteImport } from './routes/system.push-permissions'
+import { Route as SystemOfflineRouteImport } from './routes/system.offline'
 import { Route as OnboardingVerifyRouteImport } from './routes/onboarding.verify'
 import { Route as OnboardingValuesRouteImport } from './routes/onboarding.values'
 import { Route as OnboardingReviewRouteImport } from './routes/onboarding.review'
+import { Route as OnboardingResumeRouteImport } from './routes/onboarding.resume'
 import { Route as OnboardingPromptsRouteImport } from './routes/onboarding.prompts'
 import { Route as OnboardingPhotosRouteImport } from './routes/onboarding.photos'
 import { Route as OnboardingPhotoReviewRouteImport } from './routes/onboarding.photo-review'
+import { Route as OnboardingPausedRouteImport } from './routes/onboarding.paused'
 import { Route as OnboardingPaceRouteImport } from './routes/onboarding.pace'
 import { Route as OnboardingNameRouteImport } from './routes/onboarding.name'
 import { Route as OnboardingLifestyleRouteImport } from './routes/onboarding.lifestyle'
@@ -37,33 +41,54 @@ import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
 import { Route as MainConnectionsRouteImport } from './routes/_main.connections'
 import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
 import { Route as MainProfileIndexRouteImport } from './routes/_main.profile.index'
+import { Route as MainMembershipIndexRouteImport } from './routes/_main.membership.index'
+import { Route as MainHostIndexRouteImport } from './routes/_main.host.index'
 import { Route as MainGrowthIndexRouteImport } from './routes/_main.growth.index'
 import { Route as MainEventsIndexRouteImport } from './routes/_main.events.index'
 import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.index'
+import { Route as OnboardingChecksLivenessHelpRouteImport } from './routes/onboarding.checks.liveness-help'
+import { Route as OnboardingChecksLivenessRouteImport } from './routes/onboarding.checks.liveness'
+import { Route as OnboardingChecksIdSelectRouteImport } from './routes/onboarding.checks.id-select'
+import { Route as OnboardingChecksIdScanRouteImport } from './routes/onboarding.checks.id-scan'
+import { Route as MainProfileVisibilityRouteImport } from './routes/_main.profile.visibility'
 import { Route as MainProfileSafetyRouteImport } from './routes/_main.profile.safety'
 import { Route as MainProfilePauseRouteImport } from './routes/_main.profile.pause'
 import { Route as MainProfileEditRouteImport } from './routes/_main.profile.edit'
 import { Route as MainProfileCoachSettingsRouteImport } from './routes/_main.profile.coach-settings'
 import { Route as MainProfileAuditLogRouteImport } from './routes/_main.profile.audit-log'
-import { Route as MainProfileVisibilityRouteImport } from './routes/_main.profile.visibility'
+import { Route as MainMembershipPlansRouteImport } from './routes/_main.membership.plans'
+import { Route as MainHostNewRouteImport } from './routes/_main.host.new'
+import { Route as MainHostAttendeesRouteImport } from './routes/_main.host.attendees'
 import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.reflection'
 import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
+import { Route as MainGrowthWorkshopsRouteImport } from './routes/_main.growth.workshops'
+import { Route as MainGrowthMonthlySummaryRouteImport } from './routes/_main.growth.monthly-summary'
+import { Route as MainGrowthJournalRouteImport } from './routes/_main.growth.journal'
 import { Route as MainGrowthIdRouteImport } from './routes/_main.growth.$id'
 import { Route as MainEventsIdRouteImport } from './routes/_main.events.$id'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
+import { Route as MainProfileDataReadyRouteImport } from './routes/_main.profile.data.ready'
+import { Route as MainProfileDataPreparingRouteImport } from './routes/_main.profile.data.preparing'
+import { Route as MainProfileDataExportRouteImport } from './routes/_main.profile.data.export'
+import { Route as MainProfileDataDoneRouteImport } from './routes/_main.profile.data.done'
+import { Route as MainHostNewWorkshopRouteImport } from './routes/_main.host.new_.workshop'
+import { Route as MainHostNewCommunityRouteImport } from './routes/_main.host.new_.community'
 import { Route as MainEventsIdRoundupRouteImport } from './routes/_main.events.$id_.roundup'
+import { Route as MainEventsIdReserveRouteImport } from './routes/_main.events.$id_.reserve'
 import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$id_.checkin'
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
+import { Route as MainEventsIdAttendeesRouteImport } from './routes/_main.events.$id_.attendees'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
 import { Route as MainConnectionsIdRedFlagRouteImport } from './routes/_main.connections.$id_.red-flag'
 import { Route as MainConnectionsIdGreenFlagRouteImport } from './routes/_main.connections.$id_.green-flag'
 import { Route as MainConnectionsIdFirstHelloRouteImport } from './routes/_main.connections.$id_.first-hello'
 import { Route as MainConnectionsIdDraftPauseRouteImport } from './routes/_main.connections.$id_.draft-pause'
+import { Route as MainConnectionsIdDatePlanRouteImport } from './routes/_main.connections.$id_.date-plan'
 import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.connections.$id_.cool-off'
 import { Route as MainConnectionsIdConnectedRouteImport } from './routes/_main.connections.$id_.connected'
 import { Route as MainConnectionsIdCoachInsightRouteImport } from './routes/_main.connections.$id_.coach-insight'
@@ -93,9 +118,20 @@ const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   path: '/',
   getParentRoute: () => OnboardingRoute,
 } as any)
+const SystemVerificationFailedRoute =
+  SystemVerificationFailedRouteImport.update({
+    id: '/system/verification-failed',
+    path: '/system/verification-failed',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SystemPushPermissionsRoute = SystemPushPermissionsRouteImport.update({
   id: '/system/push-permissions',
   path: '/system/push-permissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemOfflineRoute = SystemOfflineRouteImport.update({
+  id: '/system/offline',
+  path: '/system/offline',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingVerifyRoute = OnboardingVerifyRouteImport.update({
@@ -113,6 +149,11 @@ const OnboardingReviewRoute = OnboardingReviewRouteImport.update({
   path: '/review',
   getParentRoute: () => OnboardingRoute,
 } as any)
+const OnboardingResumeRoute = OnboardingResumeRouteImport.update({
+  id: '/resume',
+  path: '/resume',
+  getParentRoute: () => OnboardingRoute,
+} as any)
 const OnboardingPromptsRoute = OnboardingPromptsRouteImport.update({
   id: '/prompts',
   path: '/prompts',
@@ -126,6 +167,11 @@ const OnboardingPhotosRoute = OnboardingPhotosRouteImport.update({
 const OnboardingPhotoReviewRoute = OnboardingPhotoReviewRouteImport.update({
   id: '/photo-review',
   path: '/photo-review',
+  getParentRoute: () => OnboardingRoute,
+} as any)
+const OnboardingPausedRoute = OnboardingPausedRouteImport.update({
+  id: '/paused',
+  path: '/paused',
   getParentRoute: () => OnboardingRoute,
 } as any)
 const OnboardingPaceRoute = OnboardingPaceRouteImport.update({
@@ -208,6 +254,16 @@ const MainProfileIndexRoute = MainProfileIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainProfileRoute,
 } as any)
+const MainMembershipIndexRoute = MainMembershipIndexRouteImport.update({
+  id: '/membership/',
+  path: '/membership/',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainHostIndexRoute = MainHostIndexRouteImport.update({
+  id: '/host/',
+  path: '/host/',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainGrowthIndexRoute = MainGrowthIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -222,6 +278,34 @@ const MainDiscoverIndexRoute = MainDiscoverIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => MainDiscoverRoute,
+} as any)
+const OnboardingChecksLivenessHelpRoute =
+  OnboardingChecksLivenessHelpRouteImport.update({
+    id: '/liveness-help',
+    path: '/liveness-help',
+    getParentRoute: () => OnboardingChecksRoute,
+  } as any)
+const OnboardingChecksLivenessRoute =
+  OnboardingChecksLivenessRouteImport.update({
+    id: '/liveness',
+    path: '/liveness',
+    getParentRoute: () => OnboardingChecksRoute,
+  } as any)
+const OnboardingChecksIdSelectRoute =
+  OnboardingChecksIdSelectRouteImport.update({
+    id: '/id-select',
+    path: '/id-select',
+    getParentRoute: () => OnboardingChecksRoute,
+  } as any)
+const OnboardingChecksIdScanRoute = OnboardingChecksIdScanRouteImport.update({
+  id: '/id-scan',
+  path: '/id-scan',
+  getParentRoute: () => OnboardingChecksRoute,
+} as any)
+const MainProfileVisibilityRoute = MainProfileVisibilityRouteImport.update({
+  id: '/visibility',
+  path: '/visibility',
+  getParentRoute: () => MainProfileRoute,
 } as any)
 const MainProfileSafetyRoute = MainProfileSafetyRouteImport.update({
   id: '/safety',
@@ -249,10 +333,20 @@ const MainProfileAuditLogRoute = MainProfileAuditLogRouteImport.update({
   path: '/audit-log',
   getParentRoute: () => MainProfileRoute,
 } as any)
-const MainProfileVisibilityRoute = MainProfileVisibilityRouteImport.update({
-  id: '/audit',
-  path: '/audit',
-  getParentRoute: () => MainProfileRoute,
+const MainMembershipPlansRoute = MainMembershipPlansRouteImport.update({
+  id: '/membership/plans',
+  path: '/membership/plans',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainHostNewRoute = MainHostNewRouteImport.update({
+  id: '/host/new',
+  path: '/host/new',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainHostAttendeesRoute = MainHostAttendeesRouteImport.update({
+  id: '/host/attendees',
+  path: '/host/attendees',
+  getParentRoute: () => MainRoute,
 } as any)
 const MainHomeReflectionRoute = MainHomeReflectionRouteImport.update({
   id: '/reflection',
@@ -268,6 +362,22 @@ const MainHomeCheckInRoute = MainHomeCheckInRouteImport.update({
   id: '/check-in',
   path: '/check-in',
   getParentRoute: () => MainHomeRoute,
+} as any)
+const MainGrowthWorkshopsRoute = MainGrowthWorkshopsRouteImport.update({
+  id: '/workshops',
+  path: '/workshops',
+  getParentRoute: () => MainGrowthRoute,
+} as any)
+const MainGrowthMonthlySummaryRoute =
+  MainGrowthMonthlySummaryRouteImport.update({
+    id: '/monthly-summary',
+    path: '/monthly-summary',
+    getParentRoute: () => MainGrowthRoute,
+  } as any)
+const MainGrowthJournalRoute = MainGrowthJournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => MainGrowthRoute,
 } as any)
 const MainGrowthIdRoute = MainGrowthIdRouteImport.update({
   id: '/$id',
@@ -299,9 +409,45 @@ const MainProfileSafetyReportRoute = MainProfileSafetyReportRouteImport.update({
   path: '/report',
   getParentRoute: () => MainProfileSafetyRoute,
 } as any)
+const MainProfileDataReadyRoute = MainProfileDataReadyRouteImport.update({
+  id: '/data/ready',
+  path: '/data/ready',
+  getParentRoute: () => MainProfileRoute,
+} as any)
+const MainProfileDataPreparingRoute =
+  MainProfileDataPreparingRouteImport.update({
+    id: '/data/preparing',
+    path: '/data/preparing',
+    getParentRoute: () => MainProfileRoute,
+  } as any)
+const MainProfileDataExportRoute = MainProfileDataExportRouteImport.update({
+  id: '/data/export',
+  path: '/data/export',
+  getParentRoute: () => MainProfileRoute,
+} as any)
+const MainProfileDataDoneRoute = MainProfileDataDoneRouteImport.update({
+  id: '/data/done',
+  path: '/data/done',
+  getParentRoute: () => MainProfileRoute,
+} as any)
+const MainHostNewWorkshopRoute = MainHostNewWorkshopRouteImport.update({
+  id: '/host/new_/workshop',
+  path: '/host/new/workshop',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainHostNewCommunityRoute = MainHostNewCommunityRouteImport.update({
+  id: '/host/new_/community',
+  path: '/host/new/community',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainEventsIdRoundupRoute = MainEventsIdRoundupRouteImport.update({
   id: '/events/$id_/roundup',
   path: '/events/$id/roundup',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainEventsIdReserveRoute = MainEventsIdReserveRouteImport.update({
+  id: '/events/$id_/reserve',
+  path: '/events/$id/reserve',
   getParentRoute: () => MainRoute,
 } as any)
 const MainEventsIdCheckinRoute = MainEventsIdCheckinRouteImport.update({
@@ -312,6 +458,11 @@ const MainEventsIdCheckinRoute = MainEventsIdCheckinRouteImport.update({
 const MainEventsIdBookedRoute = MainEventsIdBookedRouteImport.update({
   id: '/events/$id_/booked',
   path: '/events/$id/booked',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainEventsIdAttendeesRoute = MainEventsIdAttendeesRouteImport.update({
+  id: '/events/$id_/attendees',
+  path: '/events/$id/attendees',
   getParentRoute: () => MainRoute,
 } as any)
 const MainDiscoverIdAttunedRoute = MainDiscoverIdAttunedRouteImport.update({
@@ -347,6 +498,12 @@ const MainConnectionsIdDraftPauseRoute =
   MainConnectionsIdDraftPauseRouteImport.update({
     id: '/$id_/draft-pause',
     path: '/$id/draft-pause',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
+const MainConnectionsIdDatePlanRoute =
+  MainConnectionsIdDatePlanRouteImport.update({
+    id: '/$id_/date-plan',
+    path: '/$id/date-plan',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
 const MainConnectionsIdCoolOffRoute =
@@ -391,52 +548,77 @@ export interface FileRoutesByFullPath {
   '/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
-  '/onboarding/checks': typeof OnboardingChecksRoute
+  '/onboarding/checks': typeof OnboardingChecksRouteWithChildren
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
   '/onboarding/lifestyle': typeof OnboardingLifestyleRoute
   '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/pace': typeof OnboardingPaceRoute
+  '/onboarding/paused': typeof OnboardingPausedRoute
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
   '/onboarding/prompts': typeof OnboardingPromptsRoute
+  '/onboarding/resume': typeof OnboardingResumeRoute
   '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
+  '/system/offline': typeof SystemOfflineRoute
   '/system/push-permissions': typeof SystemPushPermissionsRoute
+  '/system/verification-failed': typeof SystemVerificationFailedRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/events/$id': typeof MainEventsIdRoute
   '/growth/$id': typeof MainGrowthIdRoute
+  '/growth/journal': typeof MainGrowthJournalRoute
+  '/growth/monthly-summary': typeof MainGrowthMonthlySummaryRoute
+  '/growth/workshops': typeof MainGrowthWorkshopsRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
-  '/profile/visibility': typeof MainProfileVisibilityRoute
+  '/host/attendees': typeof MainHostAttendeesRoute
+  '/host/new': typeof MainHostNewRoute
+  '/membership/plans': typeof MainMembershipPlansRoute
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
+  '/profile/visibility': typeof MainProfileVisibilityRoute
+  '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
+  '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
+  '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
+  '/onboarding/checks/liveness-help': typeof OnboardingChecksLivenessHelpRoute
   '/discover/': typeof MainDiscoverIndexRoute
   '/events/': typeof MainEventsIndexRoute
   '/growth/': typeof MainGrowthIndexRoute
+  '/host/': typeof MainHostIndexRoute
+  '/membership/': typeof MainMembershipIndexRoute
   '/profile/': typeof MainProfileIndexRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
   '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/date-plan': typeof MainConnectionsIdDatePlanRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/green-flag': typeof MainConnectionsIdGreenFlagRoute
   '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
+  '/events/$id/attendees': typeof MainEventsIdAttendeesRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
+  '/events/$id/reserve': typeof MainEventsIdReserveRoute
   '/events/$id/roundup': typeof MainEventsIdRoundupRoute
+  '/host/new/community': typeof MainHostNewCommunityRoute
+  '/host/new/workshop': typeof MainHostNewWorkshopRoute
+  '/profile/data/done': typeof MainProfileDataDoneRoute
+  '/profile/data/export': typeof MainProfileDataExportRoute
+  '/profile/data/preparing': typeof MainProfileDataPreparingRoute
+  '/profile/data/ready': typeof MainProfileDataReadyRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -447,52 +629,77 @@ export interface FileRoutesByTo {
   '/home': typeof MainHomeRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
-  '/onboarding/checks': typeof OnboardingChecksRoute
+  '/onboarding/checks': typeof OnboardingChecksRouteWithChildren
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
   '/onboarding/lifestyle': typeof OnboardingLifestyleRoute
   '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/pace': typeof OnboardingPaceRoute
+  '/onboarding/paused': typeof OnboardingPausedRoute
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
   '/onboarding/prompts': typeof OnboardingPromptsRoute
+  '/onboarding/resume': typeof OnboardingResumeRoute
   '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
+  '/system/offline': typeof SystemOfflineRoute
   '/system/push-permissions': typeof SystemPushPermissionsRoute
+  '/system/verification-failed': typeof SystemVerificationFailedRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/events/$id': typeof MainEventsIdRoute
   '/growth/$id': typeof MainGrowthIdRoute
+  '/growth/journal': typeof MainGrowthJournalRoute
+  '/growth/monthly-summary': typeof MainGrowthMonthlySummaryRoute
+  '/growth/workshops': typeof MainGrowthWorkshopsRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
-  '/profile/visibility': typeof MainProfileVisibilityRoute
+  '/host/attendees': typeof MainHostAttendeesRoute
+  '/host/new': typeof MainHostNewRoute
+  '/membership/plans': typeof MainMembershipPlansRoute
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
   '/profile/pause': typeof MainProfilePauseRoute
   '/profile/safety': typeof MainProfileSafetyRouteWithChildren
+  '/profile/visibility': typeof MainProfileVisibilityRoute
+  '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
+  '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
+  '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
+  '/onboarding/checks/liveness-help': typeof OnboardingChecksLivenessHelpRoute
   '/discover': typeof MainDiscoverIndexRoute
   '/events': typeof MainEventsIndexRoute
   '/growth': typeof MainGrowthIndexRoute
+  '/host': typeof MainHostIndexRoute
+  '/membership': typeof MainMembershipIndexRoute
   '/profile': typeof MainProfileIndexRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
   '/connections/$id/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/connections/$id/date-plan': typeof MainConnectionsIdDatePlanRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/green-flag': typeof MainConnectionsIdGreenFlagRoute
   '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
+  '/events/$id/attendees': typeof MainEventsIdAttendeesRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
   '/events/$id/checkin': typeof MainEventsIdCheckinRoute
+  '/events/$id/reserve': typeof MainEventsIdReserveRoute
   '/events/$id/roundup': typeof MainEventsIdRoundupRoute
+  '/host/new/community': typeof MainHostNewCommunityRoute
+  '/host/new/workshop': typeof MainHostNewWorkshopRoute
+  '/profile/data/done': typeof MainProfileDataDoneRoute
+  '/profile/data/export': typeof MainProfileDataExportRoute
+  '/profile/data/preparing': typeof MainProfileDataPreparingRoute
+  '/profile/data/ready': typeof MainProfileDataReadyRoute
   '/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -510,52 +717,77 @@ export interface FileRoutesById {
   '/_main/profile': typeof MainProfileRouteWithChildren
   '/onboarding/$step': typeof OnboardingStepRoute
   '/onboarding/capacity': typeof OnboardingCapacityRoute
-  '/onboarding/checks': typeof OnboardingChecksRoute
+  '/onboarding/checks': typeof OnboardingChecksRouteWithChildren
   '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/error': typeof OnboardingErrorRoute
   '/onboarding/intent': typeof OnboardingIntentRoute
   '/onboarding/lifestyle': typeof OnboardingLifestyleRoute
   '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/pace': typeof OnboardingPaceRoute
+  '/onboarding/paused': typeof OnboardingPausedRoute
   '/onboarding/photo-review': typeof OnboardingPhotoReviewRoute
   '/onboarding/photos': typeof OnboardingPhotosRoute
   '/onboarding/prompts': typeof OnboardingPromptsRoute
+  '/onboarding/resume': typeof OnboardingResumeRoute
   '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
+  '/system/offline': typeof SystemOfflineRoute
   '/system/push-permissions': typeof SystemPushPermissionsRoute
+  '/system/verification-failed': typeof SystemVerificationFailedRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/connections/$id': typeof MainConnectionsIdRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/_main/events/$id': typeof MainEventsIdRoute
   '/_main/growth/$id': typeof MainGrowthIdRoute
+  '/_main/growth/journal': typeof MainGrowthJournalRoute
+  '/_main/growth/monthly-summary': typeof MainGrowthMonthlySummaryRoute
+  '/_main/growth/workshops': typeof MainGrowthWorkshopsRoute
   '/_main/home/check-in': typeof MainHomeCheckInRoute
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
-  '/_main/profile/visibility': typeof MainProfileVisibilityRoute
+  '/_main/host/attendees': typeof MainHostAttendeesRoute
+  '/_main/host/new': typeof MainHostNewRoute
+  '/_main/membership/plans': typeof MainMembershipPlansRoute
   '/_main/profile/audit-log': typeof MainProfileAuditLogRoute
   '/_main/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/_main/profile/edit': typeof MainProfileEditRoute
   '/_main/profile/pause': typeof MainProfilePauseRoute
   '/_main/profile/safety': typeof MainProfileSafetyRouteWithChildren
+  '/_main/profile/visibility': typeof MainProfileVisibilityRoute
+  '/onboarding/checks/id-scan': typeof OnboardingChecksIdScanRoute
+  '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
+  '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
+  '/onboarding/checks/liveness-help': typeof OnboardingChecksLivenessHelpRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
   '/_main/events/': typeof MainEventsIndexRoute
   '/_main/growth/': typeof MainGrowthIndexRoute
+  '/_main/host/': typeof MainHostIndexRoute
+  '/_main/membership/': typeof MainMembershipIndexRoute
   '/_main/profile/': typeof MainProfileIndexRoute
   '/_main/connections/$id_/clean-ending': typeof MainConnectionsIdCleanEndingRoute
   '/_main/connections/$id_/coach-insight': typeof MainConnectionsIdCoachInsightRoute
   '/_main/connections/$id_/connected': typeof MainConnectionsIdConnectedRoute
   '/_main/connections/$id_/cool-off': typeof MainConnectionsIdCoolOffRoute
+  '/_main/connections/$id_/date-plan': typeof MainConnectionsIdDatePlanRoute
   '/_main/connections/$id_/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/_main/connections/$id_/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/_main/connections/$id_/green-flag': typeof MainConnectionsIdGreenFlagRoute
   '/_main/connections/$id_/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
+  '/_main/events/$id_/attendees': typeof MainEventsIdAttendeesRoute
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
   '/_main/events/$id_/checkin': typeof MainEventsIdCheckinRoute
+  '/_main/events/$id_/reserve': typeof MainEventsIdReserveRoute
   '/_main/events/$id_/roundup': typeof MainEventsIdRoundupRoute
+  '/_main/host/new_/community': typeof MainHostNewCommunityRoute
+  '/_main/host/new_/workshop': typeof MainHostNewWorkshopRoute
+  '/_main/profile/data/done': typeof MainProfileDataDoneRoute
+  '/_main/profile/data/export': typeof MainProfileDataExportRoute
+  '/_main/profile/data/preparing': typeof MainProfileDataPreparingRoute
+  '/_main/profile/data/ready': typeof MainProfileDataReadyRoute
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
 }
@@ -579,45 +811,70 @@ export interface FileRouteTypes {
     | '/onboarding/lifestyle'
     | '/onboarding/name'
     | '/onboarding/pace'
+    | '/onboarding/paused'
     | '/onboarding/photo-review'
     | '/onboarding/photos'
     | '/onboarding/prompts'
+    | '/onboarding/resume'
     | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
+    | '/system/offline'
     | '/system/push-permissions'
+    | '/system/verification-failed'
     | '/onboarding/'
     | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/events/$id'
     | '/growth/$id'
+    | '/growth/journal'
+    | '/growth/monthly-summary'
+    | '/growth/workshops'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
-    | '/profile/visibility'
+    | '/host/attendees'
+    | '/host/new'
+    | '/membership/plans'
     | '/profile/audit-log'
     | '/profile/coach-settings'
     | '/profile/edit'
     | '/profile/pause'
     | '/profile/safety'
+    | '/profile/visibility'
+    | '/onboarding/checks/id-scan'
+    | '/onboarding/checks/id-select'
+    | '/onboarding/checks/liveness'
+    | '/onboarding/checks/liveness-help'
     | '/discover/'
     | '/events/'
     | '/growth/'
+    | '/host/'
+    | '/membership/'
     | '/profile/'
     | '/connections/$id/clean-ending'
     | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
+    | '/connections/$id/date-plan'
     | '/connections/$id/draft-pause'
     | '/connections/$id/first-hello'
     | '/connections/$id/green-flag'
     | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
+    | '/events/$id/attendees'
     | '/events/$id/booked'
     | '/events/$id/checkin'
+    | '/events/$id/reserve'
     | '/events/$id/roundup'
+    | '/host/new/community'
+    | '/host/new/workshop'
+    | '/profile/data/done'
+    | '/profile/data/export'
+    | '/profile/data/preparing'
+    | '/profile/data/ready'
     | '/profile/safety/report'
     | '/discover/$id/insights/connection-languages'
   fileRoutesByTo: FileRoutesByTo
@@ -635,45 +892,70 @@ export interface FileRouteTypes {
     | '/onboarding/lifestyle'
     | '/onboarding/name'
     | '/onboarding/pace'
+    | '/onboarding/paused'
     | '/onboarding/photo-review'
     | '/onboarding/photos'
     | '/onboarding/prompts'
+    | '/onboarding/resume'
     | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
+    | '/system/offline'
     | '/system/push-permissions'
+    | '/system/verification-failed'
     | '/onboarding'
     | '/connections/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/events/$id'
     | '/growth/$id'
+    | '/growth/journal'
+    | '/growth/monthly-summary'
+    | '/growth/workshops'
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
-    | '/profile/visibility'
+    | '/host/attendees'
+    | '/host/new'
+    | '/membership/plans'
     | '/profile/audit-log'
     | '/profile/coach-settings'
     | '/profile/edit'
     | '/profile/pause'
     | '/profile/safety'
+    | '/profile/visibility'
+    | '/onboarding/checks/id-scan'
+    | '/onboarding/checks/id-select'
+    | '/onboarding/checks/liveness'
+    | '/onboarding/checks/liveness-help'
     | '/discover'
     | '/events'
     | '/growth'
+    | '/host'
+    | '/membership'
     | '/profile'
     | '/connections/$id/clean-ending'
     | '/connections/$id/coach-insight'
     | '/connections/$id/connected'
     | '/connections/$id/cool-off'
+    | '/connections/$id/date-plan'
     | '/connections/$id/draft-pause'
     | '/connections/$id/first-hello'
     | '/connections/$id/green-flag'
     | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
+    | '/events/$id/attendees'
     | '/events/$id/booked'
     | '/events/$id/checkin'
+    | '/events/$id/reserve'
     | '/events/$id/roundup'
+    | '/host/new/community'
+    | '/host/new/workshop'
+    | '/profile/data/done'
+    | '/profile/data/export'
+    | '/profile/data/preparing'
+    | '/profile/data/ready'
     | '/profile/safety/report'
     | '/discover/$id/insights/connection-languages'
   id:
@@ -697,45 +979,70 @@ export interface FileRouteTypes {
     | '/onboarding/lifestyle'
     | '/onboarding/name'
     | '/onboarding/pace'
+    | '/onboarding/paused'
     | '/onboarding/photo-review'
     | '/onboarding/photos'
     | '/onboarding/prompts'
+    | '/onboarding/resume'
     | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
+    | '/system/offline'
     | '/system/push-permissions'
+    | '/system/verification-failed'
     | '/onboarding/'
     | '/_main/connections/$id'
     | '/_main/discover/$id'
     | '/_main/discover/quiet-day'
     | '/_main/events/$id'
     | '/_main/growth/$id'
+    | '/_main/growth/journal'
+    | '/_main/growth/monthly-summary'
+    | '/_main/growth/workshops'
     | '/_main/home/check-in'
     | '/_main/home/coach'
     | '/_main/home/reflection'
-    | '/_main/profile/visibility'
+    | '/_main/host/attendees'
+    | '/_main/host/new'
+    | '/_main/membership/plans'
     | '/_main/profile/audit-log'
     | '/_main/profile/coach-settings'
     | '/_main/profile/edit'
     | '/_main/profile/pause'
     | '/_main/profile/safety'
+    | '/_main/profile/visibility'
+    | '/onboarding/checks/id-scan'
+    | '/onboarding/checks/id-select'
+    | '/onboarding/checks/liveness'
+    | '/onboarding/checks/liveness-help'
     | '/_main/discover/'
     | '/_main/events/'
     | '/_main/growth/'
+    | '/_main/host/'
+    | '/_main/membership/'
     | '/_main/profile/'
     | '/_main/connections/$id_/clean-ending'
     | '/_main/connections/$id_/coach-insight'
     | '/_main/connections/$id_/connected'
     | '/_main/connections/$id_/cool-off'
+    | '/_main/connections/$id_/date-plan'
     | '/_main/connections/$id_/draft-pause'
     | '/_main/connections/$id_/first-hello'
     | '/_main/connections/$id_/green-flag'
     | '/_main/connections/$id_/red-flag'
     | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/attuned'
+    | '/_main/events/$id_/attendees'
     | '/_main/events/$id_/booked'
     | '/_main/events/$id_/checkin'
+    | '/_main/events/$id_/reserve'
     | '/_main/events/$id_/roundup'
+    | '/_main/host/new_/community'
+    | '/_main/host/new_/workshop'
+    | '/_main/profile/data/done'
+    | '/_main/profile/data/export'
+    | '/_main/profile/data/preparing'
+    | '/_main/profile/data/ready'
     | '/_main/profile/safety/report'
     | '/_main/discover/$id_/insights/connection-languages'
   fileRoutesById: FileRoutesById
@@ -745,7 +1052,9 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   MainRoute: typeof MainRouteWithChildren
   OnboardingRoute: typeof OnboardingRouteWithChildren
+  SystemOfflineRoute: typeof SystemOfflineRoute
   SystemPushPermissionsRoute: typeof SystemPushPermissionsRoute
+  SystemVerificationFailedRoute: typeof SystemVerificationFailedRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -785,11 +1094,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingIndexRouteImport
       parentRoute: typeof OnboardingRoute
     }
+    '/system/verification-failed': {
+      id: '/system/verification-failed'
+      path: '/system/verification-failed'
+      fullPath: '/system/verification-failed'
+      preLoaderRoute: typeof SystemVerificationFailedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/system/push-permissions': {
       id: '/system/push-permissions'
       path: '/system/push-permissions'
       fullPath: '/system/push-permissions'
       preLoaderRoute: typeof SystemPushPermissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/system/offline': {
+      id: '/system/offline'
+      path: '/system/offline'
+      fullPath: '/system/offline'
+      preLoaderRoute: typeof SystemOfflineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding/verify': {
@@ -813,6 +1136,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingReviewRouteImport
       parentRoute: typeof OnboardingRoute
     }
+    '/onboarding/resume': {
+      id: '/onboarding/resume'
+      path: '/resume'
+      fullPath: '/onboarding/resume'
+      preLoaderRoute: typeof OnboardingResumeRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
     '/onboarding/prompts': {
       id: '/onboarding/prompts'
       path: '/prompts'
@@ -832,6 +1162,13 @@ declare module '@tanstack/react-router' {
       path: '/photo-review'
       fullPath: '/onboarding/photo-review'
       preLoaderRoute: typeof OnboardingPhotoReviewRouteImport
+      parentRoute: typeof OnboardingRoute
+    }
+    '/onboarding/paused': {
+      id: '/onboarding/paused'
+      path: '/paused'
+      fullPath: '/onboarding/paused'
+      preLoaderRoute: typeof OnboardingPausedRouteImport
       parentRoute: typeof OnboardingRoute
     }
     '/onboarding/pace': {
@@ -946,6 +1283,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileIndexRouteImport
       parentRoute: typeof MainProfileRoute
     }
+    '/_main/membership/': {
+      id: '/_main/membership/'
+      path: '/membership'
+      fullPath: '/membership/'
+      preLoaderRoute: typeof MainMembershipIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/host/': {
+      id: '/_main/host/'
+      path: '/host'
+      fullPath: '/host/'
+      preLoaderRoute: typeof MainHostIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/growth/': {
       id: '/_main/growth/'
       path: '/'
@@ -966,6 +1317,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/discover/'
       preLoaderRoute: typeof MainDiscoverIndexRouteImport
       parentRoute: typeof MainDiscoverRoute
+    }
+    '/onboarding/checks/liveness-help': {
+      id: '/onboarding/checks/liveness-help'
+      path: '/liveness-help'
+      fullPath: '/onboarding/checks/liveness-help'
+      preLoaderRoute: typeof OnboardingChecksLivenessHelpRouteImport
+      parentRoute: typeof OnboardingChecksRoute
+    }
+    '/onboarding/checks/liveness': {
+      id: '/onboarding/checks/liveness'
+      path: '/liveness'
+      fullPath: '/onboarding/checks/liveness'
+      preLoaderRoute: typeof OnboardingChecksLivenessRouteImport
+      parentRoute: typeof OnboardingChecksRoute
+    }
+    '/onboarding/checks/id-select': {
+      id: '/onboarding/checks/id-select'
+      path: '/id-select'
+      fullPath: '/onboarding/checks/id-select'
+      preLoaderRoute: typeof OnboardingChecksIdSelectRouteImport
+      parentRoute: typeof OnboardingChecksRoute
+    }
+    '/onboarding/checks/id-scan': {
+      id: '/onboarding/checks/id-scan'
+      path: '/id-scan'
+      fullPath: '/onboarding/checks/id-scan'
+      preLoaderRoute: typeof OnboardingChecksIdScanRouteImport
+      parentRoute: typeof OnboardingChecksRoute
+    }
+    '/_main/profile/visibility': {
+      id: '/_main/profile/visibility'
+      path: '/visibility'
+      fullPath: '/profile/visibility'
+      preLoaderRoute: typeof MainProfileVisibilityRouteImport
+      parentRoute: typeof MainProfileRoute
     }
     '/_main/profile/safety': {
       id: '/_main/profile/safety'
@@ -1002,12 +1388,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileAuditLogRouteImport
       parentRoute: typeof MainProfileRoute
     }
-    '/_main/profile/visibility': {
-      id: '/_main/profile/visibility'
-      path: '/audit'
-      fullPath: '/profile/visibility'
-      preLoaderRoute: typeof MainProfileVisibilityRouteImport
-      parentRoute: typeof MainProfileRoute
+    '/_main/membership/plans': {
+      id: '/_main/membership/plans'
+      path: '/membership/plans'
+      fullPath: '/membership/plans'
+      preLoaderRoute: typeof MainMembershipPlansRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/host/new': {
+      id: '/_main/host/new'
+      path: '/host/new'
+      fullPath: '/host/new'
+      preLoaderRoute: typeof MainHostNewRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/host/attendees': {
+      id: '/_main/host/attendees'
+      path: '/host/attendees'
+      fullPath: '/host/attendees'
+      preLoaderRoute: typeof MainHostAttendeesRouteImport
+      parentRoute: typeof MainRoute
     }
     '/_main/home/reflection': {
       id: '/_main/home/reflection'
@@ -1029,6 +1429,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/home/check-in'
       preLoaderRoute: typeof MainHomeCheckInRouteImport
       parentRoute: typeof MainHomeRoute
+    }
+    '/_main/growth/workshops': {
+      id: '/_main/growth/workshops'
+      path: '/workshops'
+      fullPath: '/growth/workshops'
+      preLoaderRoute: typeof MainGrowthWorkshopsRouteImport
+      parentRoute: typeof MainGrowthRoute
+    }
+    '/_main/growth/monthly-summary': {
+      id: '/_main/growth/monthly-summary'
+      path: '/monthly-summary'
+      fullPath: '/growth/monthly-summary'
+      preLoaderRoute: typeof MainGrowthMonthlySummaryRouteImport
+      parentRoute: typeof MainGrowthRoute
+    }
+    '/_main/growth/journal': {
+      id: '/_main/growth/journal'
+      path: '/journal'
+      fullPath: '/growth/journal'
+      preLoaderRoute: typeof MainGrowthJournalRouteImport
+      parentRoute: typeof MainGrowthRoute
     }
     '/_main/growth/$id': {
       id: '/_main/growth/$id'
@@ -1072,11 +1493,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileSafetyReportRouteImport
       parentRoute: typeof MainProfileSafetyRoute
     }
+    '/_main/profile/data/ready': {
+      id: '/_main/profile/data/ready'
+      path: '/data/ready'
+      fullPath: '/profile/data/ready'
+      preLoaderRoute: typeof MainProfileDataReadyRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
+    '/_main/profile/data/preparing': {
+      id: '/_main/profile/data/preparing'
+      path: '/data/preparing'
+      fullPath: '/profile/data/preparing'
+      preLoaderRoute: typeof MainProfileDataPreparingRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
+    '/_main/profile/data/export': {
+      id: '/_main/profile/data/export'
+      path: '/data/export'
+      fullPath: '/profile/data/export'
+      preLoaderRoute: typeof MainProfileDataExportRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
+    '/_main/profile/data/done': {
+      id: '/_main/profile/data/done'
+      path: '/data/done'
+      fullPath: '/profile/data/done'
+      preLoaderRoute: typeof MainProfileDataDoneRouteImport
+      parentRoute: typeof MainProfileRoute
+    }
+    '/_main/host/new_/workshop': {
+      id: '/_main/host/new_/workshop'
+      path: '/host/new/workshop'
+      fullPath: '/host/new/workshop'
+      preLoaderRoute: typeof MainHostNewWorkshopRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/host/new_/community': {
+      id: '/_main/host/new_/community'
+      path: '/host/new/community'
+      fullPath: '/host/new/community'
+      preLoaderRoute: typeof MainHostNewCommunityRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/events/$id_/roundup': {
       id: '/_main/events/$id_/roundup'
       path: '/events/$id/roundup'
       fullPath: '/events/$id/roundup'
       preLoaderRoute: typeof MainEventsIdRoundupRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/events/$id_/reserve': {
+      id: '/_main/events/$id_/reserve'
+      path: '/events/$id/reserve'
+      fullPath: '/events/$id/reserve'
+      preLoaderRoute: typeof MainEventsIdReserveRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/events/$id_/checkin': {
@@ -1091,6 +1561,13 @@ declare module '@tanstack/react-router' {
       path: '/events/$id/booked'
       fullPath: '/events/$id/booked'
       preLoaderRoute: typeof MainEventsIdBookedRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/events/$id_/attendees': {
+      id: '/_main/events/$id_/attendees'
+      path: '/events/$id/attendees'
+      fullPath: '/events/$id/attendees'
+      preLoaderRoute: typeof MainEventsIdAttendeesRouteImport
       parentRoute: typeof MainRoute
     }
     '/_main/discover/$id_/attuned': {
@@ -1133,6 +1610,13 @@ declare module '@tanstack/react-router' {
       path: '/$id/draft-pause'
       fullPath: '/connections/$id/draft-pause'
       preLoaderRoute: typeof MainConnectionsIdDraftPauseRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/connections/$id_/date-plan': {
+      id: '/_main/connections/$id_/date-plan'
+      path: '/$id/date-plan'
+      fullPath: '/connections/$id/date-plan'
+      preLoaderRoute: typeof MainConnectionsIdDatePlanRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
     '/_main/connections/$id_/cool-off': {
@@ -1189,6 +1673,7 @@ interface MainConnectionsRouteChildren {
   MainConnectionsIdCoachInsightRoute: typeof MainConnectionsIdCoachInsightRoute
   MainConnectionsIdConnectedRoute: typeof MainConnectionsIdConnectedRoute
   MainConnectionsIdCoolOffRoute: typeof MainConnectionsIdCoolOffRoute
+  MainConnectionsIdDatePlanRoute: typeof MainConnectionsIdDatePlanRoute
   MainConnectionsIdDraftPauseRoute: typeof MainConnectionsIdDraftPauseRoute
   MainConnectionsIdFirstHelloRoute: typeof MainConnectionsIdFirstHelloRoute
   MainConnectionsIdGreenFlagRoute: typeof MainConnectionsIdGreenFlagRoute
@@ -1202,6 +1687,7 @@ const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdCoachInsightRoute: MainConnectionsIdCoachInsightRoute,
   MainConnectionsIdConnectedRoute: MainConnectionsIdConnectedRoute,
   MainConnectionsIdCoolOffRoute: MainConnectionsIdCoolOffRoute,
+  MainConnectionsIdDatePlanRoute: MainConnectionsIdDatePlanRoute,
   MainConnectionsIdDraftPauseRoute: MainConnectionsIdDraftPauseRoute,
   MainConnectionsIdFirstHelloRoute: MainConnectionsIdFirstHelloRoute,
   MainConnectionsIdGreenFlagRoute: MainConnectionsIdGreenFlagRoute,
@@ -1236,11 +1722,17 @@ const MainDiscoverRouteWithChildren = MainDiscoverRoute._addFileChildren(
 
 interface MainGrowthRouteChildren {
   MainGrowthIdRoute: typeof MainGrowthIdRoute
+  MainGrowthJournalRoute: typeof MainGrowthJournalRoute
+  MainGrowthMonthlySummaryRoute: typeof MainGrowthMonthlySummaryRoute
+  MainGrowthWorkshopsRoute: typeof MainGrowthWorkshopsRoute
   MainGrowthIndexRoute: typeof MainGrowthIndexRoute
 }
 
 const MainGrowthRouteChildren: MainGrowthRouteChildren = {
   MainGrowthIdRoute: MainGrowthIdRoute,
+  MainGrowthJournalRoute: MainGrowthJournalRoute,
+  MainGrowthMonthlySummaryRoute: MainGrowthMonthlySummaryRoute,
+  MainGrowthWorkshopsRoute: MainGrowthWorkshopsRoute,
   MainGrowthIndexRoute: MainGrowthIndexRoute,
 }
 
@@ -1276,23 +1768,31 @@ const MainProfileSafetyRouteWithChildren =
   MainProfileSafetyRoute._addFileChildren(MainProfileSafetyRouteChildren)
 
 interface MainProfileRouteChildren {
-  MainProfileVisibilityRoute: typeof MainProfileVisibilityRoute
   MainProfileAuditLogRoute: typeof MainProfileAuditLogRoute
   MainProfileCoachSettingsRoute: typeof MainProfileCoachSettingsRoute
   MainProfileEditRoute: typeof MainProfileEditRoute
   MainProfilePauseRoute: typeof MainProfilePauseRoute
   MainProfileSafetyRoute: typeof MainProfileSafetyRouteWithChildren
+  MainProfileVisibilityRoute: typeof MainProfileVisibilityRoute
   MainProfileIndexRoute: typeof MainProfileIndexRoute
+  MainProfileDataDoneRoute: typeof MainProfileDataDoneRoute
+  MainProfileDataExportRoute: typeof MainProfileDataExportRoute
+  MainProfileDataPreparingRoute: typeof MainProfileDataPreparingRoute
+  MainProfileDataReadyRoute: typeof MainProfileDataReadyRoute
 }
 
 const MainProfileRouteChildren: MainProfileRouteChildren = {
-  MainProfileVisibilityRoute: MainProfileVisibilityRoute,
   MainProfileAuditLogRoute: MainProfileAuditLogRoute,
   MainProfileCoachSettingsRoute: MainProfileCoachSettingsRoute,
   MainProfileEditRoute: MainProfileEditRoute,
   MainProfilePauseRoute: MainProfilePauseRoute,
   MainProfileSafetyRoute: MainProfileSafetyRouteWithChildren,
+  MainProfileVisibilityRoute: MainProfileVisibilityRoute,
   MainProfileIndexRoute: MainProfileIndexRoute,
+  MainProfileDataDoneRoute: MainProfileDataDoneRoute,
+  MainProfileDataExportRoute: MainProfileDataExportRoute,
+  MainProfileDataPreparingRoute: MainProfileDataPreparingRoute,
+  MainProfileDataReadyRoute: MainProfileDataReadyRoute,
 }
 
 const MainProfileRouteWithChildren = MainProfileRoute._addFileChildren(
@@ -1306,10 +1806,19 @@ interface MainRouteChildren {
   MainHomeRoute: typeof MainHomeRouteWithChildren
   MainProfileRoute: typeof MainProfileRouteWithChildren
   MainEventsIdRoute: typeof MainEventsIdRoute
+  MainHostAttendeesRoute: typeof MainHostAttendeesRoute
+  MainHostNewRoute: typeof MainHostNewRoute
+  MainMembershipPlansRoute: typeof MainMembershipPlansRoute
   MainEventsIndexRoute: typeof MainEventsIndexRoute
+  MainHostIndexRoute: typeof MainHostIndexRoute
+  MainMembershipIndexRoute: typeof MainMembershipIndexRoute
+  MainEventsIdAttendeesRoute: typeof MainEventsIdAttendeesRoute
   MainEventsIdBookedRoute: typeof MainEventsIdBookedRoute
   MainEventsIdCheckinRoute: typeof MainEventsIdCheckinRoute
+  MainEventsIdReserveRoute: typeof MainEventsIdReserveRoute
   MainEventsIdRoundupRoute: typeof MainEventsIdRoundupRoute
+  MainHostNewCommunityRoute: typeof MainHostNewCommunityRoute
+  MainHostNewWorkshopRoute: typeof MainHostNewWorkshopRoute
 }
 
 const MainRouteChildren: MainRouteChildren = {
@@ -1319,27 +1828,55 @@ const MainRouteChildren: MainRouteChildren = {
   MainHomeRoute: MainHomeRouteWithChildren,
   MainProfileRoute: MainProfileRouteWithChildren,
   MainEventsIdRoute: MainEventsIdRoute,
+  MainHostAttendeesRoute: MainHostAttendeesRoute,
+  MainHostNewRoute: MainHostNewRoute,
+  MainMembershipPlansRoute: MainMembershipPlansRoute,
   MainEventsIndexRoute: MainEventsIndexRoute,
+  MainHostIndexRoute: MainHostIndexRoute,
+  MainMembershipIndexRoute: MainMembershipIndexRoute,
+  MainEventsIdAttendeesRoute: MainEventsIdAttendeesRoute,
   MainEventsIdBookedRoute: MainEventsIdBookedRoute,
   MainEventsIdCheckinRoute: MainEventsIdCheckinRoute,
+  MainEventsIdReserveRoute: MainEventsIdReserveRoute,
   MainEventsIdRoundupRoute: MainEventsIdRoundupRoute,
+  MainHostNewCommunityRoute: MainHostNewCommunityRoute,
+  MainHostNewWorkshopRoute: MainHostNewWorkshopRoute,
 }
 
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
+interface OnboardingChecksRouteChildren {
+  OnboardingChecksIdScanRoute: typeof OnboardingChecksIdScanRoute
+  OnboardingChecksIdSelectRoute: typeof OnboardingChecksIdSelectRoute
+  OnboardingChecksLivenessRoute: typeof OnboardingChecksLivenessRoute
+  OnboardingChecksLivenessHelpRoute: typeof OnboardingChecksLivenessHelpRoute
+}
+
+const OnboardingChecksRouteChildren: OnboardingChecksRouteChildren = {
+  OnboardingChecksIdScanRoute: OnboardingChecksIdScanRoute,
+  OnboardingChecksIdSelectRoute: OnboardingChecksIdSelectRoute,
+  OnboardingChecksLivenessRoute: OnboardingChecksLivenessRoute,
+  OnboardingChecksLivenessHelpRoute: OnboardingChecksLivenessHelpRoute,
+}
+
+const OnboardingChecksRouteWithChildren =
+  OnboardingChecksRoute._addFileChildren(OnboardingChecksRouteChildren)
+
 interface OnboardingRouteChildren {
   OnboardingStepRoute: typeof OnboardingStepRoute
   OnboardingCapacityRoute: typeof OnboardingCapacityRoute
-  OnboardingChecksRoute: typeof OnboardingChecksRoute
+  OnboardingChecksRoute: typeof OnboardingChecksRouteWithChildren
   OnboardingCompleteRoute: typeof OnboardingCompleteRoute
   OnboardingErrorRoute: typeof OnboardingErrorRoute
   OnboardingIntentRoute: typeof OnboardingIntentRoute
   OnboardingLifestyleRoute: typeof OnboardingLifestyleRoute
   OnboardingNameRoute: typeof OnboardingNameRoute
   OnboardingPaceRoute: typeof OnboardingPaceRoute
+  OnboardingPausedRoute: typeof OnboardingPausedRoute
   OnboardingPhotoReviewRoute: typeof OnboardingPhotoReviewRoute
   OnboardingPhotosRoute: typeof OnboardingPhotosRoute
   OnboardingPromptsRoute: typeof OnboardingPromptsRoute
+  OnboardingResumeRoute: typeof OnboardingResumeRoute
   OnboardingReviewRoute: typeof OnboardingReviewRoute
   OnboardingValuesRoute: typeof OnboardingValuesRoute
   OnboardingVerifyRoute: typeof OnboardingVerifyRoute
@@ -1349,16 +1886,18 @@ interface OnboardingRouteChildren {
 const OnboardingRouteChildren: OnboardingRouteChildren = {
   OnboardingStepRoute: OnboardingStepRoute,
   OnboardingCapacityRoute: OnboardingCapacityRoute,
-  OnboardingChecksRoute: OnboardingChecksRoute,
+  OnboardingChecksRoute: OnboardingChecksRouteWithChildren,
   OnboardingCompleteRoute: OnboardingCompleteRoute,
   OnboardingErrorRoute: OnboardingErrorRoute,
   OnboardingIntentRoute: OnboardingIntentRoute,
   OnboardingLifestyleRoute: OnboardingLifestyleRoute,
   OnboardingNameRoute: OnboardingNameRoute,
   OnboardingPaceRoute: OnboardingPaceRoute,
+  OnboardingPausedRoute: OnboardingPausedRoute,
   OnboardingPhotoReviewRoute: OnboardingPhotoReviewRoute,
   OnboardingPhotosRoute: OnboardingPhotosRoute,
   OnboardingPromptsRoute: OnboardingPromptsRoute,
+  OnboardingResumeRoute: OnboardingResumeRoute,
   OnboardingReviewRoute: OnboardingReviewRoute,
   OnboardingValuesRoute: OnboardingValuesRoute,
   OnboardingVerifyRoute: OnboardingVerifyRoute,
@@ -1374,7 +1913,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   MainRoute: MainRouteWithChildren,
   OnboardingRoute: OnboardingRouteWithChildren,
+  SystemOfflineRoute: SystemOfflineRoute,
   SystemPushPermissionsRoute: SystemPushPermissionsRoute,
+  SystemVerificationFailedRoute: SystemVerificationFailedRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
