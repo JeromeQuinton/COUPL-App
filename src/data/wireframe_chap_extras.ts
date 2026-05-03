@@ -104,7 +104,7 @@ export type SafetyRow = {
     | "/profile/audit-log"
     | "/profile/edit"
     | "/profile/pause"
-    | "/profile/audit";
+    | "/profile/visibility";
 };
 
 export const SAFETY_ROWS: SafetyRow[] = [
@@ -136,7 +136,7 @@ export const SAFETY_ROWS: SafetyRow[] = [
     id: "privacy",
     title: "Privacy controls",
     sub: "What others see + when",
-    to: "/profile/audit",
+    to: "/profile/visibility",
   },
 ];
 

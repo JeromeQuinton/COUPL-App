@@ -6,7 +6,7 @@ import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { AUDIT_ENTRIES, VISIBILITY_STATS } from "@/data/you_sample";
 
-export const Route = createFileRoute("/_main/profile/audit")({
+export const Route = createFileRoute("/_main/profile/visibility")({
   head: () => ({ meta: [{ title: "Visibility audit · COUPL" }] }),
   component: AuditPage,
 });

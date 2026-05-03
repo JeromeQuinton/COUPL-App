@@ -115,6 +115,11 @@ function ProfileScreen() {
             sub="Every AI nudge, transparent + reversible"
           />
           <ProfileLinkRow
+            to="/profile/visibility"
+            title="Visibility audit"
+            sub="Who saw you, and when"
+          />
+          <ProfileLinkRow
             to="/profile/coach-settings"
             title="Coach settings"
             sub="Tone, frequency, intercepts"
@@ -138,6 +143,7 @@ function ProfileLinkRow({
   to:
     | "/profile/edit"
     | "/profile/audit-log"
+    | "/profile/visibility"
     | "/profile/safety"
     | "/profile/coach-settings";
   title: string;

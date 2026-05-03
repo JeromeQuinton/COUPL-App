@@ -45,7 +45,7 @@ import { Route as MainProfilePauseRouteImport } from './routes/_main.profile.pau
 import { Route as MainProfileEditRouteImport } from './routes/_main.profile.edit'
 import { Route as MainProfileCoachSettingsRouteImport } from './routes/_main.profile.coach-settings'
 import { Route as MainProfileAuditLogRouteImport } from './routes/_main.profile.audit-log'
-import { Route as MainProfileAuditRouteImport } from './routes/_main.profile.audit'
+import { Route as MainProfileVisibilityRouteImport } from './routes/_main.profile.visibility'
 import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.reflection'
 import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
@@ -249,7 +249,7 @@ const MainProfileAuditLogRoute = MainProfileAuditLogRouteImport.update({
   path: '/audit-log',
   getParentRoute: () => MainProfileRoute,
 } as any)
-const MainProfileAuditRoute = MainProfileAuditRouteImport.update({
+const MainProfileVisibilityRoute = MainProfileVisibilityRouteImport.update({
   id: '/audit',
   path: '/audit',
   getParentRoute: () => MainProfileRoute,
@@ -414,7 +414,7 @@ export interface FileRoutesByFullPath {
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
-  '/profile/audit': typeof MainProfileAuditRoute
+  '/profile/visibility': typeof MainProfileVisibilityRoute
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
@@ -470,7 +470,7 @@ export interface FileRoutesByTo {
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
   '/home/reflection': typeof MainHomeReflectionRoute
-  '/profile/audit': typeof MainProfileAuditRoute
+  '/profile/visibility': typeof MainProfileVisibilityRoute
   '/profile/audit-log': typeof MainProfileAuditLogRoute
   '/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/profile/edit': typeof MainProfileEditRoute
@@ -533,7 +533,7 @@ export interface FileRoutesById {
   '/_main/home/check-in': typeof MainHomeCheckInRoute
   '/_main/home/coach': typeof MainHomeCoachRoute
   '/_main/home/reflection': typeof MainHomeReflectionRoute
-  '/_main/profile/audit': typeof MainProfileAuditRoute
+  '/_main/profile/visibility': typeof MainProfileVisibilityRoute
   '/_main/profile/audit-log': typeof MainProfileAuditLogRoute
   '/_main/profile/coach-settings': typeof MainProfileCoachSettingsRoute
   '/_main/profile/edit': typeof MainProfileEditRoute
@@ -595,7 +595,7 @@ export interface FileRouteTypes {
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
-    | '/profile/audit'
+    | '/profile/visibility'
     | '/profile/audit-log'
     | '/profile/coach-settings'
     | '/profile/edit'
@@ -651,7 +651,7 @@ export interface FileRouteTypes {
     | '/home/check-in'
     | '/home/coach'
     | '/home/reflection'
-    | '/profile/audit'
+    | '/profile/visibility'
     | '/profile/audit-log'
     | '/profile/coach-settings'
     | '/profile/edit'
@@ -713,7 +713,7 @@ export interface FileRouteTypes {
     | '/_main/home/check-in'
     | '/_main/home/coach'
     | '/_main/home/reflection'
-    | '/_main/profile/audit'
+    | '/_main/profile/visibility'
     | '/_main/profile/audit-log'
     | '/_main/profile/coach-settings'
     | '/_main/profile/edit'
@@ -1002,11 +1002,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainProfileAuditLogRouteImport
       parentRoute: typeof MainProfileRoute
     }
-    '/_main/profile/audit': {
-      id: '/_main/profile/audit'
+    '/_main/profile/visibility': {
+      id: '/_main/profile/visibility'
       path: '/audit'
-      fullPath: '/profile/audit'
-      preLoaderRoute: typeof MainProfileAuditRouteImport
+      fullPath: '/profile/visibility'
+      preLoaderRoute: typeof MainProfileVisibilityRouteImport
       parentRoute: typeof MainProfileRoute
     }
     '/_main/home/reflection': {
@@ -1276,7 +1276,7 @@ const MainProfileSafetyRouteWithChildren =
   MainProfileSafetyRoute._addFileChildren(MainProfileSafetyRouteChildren)
 
 interface MainProfileRouteChildren {
-  MainProfileAuditRoute: typeof MainProfileAuditRoute
+  MainProfileVisibilityRoute: typeof MainProfileVisibilityRoute
   MainProfileAuditLogRoute: typeof MainProfileAuditLogRoute
   MainProfileCoachSettingsRoute: typeof MainProfileCoachSettingsRoute
   MainProfileEditRoute: typeof MainProfileEditRoute
@@ -1286,7 +1286,7 @@ interface MainProfileRouteChildren {
 }
 
 const MainProfileRouteChildren: MainProfileRouteChildren = {
-  MainProfileAuditRoute: MainProfileAuditRoute,
+  MainProfileVisibilityRoute: MainProfileVisibilityRoute,
   MainProfileAuditLogRoute: MainProfileAuditLogRoute,
   MainProfileCoachSettingsRoute: MainProfileCoachSettingsRoute,
   MainProfileEditRoute: MainProfileEditRoute,
