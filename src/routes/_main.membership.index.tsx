@@ -90,6 +90,12 @@ function MembershipIndex() {
 
       <div className="px-5 pt-8 pb-12 space-y-3">
         <Link
+          to="/membership/subscription"
+          className="flex items-center justify-center gap-2 w-full rounded-full border border-line bg-paper px-5 py-3 font-display text-[14px] text-ink hover:bg-lavender-50"
+        >
+          Manage current subscription
+        </Link>
+        <Link
           to="/membership/plans"
           className="flex items-center justify-center gap-2 w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
         >

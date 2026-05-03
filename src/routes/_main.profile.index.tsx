@@ -140,6 +140,11 @@ function ProfileScreen() {
             sub="Topics + contact"
           />
           <ProfileLinkRow
+            to="/date-plans"
+            title="Date ideas"
+            sub="Curated places that make a first meet easier"
+          />
+          <ProfileLinkRow
             to="/membership"
             title="Membership"
             sub="Free · upgrade for depth"
@@ -181,7 +186,8 @@ function ProfileLinkRow({
     | "/profile/data/export"
     | "/profile/account"
     | "/profile/notifications"
-    | "/profile/help";
+    | "/profile/help"
+    | "/date-plans";
   title: string;
   sub?: string;
 }) {
