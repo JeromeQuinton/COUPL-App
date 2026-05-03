@@ -10,7 +10,7 @@ import { INCIDENT_CATEGORIES } from "@/data/you_sample";
  *
  * Sub-route of the Safety + Wellbeing hub. Multi-select incident
  * categories, optional written context, and a high-gravity Plum-700
- * "Send to Trust team" CTA. Auto-protection note states that the
+ * "Send report" CTA. Auto-protection note states that the
  * reported person is never told a report was filed.
  */
 export const Route = createFileRoute("/_main/profile/safety/report")({
@@ -56,8 +56,8 @@ function SafetyReportPage() {
           Tell us what happened.
         </h1>
         <p className="mt-2 font-body text-[13px] leading-relaxed text-slate">
-          A real person on the Trust team reads every report within 4 hours.
-          The other person is never told you reported.
+          We assess every report — usually within minutes. The other person is
+          never told you reported.
         </p>
       </header>
 
@@ -118,7 +118,7 @@ function SafetyReportPage() {
           value={words}
           onChange={(e) => setWords(e.target.value)}
           rows={5}
-          placeholder="Anything you want the Trust team to know."
+          placeholder="Anything you want us to know."
           className="mt-3 w-full resize-none rounded-[14px] border border-line bg-paper p-4 font-body text-[13.5px] leading-relaxed text-ink shadow-elev-1 placeholder:text-stone focus:border-plum-500 focus:outline-none"
         />
       </section>
@@ -141,10 +141,10 @@ function SafetyReportPage() {
           disabled={!canSend}
           className="w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[14.5px] font-medium text-paper shadow-elev-1 transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          Send to Trust team
+          Send report
         </button>
         <p className="mt-3 text-center font-body text-[11.5px] text-stone">
-          Reviewed by a person within 4 hours.
+          We assess reports continuously. We follow up if we need more.
         </p>
       </section>
     </YouBackdrop>
