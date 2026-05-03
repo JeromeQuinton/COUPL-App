@@ -55,7 +55,7 @@ function PhotoReviewScreen() {
     <OnboardingFrame
       footer={
         <p className="pt-6 text-center text-body-sm text-slate">
-          Flagged content goes to a small safety team. Most photos never need that.
+          Automation handles every check. No people scrolling through your album.
         </p>
       }
     >
@@ -139,7 +139,7 @@ function PhotoReviewScreen() {
           disabled={!done}
           onClick={() => navigate({ to: "/home" })}
         >
-          Continue to home
+          Take me home
         </OnboardingButton>
       </div>
     </OnboardingFrame>
