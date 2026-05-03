@@ -58,6 +58,7 @@ import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
+import { Route as MainConnectionsIdRedFlagRouteImport } from './routes/_main.connections.$id_.red-flag'
 import { Route as MainConnectionsIdGreenFlagRouteImport } from './routes/_main.connections.$id_.green-flag'
 import { Route as MainConnectionsIdFirstHelloRouteImport } from './routes/_main.connections.$id_.first-hello'
 import { Route as MainConnectionsIdDraftPauseRouteImport } from './routes/_main.connections.$id_.draft-pause'
@@ -311,6 +312,12 @@ const MainConnectionsIdReflectionRoute =
     path: '/$id/reflection',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainConnectionsIdRedFlagRoute =
+  MainConnectionsIdRedFlagRouteImport.update({
+    id: '/$id_/red-flag',
+    path: '/$id/red-flag',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
 const MainConnectionsIdGreenFlagRoute =
   MainConnectionsIdGreenFlagRouteImport.update({
     id: '/$id_/green-flag',
@@ -409,6 +416,7 @@ export interface FileRoutesByFullPath {
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/green-flag': typeof MainConnectionsIdGreenFlagRoute
+  '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -462,6 +470,7 @@ export interface FileRoutesByTo {
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/green-flag': typeof MainConnectionsIdGreenFlagRoute
+  '/connections/$id/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -522,6 +531,7 @@ export interface FileRoutesById {
   '/_main/connections/$id_/draft-pause': typeof MainConnectionsIdDraftPauseRoute
   '/_main/connections/$id_/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/_main/connections/$id_/green-flag': typeof MainConnectionsIdGreenFlagRoute
+  '/_main/connections/$id_/red-flag': typeof MainConnectionsIdRedFlagRoute
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
@@ -581,6 +591,7 @@ export interface FileRouteTypes {
     | '/connections/$id/draft-pause'
     | '/connections/$id/first-hello'
     | '/connections/$id/green-flag'
+    | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -634,6 +645,7 @@ export interface FileRouteTypes {
     | '/connections/$id/draft-pause'
     | '/connections/$id/first-hello'
     | '/connections/$id/green-flag'
+    | '/connections/$id/red-flag'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -693,6 +705,7 @@ export interface FileRouteTypes {
     | '/_main/connections/$id_/draft-pause'
     | '/_main/connections/$id_/first-hello'
     | '/_main/connections/$id_/green-flag'
+    | '/_main/connections/$id_/red-flag'
     | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/attuned'
     | '/_main/events/$id_/booked'
@@ -1054,6 +1067,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdReflectionRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/connections/$id_/red-flag': {
+      id: '/_main/connections/$id_/red-flag'
+      path: '/$id/red-flag'
+      fullPath: '/connections/$id/red-flag'
+      preLoaderRoute: typeof MainConnectionsIdRedFlagRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/connections/$id_/green-flag': {
       id: '/_main/connections/$id_/green-flag'
       path: '/$id/green-flag'
@@ -1132,6 +1152,7 @@ interface MainConnectionsRouteChildren {
   MainConnectionsIdDraftPauseRoute: typeof MainConnectionsIdDraftPauseRoute
   MainConnectionsIdFirstHelloRoute: typeof MainConnectionsIdFirstHelloRoute
   MainConnectionsIdGreenFlagRoute: typeof MainConnectionsIdGreenFlagRoute
+  MainConnectionsIdRedFlagRoute: typeof MainConnectionsIdRedFlagRoute
   MainConnectionsIdReflectionRoute: typeof MainConnectionsIdReflectionRoute
 }
 
@@ -1144,6 +1165,7 @@ const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdDraftPauseRoute: MainConnectionsIdDraftPauseRoute,
   MainConnectionsIdFirstHelloRoute: MainConnectionsIdFirstHelloRoute,
   MainConnectionsIdGreenFlagRoute: MainConnectionsIdGreenFlagRoute,
+  MainConnectionsIdRedFlagRoute: MainConnectionsIdRedFlagRoute,
   MainConnectionsIdReflectionRoute: MainConnectionsIdReflectionRoute,
 }
 
