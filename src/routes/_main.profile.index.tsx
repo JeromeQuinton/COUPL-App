@@ -125,6 +125,11 @@ function ProfileScreen() {
             sub="Tone, frequency, intercepts"
           />
           <ProfileLinkRow
+            to="/membership"
+            title="Membership"
+            sub="Free · upgrade for depth"
+          />
+          <ProfileLinkRow
             to="/profile/safety"
             title="Safety hub"
             sub="Pause, share, verification, privacy"
@@ -145,7 +150,8 @@ function ProfileLinkRow({
     | "/profile/audit-log"
     | "/profile/visibility"
     | "/profile/safety"
-    | "/profile/coach-settings";
+    | "/profile/coach-settings"
+    | "/membership";
   title: string;
   sub?: string;
 }) {
