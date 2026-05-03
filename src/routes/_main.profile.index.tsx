@@ -130,6 +130,11 @@ function ProfileScreen() {
             sub="Free · upgrade for depth"
           />
           <ProfileLinkRow
+            to="/host"
+            title="Host mode"
+            sub="Workshops · community rooms"
+          />
+          <ProfileLinkRow
             to="/profile/safety"
             title="Safety hub"
             sub="Pause, share, verification, privacy"
@@ -151,7 +156,8 @@ function ProfileLinkRow({
     | "/profile/visibility"
     | "/profile/safety"
     | "/profile/coach-settings"
-    | "/membership";
+    | "/membership"
+    | "/host";
   title: string;
   sub?: string;
 }) {
