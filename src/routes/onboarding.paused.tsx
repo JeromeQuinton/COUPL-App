@@ -46,7 +46,7 @@ function PausedScreen() {
         <OnboardingButton
           type="button"
           variant="primary"
-          onClick={() => navigate({ to: "/onboarding/" })}
+          onClick={() => navigate({ to: "/onboarding" })}
         >
           Hold my place
         </OnboardingButton>

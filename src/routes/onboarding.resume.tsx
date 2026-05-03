@@ -43,7 +43,7 @@ function ResumeScreen() {
         </OnboardingButton>
         <button
           type="button"
-          onClick={() => navigate({ to: "/onboarding/" })}
+          onClick={() => navigate({ to: "/onboarding" })}
           className="w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
         >
           Start over
