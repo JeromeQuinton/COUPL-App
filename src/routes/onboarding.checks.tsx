@@ -53,7 +53,7 @@ function ChecksScreen() {
       <div className="mt-8 space-y-3">
         <OnboardingButton
           type="button"
-          onClick={() => navigate({ to: "/onboarding/review" })}
+          onClick={() => navigate({ to: "/onboarding/checks/id-select" })}
         >
           Continue with social link
         </OnboardingButton>
