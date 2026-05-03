@@ -46,15 +46,6 @@ const SECTIONS: { title: string; rows: { label: string; to: string; params?: Rec
     ],
   },
   {
-    title: "Video — Coach (Liora)",
-    rows: [
-      { label: "Booking", to: "/video/coach/booking" },
-      { label: "Lobby", to: "/video/coach/$bookingId/lobby", params: { bookingId: "demo" } },
-      { label: "Active", to: "/video/coach/$bookingId/active", params: { bookingId: "demo" } },
-      { label: "Ended", to: "/video/coach/$bookingId/ended", params: { bookingId: "demo" } },
-    ],
-  },
-  {
     title: "Video — Permissions",
     rows: [{ label: "Permissions primer", to: "/video/permissions" }],
   },

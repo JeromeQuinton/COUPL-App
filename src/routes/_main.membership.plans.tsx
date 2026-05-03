@@ -139,7 +139,6 @@ function MembershipPlans() {
             "Five suggestions a day",
             "Coach cards · deep mode",
             "Priority event invites",
-            "Monthly pacing review",
             "Cancel anytime, no questions",
           ].map((line) => (
             <li

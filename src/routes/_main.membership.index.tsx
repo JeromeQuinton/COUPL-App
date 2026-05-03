@@ -32,11 +32,6 @@ const LADDER = [
     title: "Room invites · priority",
     sub: "First-look at hosted events, before public release.",
   },
-  {
-    n: "04",
-    title: "Monthly pacing review",
-    sub: "A 20-minute video reflection from a real practitioner.",
-  },
 ];
 
 function MembershipIndex() {
@@ -88,24 +83,7 @@ function MembershipIndex() {
         ))}
       </ul>
 
-      <div className="px-5 pt-6 pb-2">
-        <Link
-          to="/video/coach/booking"
-          className="flex items-center justify-between rounded-[14px] border border-line bg-paper px-4 py-3.5 shadow-elev-1 transition-colors hover:bg-lavender-50"
-        >
-          <div>
-            <p className="font-display text-[14.5px] font-medium text-ink">
-              Book a coach session
-            </p>
-            <p className="mt-0.5 font-body text-[12px] text-stone">
-              Liora · 20 minutes · video
-            </p>
-          </div>
-          <ArrowRight size={15} strokeWidth={2} className="text-plum-700" />
-        </Link>
-      </div>
-
-      <div className="px-5 pt-4 pb-12 space-y-3">
+      <div className="px-5 pt-8 pb-12 space-y-3">
         <Link
           to="/membership/subscription"
           className="flex items-center justify-center gap-2 w-full rounded-full border border-line bg-paper px-5 py-3 font-display text-[14px] text-ink hover:bg-lavender-50"
