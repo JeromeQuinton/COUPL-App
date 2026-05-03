@@ -14,6 +14,7 @@ import { Route as MainRouteImport } from './routes/_main'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
+import { Route as SystemPushPermissionsRouteImport } from './routes/system.push-permissions'
 import { Route as OnboardingVerifyRouteImport } from './routes/onboarding.verify'
 import { Route as OnboardingValuesRouteImport } from './routes/onboarding.values'
 import { Route as OnboardingReviewRouteImport } from './routes/onboarding.review'
@@ -91,6 +92,11 @@ const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => OnboardingRoute,
+} as any)
+const SystemPushPermissionsRoute = SystemPushPermissionsRouteImport.update({
+  id: '/system/push-permissions',
+  path: '/system/push-permissions',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingVerifyRoute = OnboardingVerifyRouteImport.update({
   id: '/verify',
@@ -398,6 +404,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
+  '/system/push-permissions': typeof SystemPushPermissionsRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
@@ -453,6 +460,7 @@ export interface FileRoutesByTo {
   '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
+  '/system/push-permissions': typeof SystemPushPermissionsRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/connections/$id': typeof MainConnectionsIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
@@ -515,6 +523,7 @@ export interface FileRoutesById {
   '/onboarding/review': typeof OnboardingReviewRoute
   '/onboarding/values': typeof OnboardingValuesRoute
   '/onboarding/verify': typeof OnboardingVerifyRoute
+  '/system/push-permissions': typeof SystemPushPermissionsRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/connections/$id': typeof MainConnectionsIdRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
@@ -576,6 +585,7 @@ export interface FileRouteTypes {
     | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
+    | '/system/push-permissions'
     | '/onboarding/'
     | '/connections/$id'
     | '/discover/$id'
@@ -631,6 +641,7 @@ export interface FileRouteTypes {
     | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
+    | '/system/push-permissions'
     | '/onboarding'
     | '/connections/$id'
     | '/discover/$id'
@@ -692,6 +703,7 @@ export interface FileRouteTypes {
     | '/onboarding/review'
     | '/onboarding/values'
     | '/onboarding/verify'
+    | '/system/push-permissions'
     | '/onboarding/'
     | '/_main/connections/$id'
     | '/_main/discover/$id'
@@ -733,6 +745,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   MainRoute: typeof MainRouteWithChildren
   OnboardingRoute: typeof OnboardingRouteWithChildren
+  SystemPushPermissionsRoute: typeof SystemPushPermissionsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -771,6 +784,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/onboarding/'
       preLoaderRoute: typeof OnboardingIndexRouteImport
       parentRoute: typeof OnboardingRoute
+    }
+    '/system/push-permissions': {
+      id: '/system/push-permissions'
+      path: '/system/push-permissions'
+      fullPath: '/system/push-permissions'
+      preLoaderRoute: typeof SystemPushPermissionsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/onboarding/verify': {
       id: '/onboarding/verify'
@@ -1354,6 +1374,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   MainRoute: MainRouteWithChildren,
   OnboardingRoute: OnboardingRouteWithChildren,
+  SystemPushPermissionsRoute: SystemPushPermissionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
