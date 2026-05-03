@@ -46,6 +46,7 @@ import { Route as MainHostIndexRouteImport } from './routes/_main.host.index'
 import { Route as MainGrowthIndexRouteImport } from './routes/_main.growth.index'
 import { Route as MainEventsIndexRouteImport } from './routes/_main.events.index'
 import { Route as MainDiscoverIndexRouteImport } from './routes/_main.discover.index'
+import { Route as MainDatePlansIndexRouteImport } from './routes/_main.date-plans.index'
 import { Route as OnboardingChecksLivenessHelpRouteImport } from './routes/onboarding.checks.liveness-help'
 import { Route as OnboardingChecksLivenessRouteImport } from './routes/onboarding.checks.liveness'
 import { Route as OnboardingChecksIdSelectRouteImport } from './routes/onboarding.checks.id-select'
@@ -74,6 +75,7 @@ import { Route as MainEventsIdRouteImport } from './routes/_main.events.$id'
 import { Route as MainDiscoverSavedRouteImport } from './routes/_main.discover.saved'
 import { Route as MainDiscoverQuietDayRouteImport } from './routes/_main.discover.quiet-day'
 import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
+import { Route as MainDatePlansIdRouteImport } from './routes/_main.date-plans.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainMembershipSubscriptionIndexRouteImport } from './routes/_main.membership.subscription.index'
 import { Route as MainVideoCoachBookingRouteImport } from './routes/_main.video.coach.booking'
@@ -309,6 +311,11 @@ const MainDiscoverIndexRoute = MainDiscoverIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainDiscoverRoute,
 } as any)
+const MainDatePlansIndexRoute = MainDatePlansIndexRouteImport.update({
+  id: '/date-plans/',
+  path: '/date-plans/',
+  getParentRoute: () => MainRoute,
+} as any)
 const OnboardingChecksLivenessHelpRoute =
   OnboardingChecksLivenessHelpRouteImport.update({
     id: '/liveness-help',
@@ -454,6 +461,11 @@ const MainDiscoverIdRoute = MainDiscoverIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => MainDiscoverRoute,
+} as any)
+const MainDatePlansIdRoute = MainDatePlansIdRouteImport.update({
+  id: '/date-plans/$id',
+  path: '/date-plans/$id',
+  getParentRoute: () => MainRoute,
 } as any)
 const MainConnectionsIdRoute = MainConnectionsIdRouteImport.update({
   id: '/$id',
@@ -770,6 +782,7 @@ export interface FileRoutesByFullPath {
   '/system/verification-failed': typeof SystemVerificationFailedRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/connections/$id': typeof MainConnectionsIdRoute
+  '/date-plans/$id': typeof MainDatePlansIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/discover/saved': typeof MainDiscoverSavedRoute
@@ -798,6 +811,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
   '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
   '/onboarding/checks/liveness-help': typeof OnboardingChecksLivenessHelpRoute
+  '/date-plans/': typeof MainDatePlansIndexRoute
   '/discover/': typeof MainDiscoverIndexRoute
   '/events/': typeof MainEventsIndexRoute
   '/growth/': typeof MainGrowthIndexRoute
@@ -881,6 +895,7 @@ export interface FileRoutesByTo {
   '/system/verification-failed': typeof SystemVerificationFailedRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/connections/$id': typeof MainConnectionsIdRoute
+  '/date-plans/$id': typeof MainDatePlansIdRoute
   '/discover/$id': typeof MainDiscoverIdRoute
   '/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/discover/saved': typeof MainDiscoverSavedRoute
@@ -909,6 +924,7 @@ export interface FileRoutesByTo {
   '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
   '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
   '/onboarding/checks/liveness-help': typeof OnboardingChecksLivenessHelpRoute
+  '/date-plans': typeof MainDatePlansIndexRoute
   '/discover': typeof MainDiscoverIndexRoute
   '/events': typeof MainEventsIndexRoute
   '/growth': typeof MainGrowthIndexRoute
@@ -999,6 +1015,7 @@ export interface FileRoutesById {
   '/system/verification-failed': typeof SystemVerificationFailedRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/_main/connections/$id': typeof MainConnectionsIdRoute
+  '/_main/date-plans/$id': typeof MainDatePlansIdRoute
   '/_main/discover/$id': typeof MainDiscoverIdRoute
   '/_main/discover/quiet-day': typeof MainDiscoverQuietDayRoute
   '/_main/discover/saved': typeof MainDiscoverSavedRoute
@@ -1027,6 +1044,7 @@ export interface FileRoutesById {
   '/onboarding/checks/id-select': typeof OnboardingChecksIdSelectRoute
   '/onboarding/checks/liveness': typeof OnboardingChecksLivenessRoute
   '/onboarding/checks/liveness-help': typeof OnboardingChecksLivenessHelpRoute
+  '/_main/date-plans/': typeof MainDatePlansIndexRoute
   '/_main/discover/': typeof MainDiscoverIndexRoute
   '/_main/events/': typeof MainEventsIndexRoute
   '/_main/growth/': typeof MainGrowthIndexRoute
@@ -1116,6 +1134,7 @@ export interface FileRouteTypes {
     | '/system/verification-failed'
     | '/onboarding/'
     | '/connections/$id'
+    | '/date-plans/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/discover/saved'
@@ -1144,6 +1163,7 @@ export interface FileRouteTypes {
     | '/onboarding/checks/id-select'
     | '/onboarding/checks/liveness'
     | '/onboarding/checks/liveness-help'
+    | '/date-plans/'
     | '/discover/'
     | '/events/'
     | '/growth/'
@@ -1227,6 +1247,7 @@ export interface FileRouteTypes {
     | '/system/verification-failed'
     | '/onboarding'
     | '/connections/$id'
+    | '/date-plans/$id'
     | '/discover/$id'
     | '/discover/quiet-day'
     | '/discover/saved'
@@ -1255,6 +1276,7 @@ export interface FileRouteTypes {
     | '/onboarding/checks/id-select'
     | '/onboarding/checks/liveness'
     | '/onboarding/checks/liveness-help'
+    | '/date-plans'
     | '/discover'
     | '/events'
     | '/growth'
@@ -1344,6 +1366,7 @@ export interface FileRouteTypes {
     | '/system/verification-failed'
     | '/onboarding/'
     | '/_main/connections/$id'
+    | '/_main/date-plans/$id'
     | '/_main/discover/$id'
     | '/_main/discover/quiet-day'
     | '/_main/discover/saved'
@@ -1372,6 +1395,7 @@ export interface FileRouteTypes {
     | '/onboarding/checks/id-select'
     | '/onboarding/checks/liveness'
     | '/onboarding/checks/liveness-help'
+    | '/_main/date-plans/'
     | '/_main/discover/'
     | '/_main/events/'
     | '/_main/growth/'
@@ -1700,6 +1724,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDiscoverIndexRouteImport
       parentRoute: typeof MainDiscoverRoute
     }
+    '/_main/date-plans/': {
+      id: '/_main/date-plans/'
+      path: '/date-plans'
+      fullPath: '/date-plans/'
+      preLoaderRoute: typeof MainDatePlansIndexRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/onboarding/checks/liveness-help': {
       id: '/onboarding/checks/liveness-help'
       path: '/liveness-help'
@@ -1895,6 +1926,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/discover/$id'
       preLoaderRoute: typeof MainDiscoverIdRouteImport
       parentRoute: typeof MainDiscoverRoute
+    }
+    '/_main/date-plans/$id': {
+      id: '/_main/date-plans/$id'
+      path: '/date-plans/$id'
+      fullPath: '/date-plans/$id'
+      preLoaderRoute: typeof MainDatePlansIdRouteImport
+      parentRoute: typeof MainRoute
     }
     '/_main/connections/$id': {
       id: '/_main/connections/$id'
@@ -2431,11 +2469,13 @@ interface MainRouteChildren {
   MainGrowthRoute: typeof MainGrowthRouteWithChildren
   MainHomeRoute: typeof MainHomeRouteWithChildren
   MainProfileRoute: typeof MainProfileRouteWithChildren
+  MainDatePlansIdRoute: typeof MainDatePlansIdRoute
   MainEventsIdRoute: typeof MainEventsIdRoute
   MainHostAttendeesRoute: typeof MainHostAttendeesRoute
   MainHostNewRoute: typeof MainHostNewRoute
   MainMembershipPlansRoute: typeof MainMembershipPlansRoute
   MainVideoPermissionsRoute: typeof MainVideoPermissionsRoute
+  MainDatePlansIndexRoute: typeof MainDatePlansIndexRoute
   MainEventsIndexRoute: typeof MainEventsIndexRoute
   MainHostIndexRoute: typeof MainHostIndexRoute
   MainMembershipIndexRoute: typeof MainMembershipIndexRoute
@@ -2472,11 +2512,13 @@ const MainRouteChildren: MainRouteChildren = {
   MainGrowthRoute: MainGrowthRouteWithChildren,
   MainHomeRoute: MainHomeRouteWithChildren,
   MainProfileRoute: MainProfileRouteWithChildren,
+  MainDatePlansIdRoute: MainDatePlansIdRoute,
   MainEventsIdRoute: MainEventsIdRoute,
   MainHostAttendeesRoute: MainHostAttendeesRoute,
   MainHostNewRoute: MainHostNewRoute,
   MainMembershipPlansRoute: MainMembershipPlansRoute,
   MainVideoPermissionsRoute: MainVideoPermissionsRoute,
+  MainDatePlansIndexRoute: MainDatePlansIndexRoute,
   MainEventsIndexRoute: MainEventsIndexRoute,
   MainHostIndexRoute: MainHostIndexRoute,
   MainMembershipIndexRoute: MainMembershipIndexRoute,
