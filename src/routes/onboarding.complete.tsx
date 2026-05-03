@@ -36,8 +36,7 @@ function CompleteScreen() {
         Mira.
       </h1>
       <p className="mt-4 max-w-sm text-body-lg text-slate">
-        Photos are with our humans. We'll text you within 24h. Until then,
-        you can read, reflect, and set up your first prompt.
+        Photos are being checked now. You'll have full access in a couple of minutes. Take a breath.
       </p>
       <Link
         to="/home"
@@ -49,8 +48,11 @@ function CompleteScreen() {
         to="/onboarding/photo-review"
         className="mt-3 text-label-mono"
       >
-        See review status
+        Check progress
       </Link>
+      <p className="mt-6 max-w-[28rem] text-center text-body-sm italic text-stone">
+        We use automation for most of what other apps do by hand. It's faster, more private, and cheaper to keep COUPL running. People only get involved when something needs care.
+      </p>
     </div>
   );
 }
