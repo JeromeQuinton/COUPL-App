@@ -139,6 +139,11 @@ function ProfileScreen() {
             title="Safety hub"
             sub="Pause, share, verification, privacy"
           />
+          <ProfileLinkRow
+            to="/profile/data/export"
+            title="Data export"
+            sub="Take your record with you"
+          />
         </ul>
       </section>
     </YouBackdrop>
@@ -157,7 +162,8 @@ function ProfileLinkRow({
     | "/profile/safety"
     | "/profile/coach-settings"
     | "/membership"
-    | "/host";
+    | "/host"
+    | "/profile/data/export";
   title: string;
   sub?: string;
 }) {
