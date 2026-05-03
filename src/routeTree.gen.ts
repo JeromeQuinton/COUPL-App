@@ -57,8 +57,10 @@ import { Route as MainEventsIdCheckinRouteImport } from './routes/_main.events.$
 import { Route as MainEventsIdBookedRouteImport } from './routes/_main.events.$id_.booked'
 import { Route as MainDiscoverIdAttunedRouteImport } from './routes/_main.discover.$id_.attuned'
 import { Route as MainConnectionsIdReflectionRouteImport } from './routes/_main.connections.$id_.reflection'
+import { Route as MainConnectionsIdFirstHelloRouteImport } from './routes/_main.connections.$id_.first-hello'
 import { Route as MainConnectionsIdDraftPauseRouteImport } from './routes/_main.connections.$id_.draft-pause'
 import { Route as MainConnectionsIdCoolOffRouteImport } from './routes/_main.connections.$id_.cool-off'
+import { Route as MainConnectionsIdConnectedRouteImport } from './routes/_main.connections.$id_.connected'
 import { Route as MainConnectionsIdCleanEndingRouteImport } from './routes/_main.connections.$id_.clean-ending'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
@@ -301,6 +303,12 @@ const MainConnectionsIdReflectionRoute =
     path: '/$id/reflection',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
+const MainConnectionsIdFirstHelloRoute =
+  MainConnectionsIdFirstHelloRouteImport.update({
+    id: '/$id_/first-hello',
+    path: '/$id/first-hello',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
 const MainConnectionsIdDraftPauseRoute =
   MainConnectionsIdDraftPauseRouteImport.update({
     id: '/$id_/draft-pause',
@@ -311,6 +319,12 @@ const MainConnectionsIdCoolOffRoute =
   MainConnectionsIdCoolOffRouteImport.update({
     id: '/$id_/cool-off',
     path: '/$id/cool-off',
+    getParentRoute: () => MainConnectionsRoute,
+  } as any)
+const MainConnectionsIdConnectedRoute =
+  MainConnectionsIdConnectedRouteImport.update({
+    id: '/$id_/connected',
+    path: '/$id/connected',
     getParentRoute: () => MainConnectionsRoute,
   } as any)
 const MainConnectionsIdCleanEndingRoute =
@@ -368,8 +382,10 @@ export interface FileRoutesByFullPath {
   '/growth/': typeof MainGrowthIndexRoute
   '/profile/': typeof MainProfileIndexRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
+  '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -416,8 +432,10 @@ export interface FileRoutesByTo {
   '/growth': typeof MainGrowthIndexRoute
   '/profile': typeof MainProfileIndexRoute
   '/connections/$id/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/connections/$id/connected': typeof MainConnectionsIdConnectedRoute
   '/connections/$id/cool-off': typeof MainConnectionsIdCoolOffRoute
   '/connections/$id/draft-pause': typeof MainConnectionsIdDraftPauseRoute
+  '/connections/$id/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/connections/$id/reflection': typeof MainConnectionsIdReflectionRoute
   '/discover/$id/attuned': typeof MainDiscoverIdAttunedRoute
   '/events/$id/booked': typeof MainEventsIdBookedRoute
@@ -471,8 +489,10 @@ export interface FileRoutesById {
   '/_main/growth/': typeof MainGrowthIndexRoute
   '/_main/profile/': typeof MainProfileIndexRoute
   '/_main/connections/$id_/clean-ending': typeof MainConnectionsIdCleanEndingRoute
+  '/_main/connections/$id_/connected': typeof MainConnectionsIdConnectedRoute
   '/_main/connections/$id_/cool-off': typeof MainConnectionsIdCoolOffRoute
   '/_main/connections/$id_/draft-pause': typeof MainConnectionsIdDraftPauseRoute
+  '/_main/connections/$id_/first-hello': typeof MainConnectionsIdFirstHelloRoute
   '/_main/connections/$id_/reflection': typeof MainConnectionsIdReflectionRoute
   '/_main/discover/$id_/attuned': typeof MainDiscoverIdAttunedRoute
   '/_main/events/$id_/booked': typeof MainEventsIdBookedRoute
@@ -525,8 +545,10 @@ export interface FileRouteTypes {
     | '/growth/'
     | '/profile/'
     | '/connections/$id/clean-ending'
+    | '/connections/$id/connected'
     | '/connections/$id/cool-off'
     | '/connections/$id/draft-pause'
+    | '/connections/$id/first-hello'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -573,8 +595,10 @@ export interface FileRouteTypes {
     | '/growth'
     | '/profile'
     | '/connections/$id/clean-ending'
+    | '/connections/$id/connected'
     | '/connections/$id/cool-off'
     | '/connections/$id/draft-pause'
+    | '/connections/$id/first-hello'
     | '/connections/$id/reflection'
     | '/discover/$id/attuned'
     | '/events/$id/booked'
@@ -627,8 +651,10 @@ export interface FileRouteTypes {
     | '/_main/growth/'
     | '/_main/profile/'
     | '/_main/connections/$id_/clean-ending'
+    | '/_main/connections/$id_/connected'
     | '/_main/connections/$id_/cool-off'
     | '/_main/connections/$id_/draft-pause'
+    | '/_main/connections/$id_/first-hello'
     | '/_main/connections/$id_/reflection'
     | '/_main/discover/$id_/attuned'
     | '/_main/events/$id_/booked'
@@ -983,6 +1009,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainConnectionsIdReflectionRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
+    '/_main/connections/$id_/first-hello': {
+      id: '/_main/connections/$id_/first-hello'
+      path: '/$id/first-hello'
+      fullPath: '/connections/$id/first-hello'
+      preLoaderRoute: typeof MainConnectionsIdFirstHelloRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
     '/_main/connections/$id_/draft-pause': {
       id: '/_main/connections/$id_/draft-pause'
       path: '/$id/draft-pause'
@@ -995,6 +1028,13 @@ declare module '@tanstack/react-router' {
       path: '/$id/cool-off'
       fullPath: '/connections/$id/cool-off'
       preLoaderRoute: typeof MainConnectionsIdCoolOffRouteImport
+      parentRoute: typeof MainConnectionsRoute
+    }
+    '/_main/connections/$id_/connected': {
+      id: '/_main/connections/$id_/connected'
+      path: '/$id/connected'
+      fullPath: '/connections/$id/connected'
+      preLoaderRoute: typeof MainConnectionsIdConnectedRouteImport
       parentRoute: typeof MainConnectionsRoute
     }
     '/_main/connections/$id_/clean-ending': {
@@ -1027,16 +1067,20 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 interface MainConnectionsRouteChildren {
   MainConnectionsIdRoute: typeof MainConnectionsIdRoute
   MainConnectionsIdCleanEndingRoute: typeof MainConnectionsIdCleanEndingRoute
+  MainConnectionsIdConnectedRoute: typeof MainConnectionsIdConnectedRoute
   MainConnectionsIdCoolOffRoute: typeof MainConnectionsIdCoolOffRoute
   MainConnectionsIdDraftPauseRoute: typeof MainConnectionsIdDraftPauseRoute
+  MainConnectionsIdFirstHelloRoute: typeof MainConnectionsIdFirstHelloRoute
   MainConnectionsIdReflectionRoute: typeof MainConnectionsIdReflectionRoute
 }
 
 const MainConnectionsRouteChildren: MainConnectionsRouteChildren = {
   MainConnectionsIdRoute: MainConnectionsIdRoute,
   MainConnectionsIdCleanEndingRoute: MainConnectionsIdCleanEndingRoute,
+  MainConnectionsIdConnectedRoute: MainConnectionsIdConnectedRoute,
   MainConnectionsIdCoolOffRoute: MainConnectionsIdCoolOffRoute,
   MainConnectionsIdDraftPauseRoute: MainConnectionsIdDraftPauseRoute,
+  MainConnectionsIdFirstHelloRoute: MainConnectionsIdFirstHelloRoute,
   MainConnectionsIdReflectionRoute: MainConnectionsIdReflectionRoute,
 }
 
