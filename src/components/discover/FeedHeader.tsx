@@ -1,4 +1,5 @@
 import { Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 /**
  * FeedHeader — top of /discover (DR-024).
@@ -13,9 +14,12 @@ export function FeedHeader() {
           <Sparkles aria-hidden width={18} height={18} className="text-plum-700" strokeWidth={1.75} />
           <span className="font-display text-[17px] font-semibold text-plum-700">Curated For You</span>
         </div>
-        <span className="rounded-full border border-plum-300/60 bg-paper/60 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700">
-          Aligned · Mindful
-        </span>
+        <Link
+          to="/growth/weekly"
+          className="rounded-full border border-plum-300/60 bg-paper/60 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
+        >
+          Weekly review →
+        </Link>
       </div>
 
       <div className="flex flex-col gap-2">

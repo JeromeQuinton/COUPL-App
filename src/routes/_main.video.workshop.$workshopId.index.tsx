@@ -40,7 +40,7 @@ function WorkshopLobby() {
             L
           </span>
           <div>
-            <p className="font-display text-[15px] font-semibold text-ink">Liora</p>
+            <p className="font-display text-[15px] font-semibold text-ink">Lena</p>
             <p className="text-label-mono">Practitioner</p>
           </div>
         </article>
@@ -56,7 +56,7 @@ function WorkshopLobby() {
           <p className="text-label-mono">What to expect</p>
           <ul className="mt-3 space-y-2 font-body text-[13.5px] text-ink">
             <li>· 75 minutes.</li>
-            <li>· Liora will speak; you'll listen and be invited in.</li>
+            <li>· Lena will speak; you'll listen and be invited in.</li>
             <li>· Camera optional. Presence required.</li>
           </ul>
         </section>

@@ -72,7 +72,7 @@ function ReflectionScreen() {
 
       <aside className="mt-5 rounded-[16px] bg-beeswax-100 p-4">
         <p className="text-body-md text-ink">
-          <span className="font-medium">Signal:</span> "Before I'd earned it"
+          <span className="font-medium">Polaris:</span> "Before I'd earned it"
           — that's worth sitting with. What does it mean to earn someone's
           offering?
         </p>

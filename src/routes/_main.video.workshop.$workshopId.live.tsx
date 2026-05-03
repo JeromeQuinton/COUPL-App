@@ -46,7 +46,7 @@ function WorkshopLive() {
         <div className="flex h-full w-full flex-col">
           <div className="flex-1 px-4 pt-4">
             <div className="h-full">
-              <VideoTile name="Liora" initial="L" size="full" />
+              <VideoTile name="Lena" initial="L" size="full" />
             </div>
           </div>
           <div className="px-4 pb-32 pt-3">

@@ -16,12 +16,12 @@ type Props = {
 };
 
 /**
- * "From Signal, your coach" card on /home. Editorial beeswax surface
+ * "From Polaris, your coach" card on /home. Editorial beeswax surface
  * with a serif lesson title and a quiet "N min read →" affordance.
  * Whole card is the link target.
  */
 export function CoachCard({
-  coach = "Signal",
+  coach = "Polaris",
   title,
   preview,
   readTime = "2 min read",

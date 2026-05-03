@@ -155,12 +155,12 @@ function PaceScreen() {
           </p>
         </div>
 
-        {/* Liora */}
+        {/* Polaris */}
         <figure className="mt-6">
           <blockquote className="font-body text-[13.5px] italic leading-relaxed text-slate">
             "Most people who sit between two and four weeks of messages tend to be the most compatible. The slower ones are often the steadiest."
           </blockquote>
-          <figcaption className="mt-2 text-label-mono">— Liora</figcaption>
+          <figcaption className="mt-2 text-label-mono">— Polaris</figcaption>
         </figure>
       </form>
 

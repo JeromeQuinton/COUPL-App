@@ -116,6 +116,12 @@ function ThreadScreen() {
             INSIGHTS
           </Link>
           <Link
+            to="/coach"
+            className="text-label-mono text-plum-700 hover:underline"
+          >
+            ASK LIORA
+          </Link>
+          <Link
             to="/connections/$id/clean-ending"
             params={{ id }}
             aria-label="End this conversation well"

@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_main/host/attendees")({
 });
 
 const ATTENDEES = [
-  { initial: "M", name: "Maya R.", note: "Verified · referred by Liora", status: "paid", first: true },
+  { initial: "M", name: "Maya R.", note: "Verified · referred by Polaris", status: "paid", first: true },
   { initial: "S", name: "Sam P.", note: "Verified · 3rd workshop", status: "paid", first: false },
   { initial: "I", name: "Iris B.", note: "Pending verification", status: "held", first: false },
   { initial: "T", name: "Theo M.", note: "Verified · first time", status: "paid", first: true },

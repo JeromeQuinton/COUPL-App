@@ -50,7 +50,7 @@ export const CALENDAR_ITEMS: CalendarItem[] = [
     end: iso(2, 20, 15),
     title: "The repair conversation · Session 2",
     whereLabel: "Online · 75 min",
-    withWhom: "with Liora",
+    withWhom: "with Lena",
     href: { route: "/growth/$id", id: "demo" },
   },
   {
@@ -89,7 +89,7 @@ export const CALENDAR_ITEMS: CalendarItem[] = [
     end: iso(9, 20, 15),
     title: "The repair conversation · Session 3",
     whereLabel: "Online · 75 min",
-    withWhom: "with Liora",
+    withWhom: "with Lena",
     href: { route: "/growth/$id", id: "demo" },
   },
   {

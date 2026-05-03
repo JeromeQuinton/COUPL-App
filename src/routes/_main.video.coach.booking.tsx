@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_main/video/coach/booking")({
-  head: () => ({ meta: [{ title: "Book Liora — COUPL" }] }),
+  head: () => ({ meta: [{ title: "Book Polaris — COUPL" }] }),
   component: CoachBooking,
 });
 
@@ -31,7 +31,7 @@ function CoachBooking() {
       <div className="mx-auto max-w-md">
         <p className="text-label-mono">Membership</p>
         <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">
-          Twenty minutes with Liora.
+          Twenty minutes with Polaris.
         </h1>
         <p className="mt-3 font-display text-[14px] italic text-stone">
           She actually picks up.
@@ -46,7 +46,7 @@ function CoachBooking() {
             L
           </span>
           <div>
-            <p className="font-display text-[15px] font-semibold text-ink">Liora</p>
+            <p className="font-display text-[15px] font-semibold text-ink">Polaris</p>
             <p className="text-label-mono">Practitioner — attachment + repair</p>
             <p className="mt-2 font-body text-[12.5px] text-slate">
               Twelve years in the room. Trained psychotherapist. UK-registered.

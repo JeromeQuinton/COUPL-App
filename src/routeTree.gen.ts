@@ -41,6 +41,7 @@ import { Route as MainHomeRouteImport } from './routes/_main.home'
 import { Route as MainGrowthRouteImport } from './routes/_main.growth'
 import { Route as MainDiscoverRouteImport } from './routes/_main.discover'
 import { Route as MainDevRoutesRouteImport } from './routes/_main.dev-routes'
+import { Route as MainCoachRouteImport } from './routes/_main.coach'
 import { Route as MainCalendarRouteImport } from './routes/_main.calendar'
 import { Route as AuthSigninRouteImport } from './routes/_auth.signin'
 import { Route as MainProfileIndexRouteImport } from './routes/_main.profile.index'
@@ -72,6 +73,7 @@ import { Route as MainHomeReflectionRouteImport } from './routes/_main.home.refl
 import { Route as MainHomeCoachRouteImport } from './routes/_main.home.coach'
 import { Route as MainHomeCheckInRouteImport } from './routes/_main.home.check-in'
 import { Route as MainGrowthWorkshopsRouteImport } from './routes/_main.growth.workshops'
+import { Route as MainGrowthWeeklyRouteImport } from './routes/_main.growth.weekly'
 import { Route as MainGrowthMonthlySummaryRouteImport } from './routes/_main.growth.monthly-summary'
 import { Route as MainGrowthJournalRouteImport } from './routes/_main.growth.journal'
 import { Route as MainGrowthIdRouteImport } from './routes/_main.growth.$id'
@@ -295,6 +297,11 @@ const MainDevRoutesRoute = MainDevRoutesRouteImport.update({
   path: '/dev-routes',
   getParentRoute: () => MainRoute,
 } as any)
+const MainCoachRoute = MainCoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainCalendarRoute = MainCalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
@@ -453,6 +460,11 @@ const MainHomeCheckInRoute = MainHomeCheckInRouteImport.update({
 const MainGrowthWorkshopsRoute = MainGrowthWorkshopsRouteImport.update({
   id: '/workshops',
   path: '/workshops',
+  getParentRoute: () => MainGrowthRoute,
+} as any)
+const MainGrowthWeeklyRoute = MainGrowthWeeklyRouteImport.update({
+  id: '/weekly',
+  path: '/weekly',
   getParentRoute: () => MainGrowthRoute,
 } as any)
 const MainGrowthMonthlySummaryRoute =
@@ -815,6 +827,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRouteWithChildren
   '/signin': typeof AuthSigninRoute
   '/calendar': typeof MainCalendarRoute
+  '/coach': typeof MainCoachRoute
   '/dev-routes': typeof MainDevRoutesRoute
   '/discover': typeof MainDiscoverRouteWithChildren
   '/growth': typeof MainGrowthRouteWithChildren
@@ -852,6 +865,7 @@ export interface FileRoutesByFullPath {
   '/growth/$id': typeof MainGrowthIdRoute
   '/growth/journal': typeof MainGrowthJournalRoute
   '/growth/monthly-summary': typeof MainGrowthMonthlySummaryRoute
+  '/growth/weekly': typeof MainGrowthWeeklyRoute
   '/growth/workshops': typeof MainGrowthWorkshopsRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
@@ -940,6 +954,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signin': typeof AuthSigninRoute
   '/calendar': typeof MainCalendarRoute
+  '/coach': typeof MainCoachRoute
   '/dev-routes': typeof MainDevRoutesRoute
   '/home': typeof MainHomeRouteWithChildren
   '/notifications': typeof MainNotificationsRoute
@@ -974,6 +989,7 @@ export interface FileRoutesByTo {
   '/growth/$id': typeof MainGrowthIdRoute
   '/growth/journal': typeof MainGrowthJournalRoute
   '/growth/monthly-summary': typeof MainGrowthMonthlySummaryRoute
+  '/growth/weekly': typeof MainGrowthWeeklyRoute
   '/growth/workshops': typeof MainGrowthWorkshopsRoute
   '/home/check-in': typeof MainHomeCheckInRoute
   '/home/coach': typeof MainHomeCoachRoute
@@ -1066,6 +1082,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRouteWithChildren
   '/_auth/signin': typeof AuthSigninRoute
   '/_main/calendar': typeof MainCalendarRoute
+  '/_main/coach': typeof MainCoachRoute
   '/_main/dev-routes': typeof MainDevRoutesRoute
   '/_main/discover': typeof MainDiscoverRouteWithChildren
   '/_main/growth': typeof MainGrowthRouteWithChildren
@@ -1103,6 +1120,7 @@ export interface FileRoutesById {
   '/_main/growth/$id': typeof MainGrowthIdRoute
   '/_main/growth/journal': typeof MainGrowthJournalRoute
   '/_main/growth/monthly-summary': typeof MainGrowthMonthlySummaryRoute
+  '/_main/growth/weekly': typeof MainGrowthWeeklyRoute
   '/_main/growth/workshops': typeof MainGrowthWorkshopsRoute
   '/_main/home/check-in': typeof MainHomeCheckInRoute
   '/_main/home/coach': typeof MainHomeCoachRoute
@@ -1194,6 +1212,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/signin'
     | '/calendar'
+    | '/coach'
     | '/dev-routes'
     | '/discover'
     | '/growth'
@@ -1231,6 +1250,7 @@ export interface FileRouteTypes {
     | '/growth/$id'
     | '/growth/journal'
     | '/growth/monthly-summary'
+    | '/growth/weekly'
     | '/growth/workshops'
     | '/home/check-in'
     | '/home/coach'
@@ -1319,6 +1339,7 @@ export interface FileRouteTypes {
     | '/'
     | '/signin'
     | '/calendar'
+    | '/coach'
     | '/dev-routes'
     | '/home'
     | '/notifications'
@@ -1353,6 +1374,7 @@ export interface FileRouteTypes {
     | '/growth/$id'
     | '/growth/journal'
     | '/growth/monthly-summary'
+    | '/growth/weekly'
     | '/growth/workshops'
     | '/home/check-in'
     | '/home/coach'
@@ -1444,6 +1466,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/_auth/signin'
     | '/_main/calendar'
+    | '/_main/coach'
     | '/_main/dev-routes'
     | '/_main/discover'
     | '/_main/growth'
@@ -1481,6 +1504,7 @@ export interface FileRouteTypes {
     | '/_main/growth/$id'
     | '/_main/growth/journal'
     | '/_main/growth/monthly-summary'
+    | '/_main/growth/weekly'
     | '/_main/growth/workshops'
     | '/_main/home/check-in'
     | '/_main/home/coach'
@@ -1802,6 +1826,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainDevRoutesRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/coach': {
+      id: '/_main/coach'
+      path: '/coach'
+      fullPath: '/coach'
+      preLoaderRoute: typeof MainCoachRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/calendar': {
       id: '/_main/calendar'
       path: '/calendar'
@@ -2017,6 +2048,13 @@ declare module '@tanstack/react-router' {
       path: '/workshops'
       fullPath: '/growth/workshops'
       preLoaderRoute: typeof MainGrowthWorkshopsRouteImport
+      parentRoute: typeof MainGrowthRoute
+    }
+    '/_main/growth/weekly': {
+      id: '/_main/growth/weekly'
+      path: '/weekly'
+      fullPath: '/growth/weekly'
+      preLoaderRoute: typeof MainGrowthWeeklyRouteImport
       parentRoute: typeof MainGrowthRoute
     }
     '/_main/growth/monthly-summary': {
@@ -2502,6 +2540,7 @@ interface MainGrowthRouteChildren {
   MainGrowthIdRoute: typeof MainGrowthIdRoute
   MainGrowthJournalRoute: typeof MainGrowthJournalRoute
   MainGrowthMonthlySummaryRoute: typeof MainGrowthMonthlySummaryRoute
+  MainGrowthWeeklyRoute: typeof MainGrowthWeeklyRoute
   MainGrowthWorkshopsRoute: typeof MainGrowthWorkshopsRoute
   MainGrowthIndexRoute: typeof MainGrowthIndexRoute
   MainGrowthIdReserveRoute: typeof MainGrowthIdReserveRoute
@@ -2512,6 +2551,7 @@ const MainGrowthRouteChildren: MainGrowthRouteChildren = {
   MainGrowthIdRoute: MainGrowthIdRoute,
   MainGrowthJournalRoute: MainGrowthJournalRoute,
   MainGrowthMonthlySummaryRoute: MainGrowthMonthlySummaryRoute,
+  MainGrowthWeeklyRoute: MainGrowthWeeklyRoute,
   MainGrowthWorkshopsRoute: MainGrowthWorkshopsRoute,
   MainGrowthIndexRoute: MainGrowthIndexRoute,
   MainGrowthIdReserveRoute: MainGrowthIdReserveRoute,
@@ -2609,6 +2649,7 @@ const MainProfileRouteWithChildren = MainProfileRoute._addFileChildren(
 
 interface MainRouteChildren {
   MainCalendarRoute: typeof MainCalendarRoute
+  MainCoachRoute: typeof MainCoachRoute
   MainDevRoutesRoute: typeof MainDevRoutesRoute
   MainDiscoverRoute: typeof MainDiscoverRouteWithChildren
   MainGrowthRoute: typeof MainGrowthRouteWithChildren
@@ -2672,6 +2713,7 @@ interface MainRouteChildren {
 
 const MainRouteChildren: MainRouteChildren = {
   MainCalendarRoute: MainCalendarRoute,
+  MainCoachRoute: MainCoachRoute,
   MainDevRoutesRoute: MainDevRoutesRoute,
   MainDiscoverRoute: MainDiscoverRouteWithChildren,
   MainGrowthRoute: MainGrowthRouteWithChildren,

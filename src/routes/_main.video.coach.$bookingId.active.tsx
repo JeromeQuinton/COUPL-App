@@ -5,7 +5,7 @@ import { CallControls } from "@/components/video/CallControls";
 import { VideoTile } from "@/components/video/VideoTile";
 
 export const Route = createFileRoute("/_main/video/coach/$bookingId/active")({
-  head: () => ({ meta: [{ title: "With Liora — COUPL" }] }),
+  head: () => ({ meta: [{ title: "With Polaris — COUPL" }] }),
   component: CoachActive,
 });
 
@@ -29,7 +29,7 @@ function CoachActive() {
 
   return (
     <CallSurface
-      remote={<VideoTile name="Liora" initial="L" size="full" />}
+      remote={<VideoTile name="Polaris" initial="L" size="full" />}
       selfTile={<VideoTile name="You" initial="Y" size="thumb" muted={muted} cameraOff={cameraOff} />}
       controls={
         <CallControls

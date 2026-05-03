@@ -20,7 +20,7 @@ type Item = {
     | { route: "/connections/$id"; id: string }
     | { route: "/connections/$id/connected"; id: string }
     | { route: "/connections/$id/date-plan"; id: string }
-    | { route: "/membership" }
+    | { route: "/coach" }
     | { route: "/growth/$id"; id: string };
 };
 
@@ -37,13 +37,13 @@ const ITEMS: Item[] = [
   },
   {
     id: "n2",
-    initial: "L",
+    initial: "P",
     hue: "blush",
-    message: "Liora's noticed something.",
+    message: "Polaris noticed something.",
     detail: "Open the coach.",
     when: "2h ago",
     group: "today",
-    to: { route: "/membership" },
+    to: { route: "/coach" },
   },
   {
     id: "n3",
@@ -151,8 +151,8 @@ function ActivityRow({ item }: { item: Item }) {
           to: "/connections/$id/date-plan",
           params: { id: item.to.id },
         } as const;
-      case "/membership":
-        return { to: "/membership" } as const;
+      case "/coach":
+        return { to: "/coach" } as const;
       case "/growth/$id":
         return { to: "/growth/$id", params: { id: item.to.id } } as const;
     }

@@ -34,6 +34,11 @@ const LADDER = [
   },
 ];
 
+const LIORA_FEATURE = {
+  title: "Polaris · without limits",
+  sub: "Deeper conversations with the AI coach any time — not just on prompts.",
+};
+
 function MembershipIndex() {
   return (
     <YouBackdrop>
@@ -63,6 +68,25 @@ function MembershipIndex() {
       </header>
 
       <ul className="px-5 flex flex-col gap-2.5">
+        <li className="flex items-start gap-4 rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1">
+          <span className="font-display text-[16px] font-semibold text-plum-500 min-w-[2rem]">04</span>
+          <div className="flex-1">
+            <Link
+              to="/coach"
+              className="block"
+            >
+              <p className="font-display text-[15px] font-medium text-ink">
+                {LIORA_FEATURE.title}
+              </p>
+              <p className="mt-0.5 font-body text-[12.5px] text-slate">
+                {LIORA_FEATURE.sub}
+              </p>
+              <p className="mt-1.5 text-label-mono text-plum-700">
+                OPEN COACH →
+              </p>
+            </Link>
+          </div>
+        </li>
         {LADDER.map((l) => (
           <li
             key={l.n}

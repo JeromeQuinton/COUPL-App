@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_main/video/coach/$bookingId/ended")({
-  head: () => ({ meta: [{ title: "After Liora — COUPL" }] }),
+  head: () => ({ meta: [{ title: "After Polaris — COUPL" }] }),
   component: CoachEnded,
 });
 
@@ -71,7 +71,7 @@ function CoachEnded() {
         <article className="mt-6 rounded-[16px] bg-lavender-100 px-5 py-4">
           <p className="text-label-mono text-plum-700">What happens next</p>
           <p className="mt-2 font-body text-[13.5px] text-ink">
-            Liora's note arrives by tomorrow. It'll land in your inbox and in the app.
+            Polaris's note arrives by tomorrow. It'll land in your inbox and in the app.
           </p>
         </article>
 

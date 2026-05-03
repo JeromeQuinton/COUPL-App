@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, useNavigate, useParams } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_main/video/coach/$bookingId/lobby")({
-  head: () => ({ meta: [{ title: "Liora joins soon — COUPL" }] }),
+  head: () => ({ meta: [{ title: "Polaris joins soon — COUPL" }] }),
   component: CoachLobby,
 });
 
@@ -28,7 +28,7 @@ function CoachLobby() {
       <div className="mx-auto max-w-md">
         <p className="text-label-mono">Your session</p>
         <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-          {ready ? "Liora is ready." : `Liora joins in ${minutes} minute${minutes === 1 ? "" : "s"}.`}
+          {ready ? "Polaris is ready." : `Polaris joins in ${minutes} minute${minutes === 1 ? "" : "s"}.`}
         </h1>
 
         <article className="mt-6 flex items-center gap-3 rounded-[16px] bg-paper p-4 shadow-elev-1">
@@ -40,7 +40,7 @@ function CoachLobby() {
             L
           </span>
           <div>
-            <p className="font-display text-[15px] font-semibold text-ink">Liora</p>
+            <p className="font-display text-[15px] font-semibold text-ink">Polaris</p>
             <p className="text-label-mono">Practitioner</p>
           </div>
         </article>
@@ -69,7 +69,7 @@ function CoachLobby() {
             }
             className="mt-10 w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
           >
-            Join Liora
+            Join Polaris
           </button>
         )}
       </div>
