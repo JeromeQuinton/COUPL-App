@@ -116,6 +116,20 @@ function EditProfilePage() {
         <ul className="mt-3 flex flex-col gap-2">
           <li>
             <Link
+              to="/profile/edit/intent"
+              className="flex items-center justify-between rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
+            >
+              <div className="min-w-0 flex-1 pr-3">
+                <p className="font-display text-[14.5px] text-ink">Intent</p>
+                <p className="mt-0.5 font-body text-[12.5px] text-stone">
+                  What you're here for.
+                </p>
+              </div>
+              <ChevronRight size={18} className="shrink-0 text-stone" />
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/profile/edit/language"
               className="flex items-center justify-between rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
             >
