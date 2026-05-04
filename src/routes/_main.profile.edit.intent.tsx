@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /_main/profile/edit/intent — quick-edit current intent.
@@ -82,10 +83,10 @@ function IntentEditScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Profile · intent</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          What you're here for.
-        </h1>
+        <ScreenHeader
+          eyebrow="Profile · intent"
+          title="What you're here for."
+        />
         <p className="mt-2 font-body text-[13.5px] text-stone">
           Changing this reshapes who Discover surfaces. The change isn't shown to
           anyone you're already talking to.

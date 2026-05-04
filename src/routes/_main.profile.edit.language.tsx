@@ -4,6 +4,7 @@ import { ChevronLeft, Check } from "lucide-react";
 import { toast } from "sonner";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /_main/profile/edit/language — language picker (UI-0223).
@@ -65,10 +66,10 @@ function LanguageScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Profile · language</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          The language you read in.
-        </h1>
+        <ScreenHeader
+          eyebrow="Profile · language"
+          title="The language you read in."
+        />
         <p className="mt-2 font-body text-[13.5px] text-stone">
           The interface adjusts. Your conversations stay as they are.
         </p>

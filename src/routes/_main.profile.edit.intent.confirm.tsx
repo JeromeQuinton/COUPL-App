@@ -3,6 +3,7 @@ import { ChevronLeft } from "lucide-react";
 import { toast } from "sonner";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /_main/profile/edit/intent/confirm — confirms a pending intent change.
@@ -83,10 +84,10 @@ function IntentConfirmScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Profile · intent</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          You've changed what you're here for.
-        </h1>
+        <ScreenHeader
+          eyebrow="Profile · intent"
+          title="You've changed what you're here for."
+        />
       </header>
 
       <section className="px-5">

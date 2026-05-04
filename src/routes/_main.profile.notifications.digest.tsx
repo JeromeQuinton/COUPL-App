@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, X } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/notifications/digest")({
   head: () => ({ meta: [{ title: "Daily digest — COUPL" }] }),
@@ -42,10 +43,10 @@ function DigestScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Notifications · digest</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          One email a day, instead of pings.
-        </h1>
+        <ScreenHeader
+          eyebrow="Notifications · digest"
+          title="One email a day, instead of pings."
+        />
       </header>
 
       <section className="px-5">

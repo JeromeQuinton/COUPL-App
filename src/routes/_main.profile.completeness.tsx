@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/completeness — full-page completeness view.
@@ -37,10 +38,11 @@ function CompletenessScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Profile · what's still to come</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          You're {COMPLETION}% there.
-        </h1>
+        <ScreenHeader
+          eyebrow="Profile · what's still to come"
+          title={`You're ${COMPLETION}% there.`}
+          titleItalic
+        />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Not a leaderboard. Just the things others might want to know
           before saying yes.

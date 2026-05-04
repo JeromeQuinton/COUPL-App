@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Bell, Mail, MessageSquare, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/notifications/channels")({
   head: () => ({ meta: [{ title: "Channels — COUPL" }] }),
@@ -49,10 +50,10 @@ function ChannelsScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Notifications · channels</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Where we reach you.
-        </h1>
+        <ScreenHeader
+          eyebrow="Notifications · channels"
+          title="Where we reach you."
+        />
       </header>
 
       <ul className="px-5 space-y-2.5">

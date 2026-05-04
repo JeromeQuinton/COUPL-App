@@ -3,6 +3,7 @@ import { createFileRoute, Link, notFound, useParams } from "@tanstack/react-rout
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/notifications/$category — per-category notification settings.
@@ -113,10 +114,11 @@ function NotificationCategoryScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Notifications · {cat.label.toLowerCase()}</p>
-        <h1 className="mt-2 font-display text-[26px] italic leading-tight text-ink">
-          {cat.h1}
-        </h1>
+        <ScreenHeader
+          eyebrow={`Notifications · ${cat.label.toLowerCase()}`}
+          title={cat.h1}
+          titleItalic
+        />
         <p className="mt-2 font-body text-[13.5px] text-stone">{cat.helper}</p>
       </header>
 

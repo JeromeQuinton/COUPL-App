@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/help/contact — contact us.
@@ -36,10 +37,11 @@ function ContactScreen() {
       <YouBackdrop>
         <StatusBar />
         <div className="px-5 pt-12 text-center">
-          <p className="text-label-mono">Sent</p>
-          <h1 className="mt-3 font-display text-[26px] italic leading-tight text-ink">
-            We've got it.
-          </h1>
+          <ScreenHeader
+            eyebrow="Sent"
+            title="We've got it."
+            titleItalic
+          />
           <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
             We reply within two working days. Sometimes faster.
           </p>
@@ -65,10 +67,11 @@ function ContactScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Help · contact</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          What needs a person?
-        </h1>
+        <ScreenHeader
+          eyebrow="Help · contact"
+          title="What needs a person?"
+          titleItalic
+        />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           We read every message. The more specific you are, the better we can help.
         </p>

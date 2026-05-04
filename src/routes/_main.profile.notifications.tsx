@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/notifications — index of category settings.
@@ -37,10 +38,11 @@ function NotificationsScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Notifications</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          What deserves your attention?
-        </h1>
+        <ScreenHeader
+          eyebrow="Notifications"
+          title="What deserves your attention?"
+          titleItalic
+        />
         <p className="mt-2 font-body text-[13.5px] text-stone">
           One row per kind. Open one to choose how it reaches you.
         </p>

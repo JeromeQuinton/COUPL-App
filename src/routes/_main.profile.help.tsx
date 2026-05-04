@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Compass, Shield, BadgeCheck, CalendarDays, Cog } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/help")({
   head: () => ({ meta: [{ title: "Help — COUPL" }] }),
@@ -34,10 +35,11 @@ function HelpHome() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Help</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          What needs untangling?
-        </h1>
+        <ScreenHeader
+          eyebrow="Help"
+          title="What needs untangling?"
+          titleItalic
+        />
       </header>
 
       <ul className="px-5 space-y-2.5">

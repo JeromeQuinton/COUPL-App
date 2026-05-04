@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/coach-settings — Polaris user controls.
@@ -146,10 +147,10 @@ function PolarisSettingsScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Polaris · settings</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          How Polaris shows up.
-        </h1>
+        <ScreenHeader
+          eyebrow="Polaris · settings"
+          title="How Polaris shows up."
+        />
       </header>
 
       <div className="space-y-7 px-5 pb-12">
