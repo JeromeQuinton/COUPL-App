@@ -25,6 +25,8 @@ export const Route = createFileRoute("/_main/profile/")({
   component: ProfileScreen,
 });
 
+const PROFILE_COMPLETION = 65;
+
 function ProfileScreen() {
   return (
     <YouBackdrop>
@@ -50,6 +52,33 @@ function ProfileScreen() {
           UI-OwnProfile · Own profile
         </p>
       </header>
+
+      {/* Completeness — appears when <100% */}
+      {PROFILE_COMPLETION < 100 && (
+        <section className="px-5 pb-3">
+          <Link
+            to="/profile/completeness"
+            className="flex items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3 shadow-elev-1 transition-colors hover:bg-lavender-50"
+          >
+            <div className="min-w-0 flex-1">
+              <p className="font-body text-[10.5px] font-semibold uppercase tracking-[0.16em] text-plum-700/80">
+                Profile · what's still to come
+              </p>
+              <p className="mt-1 font-display text-[14px] italic text-ink">
+                You're {PROFILE_COMPLETION}% there.
+              </p>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-lavender-50">
+                <div
+                  aria-hidden
+                  className="h-full rounded-full bg-plum-500"
+                  style={{ width: `${PROFILE_COMPLETION}%` }}
+                />
+              </div>
+            </div>
+            <ChevronRight size={16} className="shrink-0 text-stone" />
+          </Link>
+        </section>
+      )}
 
       {/* Identity */}
       <section className="px-5">

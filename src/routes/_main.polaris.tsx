@@ -60,6 +60,15 @@ function PolarisScreen() {
         <CapacityCard current={CAPACITY.current} typical={CAPACITY.typical} />
         <RepairCard line={REPAIR_LINE} />
       </section>
+
+      <div className="mt-8 text-center">
+        <Link
+          to="/polaris/methodology"
+          className="font-body text-[12.5px] italic text-stone hover:text-plum-500"
+        >
+          How Polaris reads this →
+        </Link>
+      </div>
     </div>
   );
 }
@@ -128,27 +137,45 @@ function AttunementCard({ lenses }: { lenses: Lens[] }) {
         Attunement · by lens
       </p>
       <ul className="mt-3 flex flex-col gap-2.5">
-        {lenses.map((l) => (
-          <li key={l.id}>
-            <div className="flex items-center justify-between">
-              <span className="font-body text-[12.5px] text-ink">{l.label}</span>
-              <span className="text-[10.5px] font-medium uppercase tracking-[0.14em] text-stone">
-                {l.level}
-              </span>
-            </div>
-            <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-lavender-50">
-              <div
-                aria-hidden
-                className="h-full rounded-full"
-                style={{
-                  width: widths[l.level],
-                  background:
-                    "linear-gradient(90deg, var(--plum-500) 0%, var(--blush) 100%)",
-                }}
-              />
-            </div>
-          </li>
-        ))}
+        {lenses.map((l) => {
+          const tappable = l.id === "pace" || l.id === "presence";
+          const inner = (
+            <>
+              <div className="flex items-center justify-between">
+                <span className="font-body text-[12.5px] text-ink">{l.label}</span>
+                <span className="text-[10.5px] font-medium uppercase tracking-[0.14em] text-stone">
+                  {l.level}
+                </span>
+              </div>
+              <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-lavender-50">
+                <div
+                  aria-hidden
+                  className="h-full rounded-full"
+                  style={{
+                    width: widths[l.level],
+                    background:
+                      "linear-gradient(90deg, var(--plum-500) 0%, var(--blush) 100%)",
+                  }}
+                />
+              </div>
+            </>
+          );
+          return (
+            <li key={l.id}>
+              {tappable ? (
+                <Link
+                  to="/polaris/$lensId"
+                  params={{ lensId: l.id }}
+                  className="block rounded-[10px] -mx-2 px-2 py-1 hover:bg-lavender-50"
+                >
+                  {inner}
+                </Link>
+              ) : (
+                inner
+              )}
+            </li>
+          );
+        })}
       </ul>
     </article>
   );

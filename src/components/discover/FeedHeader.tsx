@@ -14,12 +14,20 @@ export function FeedHeader() {
           <Sparkles aria-hidden width={18} height={18} className="text-plum-700" strokeWidth={1.75} />
           <span className="font-display text-[17px] font-semibold text-plum-700">Curated For You</span>
         </div>
-        <Link
-          to="/growth/weekly"
-          className="rounded-full border border-plum-300/60 bg-paper/60 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
-        >
-          Weekly review →
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/discover/attuned-with-me"
+            className="rounded-full border border-plum-300/60 bg-paper/60 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
+          >
+            Attuned with me →
+          </Link>
+          <Link
+            to="/growth/weekly"
+            className="rounded-full border border-plum-300/60 bg-paper/60 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
+          >
+            Weekly review →
+          </Link>
+        </div>
       </div>
 
       <div className="flex flex-col gap-2">
