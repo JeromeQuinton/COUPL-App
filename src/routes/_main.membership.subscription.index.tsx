@@ -58,6 +58,12 @@ function SubscriptionDetail() {
         >
           Cancel membership
         </Link>
+        <Link
+          to="/membership/subscription/invoices"
+          className="block w-full rounded-[14px] bg-paper px-4 py-3.5 text-center font-display text-[14.5px] text-ink shadow-elev-1 hover:bg-lavender-50"
+        >
+          Invoices
+        </Link>
         <button
           type="button"
           // TODO: stream-5-next stripe portal
