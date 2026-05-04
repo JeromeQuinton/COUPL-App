@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft, MessageSquare, Calendar, Link as LinkIcon } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getConnection } from "@/data/connections_sample";
 
 export const Route = createFileRoute("/_main/connections/$id_/date-plan/share")({
@@ -47,12 +48,11 @@ function SharePlanScreen() {
         </header>
 
         <div className="mt-4">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Plan · share
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
-            Share the plan.
-          </h1>
+          <PolarisHeader
+            eyebrow="Plan · share"
+            title="Share the plan."
+            eyebrowTone="plum-700"
+          />
         </div>
 
         <ul className="mt-7 space-y-2">

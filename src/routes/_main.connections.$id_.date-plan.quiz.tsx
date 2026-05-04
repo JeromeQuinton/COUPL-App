@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/date-plan/quiz")({
   head: () => ({ meta: [{ title: "A few quick choices — COUPL" }] }),
@@ -87,12 +88,11 @@ function PlanQuizScreen() {
         </header>
 
         <div className="mt-4">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Plan · what kind of date
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
-            A few quick choices.
-          </h1>
+          <PolarisHeader
+            eyebrow="Plan · what kind of date"
+            title="A few quick choices."
+            eyebrowTone="plum-700"
+          />
         </div>
 
         <div className="mt-7 space-y-6">

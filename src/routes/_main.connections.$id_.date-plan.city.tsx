@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft, MapPin } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getConnection } from "@/data/connections_sample";
 import { CITIES, findCity, type CitySample } from "@/data/cities_sample";
 
@@ -47,12 +48,11 @@ function CityPickerScreen() {
         </header>
 
         <div className="mt-4">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Plan · city
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
-            Where are you both?
-          </h1>
+          <PolarisHeader
+            eyebrow="Plan · city"
+            title="Where are you both?"
+            eyebrowTone="plum-700"
+          />
         </div>
 
         {differ && (

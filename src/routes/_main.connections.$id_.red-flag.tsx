@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { X } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/red-flag")({
   head: () => ({
@@ -35,12 +36,12 @@ function RedFlagScreen() {
         </header>
 
         <div className="mt-6">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Noticing · pause
-          </p>
-          <h1 className="mt-3 font-display text-[26px] leading-[1.15] text-ink">
-            Something to read carefully.
-          </h1>
+          <PolarisHeader
+            eyebrow="Noticing · pause"
+            title="Something to read carefully."
+            titleSize="26"
+            eyebrowTone="plum-700"
+          />
         </div>
 
         <article

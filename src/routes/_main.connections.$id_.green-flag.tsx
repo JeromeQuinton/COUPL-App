@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { Check, Copy, X } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getConnection } from "@/data/connections_sample";
 
 /**
@@ -77,12 +78,10 @@ function GreenFlagScreen() {
         </header>
 
         <div className="mt-6">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-500">
-            Noticing · green
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
-            A thing worth noticing.
-          </h1>
+          <PolarisHeader
+            eyebrow="Noticing · green"
+            title="A thing worth noticing."
+          />
         </div>
 
         {IS_MEMBER ? (

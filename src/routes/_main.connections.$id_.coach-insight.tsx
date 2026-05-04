@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { X, MoreHorizontal } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/coach-insight")({
   head: () => ({
@@ -43,12 +44,11 @@ function CoachInsightScreen() {
         </header>
 
         <div className="mt-6">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Polaris · insight
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
-            A note from Polaris.
-          </h1>
+          <PolarisHeader
+            eyebrow="Polaris · insight"
+            title="A note from Polaris."
+            eyebrowTone="plum-700"
+          />
         </div>
 
         <article className="mt-7">

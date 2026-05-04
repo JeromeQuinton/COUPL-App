@@ -4,7 +4,7 @@ type TitleSize = "26" | "28";
 type EyebrowTone = "plum-500" | "plum-700";
 
 type Props = {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   titleSize?: TitleSize;
   eyebrowTone?: EyebrowTone;
@@ -31,12 +31,15 @@ export function PolarisHeader({
 }: Props) {
   return (
     <>
-      <p className={cn(EYEBROW_TYPOGRAPHY, EYEBROW_TONE[eyebrowTone])}>
-        {eyebrow}
-      </p>
+      {eyebrow && (
+        <p className={cn(EYEBROW_TYPOGRAPHY, EYEBROW_TONE[eyebrowTone])}>
+          {eyebrow}
+        </p>
+      )}
       <h1
         className={cn(
-          "mt-3 font-display leading-[1.15] text-ink",
+          eyebrow && "mt-3",
+          "font-display leading-[1.15] text-ink",
           TITLE_SIZE[titleSize],
         )}
       >

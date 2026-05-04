@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 
 export const Route = createFileRoute(
   "/_main/connections/$id_/coach-insight/feedback",
@@ -31,12 +32,12 @@ function CoachFeedbackScreen() {
           className="mx-auto flex w-full max-w-[480px] flex-col items-start px-6"
           style={{ minHeight: "100dvh", paddingTop: "calc(env(safe-area-inset-top) + 4rem)" }}
         >
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Polaris · feedback
-          </p>
-          <h1 className="mt-3 font-display text-[26px] leading-[1.15] text-ink">
-            Noted. Polaris will adjust.
-          </h1>
+          <PolarisHeader
+            eyebrow="Polaris · feedback"
+            title="Noted. Polaris will adjust."
+            titleSize="26"
+            eyebrowTone="plum-700"
+          />
           <Link
             to="/connections/$id"
             params={{ id }}
@@ -71,12 +72,11 @@ function CoachFeedbackScreen() {
         </header>
 
         <div className="mt-4">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Polaris · feedback
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
-            Was this useful?
-          </h1>
+          <PolarisHeader
+            eyebrow="Polaris · feedback"
+            title="Was this useful?"
+            eyebrowTone="plum-700"
+          />
         </div>
 
         <ul className="mt-7 space-y-2">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getConnection } from "@/data/connections_sample";
 
 export const Route = createFileRoute(
@@ -55,12 +56,11 @@ function PlanUpdateScreen() {
         </header>
 
         <div className="mt-4">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            Plan · add an update
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
-            Tell {name} what changed.
-          </h1>
+          <PolarisHeader
+            eyebrow="Plan · add an update"
+            title={`Tell ${name} what changed.`}
+            eyebrowTone="plum-700"
+          />
         </div>
 
         <div className="mt-7 space-y-5">

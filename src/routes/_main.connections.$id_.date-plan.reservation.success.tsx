@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { Check, Calendar } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getConnection } from "@/data/connections_sample";
 
 export const Route = createFileRoute(
@@ -39,12 +40,13 @@ function ReservationSuccessScreen() {
           <Check className="h-6 w-6" />
         </div>
 
-        <p className="mt-6 text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-          Plan · reservation confirmed
-        </p>
-        <h1 className="mt-2 font-display text-[28px] leading-[1.15] text-ink">
-          You're booked.
-        </h1>
+        <div className="mt-6">
+          <PolarisHeader
+            eyebrow="Plan · reservation confirmed"
+            title="You're booked."
+            eyebrowTone="plum-700"
+          />
+        </div>
 
         <article
           className="mt-6 rounded-[18px] border border-plum-300/25 px-5 py-5"

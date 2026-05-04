@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getConnection } from "@/data/connections_sample";
 
 /**
@@ -62,12 +63,11 @@ function FirstHelloScreen() {
         </header>
 
         <div className="mt-8">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-500">
-            First words · to {name}
-          </p>
-          <h1 className="mt-3 font-display text-[26px] leading-[1.15] text-ink">
-            Open with one true thing.
-          </h1>
+          <PolarisHeader
+            eyebrow={`First words · to ${name}`}
+            title="Open with one true thing."
+            titleSize="26"
+          />
           <p className="mt-3 font-body text-[14.5px] leading-relaxed text-slate">
             Skip "hey." Try a small specific from their profile, or a real
             question you have.

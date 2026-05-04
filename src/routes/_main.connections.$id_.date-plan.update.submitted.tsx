@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getConnection } from "@/data/connections_sample";
 
 export const Route = createFileRoute(
@@ -33,12 +34,13 @@ function PlanUpdateSubmittedScreen() {
           <Check className="h-6 w-6" />
         </div>
 
-        <p className="mt-6 text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-          Plan · update sent
-        </p>
-        <h1 className="mt-2 font-display text-[28px] leading-[1.15] text-ink">
-          Update sent.
-        </h1>
+        <div className="mt-6">
+          <PolarisHeader
+            eyebrow="Plan · update sent"
+            title="Update sent."
+            eyebrowTone="plum-700"
+          />
+        </div>
 
         <p className="mt-5 font-body text-[14.5px] italic leading-relaxed text-slate">
           {name} will see your update. They can confirm or counter.
