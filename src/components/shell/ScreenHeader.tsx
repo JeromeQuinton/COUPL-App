@@ -8,6 +8,7 @@ type Props = {
   title: string;
   eyebrowTone?: EyebrowTone;
   titleSize?: TitleSize;
+  titleItalic?: boolean;
 };
 
 const EYEBROW_TYPOGRAPHY =
@@ -28,6 +29,7 @@ export function ScreenHeader({
   title,
   eyebrowTone = "plum",
   titleSize = "display",
+  titleItalic = false,
 }: Props) {
   return (
     <>
@@ -40,6 +42,7 @@ export function ScreenHeader({
         className={cn(
           eyebrow && "mt-3",
           TITLE_TYPOGRAPHY[titleSize],
+          titleItalic && "italic",
           "text-ink",
         )}
       >
