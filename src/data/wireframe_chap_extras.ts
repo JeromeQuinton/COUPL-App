@@ -100,6 +100,7 @@ export type SafetyRow = {
   sub: string;
   to:
     | "/profile/safety"
+    | "/profile/safety/help"
     | "/profile/safety/report"
     | "/profile/safety/reports"
     | "/profile/safety/blocked"
@@ -113,6 +114,12 @@ export type SafetyRow = {
 
 export const SAFETY_ROWS: SafetyRow[] = [
   // Crisis-first: action items at top, setup tasks below, history at bottom.
+  {
+    id: "help",
+    title: "Get help",
+    sub: "Crisis lines + in-app support — UK",
+    to: "/profile/safety/help",
+  },
   {
     id: "report",
     title: "Submit a report",
