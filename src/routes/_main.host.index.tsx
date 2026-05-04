@@ -72,18 +72,42 @@ function HostDashboard() {
                   <p className="text-label-mono">Waitlist</p>
                 </div>
               </div>
-              <Link
-                to="/host/attendees"
-                className="mt-4 inline-flex items-center gap-1 text-label-mono text-plum-500 hover:text-plum-700"
-              >
-                See attendees →
-              </Link>
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                <Link
+                  to="/host/attendees"
+                  className="text-label-mono text-plum-500 hover:text-plum-700"
+                >
+                  See attendees →
+                </Link>
+                <Link
+                  to="/host/events/$id/edit"
+                  params={{ id: r.id }}
+                  className="text-label-mono text-plum-500 hover:text-plum-700"
+                >
+                  Edit room →
+                </Link>
+              </div>
             </li>
           ))}
         </ul>
       </section>
 
-      <section className="px-5 pt-6 pb-12">
+      <section className="px-5 pt-6">
+        <Link
+          to="/host/payouts"
+          className="flex items-center justify-between rounded-[16px] border border-plum-300/40 bg-paper px-5 py-4 text-ink hover:bg-lavender-50"
+        >
+          <div>
+            <p className="font-display text-[15px] font-semibold">Payouts</p>
+            <p className="mt-0.5 font-body text-[12px] text-slate">
+              Net earnings, fees, and next payout date.
+            </p>
+          </div>
+          <span className="text-label-mono text-plum-500">Open →</span>
+        </Link>
+      </section>
+
+      <section className="px-5 pt-4 pb-12">
         <Link
           to="/host/new"
           className="flex items-center justify-between rounded-[16px] bg-ink px-5 py-4 text-paper hover:opacity-90"
