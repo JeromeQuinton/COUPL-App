@@ -6,10 +6,11 @@ import { loadDraft } from "@/lib/onboarding_store";
 const reasonSchema = z
   .enum(["unknown", "offline", "permission_denied"])
   .catch("unknown");
+type ErrorReason = z.infer<typeof reasonSchema>;
 
 export const Route = createFileRoute("/onboarding/error")({
-  validateSearch: (search) => ({
-    reason: reasonSchema.parse((search as { reason?: string }).reason),
+  validateSearch: (search: Record<string, unknown>): { reason: ErrorReason } => ({
+    reason: reasonSchema.parse(search.reason),
   }),
   head: () => ({
     meta: [
@@ -73,7 +74,7 @@ function OnboardingError() {
 }
 
 const REASON_CONFIG: Record<
-  "unknown" | "offline" | "permission_denied",
+  ErrorReason,
   {
     icon: typeof AlertTriangle;
     title: string;
