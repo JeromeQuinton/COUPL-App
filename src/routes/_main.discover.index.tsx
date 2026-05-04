@@ -214,7 +214,10 @@ function DiscoverScreen() {
 
           <button
             type="button"
-            onClick={() => setUpgradeOpen(false)}
+            onClick={() => {
+              setUpgradeOpen(false);
+              navigate({ to: "/membership/plans" });
+            }}
             className="mt-5 w-full rounded-full bg-plum-500 px-5 py-3 font-display text-[15px] font-medium text-paper shadow-elev-1 transition-colors hover:bg-plum-700"
           >
             See paid plans
