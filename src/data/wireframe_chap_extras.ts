@@ -102,6 +102,7 @@ export type SafetyRow = {
     | "/profile/safety"
     | "/profile/safety/help"
     | "/profile/safety/moderation"
+    | "/profile/safety/cases"
     | "/profile/safety/report"
     | "/profile/safety/reports"
     | "/profile/safety/blocked"
@@ -132,6 +133,12 @@ export const SAFETY_ROWS: SafetyRow[] = [
     title: "What happens when you report",
     sub: "Review window, action types, what we tell you back",
     to: "/profile/safety/moderation",
+  },
+  {
+    id: "cases",
+    title: "Your reports",
+    sub: "What you've raised, and what stage each is at",
+    to: "/profile/safety/cases",
   },
   {
     id: "block",

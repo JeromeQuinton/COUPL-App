@@ -780,6 +780,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/safety/blocked"
       },
       {
+        "label": "Cases",
+        "to": "/profile/safety/cases"
+      },
+      {
         "label": "Help",
         "to": "/profile/safety/help"
       },
@@ -790,6 +794,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
       {
         "label": "Report",
         "to": "/profile/safety/report"
+      },
+      {
+        "label": "Evidence",
+        "to": "/profile/safety/report/$reportId/evidence",
+        "params": {
+          "reportId": "demo"
+        }
       },
       {
         "label": "Submit",
