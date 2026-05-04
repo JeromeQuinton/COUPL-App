@@ -46,6 +46,21 @@ function NotificationsScreen() {
         </p>
       </header>
 
+      <section className="px-5 pb-3">
+        <Link
+          to="/profile/notifications/channels"
+          className="flex items-center justify-between rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
+        >
+          <div>
+            <p className="font-display text-[14.5px] text-ink">Per-channel control</p>
+            <p className="mt-0.5 font-body text-[12.5px] text-stone">
+              Push, email, SMS — set quiet hours
+            </p>
+          </div>
+          <ChevronRight size={18} className="shrink-0 text-stone" />
+        </Link>
+      </section>
+
       <ul className="px-5 space-y-2.5">
         {CATEGORIES.map((cat) => (
           <li key={cat.id}>
