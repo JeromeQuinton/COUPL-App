@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Mic, Send, Trash2, RotateCcw, X, Pause } from "lucide-react";
+import { Mic, Send, Trash2, RotateCcw, Pause } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 type State = "idle" | "recording" | "preview";
 
@@ -44,36 +50,22 @@ export function VoiceMemoSheet({ open, onClose, onSend }: Props) {
     return () => clearTimeout(t);
   }, [state]);
 
-  if (!open) return null;
-
   const fmt = (s: number) =>
     `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Voice memo"
-      className="fixed inset-x-0 bottom-0 z-50 mx-auto max-w-[640px]"
-    >
-      <div
-        className="absolute inset-0 -top-screen bg-ink/30 backdrop-blur-sm"
-        onClick={onClose}
-        aria-hidden
-      />
-      <div className="relative rounded-t-[24px] border-t border-line bg-paper px-5 pt-4 pb-8 shadow-elev-1">
+    <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
+      <SheetContent
+        side="bottom"
+        aria-label="Voice memo"
+        className="rounded-t-[24px] border-t border-line bg-paper px-5 pb-8 pt-4"
+      >
         <div className="mx-auto h-1 w-12 rounded-full bg-line" aria-hidden />
-        <div className="mt-4 flex items-center justify-between">
-          <p className="text-label-mono text-stone">Voice memo</p>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="rounded-full p-1.5 text-slate hover:bg-lavender-50"
-          >
-            <X className="h-4 w-4" strokeWidth={1.75} />
-          </button>
-        </div>
+        <SheetHeader className="mt-4 text-left">
+          <SheetTitle asChild>
+            <p className="text-label-mono text-stone">Voice memo</p>
+          </SheetTitle>
+        </SheetHeader>
 
         {state === "idle" ? (
           <button
@@ -163,8 +155,8 @@ export function VoiceMemoSheet({ open, onClose, onSend }: Props) {
             </div>
           </div>
         ) : null}
-      </div>
-    </div>
+      </SheetContent>
+    </Sheet>
   );
 }
 
