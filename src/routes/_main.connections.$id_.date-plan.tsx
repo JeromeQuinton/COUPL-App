@@ -61,7 +61,12 @@ function DatePlanScreen() {
         <div className="mt-8">
           <ScreenHeader
             eyebrow={`Proposed · awaiting ${name}`}
-            title="Held lightly. Easy to say yes or no."
+            title={
+              <>
+                Held lightly.{" "}
+                <em className="font-display italic">Easy to say yes or no.</em>
+              </>
+            }
           />
 
           <article
