@@ -48,7 +48,7 @@ function LivenessScreen() {
           Start 30-second capture
         </OnboardingButton>
         <Link
-          to="/onboarding/checks/liveness-help"
+          to="/onboarding/checks/liveness/help"
           className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
         >
           I'm having trouble
