@@ -15,9 +15,8 @@ type Lens = { id: string; label: string; level: "low" | "steady" | "high" };
 const ATTUNEMENT: Lens[] = [
   { id: "pace", label: "Pace", level: "high" },
   { id: "presence", label: "Presence", level: "steady" },
-  { id: "values", label: "Values", level: "steady" },
-  { id: "lifestyle", label: "Lifestyle", level: "low" },
-  { id: "communication", label: "Communication", level: "high" },
+  { id: "capacity", label: "Capacity", level: "steady" },
+  { id: "repair", label: "Repair", level: "high" },
 ];
 
 const CAPACITY = { current: "Some bandwidth", typical: "More than usual" };
@@ -137,10 +136,13 @@ function AttunementCard({ lenses }: { lenses: Lens[] }) {
         Attunement · by lens
       </p>
       <ul className="mt-3 flex flex-col gap-2.5">
-        {lenses.map((l) => {
-          const tappable = l.id === "pace" || l.id === "presence";
-          const inner = (
-            <>
+        {lenses.map((l) => (
+          <li key={l.id}>
+            <Link
+              to="/polaris/$lensId"
+              params={{ lensId: l.id }}
+              className="block rounded-[10px] -mx-2 px-2 py-1 hover:bg-lavender-50"
+            >
               <div className="flex items-center justify-between">
                 <span className="font-body text-[12.5px] text-ink">{l.label}</span>
                 <span className="text-[10.5px] font-medium uppercase tracking-[0.14em] text-stone">
@@ -158,24 +160,9 @@ function AttunementCard({ lenses }: { lenses: Lens[] }) {
                   }}
                 />
               </div>
-            </>
-          );
-          return (
-            <li key={l.id}>
-              {tappable ? (
-                <Link
-                  to="/polaris/$lensId"
-                  params={{ lensId: l.id }}
-                  className="block rounded-[10px] -mx-2 px-2 py-1 hover:bg-lavender-50"
-                >
-                  {inner}
-                </Link>
-              ) : (
-                inner
-              )}
-            </li>
-          );
-        })}
+            </Link>
+          </li>
+        ))}
       </ul>
     </article>
   );
