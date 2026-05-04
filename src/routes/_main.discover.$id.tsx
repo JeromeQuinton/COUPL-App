@@ -369,6 +369,17 @@ function ProfileDetailScreen() {
           : null}
       </div>
 
+      {/* Transparency footer link — Stream 15. Subtle, sits above the sticky action bar. */}
+      <div className="px-4 pb-6 pt-1 text-center">
+        <Link
+          to="/discover/$id/why"
+          params={{ id: profile.id }}
+          className="font-body text-[12.5px] font-medium text-plum-700 underline-offset-4 hover:underline"
+        >
+          Why am I seeing this?
+        </Link>
+      </div>
+
       {/*
        * Sticky action bar (DR-054) — always visible from first paint.
        * Sits above the bottom nav (BottomNav is fixed with ~62px height
