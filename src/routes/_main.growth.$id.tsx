@@ -159,7 +159,7 @@ function WorkshopDetailPage() {
         </div>
         <div className="mt-3 flex justify-end">
           <Link
-            to="/growth/$id_/waitlist"
+            to="/growth/$id/waitlist"
             params={{ id: w.id }}
             className="font-body text-[12.5px] italic text-stone hover:text-plum-500"
           >

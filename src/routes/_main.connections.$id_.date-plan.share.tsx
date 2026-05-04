@@ -70,7 +70,7 @@ function SharePlanScreen() {
           </li>
           <li>
             <Link
-              to="/connections/$id_/add-to-calendar"
+              to="/connections/$id/add-to-calendar"
               params={{ id }}
               className="flex w-full items-center gap-3 rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
             >
