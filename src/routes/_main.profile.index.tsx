@@ -204,7 +204,7 @@ function ProfileScreen() {
             sub="Pause, share, verification, privacy"
           />
           <ProfileLinkRow
-            to="/profile/data/export"
+            to="/profile/data/export/start"
             title="Data export"
             sub="Take your record with you"
           />
@@ -227,7 +227,7 @@ function ProfileLinkRow({
     | "/profile/coach-settings"
     | "/membership"
     | "/host"
-    | "/profile/data/export"
+    | "/profile/data/export/start"
     | "/profile/account"
     | "/profile/notifications"
     | "/profile/help"
