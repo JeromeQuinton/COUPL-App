@@ -87,7 +87,7 @@ function CaseDetailScreen() {
       <div className="px-5 pt-8 pb-12 space-y-3">
         {detail.status === "reviewing" && (
           <Link
-            to="/profile/safety/report/$reportId_/evidence"
+            to="/profile/safety/report/$reportId/evidence"
             params={{ reportId: detail.id }}
             className="block w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[13.5px] text-ink hover:bg-lavender-50"
           >

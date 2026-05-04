@@ -107,7 +107,7 @@ function AuditLogScreen() {
             {entries.map((e) => (
               <li key={e.id}>
                 <Link
-                  to="/polaris/audit-log/$entryId_"
+                  to="/polaris/audit-log/$entryId"
                   params={{ entryId: e.id }}
                   className="flex items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
                 >
