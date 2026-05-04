@@ -784,6 +784,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/safety/cases"
       },
       {
+        "label": "Cases detail",
+        "to": "/profile/safety/cases/$caseId",
+        "params": {
+          "caseId": "demo"
+        }
+      },
+      {
         "label": "Help",
         "to": "/profile/safety/help"
       },
