@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { SAMPLE_WEEKLY_REVIEWS } from "@/data/coach_sample";
 
 export const Route = createFileRoute("/_main/polaris/weekly-review")({
@@ -31,10 +32,10 @@ function WeeklyReviewScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Polaris · this week</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          What this week was like.
-        </h1>
+        <ScreenHeader
+          eyebrow="Polaris · this week"
+          title="What this week was like."
+        />
       </header>
 
       {!isMember ? (

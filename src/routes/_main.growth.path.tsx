@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /growth/path — personalised growth path.
@@ -95,10 +96,7 @@ function GrowthPath() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono text-plum-700">Path</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Where to look next.
-        </h1>
+        <ScreenHeader eyebrow="Path" title="Where to look next." />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Things people in your pace tend to find useful. Not a programme.
           Pick the one that interests you; skip the rest.

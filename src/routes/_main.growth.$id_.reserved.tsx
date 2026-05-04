@@ -2,6 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getWorkshop, WORKSHOPS } from "@/data/growth_sample";
 
 export const Route = createFileRoute("/_main/growth/$id_/reserved")({
@@ -21,10 +22,9 @@ function WorkshopReservedScreen() {
         <span aria-hidden className="grid h-14 w-14 place-items-center rounded-full border border-plum-500 text-plum-700">
           <Check size={24} strokeWidth={2.25} />
         </span>
-        <p className="mt-6 text-label-mono">Reserved</p>
-        <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">
-          You're in.
-        </h1>
+        <div className="mt-6">
+          <ScreenHeader eyebrow="Reserved" title="You're in." />
+        </div>
         <p className="mt-3 max-w-[300px] font-body text-[13.5px] leading-relaxed text-slate">
           We'll email the joining link the morning of each session. {w.title} starts {w.startsLabel}.
         </p>

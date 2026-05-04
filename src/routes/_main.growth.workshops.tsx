@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ArrowRight } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { WORKSHOPS } from "@/data/growth_sample";
 
 export const Route = createFileRoute("/_main/growth/workshops")({
@@ -34,10 +35,7 @@ function WorkshopsListScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Workshops</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Workshops.
-        </h1>
+        <ScreenHeader eyebrow="Workshops" title="Workshops." />
         <p className="mt-2 font-body text-[14px] leading-relaxed text-slate">
           Sessions led by practitioners. Small groups. No theory without practice.
         </p>

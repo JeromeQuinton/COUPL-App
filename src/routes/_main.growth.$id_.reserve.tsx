@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-r
 import { ChevronLeft, X } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getWorkshop, WORKSHOPS } from "@/data/growth_sample";
 
 export const Route = createFileRoute("/_main/growth/$id_/reserve")({
@@ -30,10 +31,7 @@ function WorkshopReserveScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Reservation</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Hold your place in the room.
-        </h1>
+        <ScreenHeader eyebrow="Reservation" title="Hold your place in the room." />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           A small, hosted group. We'll send the joining link the morning of each session.
         </p>

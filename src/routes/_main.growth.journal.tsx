@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Plus } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { REFLECTIONS } from "@/data/growth_sample";
 
 export const Route = createFileRoute("/_main/growth/journal")({
@@ -33,10 +34,7 @@ function JournalScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Journal</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Your written record.
-        </h1>
+        <ScreenHeader eyebrow="Journal" title="Your written record." />
         <p className="mt-2 font-body text-[14px] leading-relaxed text-slate">
           Private to you. We never read these.
         </p>

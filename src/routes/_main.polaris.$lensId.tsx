@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useParams, notFound } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 
 /**
  * /polaris/$lensId — per-lens 30-day deep-dive.
@@ -79,17 +80,18 @@ function LensScreen() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link to="/polaris" aria-label="Back" className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50">
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Polaris · {lens.label.toLowerCase()}</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[28px] leading-[1.1] text-ink">
-        {lens.label}.<br />
-        <em className="font-display italic">{lens.line}</em>
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/polaris" }}
+        eyebrow={`Polaris · ${lens.label.toLowerCase()}`}
+        title={
+          <>
+            {lens.label}.<br />
+            <em className="font-display italic">{lens.line}</em>
+          </>
+        }
+        titleSize="28"
+        titleWeight="normal"
+      />
 
       {/* Spark chart placeholder */}
       <section className="mt-8 rounded-[18px] bg-paper p-5 shadow-elev-1">

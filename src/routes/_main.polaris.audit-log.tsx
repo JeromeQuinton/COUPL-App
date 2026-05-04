@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { SAMPLE_AUDIT_LOG, type AuditSurface } from "@/data/coach_sample";
 
 export const Route = createFileRoute("/_main/polaris/audit-log")({
@@ -53,10 +54,10 @@ function AuditLogScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Polaris · audit log</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Why Polaris said what it said.
-        </h1>
+        <ScreenHeader
+          eyebrow="Polaris · audit log"
+          title="Why Polaris said what it said."
+        />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Every signal Polaris raised, with the reason. Read backwards in time.
         </p>

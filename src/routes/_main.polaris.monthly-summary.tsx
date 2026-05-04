@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { SAMPLE_MONTHLY_SUMMARIES } from "@/data/coach_sample";
 
 export const Route = createFileRoute("/_main/polaris/monthly-summary")({
@@ -30,10 +31,10 @@ function MonthlySummaryScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Polaris · monthly summary</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          {summary.monthLabel}, in the round.
-        </h1>
+        <ScreenHeader
+          eyebrow="Polaris · monthly summary"
+          title={`${summary.monthLabel}, in the round.`}
+        />
       </header>
 
       {!isMember ? (

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   CURRENT_ARC,
   REFLECTIONS,
@@ -38,7 +39,7 @@ function GrowthDashboard() {
 
       {/* Header */}
       <header className="px-5 pt-2 pb-5">
-        <h1 className="text-display-xl text-ink">Growth</h1>
+        <ScreenHeader title="Growth" titleSize="display-xl" />
         <p className="mt-1 text-body-sm text-slate">
           The work that makes the dating part easier.
         </p>

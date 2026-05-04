@@ -4,6 +4,7 @@ import { ChevronLeft } from "lucide-react";
 import { toast } from "sonner";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   LoveLanguagePicker,
   type LoveLanguage,
@@ -53,10 +54,10 @@ function PolarisLoveLanguageScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Polaris · love language</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Update your love language.
-        </h1>
+        <ScreenHeader
+          eyebrow="Polaris · love language"
+          title="Update your love language."
+        />
         <p className="mt-2 font-body text-[13.5px] text-stone">
           Tap one to mark it primary. Tap another for an optional secondary.
         </p>

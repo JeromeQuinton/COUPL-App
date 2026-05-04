@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, EyeOff } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { BreathRhythm } from "@/components/polaris/BreathRhythm";
 import { SAMPLE_PACING_THIS_WEEK } from "@/data/coach_sample";
 
@@ -71,10 +72,10 @@ function PacingScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Polaris · pace</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          How you're moving through this.
-        </h1>
+        <ScreenHeader
+          eyebrow="Polaris · pace"
+          title="How you're moving through this."
+        />
       </header>
 
       <section className="px-5">

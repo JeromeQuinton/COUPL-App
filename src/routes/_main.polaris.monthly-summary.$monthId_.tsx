@@ -3,6 +3,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { SAMPLE_MONTHLY_SUMMARIES } from "@/data/coach_sample";
 
 export const Route = createFileRoute(
@@ -61,10 +62,10 @@ function ArchivedSummaryScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Polaris · {summary.monthLabel}</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          {summary.monthLabel}, in the round.
-        </h1>
+        <ScreenHeader
+          eyebrow={`Polaris · ${summary.monthLabel}`}
+          title={`${summary.monthLabel}, in the round.`}
+        />
       </header>
 
       <section className="px-5">

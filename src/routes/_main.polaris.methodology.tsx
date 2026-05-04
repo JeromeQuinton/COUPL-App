@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 
 /**
  * /polaris/methodology — what Polaris actually reads.
@@ -18,18 +19,19 @@ export const Route = createFileRoute("/_main/polaris/methodology")({
 function MethodologyScreen() {
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link to="/polaris" aria-label="Back" className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50">
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Polaris · what this means</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[28px] leading-[1.1] text-ink">
-        Polaris reads <em className="font-display italic">attunement.</em>
-        <br />
-        Not achievement.
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/polaris" }}
+        eyebrow="Polaris · what this means"
+        title={
+          <>
+            Polaris reads <em className="font-display italic">attunement.</em>
+            <br />
+            Not achievement.
+          </>
+        }
+        titleSize="28"
+        titleWeight="normal"
+      />
       <p className="mt-4 font-body text-[14px] leading-relaxed text-slate">
         There is no score to chase. No streak to keep. Polaris is a quiet,
         editorial reading of how you've been showing up across the last

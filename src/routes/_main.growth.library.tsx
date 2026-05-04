@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /growth/library — curated long-form reading library.
@@ -121,10 +122,7 @@ function Library() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono text-plum-700">Library</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Slow reading.
-        </h1>
+        <ScreenHeader eyebrow="Library" title="Slow reading." />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Essays, practices, and research, hand-picked for the work you're
           already doing.

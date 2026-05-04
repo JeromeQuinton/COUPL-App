@@ -2,6 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { GrowthBackdrop } from "@/components/growth/GrowthBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { ARTICLES } from "./_main.growth.library";
 
 /**
@@ -89,18 +90,16 @@ function ArticleReader() {
       />
 
       <article className="mx-auto w-full max-w-[480px] px-5 pt-2 pb-16">
-        <p className="text-label-mono text-plum-700">
-          {article.kind === "essay"
-            ? "Essay"
-            : article.kind === "practice"
-            ? "Practice"
-            : "Research"}
-          {" · "}
-          {article.readTime} min read
-        </p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          {article.title}
-        </h1>
+        <ScreenHeader
+          eyebrow={`${
+            article.kind === "essay"
+              ? "Essay"
+              : article.kind === "practice"
+              ? "Practice"
+              : "Research"
+          } · ${article.readTime} min read`}
+          title={article.title}
+        />
         <p className="mt-3 font-body italic text-[14.5px] leading-relaxed text-slate">
           {article.excerpt}
         </p>
