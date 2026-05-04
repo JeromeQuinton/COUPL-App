@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Bell, Calendar } from "lucide-react";
-import { CapacityCard } from "@/components/home/CapacityCard";
+import { RelationalPresenceBand } from "@/components/home/RelationalPresenceBand";
 import { CoachCard } from "@/components/home/CoachCard";
 import { ReflectionCard } from "@/components/home/ReflectionCard";
 
@@ -76,11 +76,9 @@ function HomeScreen() {
       </header>
 
       <section className="relative mt-6 space-y-4">
-        <CapacityCard
-          level={0.55}
-          label="Some bandwidth"
-          hint="a handful of strong recommendations"
-          daysLeft={2}
+        <RelationalPresenceBand
+          label="Steady presence"
+          context="A handful of strong recommendations sit in your week. Polaris isn't pushing for more."
         />
 
         <CoachCard
