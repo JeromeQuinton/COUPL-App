@@ -6,7 +6,7 @@ export const Route = createFileRoute("/_main/coach/audit-log/$entryId_")({
     throw redirect({
       to: "/polaris/audit-log/$entryId",
       params: { entryId: params.entryId },
-      replace: false,
+      replace: true,
     });
   },
 });

@@ -4,6 +4,6 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 // Note: /growth/weekly maps to /polaris/weekly-review (DR-110 vocabulary).
 export const Route = createFileRoute("/_main/growth/weekly")({
   beforeLoad: () => {
-    throw redirect({ to: "/polaris/weekly-review", replace: false });
+    throw redirect({ to: "/polaris/weekly-review", replace: true });
   },
 });

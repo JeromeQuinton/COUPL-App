@@ -6,7 +6,7 @@ export const Route = createFileRoute("/_main/coach/weekly-review/$weekId_")({
     throw redirect({
       to: "/polaris/weekly-review/$weekId",
       params: { weekId: params.weekId },
-      replace: false,
+      replace: true,
     });
   },
 });
