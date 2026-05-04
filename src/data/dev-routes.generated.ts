@@ -630,6 +630,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         }
       },
       {
+        "label": "Preferences",
+        "to": "/coach/preferences"
+      },
+      {
         "label": "Weekly review",
         "to": "/coach/weekly-review"
       },
