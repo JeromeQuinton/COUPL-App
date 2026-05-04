@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 
@@ -47,7 +47,24 @@ function ModerationScreen() {
         </article>
       </section>
 
-      <div className="px-5 pt-8 pb-12">
+      <section className="px-5 pt-7">
+        <Link
+          to="/profile/safety/transparency"
+          className="flex items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-4 shadow-elev-1 hover:bg-lavender-50"
+        >
+          <div className="flex flex-1 flex-col">
+            <span className="font-display text-[14.5px] font-medium text-ink">
+              Transparency report
+            </span>
+            <span className="mt-0.5 font-body text-[12px] text-stone">
+              What we did this quarter — accounts removed, reports reviewed
+            </span>
+          </div>
+          <ChevronRight size={16} className="text-stone" />
+        </Link>
+      </section>
+
+      <div className="px-5 pt-6 pb-12">
         <Link
           to="/community-guidelines"
           className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"

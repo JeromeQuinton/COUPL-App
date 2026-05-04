@@ -830,6 +830,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/safety/reports"
       },
       {
+        "label": "Transparency",
+        "to": "/profile/safety/transparency"
+      },
+      {
         "label": "Trusted contact",
         "to": "/profile/safety/trusted-contact"
       },
