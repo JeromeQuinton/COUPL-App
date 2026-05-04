@@ -4,6 +4,7 @@ import type { ComponentType } from "react";
 import type { LucideProps } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { HubScreenHeader } from "@/components/shell/HubScreenHeader";
 import { AUDIT_ENTRIES, VISIBILITY_STATS } from "@/data/you_sample";
 
 export const Route = createFileRoute("/_main/profile/visibility")({
@@ -37,12 +38,10 @@ function AuditPage() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="font-body text-[11px] font-semibold uppercase tracking-[0.16em] text-plum-500">
-          {VISIBILITY_STATS.windowLabel}
-        </p>
-        <h1 className="mt-2 font-display text-[26px] font-semibold leading-tight text-ink">
-          Who saw you, and when.
-        </h1>
+        <HubScreenHeader
+          eyebrow={VISIBILITY_STATS.windowLabel}
+          title="Who saw you, and when."
+        />
         <p className="mt-2 font-body text-[13px] leading-relaxed text-slate">
           Every profile view, every photo unlock, every coach prompt that
           mentioned you. You see all of it.

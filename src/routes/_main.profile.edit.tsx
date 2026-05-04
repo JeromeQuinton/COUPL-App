@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Plus, Pencil } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { HubScreenHeader } from "@/components/shell/HubScreenHeader";
 import { EDIT_PHOTOS, EDIT_PROMPTS, EDIT_THINGS_TO_KNOW } from "@/data/you_sample";
 
 export const Route = createFileRoute("/_main/profile/edit")({
@@ -33,9 +34,7 @@ function EditProfilePage() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <h1 className="font-display text-[26px] font-semibold leading-tight text-ink">
-          Edit your profile
-        </h1>
+        <HubScreenHeader title="Edit your profile" />
         <p className="mt-1.5 font-body text-[13px] text-slate">
           Edits to photos and prompts go through review again.
         </p>

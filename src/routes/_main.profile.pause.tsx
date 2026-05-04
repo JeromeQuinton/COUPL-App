@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Check } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { HubScreenHeader } from "@/components/shell/HubScreenHeader";
 import { PAUSE_DURATIONS, PAUSE_PROMISES } from "@/data/you_sample";
 
 export const Route = createFileRoute("/_main/profile/pause")({
@@ -38,12 +39,10 @@ function PauseAccountPage() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="font-body text-[11px] font-semibold uppercase tracking-[0.16em] text-plum-500">
-          Pause my account
-        </p>
-        <h1 className="mt-2 font-display text-[26px] font-semibold leading-tight text-ink">
-          Step out, hold your place.
-        </h1>
+        <HubScreenHeader
+          eyebrow="Pause my account"
+          title="Step out, hold your place."
+        />
         <p className="mt-2 font-body text-[13px] leading-relaxed text-slate">
           No one will see you. Conversations stay open. Come back when you're
           ready.
