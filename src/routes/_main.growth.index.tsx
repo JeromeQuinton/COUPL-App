@@ -74,6 +74,34 @@ function GrowthDashboard() {
         </Link>
       </section>
 
+      {/* Library + Path entries — Stream 16 depth surfaces. */}
+      <section className="px-5 pb-5 grid grid-cols-2 gap-3">
+        <Link
+          to="/growth/library"
+          className="rounded-[16px] border border-plum-300/40 bg-paper p-4 shadow-elev-1 hover:bg-lavender-50"
+        >
+          <p className="text-label-mono text-plum-700">Library</p>
+          <p className="mt-2 font-display text-[16px] font-semibold leading-snug text-ink">
+            Slow reading.
+          </p>
+          <p className="mt-1 font-body text-[12px] text-slate">
+            Essays, practices, research.
+          </p>
+        </Link>
+        <Link
+          to="/growth/path"
+          className="rounded-[16px] border border-plum-300/40 bg-paper p-4 shadow-elev-1 hover:bg-lavender-50"
+        >
+          <p className="text-label-mono text-plum-700">Path</p>
+          <p className="mt-2 font-display text-[16px] font-semibold leading-snug text-ink">
+            Where to look next.
+          </p>
+          <p className="mt-1 font-body text-[12px] text-slate">
+            Personal, never prescribed.
+          </p>
+        </Link>
+      </section>
+
       {/* Current arc card */}
       <section className="px-5">
         <article
