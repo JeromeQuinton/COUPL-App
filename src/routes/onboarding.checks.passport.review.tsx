@@ -23,7 +23,7 @@ function PassportReviewScreen() {
   const navigate = useNavigate();
 
   return (
-    <OnboardingFrame backTo="/onboarding/checks/id-scan">
+    <OnboardingFrame backTo="/onboarding/checks/passport/scan">
       <div>
         <p className="text-label-mono">Verify · passport · review</p>
         <h1 className="mt-3 text-display-xl text-ink">
@@ -65,7 +65,7 @@ function PassportReviewScreen() {
         <OnboardingButton
           type="button"
           variant="ghost"
-          onClick={() => navigate({ to: "/onboarding/checks/id-scan" })}
+          onClick={() => navigate({ to: "/onboarding/checks/passport/scan" })}
         >
           Retake
         </OnboardingButton>

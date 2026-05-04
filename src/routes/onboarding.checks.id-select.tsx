@@ -57,7 +57,14 @@ function IDSelectScreen() {
           type="button"
           variant="primary"
           disabled={!pick}
-          onClick={() => navigate({ to: "/onboarding/checks/id-scan" })}
+          onClick={() =>
+            navigate({
+              to:
+                pick === "passport"
+                  ? "/onboarding/checks/passport/scan"
+                  : "/onboarding/checks/id-scan",
+            })
+          }
         >
           Continue
         </OnboardingButton>
