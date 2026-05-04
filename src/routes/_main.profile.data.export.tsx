@@ -71,7 +71,7 @@ function DataExportScreen() {
       <div className="px-5 pt-8 pb-12 space-y-3">
         <button
           type="button"
-          onClick={() => navigate({ to: "/profile/data/preparing" })}
+          onClick={() => navigate({ to: "/profile/data/export/preparing" })}
           className="w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90 inline-flex items-center justify-center gap-2"
         >
           <Download size={16} strokeWidth={2.25} />
