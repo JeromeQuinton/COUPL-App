@@ -1,9 +1,24 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
-import { PreferenceToggle } from "@/components/profile/PreferenceToggle";
+
+/**
+ * /profile/notifications — index of category settings.
+ *
+ * Stream-20 SCREEN-37 parent edit. Each row is now a Link to the per-category
+ * detail screen. Toggles, quiet hours, and bundling live there.
+ */
+
+const CATEGORIES: ReadonlyArray<{ id: string; label: string; helper: string }> = [
+  { id: "connections", label: "Connections", helper: "Replies, plan invites, voice memos." },
+  { id: "discover", label: "Discover", helper: "The daily issue, who attuned to you." },
+  { id: "growth", label: "Growth", helper: "Workshop reminders, journal nudges." },
+  { id: "coach", label: "Coach", helper: "Polaris reflections, video sessions." },
+  { id: "safety", label: "Safety", helper: "Verification, safety-share, reports." },
+  { id: "events", label: "Events", helper: "Upcoming events, waitlist changes." },
+  { id: "account", label: "Account", helper: "Sign-in alerts, billing, terms." },
+];
 
 export const Route = createFileRoute("/_main/profile/notifications")({
   head: () => ({ meta: [{ title: "Notifications — COUPL" }] }),
@@ -11,12 +26,6 @@ export const Route = createFileRoute("/_main/profile/notifications")({
 });
 
 function NotificationsScreen() {
-  const [conn, setConn] = useState({ push: true });
-  const [weekly, setWeekly] = useState({ push: true, email: true });
-  const [events, setEvents] = useState({ push: true });
-  const [workshops, setWorkshops] = useState({ push: false, email: true });
-  const [marketing, setMarketing] = useState({ push: false, email: false });
-
   return (
     <YouBackdrop>
       <StatusBar
@@ -32,47 +41,27 @@ function NotificationsScreen() {
         <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
           What deserves your attention?
         </h1>
+        <p className="mt-2 font-body text-[13.5px] text-stone">
+          One row per kind. Open one to choose how it reaches you.
+        </p>
       </header>
 
       <ul className="px-5 space-y-2.5">
-        <PreferenceToggle
-          label="Connections"
-          helper="Attunes, replies, plan invites."
-          pushValue={conn.push}
-          pushOnChange={(v) => setConn({ push: v })}
-          pushOnly
-        />
-        <PreferenceToggle
-          label="Weekly check-in"
-          helper="Sunday morning, one prompt."
-          pushValue={weekly.push}
-          pushOnChange={(v) => setWeekly((s) => ({ ...s, push: v }))}
-          emailValue={weekly.email}
-          emailOnChange={(v) => setWeekly((s) => ({ ...s, email: v }))}
-        />
-        <PreferenceToggle
-          label="Event reminders"
-          helper="Only for events you've booked."
-          pushValue={events.push}
-          pushOnChange={(v) => setEvents({ push: v })}
-          pushOnly
-        />
-        <PreferenceToggle
-          label="Workshop announcements"
-          helper="When new workshops open."
-          pushValue={workshops.push}
-          pushOnChange={(v) => setWorkshops((s) => ({ ...s, push: v }))}
-          emailValue={workshops.email}
-          emailOnChange={(v) => setWorkshops((s) => ({ ...s, email: v }))}
-        />
-        <PreferenceToggle
-          label="Marketing"
-          helper="Off unless you opt in."
-          pushValue={marketing.push}
-          pushOnChange={(v) => setMarketing((s) => ({ ...s, push: v }))}
-          emailValue={marketing.email}
-          emailOnChange={(v) => setMarketing((s) => ({ ...s, email: v }))}
-        />
+        {CATEGORIES.map((cat) => (
+          <li key={cat.id}>
+            <Link
+              to="/profile/notifications/$category"
+              params={{ category: cat.id }}
+              className="flex items-center justify-between rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
+            >
+              <div className="min-w-0 flex-1 pr-3">
+                <p className="font-display text-[14.5px] text-ink">{cat.label}</p>
+                <p className="mt-0.5 font-body text-[12.5px] text-stone">{cat.helper}</p>
+              </div>
+              <ChevronRight size={18} className="shrink-0 text-stone" />
+            </Link>
+          </li>
+        ))}
       </ul>
 
       <p className="px-5 pt-6 pb-12 text-center font-body text-[12.5px] italic text-stone">
