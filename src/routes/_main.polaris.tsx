@@ -47,6 +47,13 @@ function PolarisScreen() {
         Just patterns to notice — and what they tell you about your pace right now.
       </p>
 
+      <Link
+        to="/polaris/about"
+        className="mt-3 inline-flex items-center gap-1 text-label-mono text-plum-500 hover:text-plum-700"
+      >
+        What this means →
+      </Link>
+
       <section className="mt-8 space-y-4">
         <PaceCard data={PACE_30} />
         <AttunementCard lenses={ATTUNEMENT} />

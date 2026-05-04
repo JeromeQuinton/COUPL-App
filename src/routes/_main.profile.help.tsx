@@ -65,13 +65,12 @@ function HelpHome() {
       </ul>
 
       <div className="px-5 pt-8 pb-12">
-        <button
-          type="button"
-          // TODO: contact route
-          className="w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[14px] text-ink hover:bg-lavender-50"
+        <Link
+          to="/profile/help/contact"
+          className="block w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[14px] text-ink hover:bg-lavender-50"
         >
           Contact us
-        </button>
+        </Link>
       </div>
     </YouBackdrop>
   );

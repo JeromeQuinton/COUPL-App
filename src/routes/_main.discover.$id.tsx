@@ -19,6 +19,11 @@ import { AttuneDialog } from "@/components/discover/attune/AttuneDialog";
 import { AttuneSentConfirmation } from "@/components/discover/attune/AttuneSentConfirmation";
 import { useAttuneState, type AttuneTarget as AttuneStateTarget } from "@/hooks/use-attune-state";
 import { useFeedExclusions } from "@/hooks/use-feed-exclusions";
+import {
+  FREE_TIER_DAILY_ATTUNE_LIMIT,
+  useDailyAttuneCount,
+  useIsFreeTier,
+} from "@/hooks/use-daily-attune-count";
 import { useInView } from "@/hooks/use-in-view";
 import {
   Sheet,
@@ -74,6 +79,11 @@ function ProfileDetailScreen() {
   const [info, setInfo] = useState<InfoSheet>(null);
   const { sendAttune } = useAttuneState(id);
   const { excludeProfile } = useFeedExclusions();
+  // Stream 8-3 paywall gate: free tier capped at FREE_TIER_DAILY_ATTUNE_LIMIT
+  // attunes per day. On cap, redirect to membership-prompt instead of sending.
+  const { count: dailyAttunes, increment: incrementDailyAttunes } =
+    useDailyAttuneCount();
+  const isFreeTier = useIsFreeTier();
   const [primaryDialogOpen, setPrimaryDialogOpen] = useState(false);
   const [confirmation, setConfirmation] = useState<
     { visible: boolean; targetType: "profile" | "module" | "photo" }
@@ -110,11 +120,24 @@ function ProfileDetailScreen() {
 
   const completeAttune = useCallback(
     (target: AttuneStateTarget, comment: string | undefined) => {
+      // Stream 8-3 paywall gate.
+      if (isFreeTier && dailyAttunes >= FREE_TIER_DAILY_ATTUNE_LIMIT) {
+        navigate({ to: "/discover/membership-prompt" });
+        return;
+      }
       sendAttune(target, comment);
+      incrementDailyAttunes();
       discoverSessionState.markInvited(id);
       setConfirmation({ visible: true, targetType: target.type });
     },
-    [id, sendAttune],
+    [
+      id,
+      sendAttune,
+      isFreeTier,
+      dailyAttunes,
+      incrementDailyAttunes,
+      navigate,
+    ],
   );
 
   const handleConfirmationDismissed = useCallback(() => {

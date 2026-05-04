@@ -23,6 +23,11 @@ import { capForTier, useUserTier } from "@/lib/user_tier";
 import { useUserPreferences } from "@/lib/user_preferences";
 import { discoverSessionState, statusFor } from "@/lib/discover_session_state";
 import { useFeedExclusions } from "@/hooks/use-feed-exclusions";
+import {
+  FREE_TIER_DAILY_ATTUNE_LIMIT,
+  useDailyAttuneCount,
+  useIsFreeTier,
+} from "@/hooks/use-daily-attune-count";
 
 export const Route = createFileRoute("/_main/discover/")({
   head: () => ({
@@ -43,6 +48,10 @@ function DiscoverScreen() {
   const prefs = useUserPreferences();
   const navigate = useNavigate();
   const { excludedProfileIds, clearExclusions } = useFeedExclusions();
+  // Stream 8-3 paywall gate — read at index level so the open handler
+  // can short-circuit when the user has hit their free-tier cap.
+  const { count: dailyAttunes } = useDailyAttuneCount();
+  const isFreeTier = useIsFreeTier();
 
   // Subscribe so cards re-render when detail screen mutates session state.
   useSyncExternalStore(
@@ -96,6 +105,11 @@ function DiscoverScreen() {
   };
 
   const handleOpen = (id: string) => {
+    // Stream 8-3 paywall gate at the index. Free tier + at-cap → prompt.
+    if (isFreeTier && dailyAttunes >= FREE_TIER_DAILY_ATTUNE_LIMIT) {
+      navigate({ to: "/discover/membership-prompt" });
+      return;
+    }
     navigate({ to: "/discover/$id", params: { id } });
   };
 

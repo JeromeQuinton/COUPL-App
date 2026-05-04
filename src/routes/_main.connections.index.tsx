@@ -47,6 +47,54 @@ const HUE_GRADIENTS: Record<"lavender" | "blush" | "beeswax", string> = {
 function ConnectionsListScreen() {
   const [active, setActive] = useState<string>("patterns");
 
+  // Phase 4 will source these from the user's real connections;
+  // when both lists empty, render an editorial empty state.
+  const isEmpty =
+    RING_CONNECTIONS.length === 0 && TIMELINE_CARDS.length === 0;
+
+  if (isEmpty) {
+    return (
+      <PageBackdrop>
+        <div
+          className="mx-auto flex w-full max-w-[480px] flex-col px-5"
+          style={{
+            paddingTop: "calc(env(safe-area-inset-top) + 1.25rem)",
+            paddingBottom: "calc(env(safe-area-inset-bottom) + 100px)",
+          }}
+        >
+          <header className="text-center">
+            <h1 className="font-display text-[26px] font-semibold text-ink">
+              Connections
+            </h1>
+            <p className="mt-1.5 font-body text-[13px] text-slate">
+              recent connections + conversations
+            </p>
+          </header>
+
+          <article className="mt-10 rounded-[18px] border border-dashed border-line bg-paper px-5 py-10 text-center">
+            <p className="font-display text-[18px] text-ink">
+              No connections yet.
+            </p>
+            <p className="mt-2 font-body text-[13.5px] leading-relaxed text-slate">
+              Connections start when you and someone else both attune. Browse
+              Discover, attune to a profile that stays with you, and the
+              first thread will land here.
+            </p>
+            <Link
+              to="/discover"
+              className="mt-5 inline-flex items-center justify-center rounded-full bg-plum-500 px-5 py-2.5 font-body text-[13.5px] font-medium text-paper hover:bg-plum-700"
+            >
+              Browse Discover
+            </Link>
+            <p className="mt-4 font-body text-[12px] italic text-stone">
+              Polaris is quiet until there's something to read.
+            </p>
+          </article>
+        </div>
+      </PageBackdrop>
+    );
+  }
+
   return (
     <PageBackdrop>
       <div

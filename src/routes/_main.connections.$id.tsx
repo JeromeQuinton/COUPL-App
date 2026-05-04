@@ -62,7 +62,25 @@ export const Route = createFileRoute("/_main/connections/$id")({
 function ThreadScreen() {
   const { id } = Route.useParams();
   const c = getConnection(id)!;
-  const messages = THREADS[id] ?? [];
+  // Stream 8-3 leftover: messages held in local state so the VoiceMemoSheet
+  // send action can append. Phase 4 wires a real `messages` table.
+  const [messages, setMessages] = useState<ThreadMessage[]>(
+    () => THREADS[id] ?? [],
+  );
+  const appendVoiceMemo = (durationSeconds: number) => {
+    setMessages((prev) => [
+      ...prev,
+      {
+        kind: "voice",
+        from: "me",
+        durationSeconds: Math.max(1, Math.round(durationSeconds)),
+        time: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      },
+    ]);
+  };
   const [draft, setDraft] = useState("");
   const [peekOpen, setPeekOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
@@ -274,7 +292,14 @@ function ThreadScreen() {
           </div>
         </div>
       </div>
-      <VoiceMemoSheet open={voiceOpen} onClose={() => setVoiceOpen(false)} onSend={() => setVoiceOpen(false)} />
+      <VoiceMemoSheet
+        open={voiceOpen}
+        onClose={() => setVoiceOpen(false)}
+        onSend={(seconds) => {
+          appendVoiceMemo(seconds);
+          setVoiceOpen(false);
+        }}
+      />
       <ProfilePeek
         open={peekOpen}
         onClose={() => setPeekOpen(false)}

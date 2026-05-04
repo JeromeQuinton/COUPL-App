@@ -38,11 +38,20 @@ function SavedList() {
         </h1>
 
         {ids.length === 0 ? (
-          <article className="mt-10 rounded-[18px] border border-dashed border-line bg-paper px-5 py-8 text-center">
-            <p className="font-display text-[16px] text-ink">Nothing saved yet.</p>
-            <p className="mt-2 font-display text-[13.5px] italic text-stone">
-              When a profile stays with you, save it here for later.
+          <article className="mt-10 rounded-[18px] border border-dashed border-line bg-paper px-5 py-10 text-center">
+            <p className="font-display text-[18px] text-ink">
+              Nothing saved yet.
             </p>
+            <p className="mt-2 font-body text-[13.5px] leading-relaxed text-slate">
+              When a profile stays with you — when you'd want to read it again —
+              save it here. It stays private; no one else sees it.
+            </p>
+            <Link
+              to="/discover"
+              className="mt-5 inline-flex items-center justify-center rounded-full bg-plum-500 px-5 py-2.5 font-body text-[13.5px] font-medium text-paper hover:bg-plum-700"
+            >
+              Browse Discover
+            </Link>
           </article>
         ) : (
           <ul className="mt-8 space-y-3">
