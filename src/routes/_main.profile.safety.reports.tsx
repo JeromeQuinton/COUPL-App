@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/safety/reports")({
   head: () => ({ meta: [{ title: "Your reports — COUPL" }] }),
@@ -34,10 +35,7 @@ function ReportsListScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Reports</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight italic text-ink">
-          What's been escalated?
-        </h1>
+        <ScreenHeader eyebrow="Reports" title="What's been escalated?" titleItalic />
       </header>
 
       {SAMPLE_REPORTS.length === 0 ? (

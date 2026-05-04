@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronDown, ChevronUp } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute(
   "/_main/profile/account/delete/scheduled",
@@ -46,10 +47,7 @@ function ScheduledScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Account · deletion scheduled</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          You're scheduled to leave.
-        </h1>
+        <ScreenHeader eyebrow="Account · deletion scheduled" title="You're scheduled to leave." />
       </header>
 
       <section className="px-5">

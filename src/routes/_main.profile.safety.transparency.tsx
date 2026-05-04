@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { SAMPLE_TRANSPARENCY_QUARTER } from "@/data/safety_sample";
 
 export const Route = createFileRoute("/_main/profile/safety/transparency")({
@@ -27,10 +28,7 @@ function TransparencyScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Safety · transparency</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          What we did this quarter.
-        </h1>
+        <ScreenHeader eyebrow="Safety · transparency" title="What we did this quarter." />
         <p className="mt-3 text-label-mono text-stone">{q.period}</p>
       </header>
 

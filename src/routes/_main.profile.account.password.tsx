@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Eye, EyeOff } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/account/password")({
   head: () => ({ meta: [{ title: "Change password — COUPL" }] }),
@@ -47,10 +48,10 @@ function ChangePassword() {
           }
         />
         <div className="mx-auto flex w-full max-w-[480px] flex-col px-5 pt-10">
-          <p className="text-label-mono">Account · password</p>
-          <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-            {isMagicLinkUser ? "Password set." : "Password updated."}
-          </h1>
+          <ScreenHeader
+            eyebrow="Account · password"
+            title={isMagicLinkUser ? "Password set." : "Password updated."}
+          />
           <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
             You can use it next time you sign in.
           </p>
@@ -81,10 +82,10 @@ function ChangePassword() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Account · password</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          {isMagicLinkUser ? "Set a password." : "Change your password."}
-        </h1>
+        <ScreenHeader
+          eyebrow="Account · password"
+          title={isMagicLinkUser ? "Set a password." : "Change your password."}
+        />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Use at least 12 characters. The rest is up to you.
         </p>

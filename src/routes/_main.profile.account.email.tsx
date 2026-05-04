@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   DEFAULT_EMAIL,
   getEmail,
@@ -58,10 +59,10 @@ function ChangeEmail() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Account · email</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          {step === "done" ? "Email updated." : "Change your email."}
-        </h1>
+        <ScreenHeader
+          eyebrow="Account · email"
+          title={step === "done" ? "Email updated." : "Change your email."}
+        />
         {step === "form" && (
           <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
             We'll send a code to the new address before swapping it in.

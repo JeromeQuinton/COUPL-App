@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Download } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/data/exports/history")({
   head: () => ({ meta: [{ title: "Past exports — COUPL" }] }),
@@ -40,10 +41,7 @@ function ExportsHistoryScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Data · history</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Past exports.
-        </h1>
+        <ScreenHeader eyebrow="Data · history" title="Past exports." />
       </header>
 
       {rows.length === 0 ? (

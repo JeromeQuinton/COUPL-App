@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/data/export/complete")({
   head: () => ({
@@ -22,10 +23,9 @@ function ExportCompleteScreen() {
         >
           <Check size={24} strokeWidth={2.25} />
         </span>
-        <p className="mt-6 text-label-mono">Data · downloaded</p>
-        <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">
-          Got it.
-        </h1>
+        <div className="mt-6">
+          <ScreenHeader eyebrow="Data · downloaded" title="Got it." />
+        </div>
         <p className="mt-4 max-w-[300px] font-body text-[13.5px] italic leading-relaxed text-slate">
           Your export was downloaded. You can request another in 7 days.
         </p>

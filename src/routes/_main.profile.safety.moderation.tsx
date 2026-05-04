@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/safety/moderation")({
   head: () => ({
@@ -26,10 +27,7 @@ function ModerationScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Safety · moderation</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          What happens when you report.
-        </h1>
+        <ScreenHeader eyebrow="Safety · moderation" title="What happens when you report." />
       </header>
 
       <section className="px-5">

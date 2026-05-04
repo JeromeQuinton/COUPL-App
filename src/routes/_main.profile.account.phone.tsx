@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   DEFAULT_PHONE,
   getPhone,
@@ -61,10 +62,10 @@ function ChangePhone() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Account · phone</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          {step === "done" ? "Phone updated." : "Change your phone number."}
-        </h1>
+        <ScreenHeader
+          eyebrow="Account · phone"
+          title={step === "done" ? "Phone updated." : "Change your phone number."}
+        />
         {step === "form" && (
           <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
             We'll text a code to the new number before swapping it in.

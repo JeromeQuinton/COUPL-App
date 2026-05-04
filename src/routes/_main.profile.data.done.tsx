@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/data/done")({
   head: () => ({
@@ -22,10 +23,9 @@ function DataDoneScreen() {
         >
           <Check size={24} strokeWidth={2.25} />
         </span>
-        <p className="mt-6 text-label-mono">Done</p>
-        <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-          Saved to your device.
-        </h1>
+        <div className="mt-6">
+          <ScreenHeader eyebrow="Done" title="Saved to your device." />
+        </div>
         <p className="mt-3 max-w-[280px] font-body text-[13.5px] leading-relaxed text-slate">
           You'll find the ZIP in Downloads. Keep it somewhere private — it contains your full record.
         </p>

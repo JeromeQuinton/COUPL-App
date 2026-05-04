@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, EyeOff, Eye } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { BlockConfirmModal } from "@/components/safety/BlockConfirmModal";
 
 export const Route = createFileRoute("/_main/profile/safety/blocked")({
@@ -50,10 +51,7 @@ function BlockedListScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Block list</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          People you've blocked.
-        </h1>
+        <ScreenHeader eyebrow="Block list" title="People you've blocked." />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           They won't be able to message you or see your profile. You can keep
           someone blocked for as long as you like — there's no expectation to

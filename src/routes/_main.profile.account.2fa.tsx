@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   DEFAULT_PHONE,
   getPhone,
@@ -52,10 +53,7 @@ function TwoFactor() {
           }
         />
         <div className="mx-auto flex w-full max-w-[480px] flex-col px-5 pt-10">
-          <p className="text-label-mono text-plum-700">Two-factor on</p>
-          <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-            2FA on.
-          </h1>
+          <ScreenHeader eyebrow="Two-factor on" title="2FA on." />
           <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
             You'll be asked for a code each time you sign in from a new
             device. Method:{" "}
@@ -97,10 +95,7 @@ function TwoFactor() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Account · two-factor</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          A second step at sign-in.
-        </h1>
+        <ScreenHeader eyebrow="Account · two-factor" title="A second step at sign-in." />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Choose how you'd like to receive your code.
         </p>

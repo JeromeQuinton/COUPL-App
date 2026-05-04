@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-r
 import { ChevronLeft, Smartphone, Laptop, Monitor } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute(
   "/_main/profile/account/sessions/$sessionId_/revoke",
@@ -69,10 +70,7 @@ function RevokeScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Account · sign out a device</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Sign this device out?
-        </h1>
+        <ScreenHeader eyebrow="Account · sign out a device" title="Sign this device out?" />
       </header>
 
       <section className="px-5">

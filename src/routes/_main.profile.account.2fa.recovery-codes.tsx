@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Copy, Download } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute(
   "/_main/profile/account/2fa/recovery-codes",
@@ -61,10 +62,7 @@ function RecoveryCodesScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Account · backup codes</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Backup codes.
-        </h1>
+        <ScreenHeader eyebrow="Account · backup codes" title="Backup codes." />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Save these somewhere only you can find. Each works once. We can't
           show them again.

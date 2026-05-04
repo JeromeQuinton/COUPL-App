@@ -2,6 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { CaseTimeline } from "@/components/safety/CaseTimeline";
 import { SAMPLE_CASE_DETAILS } from "@/data/safety_sample";
 
@@ -55,10 +56,7 @@ function CaseDetailScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Case · {detail.id}</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Where this stands.
-        </h1>
+        <ScreenHeader eyebrow={`Case · ${detail.id}`} title="Where this stands." />
       </header>
 
       <section className="px-5">

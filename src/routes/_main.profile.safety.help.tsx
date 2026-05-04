@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Phone, Mail } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/safety/help — crisis + support resources.
@@ -53,10 +54,7 @@ function SafetyHelpScreen() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Safety · help</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Get help.
-        </h1>
+        <ScreenHeader eyebrow="Safety · help" title="Get help." />
       </header>
 
       <section className="px-5">

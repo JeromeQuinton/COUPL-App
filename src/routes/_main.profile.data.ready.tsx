@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Download, ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/data/ready")({
   head: () => ({
@@ -24,10 +25,7 @@ function DataReadyScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Archive ready</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Your record is ready.
-        </h1>
+        <ScreenHeader eyebrow="Archive ready" title="Your record is ready." />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           One ZIP. One link. Available for the next 7 days, then it expires.
         </p>

@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Download } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/data/export/start")({
   head: () => ({
@@ -28,10 +29,7 @@ function ExportStartScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Data · request export</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Request a copy of your data.
-        </h1>
+        <ScreenHeader eyebrow="Data · request export" title="Request a copy of your data." />
       </header>
 
       <section className="px-5">

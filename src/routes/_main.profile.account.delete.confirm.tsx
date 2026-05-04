@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/account/delete/confirm — type-to-confirm gate.
@@ -39,10 +40,7 @@ function DeleteConfirmScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Account · delete · confirm</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Last check before deletion.
-        </h1>
+        <ScreenHeader eyebrow="Account · delete · confirm" title="Last check before deletion." />
       </header>
 
       <section className="px-5">

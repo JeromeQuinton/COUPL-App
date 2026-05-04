@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   getEmail,
   getPhone,
@@ -51,10 +52,7 @@ function AccountHome() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Account</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          What sits underneath?
-        </h1>
+        <ScreenHeader eyebrow="Account" title="What sits underneath?" titleItalic />
       </header>
 
       <ul className="px-5 pb-12 space-y-2.5">

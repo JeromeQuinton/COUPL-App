@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Smartphone, Laptop, Monitor } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/account/sessions — active sessions.
@@ -54,10 +55,7 @@ function SessionsScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Account · active sessions</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          Where you're signed in.
-        </h1>
+        <ScreenHeader eyebrow="Account · active sessions" title="Where you're signed in." titleItalic />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           One row per device. Sign one out, or all but this one.
         </p>

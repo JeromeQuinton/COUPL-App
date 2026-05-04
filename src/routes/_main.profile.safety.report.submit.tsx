@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { EvidenceUpload } from "@/components/safety/EvidenceUpload";
 
 export const Route = createFileRoute("/_main/profile/safety/report/submit")({
@@ -45,10 +46,7 @@ function ReportSubmitScreen() {
           }
         />
         <main className="px-5 py-12 text-center max-w-md mx-auto">
-          <p className="text-label-mono">Received</p>
-          <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-            Report received.
-          </h1>
+          <ScreenHeader eyebrow="Received" title="Report received." />
           <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
             We assess every report — usually within 48 hours. You'll see updates in your reports.
           </p>
@@ -82,10 +80,7 @@ function ReportSubmitScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Report</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          What happened?
-        </h1>
+        <ScreenHeader eyebrow="Report" title="What happened?" />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           We assess every report. The more specific you can be, the more useful this becomes.
         </p>

@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Download } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/data/export")({
   head: () => ({
@@ -33,10 +34,7 @@ function DataExportScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Data export</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Take your record with you.
-        </h1>
+        <ScreenHeader eyebrow="Data export" title="Take your record with you." />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           Access your relational history without friction. Standard formats, no obscurity.
         </p>

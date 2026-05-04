@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Image, MessageSquare, Mic, X } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { TraumaPause } from "@/components/safety/TraumaPause";
 import type { EvidenceKind, ReportEvidence } from "@/data/safety_sample";
 
@@ -46,10 +47,7 @@ function EvidenceScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Safety · evidence (optional)</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Add anything that might help us look into this.
-        </h1>
+        <ScreenHeader eyebrow="Safety · evidence (optional)" title="Add anything that might help us look into this." />
       </header>
 
       <section className="px-5">

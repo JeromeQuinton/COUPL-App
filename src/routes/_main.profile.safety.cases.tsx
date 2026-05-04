@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { SAMPLE_USER_CASES, type CaseStatus } from "@/data/safety_sample";
 
 export const Route = createFileRoute("/_main/profile/safety/cases")({
@@ -39,10 +40,7 @@ function CasesScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Safety · cases</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Your reports.
-        </h1>
+        <ScreenHeader eyebrow="Safety · cases" title="Your reports." />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           We aim to review reports within a few days. You'll see what stage
           each one is at, and where possible, what happened next.

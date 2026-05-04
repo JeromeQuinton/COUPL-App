@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/account/linked — manage external sign-in providers.
@@ -55,10 +56,7 @@ function LinkedScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Account · linked</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          Where you sign in from.
-        </h1>
+        <ScreenHeader eyebrow="Account · linked" title="Where you sign in from." titleItalic />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Keep at least one connected. Disconnecting the last one signs
           you out for good.

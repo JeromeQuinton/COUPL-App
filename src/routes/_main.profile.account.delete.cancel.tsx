@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/account/delete/cancel")({
   head: () => ({ meta: [{ title: "Deletion cancelled — COUPL" }] }),
@@ -32,10 +33,9 @@ function CancelScreen() {
         >
           <Check size={24} strokeWidth={2.25} />
         </span>
-        <p className="mt-6 text-label-mono">Account · cancel deletion</p>
-        <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">
-          You're staying.
-        </h1>
+        <div className="mt-6">
+          <ScreenHeader eyebrow="Account · cancel deletion" title="You're staying." />
+        </div>
         <p className="mt-4 max-w-[300px] font-body text-[14px] leading-relaxed text-ink">
           We've cancelled your deletion. Welcome back.
         </p>
