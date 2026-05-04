@@ -1,17 +1,41 @@
+import { cn } from "@/lib/utils";
+
+type EyebrowTone = "plum" | "stone";
+
 type Props = {
   eyebrow?: string;
   title: string;
+  eyebrowTone?: EyebrowTone;
 };
 
-export function ScreenHeader({ eyebrow, title }: Props) {
+const EYEBROW_TYPOGRAPHY =
+  "font-mono text-[11px] uppercase tracking-[0.12em] leading-[1.3]";
+
+const EYEBROW_TONE: Record<EyebrowTone, string> = {
+  plum: "text-plum-500",
+  stone: "text-stone",
+};
+
+export function ScreenHeader({
+  eyebrow,
+  title,
+  eyebrowTone = "plum",
+}: Props) {
   return (
-    <header className="pt-2">
+    <>
       {eyebrow && (
-        <p className="text-body-sm uppercase tracking-[0.14em] text-stone">
+        <p className={cn(EYEBROW_TYPOGRAPHY, EYEBROW_TONE[eyebrowTone])}>
           {eyebrow}
         </p>
       )}
-      <h1 className="mt-1 text-h1 text-ink">{title}</h1>
-    </header>
+      <h1
+        className={cn(
+          eyebrow && "mt-3",
+          "font-display text-[28px] leading-tight text-ink",
+        )}
+      >
+        {title}
+      </h1>
+    </>
   );
 }
