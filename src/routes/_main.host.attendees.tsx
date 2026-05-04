@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Check, ChevronRight, X } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /host/attendees — attendee management with depth.
@@ -144,10 +145,7 @@ function HostAttendees() {
       />
 
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Tea & Honesty · Thu 30 Oct</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Your room.
-        </h1>
+        <ScreenHeader eyebrow="Tea & Honesty · Thu 30 Oct" title="Your room." />
         <p className="mt-3 font-body text-[12.5px] italic text-stone">
           Hosts curate chemistry through composition.
         </p>

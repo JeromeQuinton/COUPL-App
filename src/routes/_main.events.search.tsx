@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { FEATURED_EVENT, UPCOMING_EVENTS } from "@/data/events_sample";
 
 /**
@@ -45,10 +46,11 @@ function SearchScreen() {
       />
 
       <header className="px-5 pt-2 pb-3">
-        <p className="text-label-mono">Events · find one</p>
-        <h1 className="mt-2 font-display text-[26px] italic leading-tight text-ink">
-          What are you in the mood for?
-        </h1>
+        <ScreenHeader
+          eyebrow="Events · find one"
+          title="What are you in the mood for?"
+          titleItalic
+        />
       </header>
 
       <section className="px-5">

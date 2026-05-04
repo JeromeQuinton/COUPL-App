@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /host/new/community-room — community room creation.
@@ -47,10 +48,7 @@ function NewCommunityRoom() {
           }
         />
         <div className="mx-auto flex w-full max-w-[480px] flex-col px-5 pt-10">
-          <p className="text-label-mono">Room created</p>
-          <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-            {name} is live.
-          </h1>
+          <ScreenHeader eyebrow="Room created" title={`${name} is live.`} />
           <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
             Your room is open to the people you've chosen. You'll see signups
             in your host dashboard.
@@ -80,10 +78,7 @@ function NewCommunityRoom() {
         }
       />
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Hosting · community</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          A community room.
-        </h1>
+        <ScreenHeader eyebrow="Hosting · community" title="A community room." />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           For people who want to keep meeting, not just attend once. Smaller,
           slower, and yours.

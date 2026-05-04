@@ -2,6 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft, Lock } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getEvent, FEATURED_EVENT } from "@/data/events_sample";
 
 export const Route = createFileRoute("/_main/events/$id_/attendees")({
@@ -47,12 +48,10 @@ function AttendeesScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">
-          Attending · {total} of {cap}
-        </p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Who's coming.
-        </h1>
+        <ScreenHeader
+          eyebrow={`Attending · ${total} of ${cap}`}
+          title="Who's coming."
+        />
         <p className="mt-3 font-body text-[14px] italic leading-relaxed text-slate">
           Names and first letters only — full profiles unlock at the door.
         </p>

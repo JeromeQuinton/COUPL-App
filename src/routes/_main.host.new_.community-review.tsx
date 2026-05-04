@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Check } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/host/new_/community-review")({
   head: () => ({ meta: [{ title: "Review and publish — COUPL" }] }),
@@ -30,10 +31,7 @@ function CommunityReviewScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Community · 3 / 3</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Read it back.
-        </h1>
+        <ScreenHeader eyebrow="Community · 3 / 3" title="Read it back." />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           Make sure it still feels like the gathering you want to host.
         </p>

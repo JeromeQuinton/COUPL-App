@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Check } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/host/new_/workshop-review")({
   head: () => ({ meta: [{ title: "Review and publish — COUPL" }] }),
@@ -32,10 +33,7 @@ function WorkshopReviewScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Workshop · 4 / 4</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Read it back.
-        </h1>
+        <ScreenHeader eyebrow="Workshop · 4 / 4" title="Read it back." />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           Before this opens to attendees, make sure it still feels like the room you want to host.
         </p>

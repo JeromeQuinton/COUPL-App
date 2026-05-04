@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/host/new_/workshop")({
   head: () => ({
@@ -30,10 +31,7 @@ function WorkshopComposer() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Workshop · 2 / 4</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          What will happen?
-        </h1>
+        <ScreenHeader eyebrow="Workshop · 2 / 4" title="What will happen?" />
         <p className="mt-3 font-body text-[12.5px] italic text-stone">
           Insight is most useful when it shifts how you notice yourself in real time.
         </p>

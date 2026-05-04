@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft, Plus } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/host/new_/workshop-detail")({
   head: () => ({ meta: [{ title: "Workshop · description — COUPL" }] }),
@@ -27,10 +28,10 @@ function WorkshopDetailScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Workshop · 3 / 4</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          Tell people what to expect.
-        </h1>
+        <ScreenHeader
+          eyebrow="Workshop · 3 / 4"
+          title="Tell people what to expect."
+        />
         <p className="mt-3 font-body text-[12.5px] italic text-stone">
           Specificity is more attractive than performance.
         </p>

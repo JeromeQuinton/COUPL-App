@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-r
 import { ChevronLeft, X } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getEvent, FEATURED_EVENT } from "@/data/events_sample";
 
 export const Route = createFileRoute("/_main/events/$id_/reserve")({
@@ -38,10 +39,7 @@ function ReserveScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Reservation</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Hold your place.
-        </h1>
+        <ScreenHeader eyebrow="Reservation" title="Hold your place." />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           A clear yes is enough. We'll handle the structure from here.
         </p>

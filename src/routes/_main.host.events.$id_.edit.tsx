@@ -3,6 +3,7 @@ import { createFileRoute, Link, useParams, useNavigate } from "@tanstack/react-r
 import { ChevronLeft } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /host/events/$id/edit — edit an existing hosted event.
@@ -85,10 +86,10 @@ function EditEvent() {
           }
         />
         <div className="mx-auto flex w-full max-w-[480px] flex-col px-5 pt-10">
-          <p className="text-label-mono">Room cancelled</p>
-          <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-            {draft.title} won't run.
-          </h1>
+          <ScreenHeader
+            eyebrow="Room cancelled"
+            title={`${draft.title} won't run.`}
+          />
           <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
             Attendees have been notified. Refunds are queued and will appear in
             their accounts within five working days.
@@ -118,10 +119,10 @@ function EditEvent() {
         }
       />
       <header className="px-5 pt-2 pb-4">
-        <p className="text-label-mono">Editing · {initial.title}</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          Edit your room.
-        </h1>
+        <ScreenHeader
+          eyebrow={`Editing · ${initial.title}`}
+          title="Edit your room."
+        />
         <p className="mt-2 font-body text-[12.5px] text-stone">
           Changes save when you tap Save. Cancelling the room refunds attendees.
         </p>

@@ -2,6 +2,7 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft, Heart, MapPin } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getEvent, FEATURED_EVENT, SESSION_STRUCTURE } from "@/data/events_sample";
 
 export const Route = createFileRoute("/_main/events/$id")({
@@ -47,10 +48,7 @@ function EventDetailPage() {
 
       {/* Title + logistics */}
       <section className="px-5 pt-5">
-        <p className="text-label-mono">{e.dateLabel}</p>
-        <h1 className="mt-1.5 font-display text-[26px] leading-[1.15] text-ink">
-          {e.title}
-        </h1>
+        <ScreenHeader eyebrow={e.dateLabel} title={e.title} />
         <p className="mt-2 flex items-center gap-1.5 text-[13px] text-slate">
           <MapPin size={13} className="text-plum-300" aria-hidden />
           {e.address} · {e.walkNote}

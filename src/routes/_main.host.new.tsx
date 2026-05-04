@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Lock } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/host/new")({
   head: () => ({
@@ -22,10 +23,7 @@ function TypePicker() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">New room</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Two shapes.
-        </h1>
+        <ScreenHeader eyebrow="New room" title="Two shapes." />
         <p className="mt-3 font-body text-[13.5px] italic text-stone">
           Different spaces create different behaviours.
         </p>

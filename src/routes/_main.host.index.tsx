@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Plus } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/host/")({
   head: () => ({
@@ -34,10 +35,7 @@ function HostDashboard() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Hosting · verified</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Your rooms.
-        </h1>
+        <ScreenHeader eyebrow="Hosting · verified" title="Your rooms." />
         <p className="mt-3 font-body text-[13.5px] italic text-stone">
           Hosts shape nervous systems before guests ever arrive.
         </p>

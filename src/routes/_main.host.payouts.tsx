@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /host/payouts — host payout dashboard.
@@ -111,10 +112,7 @@ function HostPayouts() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Hosting · payouts</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          What you've earned.
-        </h1>
+        <ScreenHeader eyebrow="Hosting · payouts" title="What you've earned." />
         <p className="mt-3 font-body text-[12.5px] italic text-stone">
           Quietly running the room. Quietly paid for it.
         </p>

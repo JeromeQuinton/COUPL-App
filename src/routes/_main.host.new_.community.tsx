@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/host/new_/community")({
   head: () => ({
@@ -28,10 +29,7 @@ function CommunityComposer() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Community · 1 / 3</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          What will people do?
-        </h1>
+        <ScreenHeader eyebrow="Community · 1 / 3" title="What will people do?" />
         <p className="mt-3 font-body text-[12.5px] italic text-stone">
           Belonging requires boundaries too.
         </p>

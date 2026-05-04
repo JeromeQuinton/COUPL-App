@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronRight, Search } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { FEATURED_EVENT, UPCOMING_EVENTS } from "@/data/events_sample";
 
 export const Route = createFileRoute("/_main/events/")({
@@ -24,7 +25,7 @@ function EventsListPage() {
       <header className="px-5 pt-2 pb-4">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h1 className="text-display-xl text-ink">In person</h1>
+            <ScreenHeader title="In person" titleSize="display-xl" />
             <p className="mt-1 text-body-sm text-slate">
               Small. Hosted. Easy to leave.
             </p>
