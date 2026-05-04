@@ -1,5 +1,10 @@
-import { useEffect } from "react";
-import { X } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 type Props = {
   open: boolean;
@@ -10,55 +15,24 @@ type Props = {
 };
 
 export function BlockConfirmModal({ open, mode, userName, onConfirm, onCancel }: Props) {
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onCancel();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, onCancel]);
-
-  if (!open) return null;
-
   const isBlock = mode === "block";
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-ink/40"
-      onClick={onCancel}
-      role="presentation"
-    >
-      <div
-        className="w-full max-w-md rounded-t-3xl bg-paper px-6 pb-8 pt-4"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="block-modal-title"
-      >
-        <div className="mb-4 flex items-center justify-between">
-          <span className="text-label-mono text-stone">{isBlock ? "BLOCK" : "UNBLOCK"}</span>
-          <button
-            type="button"
-            aria-label="Close"
-            onClick={onCancel}
-            className="grid h-8 w-8 place-items-center rounded-full text-slate hover:bg-lavender-100"
-          >
-            <X size={16} />
-          </button>
-        </div>
+    <Dialog open={open} onOpenChange={(o) => !o && onCancel()}>
+      <DialogContent className="max-w-md rounded-3xl border-line bg-paper px-6 pb-8 pt-6 sm:rounded-3xl">
+        <DialogHeader className="space-y-3 text-left">
+          <p className="text-label-mono text-stone">{isBlock ? "BLOCK" : "UNBLOCK"}</p>
+          <DialogTitle className="font-display text-[24px] leading-tight text-ink">
+            {isBlock ? `Block ${userName}?` : `Unblock ${userName}?`}
+          </DialogTitle>
+          <DialogDescription className="font-body text-[14px] leading-relaxed text-ink">
+            {isBlock
+              ? "They can't message you. You can't see them. We don't tell them."
+              : `If you unblock ${userName}, they may be able to find or contact you again. They will not be told you've unblocked them. You can block them again at any time.`}
+          </DialogDescription>
+        </DialogHeader>
 
-        <h2 id="block-modal-title" className="font-display text-[24px] leading-tight text-ink">
-          {isBlock ? `Block ${userName}?` : `Unblock ${userName}?`}
-        </h2>
-
-        <p className="mt-3 font-body text-[14px] leading-relaxed text-ink">
-          {isBlock
-            ? "They can't message you. You can't see them. We don't tell them."
-            : `If you unblock ${userName}, they may be able to find or contact you again. They will not be told you've unblocked them. You can block them again at any time.`}
-        </p>
-
-        <div className="mt-6 space-y-3">
+        <div className="mt-2 space-y-3">
           <button
             type="button"
             onClick={onConfirm}
@@ -75,7 +49,7 @@ export function BlockConfirmModal({ open, mode, userName, onConfirm, onCancel }:
             Cancel
           </button>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
