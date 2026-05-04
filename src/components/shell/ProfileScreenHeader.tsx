@@ -1,4 +1,4 @@
-import { type ComponentProps } from "react";
+import { type ComponentProps, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 
@@ -15,7 +15,7 @@ type Props = {
     params?: Record<string, string>;
   };
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   titleSize?: TitleSize;
   titleWeight?: TitleWeight;
 };

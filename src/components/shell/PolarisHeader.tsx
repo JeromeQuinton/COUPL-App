@@ -1,3 +1,5 @@
+import { type ReactNode } from "react";
+
 import { cn } from "@/lib/utils";
 
 type TitleSize = "26" | "28";
@@ -5,7 +7,7 @@ type EyebrowTone = "plum-500" | "plum-700";
 
 type Props = {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   titleSize?: TitleSize;
   eyebrowTone?: EyebrowTone;
 };

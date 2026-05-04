@@ -1,10 +1,12 @@
+import { type ReactNode } from "react";
+
 import { cn } from "@/lib/utils";
 
 type EyebrowToTitleSpacing = 1 | 2 | 3 | 4 | 5 | 6;
 
 type Props = {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   mt?: EyebrowToTitleSpacing;
 };
 
