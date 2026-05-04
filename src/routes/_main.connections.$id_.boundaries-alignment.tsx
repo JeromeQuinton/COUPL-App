@@ -22,7 +22,7 @@ const isMember = true;
 type Stage = "intro" | "answering" | "waiting" | "stalled" | "revealed";
 
 function BoundariesAlignmentScreen() {
-  const { id_ } = useParams({
+  const { id } = useParams({
     from: "/_main/connections/$id_/boundaries-alignment",
   });
 

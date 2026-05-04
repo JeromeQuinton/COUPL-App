@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_main/polaris/weekly-review/$weekId_")({
 });
 
 function ArchivedWeeklyScreen() {
-  const { weekId_ } = useParams({
+  const { weekId } = useParams({
     from: "/_main/polaris/weekly-review/$weekId_",
   });
   const review = SAMPLE_WEEKLY_REVIEWS[weekId_];

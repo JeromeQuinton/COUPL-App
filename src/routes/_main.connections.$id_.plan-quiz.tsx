@@ -18,7 +18,7 @@ const SUGGESTIONS = [
 ];
 
 function PlanQuizScreen() {
-  const { id_ } = useParams({
+  const { id } = useParams({
     from: "/_main/connections/$id_/plan-quiz",
   });
   const [pace, setPace] = useState<Pace | null>(null);

@@ -66,7 +66,7 @@ const HISTORY: Entry[] = [
 ];
 
 function CoachHistoryScreen() {
-  const { id_ } = useParams({ from: "/_main/connections/$id_/coach-history" });
+  const { id } = useParams({ from: "/_main/connections/$id_/coach-history" });
   const [filter, setFilter] = useState<"all" | Kind>("all");
 
   const entries = useMemo(

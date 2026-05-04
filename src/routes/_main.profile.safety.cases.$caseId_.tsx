@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_main/profile/safety/cases/$caseId_")({
 });
 
 function CaseDetailScreen() {
-  const { caseId_ } = useParams({
+  const { caseId } = useParams({
     from: "/_main/profile/safety/cases/$caseId_",
   });
   const detail = SAMPLE_CASE_DETAILS[caseId_];

@@ -18,7 +18,7 @@ const SURFACE_LABEL: Record<AuditSurface, string> = {
 };
 
 function AuditEntryScreen() {
-  const { entryId_ } = useParams({
+  const { entryId } = useParams({
     from: "/_main/polaris/audit-log/$entryId_",
   });
   const entry = SAMPLE_AUDIT_LOG.find((e) => e.id === entryId_);

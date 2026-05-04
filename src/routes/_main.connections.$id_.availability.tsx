@@ -15,7 +15,7 @@ const QUICK_SLOTS = [
 ];
 
 function AvailabilityScreen() {
-  const { id_ } = useParams({ from: "/_main/connections/$id_/availability" });
+  const { id } = useParams({ from: "/_main/connections/$id_/availability" });
   const navigate = useNavigate();
   const [picked, setPicked] = useState<Set<string>>(new Set());
   const [customDateTime, setCustomDateTime] = useState("");

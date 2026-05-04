@@ -13,7 +13,7 @@ export const Route = createFileRoute(
 });
 
 function ArchivedSummaryScreen() {
-  const { monthId_ } = useParams({
+  const { monthId } = useParams({
     from: "/_main/polaris/monthly-summary/$monthId_",
   });
   const summary = SAMPLE_MONTHLY_SUMMARIES[monthId_];

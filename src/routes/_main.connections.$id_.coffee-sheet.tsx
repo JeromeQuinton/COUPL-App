@@ -14,7 +14,7 @@ const TILES: { id: string; label: string; note: string; Icon: typeof Coffee }[] 
 ];
 
 function CoffeeSheetScreen() {
-  const { id_ } = useParams({ from: "/_main/connections/$id_/coffee-sheet" });
+  const { id } = useParams({ from: "/_main/connections/$id_/coffee-sheet" });
 
   return (
     <div className="relative min-h-[100dvh] bg-paper">

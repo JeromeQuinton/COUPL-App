@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_main/connections/$id_/values-overlap")({
 const isMember = true;
 
 function ValuesOverlapScreen() {
-  const { id_ } = useParams({
+  const { id } = useParams({
     from: "/_main/connections/$id_/values-overlap",
   });
   const alignment = SAMPLE_VALUES_ALIGNMENT[id_] ?? SAMPLE_VALUES_ALIGNMENT.ava;

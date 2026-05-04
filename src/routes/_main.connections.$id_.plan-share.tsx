@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_main/connections/$id_/plan-share")({
 });
 
 function PlanShareScreen() {
-  const { id_ } = useParams({ from: "/_main/connections/$id_/plan-share" });
+  const { id } = useParams({ from: "/_main/connections/$id_/plan-share" });
   const [copied, setCopied] = useState(false);
 
   const planLink = `https://coupl.app/p/${id_}/plan`;
