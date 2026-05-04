@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "check-vocab": "node scripts/check-vocab.mjs",
-    "prebuild": "node scripts/check-vocab.mjs"
+    "gen-dev-routes": "node scripts/gen-dev-routes.mjs",
+    "prebuild": "node scripts/gen-dev-routes.mjs && node scripts/check-vocab.mjs"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
