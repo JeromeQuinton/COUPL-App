@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TrendingUp, Minus, Moon } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { HubScreenHeader } from "@/components/shell/HubScreenHeader";
 import {
   RING_CONNECTIONS,
   TIMELINE_CARDS,
@@ -63,9 +64,7 @@ function ConnectionsListScreen() {
           }}
         >
           <header className="text-center">
-            <h1 className="font-display text-[26px] font-semibold text-ink">
-              Connections
-            </h1>
+            <HubScreenHeader title="Connections" />
             <p className="mt-1.5 font-body text-[13px] text-slate">
               recent connections + conversations
             </p>
@@ -106,9 +105,7 @@ function ConnectionsListScreen() {
       >
         {/* Header */}
         <header className="text-center">
-          <h1 className="font-display text-[26px] font-semibold text-ink">
-            Connections
-          </h1>
+          <HubScreenHeader title="Connections" />
           <p className="mt-1.5 font-body text-[13px] text-slate">
             recent connections + conversations
           </p>
