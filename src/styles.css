@@ -130,6 +130,24 @@
   --danger: #B8312F;
   --info: #2F6FB8;
 
+  /* Photo legibility overlays — opacity-graded black for gradient
+   * and textShadow legibility on photo surfaces. Not for shadow
+   * elevation (use --elevation-* for that). */
+  --photo-overlay-soft: rgba(0, 0, 0, 0.30);
+  --photo-overlay-light: rgba(0, 0, 0, 0.45);
+  --photo-overlay-medium: rgba(0, 0, 0, 0.55);
+  --photo-overlay-strong: rgba(0, 0, 0, 0.70);
+
+  /* Fixture swatch palette — placeholder pastels for fixture
+   * surfaces (attuned-with-me list cards and similar). Not
+   * brand-semantic; vibe-named to match the visual character. */
+  --swatch-rose-100: #E8C8D6;
+  --swatch-blue-100: #C8D6E8;
+  --swatch-sage-100: #D6E8C8;
+  --swatch-peach-100: #E8D6C8;
+  --swatch-lilac-100: #D6C8E8;
+  --swatch-mint-100: #C8E8D6;
+
   /* COUPL master ambient gradient (DR-040 / brand cohesion).
    * Single source of truth for all top-level tab backdrops:
    * Home, Discover, Growth, Connections, Profile. Soft lavender mist →
