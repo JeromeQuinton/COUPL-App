@@ -55,7 +55,7 @@ export function BlockConfirmModal({ open, mode, userName, onConfirm, onCancel }:
         <p className="mt-3 font-body text-[14px] leading-relaxed text-ink">
           {isBlock
             ? "They can't message you. You can't see them. We don't tell them."
-            : "They'll be able to find you again. We won't tell them you unblocked."}
+            : `If you unblock ${userName}, they may be able to find or contact you again. They will not be told you've unblocked them. You can block them again at any time.`}
         </p>
 
         <div className="mt-6 space-y-3">
