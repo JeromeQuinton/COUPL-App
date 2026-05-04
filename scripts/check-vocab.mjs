@@ -3,37 +3,59 @@
  * Persona-discipline guard.
  *
  * Polaris is the only AI persona in COUPL. Liora is a retired name and
- * must never appear in source. This script greps src/ for the banned
+ * must never appear in source. This script scans src/ for the banned
  * pattern and exits non-zero if any matches are found, so it can be
  * wired as a prebuild hook and fail CI before the build runs.
+ *
+ * Cross-platform: pure Node fs walk + regex (no shell dependency, no
+ * grep). Brief 6 #7 — replaces the prior `execSync('grep ...', { shell:
+ * '/bin/bash' })` implementation that crashed with ENOENT on Windows.
  *
  * Run manually: `node scripts/check-vocab.mjs`
  */
 
-import { execSync } from "node:child_process";
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { join, extname } from "node:path";
 
 const BANNED = [
   {
-    pattern: "\\bLiora\\b",
+    pattern: /\bLiora\b/,
     label: "Liora (retired persona — use Polaris)",
   },
 ];
 
 const TARGET = "src";
-const INCLUDES = ["*.tsx", "*.ts"];
+const EXTENSIONS = new Set([".ts", ".tsx"]);
+
+function* walk(dir) {
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    const stat = statSync(full);
+    if (stat.isDirectory()) {
+      yield* walk(full);
+    } else if (EXTENSIONS.has(extname(entry))) {
+      yield full;
+    }
+  }
+}
 
 let failed = 0;
 
 for (const { pattern, label } of BANNED) {
-  const includeArgs = INCLUDES.map((p) => `--include="${p}"`).join(" ");
-  // Exit 1 from grep means "no matches" — coerce with `|| true`.
-  const cmd = `grep -rniE ${includeArgs} "${pattern}" ${TARGET} || true`;
-  const out = execSync(cmd, { encoding: "utf8", shell: "/bin/bash" }).trim();
-
-  if (out) {
+  const hits = [];
+  for (const file of walk(TARGET)) {
+    const text = readFileSync(file, "utf8");
+    const lines = text.split(/\r?\n/);
+    lines.forEach((line, i) => {
+      if (pattern.test(line)) {
+        hits.push(`${file}:${i + 1}:${line.trim()}`);
+      }
+    });
+  }
+  if (hits.length > 0) {
     failed++;
     console.error(`\n❌ Persona violation: ${label}`);
-    console.error(out);
+    for (const hit of hits) console.error(hit);
   }
 }
 
