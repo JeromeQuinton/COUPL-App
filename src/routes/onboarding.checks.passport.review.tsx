@@ -1,16 +1,18 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { FileText } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { RedactionPreview } from "@/components/verification/RedactionPreview";
+import {
+  REDACTED_FIELDS,
+  RETENTION_COPY_PLACEHOLDER,
+} from "@/data/verification_sample";
 
 /**
- * /onboarding/checks/passport/review — review captured passport image.
+ * /onboarding/checks/passport/review — review captured passport image
+ * with R3-34 highlighted-fields overlay + fields-shared/blurred summary.
  *
- * Lands here after the passport scan step. Plain factual prose — no
- * "secure", no "for your protection". Phase 1 stub uses placeholder
- * preview; Phase 4 reads the captured image from session state.
- *
- * Stream 26 SCREEN-R2-31.
+ * Per DR-097, retention copy is held to a placeholder until vendor
+ * integration architecture is signed off.
  */
 export const Route = createFileRoute("/onboarding/checks/passport/review")({
   head: () => ({
@@ -21,6 +23,7 @@ export const Route = createFileRoute("/onboarding/checks/passport/review")({
 
 function PassportReviewScreen() {
   const navigate = useNavigate();
+  const fields = REDACTED_FIELDS.passport;
 
   return (
     <OnboardingFrame backTo="/onboarding/checks/passport/scan">
@@ -31,30 +34,22 @@ function PassportReviewScreen() {
         </h1>
       </div>
 
-      <div className="mt-8 grid place-items-center">
-        <div
-          aria-hidden
-          className="aspect-[3/2] w-full rounded-[18px] border border-line bg-paper grid place-items-center"
-          style={{
-            background:
-              "linear-gradient(150deg, color-mix(in oklab, var(--blush) 35%, var(--paper)) 0%, color-mix(in oklab, var(--blush) 12%, var(--paper)) 100%)",
-          }}
-        >
-          <div className="flex flex-col items-center gap-2 text-stone">
-            <FileText size={32} strokeWidth={1.5} />
-            <p className="text-label-mono">Captured image preview</p>
-          </div>
-        </div>
+      <div className="mt-7">
+        <RedactionPreview fields={fields} />
       </div>
 
-      <div className="mt-6">
-        <p className="font-body text-[14px] leading-relaxed text-ink">
-          Edges visible. Photo clear. Both sides if applicable. We use
-          this once and don't store it.
-        </p>
-      </div>
+      <p className="mt-5 font-body text-[13px] italic leading-relaxed text-stone">
+        {RETENTION_COPY_PLACEHOLDER}
+      </p>
 
-      <div className="mt-10 space-y-3">
+      <Link
+        to="/onboarding/checks/redaction-review"
+        className="mt-3 inline-flex text-label-mono text-plum-700 hover:text-plum-500"
+      >
+        Adjust what's shared →
+      </Link>
+
+      <div className="mt-8 space-y-3">
         <OnboardingButton
           type="button"
           variant="primary"
