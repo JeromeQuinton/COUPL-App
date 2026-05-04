@@ -35,8 +35,8 @@ function ModerationScreen() {
       <section className="px-5">
         <article className="rounded-[18px] bg-paper p-5 shadow-elev-1 space-y-3">
           <p className="font-body text-[14px] leading-relaxed text-ink">
-            A human moderator reviews every report within 24 hours. Most are
-            resolved inside 72. We don't auto-action — a person reads context
+            A human moderator reads every report. We aim to review reports
+            within a few days. We don't auto-action — a person reads context
             before deciding.
           </p>
           <p className="font-body text-[14px] leading-relaxed text-ink">
