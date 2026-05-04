@@ -1,16 +1,10 @@
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
-import { X } from "lucide-react";
+import { X, MoreHorizontal } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
 
 export const Route = createFileRoute("/_main/connections/$id_/coach-insight")({
   head: () => ({
-    meta: [
-      { title: "A pattern noticed — COUPL" },
-      {
-        name: "description",
-        content: "A reflective note from your coach. Private to you.",
-      },
-    ],
+    meta: [{ title: "A note from Polaris — COUPL" }],
   }),
   component: CoachInsightScreen,
 });
@@ -29,7 +23,15 @@ function CoachInsightScreen() {
           paddingBottom: "calc(env(safe-area-inset-bottom) + 2rem)",
         }}
       >
-        <header className="flex items-center justify-end py-2">
+        <header className="flex items-center justify-between py-2">
+          <Link
+            to="/connections/$id/coach-insight/feedback"
+            params={{ id }}
+            aria-label="Insight options"
+            className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
+          >
+            <MoreHorizontal className="h-5 w-5" />
+          </Link>
           <Link
             to="/connections/$id"
             params={{ id }}
@@ -41,51 +43,38 @@ function CoachInsightScreen() {
         </header>
 
         <div className="mt-6">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-500">
-            Coach · noticed
+          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
+            Polaris · insight
           </p>
-          <h1 className="mt-3 font-display text-[26px] leading-[1.15] text-ink">
-            You're doing more emotional labour here.
+          <h1 className="mt-3 font-display text-[28px] leading-[1.15] text-ink">
+            A note from Polaris.
           </h1>
-
-          <div className="mt-8 space-y-6">
-            <section>
-              <p className="text-mono-sm uppercase tracking-[0.14em] text-slate">
-                Observation
-              </p>
-              <p className="mt-2 font-body text-[14.5px] leading-relaxed text-ink">
-                Their replies are warm, but you're consistently carrying
-                momentum, depth, and repair across this thread.
-              </p>
-            </section>
-
-            <section>
-              <p className="text-mono-sm uppercase tracking-[0.14em] text-slate">
-                What to sit with
-              </p>
-              <p className="mt-2 font-body text-[14.5px] leading-relaxed text-ink">
-                That may be fine. It may also be worth noticing whether you
-                tend to do this in connections that matter to you.
-              </p>
-            </section>
-
-            <section>
-              <p className="text-mono-sm uppercase tracking-[0.14em] text-slate">
-                A small try
-              </p>
-              <p className="mt-2 font-body text-[14.5px] leading-relaxed text-ink">
-                Send your next message a beat later than you'd usually
-                choose. See what arrives back.
-              </p>
-            </section>
-          </div>
-
-          <p className="mt-8 font-body text-[13px] italic text-stone">
-            Coach reflects your patterns, not theirs. No-one else sees this.
-          </p>
         </div>
 
-        <div className="mt-auto space-y-3 pt-10">
+        <article className="mt-7">
+          <p className="font-body text-[15px] leading-relaxed text-ink">
+            You're carrying most of the warmth in this thread. Their replies
+            are kind but rarely the first move — questions, repair, the
+            invitation to go deeper, all from your side. That can feel
+            generous and it can also feel uneven, depending on the day.
+            Worth holding both.
+          </p>
+        </article>
+
+        <article className="mt-7 rounded-[14px] border border-line bg-paper px-4 py-3">
+          <p className="text-[10.5px] font-medium uppercase tracking-[0.18em] text-stone">
+            Anchored to · Wed 16:32
+          </p>
+          <p className="mt-2 font-body text-[13.5px] italic leading-relaxed text-slate">
+            "Tell me about your week — properly, not the short version."
+          </p>
+        </article>
+
+        <p className="mt-8 font-body text-[12.5px] italic text-stone">
+          Polaris reflects your patterns, not theirs. No-one else sees this.
+        </p>
+
+        <div className="mt-auto pt-10">
           <button
             type="button"
             onClick={() =>
@@ -93,16 +82,7 @@ function CoachInsightScreen() {
             }
             className="w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
           >
-            Sit with this
-          </button>
-          <button
-            type="button"
-            onClick={() =>
-              navigate({ to: "/connections/$id", params: { id } })
-            }
-            className="w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
-          >
-            Not now
+            Back to chat
           </button>
         </div>
       </div>
