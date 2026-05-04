@@ -670,6 +670,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/account/delete/confirm"
       },
       {
+        "label": "Scheduled",
+        "to": "/profile/account/delete/scheduled"
+      },
+      {
         "label": "Email",
         "to": "/profile/account/email"
       },

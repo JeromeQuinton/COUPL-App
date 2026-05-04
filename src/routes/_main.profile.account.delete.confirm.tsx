@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 
 /**
- * /profile/account/delete/confirm — final type-to-confirm gate.
+ * /profile/account/delete/confirm — type-to-confirm gate.
  *
  * Two-step deletion: parent (/delete) lays out consequences, this screen
- * is the irreversible last check. Type-to-confirm via username/email,
- * destructive primary CTA, neutral secondary cancel. No retention play.
- *
- * Stream 26 SCREEN-R2-24.
+ * gates the schedule. On confirm, navigates to /delete/scheduled (R3-05)
+ * which surfaces the 30-day grace state and the cancel path. No inline
+ * "submitted" state any more — the scheduled screen is the new terminus.
  */
 export const Route = createFileRoute("/_main/profile/account/delete/confirm")({
   head: () => ({ meta: [{ title: "Last check before deletion — COUPL" }] }),
@@ -21,33 +20,9 @@ export const Route = createFileRoute("/_main/profile/account/delete/confirm")({
 const REQUIRED = "jerome.quinton";
 
 function DeleteConfirmScreen() {
+  const navigate = useNavigate();
   const [text, setText] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const ready = text.trim().toLowerCase() === REQUIRED;
-
-  if (submitted) {
-    return (
-      <YouBackdrop tone="serious">
-        <StatusBar />
-        <div className="px-5 pt-12 text-center">
-          <p className="text-label-mono">Done</p>
-          <h1 className="mt-3 font-display text-[26px] italic leading-tight text-ink">
-            Your account is being closed.
-          </h1>
-          <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
-            You can sign in for the next 30 days to undo this. After that,
-            it's gone.
-          </p>
-          <Link
-            to="/"
-            className="mt-8 inline-flex rounded-full border border-line bg-paper px-6 py-3 font-body text-[14px] text-ink hover:bg-lavender-50"
-          >
-            Sign out
-          </Link>
-        </div>
-      </YouBackdrop>
-    );
-  }
 
   return (
     <YouBackdrop tone="serious">
@@ -96,7 +71,7 @@ function DeleteConfirmScreen() {
         <button
           type="button"
           disabled={!ready}
-          onClick={() => setSubmitted(true)}
+          onClick={() => navigate({ to: "/profile/account/delete/scheduled" })}
           className="w-full rounded-full bg-danger px-5 py-3.5 font-display text-[15px] font-medium text-paper disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Delete my account
