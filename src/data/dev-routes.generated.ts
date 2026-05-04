@@ -186,6 +186,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         }
       },
       {
+        "label": "Coffee sheet",
+        "to": "/connections/$id/coffee-sheet",
+        "params": {
+          "id": "ava"
+        }
+      },
+      {
         "label": "Connected",
         "to": "/connections/$id/connected",
         "params": {
@@ -349,6 +356,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
       {
         "label": "Plan quiz",
         "to": "/connections/$id/plan-quiz",
+        "params": {
+          "id": "ava"
+        }
+      },
+      {
+        "label": "Plan share",
+        "to": "/connections/$id/plan-share",
         "params": {
           "id": "ava"
         }
