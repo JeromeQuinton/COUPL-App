@@ -1,10 +1,10 @@
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
-import { X, AlertCircle } from "lucide-react";
+import { X } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
 
 export const Route = createFileRoute("/_main/connections/$id_/red-flag")({
   head: () => ({
-    meta: [{ title: "A quiet check — COUPL" }],
+    meta: [{ title: "Something to read carefully — COUPL" }],
   }),
   component: RedFlagScreen,
 });
@@ -14,7 +14,7 @@ function RedFlagScreen() {
   const navigate = useNavigate();
 
   return (
-    <PageBackdrop tone="deep">
+    <PageBackdrop>
       <div
         className="mx-auto flex w-full max-w-[480px] flex-col px-6"
         style={{
@@ -35,48 +35,40 @@ function RedFlagScreen() {
         </header>
 
         <div className="mt-6">
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-4 w-4 text-plum-700" aria-hidden />
-            <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-              Caution · pattern noticed
-            </p>
-          </div>
+          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
+            Noticing · pause
+          </p>
           <h1 className="mt-3 font-display text-[26px] leading-[1.15] text-ink">
-            Your nervous system may already know.
+            Something to read carefully.
           </h1>
-          <p className="mt-3 font-body text-[14.5px] leading-relaxed text-slate">
-            Inconsistency, pressure, or boundary-testing has shown up more
-            than once in this thread.
-          </p>
-
-          <div className="mt-8 space-y-6">
-            <section>
-              <p className="text-mono-sm uppercase tracking-[0.14em] text-slate">
-                What we noticed
-              </p>
-              <p className="mt-2 font-body text-[14.5px] leading-relaxed text-ink">
-                Three messages in two minutes after a longer silence on
-                their end. Then a hedging line. Then a push to meet sooner
-                than agreed.
-              </p>
-            </section>
-            <section>
-              <p className="text-mono-sm uppercase tracking-[0.14em] text-slate">
-                Worth noticing
-              </p>
-              <p className="mt-2 font-body text-[14.5px] leading-relaxed text-ink">
-                Certain dynamics feel intense precisely because they're
-                dysregulating. You don't owe speed to uncertainty.
-              </p>
-            </section>
-          </div>
-
-          <p className="mt-8 font-body text-[13px] italic text-stone">
-            Your call. We'll never close a thread for you.
-          </p>
         </div>
 
-        <div className="mt-auto space-y-3 pt-10">
+        <article
+          className="mt-7 rounded-[18px] border border-plum-300/25 px-5 py-5"
+          style={{
+            background:
+              "linear-gradient(150deg, color-mix(in oklab, var(--blush) 70%, var(--paper)) 0%, color-mix(in oklab, var(--blush) 35%, var(--paper)) 100%)",
+          }}
+        >
+          <p className="font-body text-[14.5px] italic leading-relaxed text-ink">
+            A pattern has shown up here more than once: messages timed to
+            keep you on the back foot, then a softening, then a pull to
+            agree faster than feels right. Polaris is not making a call on
+            who they are. Just naming what the thread looks like, so you
+            can choose with both eyes open.
+          </p>
+        </article>
+
+        <div className="mt-8 space-y-3">
+          <button
+            type="button"
+            onClick={() =>
+              navigate({ to: "/connections/$id", params: { id } })
+            }
+            className="w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
+          >
+            Take a beat before replying
+          </button>
           <button
             type="button"
             onClick={() =>
@@ -85,19 +77,29 @@ function RedFlagScreen() {
                 params: { id },
               })
             }
-            className="w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
+            className="w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[14px] text-ink hover:bg-lavender-50"
           >
-            Slow this down
+            Pause this thread for a day
           </button>
           <button
             type="button"
             onClick={() =>
               navigate({ to: "/connections/$id", params: { id } })
             }
-            className="w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[13.5px] text-ink hover:bg-lavender-50"
+            className="w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
           >
-            Continue thread
+            Continue with care
           </button>
+        </div>
+
+        <div className="mt-auto pt-10">
+          <Link
+            to="/connections/$id/safety-share"
+            params={{ id }}
+            className="block text-center font-body text-[12.5px] text-plum-700 hover:underline"
+          >
+            Set up safety share →
+          </Link>
         </div>
       </div>
     </PageBackdrop>
