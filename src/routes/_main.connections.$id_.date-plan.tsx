@@ -143,6 +143,14 @@ function DatePlanScreen() {
               Meeting somewhere public is the simplest safety. Trust your nervous system; it usually knows first.
             </span>
           </p>
+
+          <Link
+            to="/connections/$id/before-meeting"
+            params={{ id }}
+            className="mt-4 inline-flex items-center gap-1 font-body text-[13px] font-medium text-plum-700 hover:underline"
+          >
+            Read a short note before you go →
+          </Link>
         </div>
 
         <div className="mt-8 space-y-3">
