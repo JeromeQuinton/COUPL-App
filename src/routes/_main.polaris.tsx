@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeft, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 export const Route = createFileRoute("/_main/polaris")({
   head: () => ({ meta: [{ title: "Polaris — COUPL" }] }),
@@ -99,6 +99,28 @@ function PolarisScreen() {
         <AttunementCard lenses={ATTUNEMENT} />
         <CapacityCard current={CAPACITY.current} typical={CAPACITY.typical} />
         <RepairCard line={REPAIR_LINE} />
+      </section>
+
+      <section className="mt-8">
+        <p className="font-body text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate">
+          Self
+        </p>
+        <ul className="mt-3 flex flex-col gap-2">
+          <li>
+            <Link
+              to="/polaris/love-language"
+              className="flex items-center justify-between rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
+            >
+              <div className="min-w-0 flex-1 pr-3">
+                <p className="font-display text-[14.5px] text-ink">Love language</p>
+                <p className="mt-0.5 font-body text-[12.5px] text-stone">
+                  How you feel cared for.
+                </p>
+              </div>
+              <ChevronRight size={18} className="shrink-0 text-stone" />
+            </Link>
+          </li>
+        </ul>
       </section>
 
       <div className="mt-8 text-center">
