@@ -157,6 +157,15 @@ function WorkshopDetailPage() {
             JOIN VIDEO SESSION →
           </Link>
         </div>
+        <div className="mt-3 flex justify-end">
+          <Link
+            to="/growth/$id_/waitlist"
+            params={{ id: w.id }}
+            className="font-body text-[12.5px] italic text-stone hover:text-plum-500"
+          >
+            If this fills, join the waitlist →
+          </Link>
+        </div>
       </div>
     </GrowthBackdrop>
   );
