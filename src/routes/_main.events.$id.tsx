@@ -86,6 +86,13 @@ function EventDetailPage() {
               <p className="mt-2 text-[13px] leading-snug text-ink/80">
                 {e.hostBio}
               </p>
+              <Link
+                to="/connections/$id/organiser"
+                params={{ id: e.id }}
+                className="mt-3 inline-flex items-center gap-1 font-body text-[12.5px] text-plum-700 hover:underline"
+              >
+                Chat with {e.host} →
+              </Link>
             </div>
           </div>
         </article>
