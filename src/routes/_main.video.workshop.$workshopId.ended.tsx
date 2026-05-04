@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_main/video/workshop/$workshopId/ended")({
   head: () => ({ meta: [{ title: "After the session — COUPL" }] }),
@@ -8,6 +8,7 @@ export const Route = createFileRoute("/_main/video/workshop/$workshopId/ended")(
 
 function WorkshopEnded() {
   const navigate = useNavigate();
+  const { workshopId } = useParams({ from: "/_main/video/workshop/$workshopId/ended" });
   const [text, setText] = useState("");
 
   return (
@@ -47,6 +48,13 @@ function WorkshopEnded() {
           >
             Skip — I'll come back to this
           </button>
+          <Link
+            to="/video/workshop/$workshopId/feedback"
+            params={{ workshopId }}
+            className="block w-full px-5 py-2 text-center font-body text-[13px] italic text-stone hover:text-plum-500"
+          >
+            Want to take more time? Reflect on this →
+          </Link>
         </div>
       </div>
     </div>
