@@ -85,8 +85,8 @@ function SessionsScreen() {
               </div>
               {!s.current && (
                 <Link
-                  to="/profile/account/sessions/$sessionId_/revoke"
-                  params={{ sessionId_: s.id }}
+                  to="/profile/account/sessions/$sessionId/revoke"
+                  params={{ sessionId: s.id }}
                   className="self-center rounded-full border border-line bg-paper px-3 py-1.5 font-body text-[12px] text-ink hover:bg-lavender-50"
                 >
                   Sign out

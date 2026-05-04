@@ -13,10 +13,10 @@ export const Route = createFileRoute(
 });
 
 function ArchivedSummaryScreen() {
-  const { monthId_ } = useParams({
+  const { monthId } = useParams({
     from: "/_main/polaris/monthly-summary/$monthId_",
   });
-  const summary = SAMPLE_MONTHLY_SUMMARIES[monthId_];
+  const summary = SAMPLE_MONTHLY_SUMMARIES[monthId];
   const [compareOpen, setCompareOpen] = useState(false);
 
   if (!summary) {
@@ -43,7 +43,7 @@ function ArchivedSummaryScreen() {
     );
   }
 
-  const prevId = monthId_ === "2026-03" ? "2026-02" : null;
+  const prevId = monthId === "2026-03" ? "2026-02" : null;
   const prev = prevId ? SAMPLE_MONTHLY_SUMMARIES[prevId] : null;
 
   return (

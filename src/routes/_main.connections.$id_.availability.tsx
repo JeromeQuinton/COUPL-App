@@ -15,7 +15,7 @@ const QUICK_SLOTS = [
 ];
 
 function AvailabilityScreen() {
-  const { id_ } = useParams({ from: "/_main/connections/$id_/availability" });
+  const { id } = useParams({ from: "/_main/connections/$id_/availability" });
   const navigate = useNavigate();
   const [picked, setPicked] = useState<Set<string>>(new Set());
   const [customDateTime, setCustomDateTime] = useState("");
@@ -48,7 +48,7 @@ function AvailabilityScreen() {
       <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-plum-300/15 bg-paper/85 px-4 py-3 backdrop-blur-md">
         <Link
           to="/connections/$id"
-          params={{ id: id_ }}
+          params={{ id: id }}
           aria-label="Back"
           className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
         >
@@ -135,7 +135,7 @@ function AvailabilityScreen() {
         <button
           type="button"
           disabled={!canSend}
-          onClick={() => navigate({ to: "/connections/$id", params: { id: id_ } })}
+          onClick={() => navigate({ to: "/connections/$id", params: { id: id } })}
           className="mt-8 w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Send to them
