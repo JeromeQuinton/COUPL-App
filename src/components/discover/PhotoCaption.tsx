@@ -42,12 +42,12 @@ export function PhotoCaption({
         aria-label={ariaLabel}
         className="relative overflow-hidden"
         style={{
-          color: "#FFFFFF",
+          color: "var(--paper)",
           fontSize: "15px",
           fontWeight: 600,
           lineHeight: 1.3,
           padding: "0 56px 16px 16px",
-          textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+          textShadow: "0 1px 2px var(--photo-overlay-soft)",
           display: "-webkit-box",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",

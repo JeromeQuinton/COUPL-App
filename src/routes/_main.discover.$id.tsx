@@ -199,7 +199,7 @@ function ProfileDetailScreen() {
         minHeight: "100dvh",
         paddingBottom: "calc(env(safe-area-inset-bottom) + 120px)",
         background:
-          "linear-gradient(180deg, #FCEEF0 0%, #F6E7F2 35%, #EFE2F4 100%)",
+          "var(--gradient-ambient)",
       }}
     >
       <ProfileDetailHeader
