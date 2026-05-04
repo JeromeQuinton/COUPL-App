@@ -144,6 +144,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         }
       },
       {
+        "label": "Availability",
+        "to": "/connections/$id/availability",
+        "params": {
+          "id": "ava"
+        }
+      },
+      {
         "label": "Before meeting",
         "to": "/connections/$id/before-meeting",
         "params": {
@@ -167,6 +174,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
       {
         "label": "Clean ending",
         "to": "/connections/$id/clean-ending",
+        "params": {
+          "id": "ava"
+        }
+      },
+      {
+        "label": "Coach history",
+        "to": "/connections/$id/coach-history",
         "params": {
           "id": "ava"
         }
