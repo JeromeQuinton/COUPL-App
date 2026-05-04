@@ -16,11 +16,13 @@ export const Route = createFileRoute("/_main/growth/monthly-summary")({
   component: MonthlySummaryScreen,
 });
 
-const STATS = [
-  { label: "Reflections", value: "18", sub: "of 30 days" },
-  { label: "Workshops", value: "3", sub: "completed" },
-  { label: "Connections", value: "2", sub: "active" },
-  { label: "Endings", value: "1", sub: "kind" },
+// R4 Stream 1.9: STATS grid removed (DR-103). Charter-aligned descriptive
+// pattern grid replaces it inline. Stream 4 will migrate this route to
+// /polaris/monthly-summary; the STATS grid stays out either way.
+const PATTERN_GRID = [
+  { label: "Most common signal", phrase: "Repair, offered without delay" },
+  { label: "Pace this month", phrase: "Steadier than March" },
+  { label: "Repair moments noticed", phrase: "Three, all on the same day" },
 ];
 
 function MonthlySummaryScreen() {
@@ -52,18 +54,17 @@ function MonthlySummaryScreen() {
       </header>
 
       <section className="px-5">
-        <ul className="grid grid-cols-2 gap-3">
-          {STATS.map((s) => (
+        <ul className="grid grid-cols-3 gap-2">
+          {PATTERN_GRID.map((t) => (
             <li
-              key={s.label}
-              className="rounded-[16px] bg-paper p-4 shadow-elev-1"
+              key={t.label}
+              className="rounded-[14px] border border-line bg-paper px-3 py-3"
             >
-              <p className="text-label-mono">{s.label}</p>
-              <p className="mt-2 font-display text-[28px] leading-none text-ink">
-                {s.value}
+              <p className="font-body text-[10.5px] uppercase tracking-[0.12em] text-stone">
+                {t.label}
               </p>
-              <p className="mt-1 font-body text-[11.5px] text-stone">
-                {s.sub}
+              <p className="mt-2 font-display text-[12.5px] leading-snug text-ink">
+                {t.phrase}
               </p>
             </li>
           ))}

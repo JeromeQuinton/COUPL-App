@@ -306,9 +306,9 @@ export function MoreFiltersSheet({ open, onOpenChange, tier, onUpgrade }: Props)
           </div>
         </Section>
 
-        <Section title="Depth Unlocks required" paid isFree={isFree}>
+        <Section title="Depth filters and Modes" paid isFree={isFree}>
           <PaidPlaceholderRow
-            label="Only show people with reciprocal Depth Unlocks"
+            label="Members see this as part of a deeper view."
             disabled={isFree}
           />
         </Section>
@@ -349,7 +349,7 @@ export function MoreFiltersSheet({ open, onOpenChange, tier, onUpgrade }: Props)
               onClick={onUpgrade}
               className="mt-2 w-full rounded-full border border-plum-300 bg-lavender-50 px-5 py-2 font-body text-[12.5px] font-medium text-plum-700 hover:bg-lavender-100"
             >
-              Unlock depth filters and Modes
+              See membership options
             </button>
           )}
         </div>

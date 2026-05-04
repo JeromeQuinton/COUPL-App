@@ -93,9 +93,8 @@ function DiscoverScreen() {
       setUpgradeOpen(true);
       return;
     }
-    // Paid tier — Phase 4 picker. Stub no-op.
-    // eslint-disable-next-line no-console
-    console.log(`open picker for: ${f}`);
+    // Paid tier — Phase 4 picker (DR-AUTH-METHOD / Master-Tasks Phase 4).
+    // No-op stub until the picker ships.
   };
 
   const handleUpgrade = () => {
@@ -204,7 +203,7 @@ function DiscoverScreen() {
             <SheetTitle className="font-display text-[20px] font-semibold text-ink">
               {lockedTapped
                 ? `Editing ${lockedTapped} is part of paid`
-                : "Unlock deeper alignment"}
+                : "See deeper alignment as a member"}
             </SheetTitle>
             <SheetDescription className="font-body text-[13px] text-slate">
               Paid tier lets you adjust Intent and Distance, combine filters, see up
