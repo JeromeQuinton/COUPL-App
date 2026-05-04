@@ -666,6 +666,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/account/delete"
       },
       {
+        "label": "Cancel",
+        "to": "/profile/account/delete/cancel"
+      },
+      {
         "label": "Confirm",
         "to": "/profile/account/delete/confirm"
       },
