@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 import { getArticle, getRelated } from "@/data/help_articles_sample";
 
 export const Route = createFileRoute("/_main/profile/help/$topicId")({
@@ -53,20 +54,13 @@ function HelpArticleBody({
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/profile/help"
-          aria-label="Back"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Help</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-        {article!.title}
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/profile/help" }}
+        eyebrow="Help"
+        title={article!.title}
+        titleSize="26"
+        titleWeight="normal"
+      />
       <p className="mt-1 font-body text-[11.5px] text-stone">
         Last updated {fmtDate(article!.lastUpdated)}
       </p>

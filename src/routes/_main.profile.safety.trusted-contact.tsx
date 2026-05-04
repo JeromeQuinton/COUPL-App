@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 import {
   addContact,
   listContacts,
@@ -72,20 +73,11 @@ function TrustedContactScreen() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/profile/safety"
-          aria-label="Back"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Safety</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[24px] font-semibold leading-tight text-ink">
-        Trusted contact
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/profile/safety" }}
+        eyebrow="Safety"
+        title="Trusted contact"
+      />
       <p className="mt-2 font-body text-[13px] leading-relaxed text-slate">
         Up to two people who get a single ping when you start a safety share.
         That's it.

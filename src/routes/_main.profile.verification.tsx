@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronDown } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 
 export const Route = createFileRoute("/_main/profile/verification")({
   head: () => ({ meta: [{ title: "Verification — COUPL" }] }),
@@ -73,20 +74,11 @@ function VerificationScreen() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/profile/safety"
-          aria-label="Back"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Safety</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[24px] font-semibold leading-tight text-ink">
-        Verification
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/profile/safety" }}
+        eyebrow="Safety"
+        title="Verification"
+      />
       <section className="mt-4 rounded-[16px] bg-paper p-4 shadow-elev-1">
         <p className="font-body text-[13px] leading-relaxed text-slate">
           Quiet credibility. Other people see what we've checked, not the
