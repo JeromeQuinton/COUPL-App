@@ -11,7 +11,7 @@ function PlanShareScreen() {
   const { id } = useParams({ from: "/_main/connections/$id_/plan-share" });
   const [copied, setCopied] = useState(false);
 
-  const planLink = `https://coupl.app/p/${id_}/plan`;
+  const planLink = `https://coupl.app/p/${id}/plan`;
 
   const onCopy = async () => {
     try {
@@ -28,7 +28,7 @@ function PlanShareScreen() {
       <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-plum-300/15 bg-paper/85 px-4 py-3 backdrop-blur-md">
         <Link
           to="/connections/$id/date-plan"
-          params={{ id: id_ }}
+          params={{ id: id }}
           aria-label="Back"
           className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
         >

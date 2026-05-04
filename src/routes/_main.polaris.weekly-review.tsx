@@ -90,7 +90,7 @@ function WeeklyReviewScreen() {
           <div className="px-5 pt-8 pb-12">
             <Link
               to="/polaris/weekly-review/$weekId_"
-              params={{ weekId_: "2026-w17" }}
+              params={{ weekId: "2026-w17" }}
               className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
             >
               Past weeks

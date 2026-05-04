@@ -127,7 +127,7 @@ function SafetyReportPage() {
       <section className="px-5 pt-5">
         <Link
           to="/profile/safety/report/$reportId_/evidence"
-          params={{ reportId_: "draft" }}
+          params={{ reportId: "draft" }}
           className="block rounded-[14px] border border-dashed border-line bg-paper px-4 py-3.5 hover:bg-lavender-50"
         >
           <p className="font-display text-[14px] text-ink">Attach evidence (optional)</p>

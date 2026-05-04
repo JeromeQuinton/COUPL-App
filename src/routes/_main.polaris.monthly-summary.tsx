@@ -101,7 +101,7 @@ function MonthlySummaryScreen() {
           <div className="px-5 pt-8 pb-12">
             <Link
               to="/polaris/monthly-summary/$monthId_"
-              params={{ monthId_: "2026-03" }}
+              params={{ monthId: "2026-03" }}
               className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
             >
               Past summaries

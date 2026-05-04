@@ -14,7 +14,7 @@ function CaseDetailScreen() {
   const { caseId } = useParams({
     from: "/_main/profile/safety/cases/$caseId_",
   });
-  const detail = SAMPLE_CASE_DETAILS[caseId_];
+  const detail = SAMPLE_CASE_DETAILS[caseId];
 
   if (!detail) {
     return (
@@ -88,7 +88,7 @@ function CaseDetailScreen() {
         {detail.status === "reviewing" && (
           <Link
             to="/profile/safety/report/$reportId_/evidence"
-            params={{ reportId_: detail.id }}
+            params={{ reportId: detail.id }}
             className="block w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[13.5px] text-ink hover:bg-lavender-50"
           >
             Add more evidence

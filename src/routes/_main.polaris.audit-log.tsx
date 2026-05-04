@@ -108,7 +108,7 @@ function AuditLogScreen() {
               <li key={e.id}>
                 <Link
                   to="/polaris/audit-log/$entryId_"
-                  params={{ entryId_: e.id }}
+                  params={{ entryId: e.id }}
                   className="flex items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
                 >
                   <div className="min-w-0 flex-1">
