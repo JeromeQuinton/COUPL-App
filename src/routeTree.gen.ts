@@ -95,7 +95,6 @@ import { Route as MainDiscoverIdRouteImport } from './routes/_main.discover.$id'
 import { Route as MainDatePlansIdRouteImport } from './routes/_main.date-plans.$id'
 import { Route as MainConnectionsIdRouteImport } from './routes/_main.connections.$id'
 import { Route as MainMembershipSubscriptionIndexRouteImport } from './routes/_main.membership.subscription.index'
-import { Route as MainVideoCoachBookingRouteImport } from './routes/_main.video.coach.booking'
 import { Route as MainProfileSafetyTrustedContactRouteImport } from './routes/_main.profile.safety.trusted-contact'
 import { Route as MainProfileSafetyReportsRouteImport } from './routes/_main.profile.safety.reports'
 import { Route as MainProfileSafetyReportRouteImport } from './routes/_main.profile.safety.report'
@@ -152,9 +151,6 @@ import { Route as MainVideoWorkshopWorkshopIdEndedRouteImport } from './routes/_
 import { Route as MainVideoPreMeetConnectionIdIncomingRouteImport } from './routes/_main.video.pre-meet.$connectionId.incoming'
 import { Route as MainVideoPreMeetConnectionIdEndedRouteImport } from './routes/_main.video.pre-meet.$connectionId.ended'
 import { Route as MainVideoPreMeetConnectionIdActiveRouteImport } from './routes/_main.video.pre-meet.$connectionId.active'
-import { Route as MainVideoCoachBookingIdLobbyRouteImport } from './routes/_main.video.coach.$bookingId.lobby'
-import { Route as MainVideoCoachBookingIdEndedRouteImport } from './routes/_main.video.coach.$bookingId.ended'
-import { Route as MainVideoCoachBookingIdActiveRouteImport } from './routes/_main.video.coach.$bookingId.active'
 import { Route as MainProfileSafetyReportSubmitRouteImport } from './routes/_main.profile.safety.report.submit'
 import { Route as MainDiscoverIdInsightsConnectionLanguagesRouteImport } from './routes/_main.discover.$id_.insights.connection-languages'
 
@@ -595,11 +591,6 @@ const MainMembershipSubscriptionIndexRoute =
     path: '/membership/subscription/',
     getParentRoute: () => MainRoute,
   } as any)
-const MainVideoCoachBookingRoute = MainVideoCoachBookingRouteImport.update({
-  id: '/video/coach/booking',
-  path: '/video/coach/booking',
-  getParentRoute: () => MainRoute,
-} as any)
 const MainProfileSafetyTrustedContactRoute =
   MainProfileSafetyTrustedContactRouteImport.update({
     id: '/trusted-contact',
@@ -917,24 +908,6 @@ const MainVideoPreMeetConnectionIdActiveRoute =
     path: '/video/pre-meet/$connectionId/active',
     getParentRoute: () => MainRoute,
   } as any)
-const MainVideoCoachBookingIdLobbyRoute =
-  MainVideoCoachBookingIdLobbyRouteImport.update({
-    id: '/video/coach/$bookingId/lobby',
-    path: '/video/coach/$bookingId/lobby',
-    getParentRoute: () => MainRoute,
-  } as any)
-const MainVideoCoachBookingIdEndedRoute =
-  MainVideoCoachBookingIdEndedRouteImport.update({
-    id: '/video/coach/$bookingId/ended',
-    path: '/video/coach/$bookingId/ended',
-    getParentRoute: () => MainRoute,
-  } as any)
-const MainVideoCoachBookingIdActiveRoute =
-  MainVideoCoachBookingIdActiveRouteImport.update({
-    id: '/video/coach/$bookingId/active',
-    path: '/video/coach/$bookingId/active',
-    getParentRoute: () => MainRoute,
-  } as any)
 const MainProfileSafetyReportSubmitRoute =
   MainProfileSafetyReportSubmitRouteImport.update({
     id: '/submit',
@@ -1081,13 +1054,9 @@ export interface FileRoutesByFullPath {
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/profile/safety/trusted-contact': typeof MainProfileSafetyTrustedContactRoute
-  '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/membership/subscription/': typeof MainMembershipSubscriptionIndexRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
   '/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
-  '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
-  '/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
-  '/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
   '/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
   '/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
   '/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
@@ -1225,13 +1194,9 @@ export interface FileRoutesByTo {
   '/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/profile/safety/trusted-contact': typeof MainProfileSafetyTrustedContactRoute
-  '/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/membership/subscription': typeof MainMembershipSubscriptionIndexRoute
   '/discover/$id/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
   '/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
-  '/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
-  '/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
-  '/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
   '/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
   '/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
   '/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
@@ -1376,13 +1341,9 @@ export interface FileRoutesById {
   '/_main/profile/safety/report': typeof MainProfileSafetyReportRouteWithChildren
   '/_main/profile/safety/reports': typeof MainProfileSafetyReportsRoute
   '/_main/profile/safety/trusted-contact': typeof MainProfileSafetyTrustedContactRoute
-  '/_main/video/coach/booking': typeof MainVideoCoachBookingRoute
   '/_main/membership/subscription/': typeof MainMembershipSubscriptionIndexRoute
   '/_main/discover/$id_/insights/connection-languages': typeof MainDiscoverIdInsightsConnectionLanguagesRoute
   '/_main/profile/safety/report/submit': typeof MainProfileSafetyReportSubmitRoute
-  '/_main/video/coach/$bookingId/active': typeof MainVideoCoachBookingIdActiveRoute
-  '/_main/video/coach/$bookingId/ended': typeof MainVideoCoachBookingIdEndedRoute
-  '/_main/video/coach/$bookingId/lobby': typeof MainVideoCoachBookingIdLobbyRoute
   '/_main/video/pre-meet/$connectionId/active': typeof MainVideoPreMeetConnectionIdActiveRoute
   '/_main/video/pre-meet/$connectionId/ended': typeof MainVideoPreMeetConnectionIdEndedRoute
   '/_main/video/pre-meet/$connectionId/incoming': typeof MainVideoPreMeetConnectionIdIncomingRoute
@@ -1526,13 +1487,9 @@ export interface FileRouteTypes {
     | '/profile/safety/report'
     | '/profile/safety/reports'
     | '/profile/safety/trusted-contact'
-    | '/video/coach/booking'
     | '/membership/subscription/'
     | '/discover/$id/insights/connection-languages'
     | '/profile/safety/report/submit'
-    | '/video/coach/$bookingId/active'
-    | '/video/coach/$bookingId/ended'
-    | '/video/coach/$bookingId/lobby'
     | '/video/pre-meet/$connectionId/active'
     | '/video/pre-meet/$connectionId/ended'
     | '/video/pre-meet/$connectionId/incoming'
@@ -1670,13 +1627,9 @@ export interface FileRouteTypes {
     | '/profile/safety/report'
     | '/profile/safety/reports'
     | '/profile/safety/trusted-contact'
-    | '/video/coach/booking'
     | '/membership/subscription'
     | '/discover/$id/insights/connection-languages'
     | '/profile/safety/report/submit'
-    | '/video/coach/$bookingId/active'
-    | '/video/coach/$bookingId/ended'
-    | '/video/coach/$bookingId/lobby'
     | '/video/pre-meet/$connectionId/active'
     | '/video/pre-meet/$connectionId/ended'
     | '/video/pre-meet/$connectionId/incoming'
@@ -1820,13 +1773,9 @@ export interface FileRouteTypes {
     | '/_main/profile/safety/report'
     | '/_main/profile/safety/reports'
     | '/_main/profile/safety/trusted-contact'
-    | '/_main/video/coach/booking'
     | '/_main/membership/subscription/'
     | '/_main/discover/$id_/insights/connection-languages'
     | '/_main/profile/safety/report/submit'
-    | '/_main/video/coach/$bookingId/active'
-    | '/_main/video/coach/$bookingId/ended'
-    | '/_main/video/coach/$bookingId/lobby'
     | '/_main/video/pre-meet/$connectionId/active'
     | '/_main/video/pre-meet/$connectionId/ended'
     | '/_main/video/pre-meet/$connectionId/incoming'
@@ -2458,13 +2407,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainMembershipSubscriptionIndexRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/video/coach/booking': {
-      id: '/_main/video/coach/booking'
-      path: '/video/coach/booking'
-      fullPath: '/video/coach/booking'
-      preLoaderRoute: typeof MainVideoCoachBookingRouteImport
-      parentRoute: typeof MainRoute
-    }
     '/_main/profile/safety/trusted-contact': {
       id: '/_main/profile/safety/trusted-contact'
       path: '/trusted-contact'
@@ -2857,27 +2799,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainVideoPreMeetConnectionIdActiveRouteImport
       parentRoute: typeof MainRoute
     }
-    '/_main/video/coach/$bookingId/lobby': {
-      id: '/_main/video/coach/$bookingId/lobby'
-      path: '/video/coach/$bookingId/lobby'
-      fullPath: '/video/coach/$bookingId/lobby'
-      preLoaderRoute: typeof MainVideoCoachBookingIdLobbyRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/video/coach/$bookingId/ended': {
-      id: '/_main/video/coach/$bookingId/ended'
-      path: '/video/coach/$bookingId/ended'
-      fullPath: '/video/coach/$bookingId/ended'
-      preLoaderRoute: typeof MainVideoCoachBookingIdEndedRouteImport
-      parentRoute: typeof MainRoute
-    }
-    '/_main/video/coach/$bookingId/active': {
-      id: '/_main/video/coach/$bookingId/active'
-      path: '/video/coach/$bookingId/active'
-      fullPath: '/video/coach/$bookingId/active'
-      preLoaderRoute: typeof MainVideoCoachBookingIdActiveRouteImport
-      parentRoute: typeof MainRoute
-    }
     '/_main/profile/safety/report/submit': {
       id: '/_main/profile/safety/report/submit'
       path: '/submit'
@@ -3117,11 +3038,7 @@ interface MainRouteChildren {
   MainHostNewWorkshopReviewRoute: typeof MainHostNewWorkshopReviewRoute
   MainMembershipSubscriptionCancelRoute: typeof MainMembershipSubscriptionCancelRoute
   MainMembershipSubscriptionPauseRoute: typeof MainMembershipSubscriptionPauseRoute
-  MainVideoCoachBookingRoute: typeof MainVideoCoachBookingRoute
   MainMembershipSubscriptionIndexRoute: typeof MainMembershipSubscriptionIndexRoute
-  MainVideoCoachBookingIdActiveRoute: typeof MainVideoCoachBookingIdActiveRoute
-  MainVideoCoachBookingIdEndedRoute: typeof MainVideoCoachBookingIdEndedRoute
-  MainVideoCoachBookingIdLobbyRoute: typeof MainVideoCoachBookingIdLobbyRoute
   MainVideoPreMeetConnectionIdActiveRoute: typeof MainVideoPreMeetConnectionIdActiveRoute
   MainVideoPreMeetConnectionIdEndedRoute: typeof MainVideoPreMeetConnectionIdEndedRoute
   MainVideoPreMeetConnectionIdIncomingRoute: typeof MainVideoPreMeetConnectionIdIncomingRoute
@@ -3190,11 +3107,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainHostNewWorkshopReviewRoute: MainHostNewWorkshopReviewRoute,
   MainMembershipSubscriptionCancelRoute: MainMembershipSubscriptionCancelRoute,
   MainMembershipSubscriptionPauseRoute: MainMembershipSubscriptionPauseRoute,
-  MainVideoCoachBookingRoute: MainVideoCoachBookingRoute,
   MainMembershipSubscriptionIndexRoute: MainMembershipSubscriptionIndexRoute,
-  MainVideoCoachBookingIdActiveRoute: MainVideoCoachBookingIdActiveRoute,
-  MainVideoCoachBookingIdEndedRoute: MainVideoCoachBookingIdEndedRoute,
-  MainVideoCoachBookingIdLobbyRoute: MainVideoCoachBookingIdLobbyRoute,
   MainVideoPreMeetConnectionIdActiveRoute:
     MainVideoPreMeetConnectionIdActiveRoute,
   MainVideoPreMeetConnectionIdEndedRoute:
