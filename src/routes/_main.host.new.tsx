@@ -49,7 +49,7 @@ function TypePicker() {
         </li>
         <li>
           <Link
-            to="/host/new/community"
+            to="/host/new/community-room"
             className="block rounded-[18px] bg-paper p-5 shadow-elev-1 hover:bg-lavender-50"
           >
             <p className="text-label-mono">Community</p>
