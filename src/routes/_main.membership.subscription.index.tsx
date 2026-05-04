@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/membership/subscription/")({
   head: () => ({ meta: [{ title: "Subscription — COUPL" }] }),
@@ -20,10 +21,11 @@ function SubscriptionDetail() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Membership</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          What's currently in place?
-        </h1>
+        <ScreenHeader
+          eyebrow="Membership"
+          title="What's currently in place?"
+          titleItalic
+        />
       </header>
 
       <section className="px-5">

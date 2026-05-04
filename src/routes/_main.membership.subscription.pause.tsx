@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/membership/subscription/pause")({
   head: () => ({ meta: [{ title: "Pause — COUPL" }] }),
@@ -25,10 +26,10 @@ function PauseScreen() {
       <YouBackdrop>
         <StatusBar />
         <main className="px-5 py-12 text-center max-w-md mx-auto">
-          <p className="text-label-mono">Paused</p>
-          <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-            Paused for {label}.
-          </h1>
+          <ScreenHeader
+            eyebrow="Paused"
+            title={`Paused for ${label}.`}
+          />
           <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
             We'll be here.
           </p>
@@ -54,10 +55,11 @@ function PauseScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Pause</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          How long do you need?
-        </h1>
+        <ScreenHeader
+          eyebrow="Pause"
+          title="How long do you need?"
+          titleItalic
+        />
       </header>
 
       <section className="px-5">

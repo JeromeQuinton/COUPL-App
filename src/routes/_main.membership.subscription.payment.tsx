@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, CreditCard } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /membership/subscription/payment — manage payment method.
@@ -39,10 +40,11 @@ function PaymentScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Subscription · payment</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          Card on file.
-        </h1>
+        <ScreenHeader
+          eyebrow="Subscription · payment"
+          title="Card on file."
+          titleItalic
+        />
       </header>
 
       <section className="px-5">

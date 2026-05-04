@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Download } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /membership/subscription/invoices — what you've paid.
@@ -56,10 +57,11 @@ function InvoicesScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Subscription · invoices</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          What you've paid.
-        </h1>
+        <ScreenHeader
+          eyebrow="Subscription · invoices"
+          title="What you've paid."
+          titleItalic
+        />
       </header>
 
       {empty ? (

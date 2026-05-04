@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Sparkles } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /membership/upgraded — post-checkout confirmation.
@@ -33,10 +34,14 @@ function UpgradedScreen() {
         <Sparkles size={22} />
       </span>
 
-      <p className="mt-6 text-label-mono">Membership</p>
-      <h1 className="mt-3 font-display text-[32px] italic leading-tight text-ink">
-        You're a Member.
-      </h1>
+      <div className="mt-6">
+        <ScreenHeader
+          eyebrow="Membership"
+          title="You're a Member."
+          titleSize="display-xl"
+          titleItalic
+        />
+      </div>
       <p className="mt-4 font-body text-[14px] leading-relaxed text-slate">
         Quietly, properly. The product opens up, but the rhythm stays
         yours. No notifications urging you in.

@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Check } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/membership/plans")({
   head: () => ({
@@ -65,10 +66,14 @@ function MembershipPlans() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Plans</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Choose the pace that <em className="font-display italic">fits.</em>
-        </h1>
+        <ScreenHeader
+          eyebrow="Plans"
+          title={
+            <>
+              Choose the pace that <em className="font-display italic">fits.</em>
+            </>
+          }
+        />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           No dark patterns. No pressure. Cancel anytime, clear pricing, no hidden friction.
         </p>

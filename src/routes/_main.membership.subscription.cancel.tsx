@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/membership/subscription/cancel")({
   head: () => ({ meta: [{ title: "Cancel — COUPL" }] }),
@@ -27,10 +28,10 @@ function CancelScreen() {
       <YouBackdrop>
         <StatusBar />
         <main className="px-5 py-12 text-center max-w-md mx-auto">
-          <p className="text-label-mono">Cancelled</p>
-          <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-            Endings get the same care as beginnings.
-          </h1>
+          <ScreenHeader
+            eyebrow="Cancelled"
+            title="Endings get the same care as beginnings."
+          />
           <p className="mt-4 font-body text-[14px] leading-relaxed text-slate">
             You'll keep access until 3 June 2026. We don't delete anything — you can resume any time.
           </p>
@@ -56,10 +57,11 @@ function CancelScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Cancel</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          Before you go — what shifted?
-        </h1>
+        <ScreenHeader
+          eyebrow="Cancel"
+          title="Before you go — what shifted?"
+          titleItalic
+        />
       </header>
 
       <section className="px-5">

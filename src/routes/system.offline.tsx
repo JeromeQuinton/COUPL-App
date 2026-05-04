@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/system/offline")({
   head: () => ({
@@ -21,10 +22,11 @@ function OfflineScreen() {
   return (
     <OnboardingFrame>
       <div className="pt-12">
-        <p className="text-label-mono">Connection</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          We can't reach the network.
-        </h1>
+        <ScreenHeader
+          eyebrow="Connection"
+          title="We can't reach the network."
+          titleSize="display-xl"
+        />
         <p className="mt-3 text-body-md text-slate">
           Your progress is safe. We'll continue when signal returns.
         </p>
