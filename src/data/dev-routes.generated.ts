@@ -795,6 +795,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/notifications/channels"
       },
       {
+        "label": "Digest",
+        "to": "/profile/notifications/digest"
+      },
+      {
         "label": "Pause",
         "to": "/profile/pause"
       },

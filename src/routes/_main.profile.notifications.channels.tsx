@@ -137,6 +137,21 @@ function ChannelsScreen() {
         </Link>
       </section>
 
+      <section className="px-5 pt-7">
+        <Link
+          to="/profile/notifications/digest"
+          className="flex items-center justify-between rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
+        >
+          <div>
+            <p className="font-display text-[14px] text-ink">Daily digest</p>
+            <p className="mt-0.5 font-body text-[12px] text-stone">
+              One email a day instead of pings — morning or evening
+            </p>
+          </div>
+          <ChevronRight size={16} className="text-stone" />
+        </Link>
+      </section>
+
       <p className="px-5 pt-6 pb-12 text-center font-body text-[12.5px] italic text-stone">
         We never SMS for marketing. Only safety, sign-in, and date confirmations.
       </p>
