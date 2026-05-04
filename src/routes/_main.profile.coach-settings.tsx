@@ -4,21 +4,132 @@ import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 
-type CoachIntensity = "gentle" | "steady" | "sharper";
-type CoachFrequency = "low" | "medium" | "high";
-
+/**
+ * /profile/coach-settings — Polaris user controls.
+ *
+ * DR-POLARIS-USER-CONTROLS (NEW — pending). Trust-critical: members
+ * must be able to dial Polaris down or off without losing prior
+ * insights. Frequency / tone / per-surface toggles. Member-gated.
+ *
+ * Stream 26 SCREEN-R2-30. Replaces prior Coach-persona stub.
+ */
 export const Route = createFileRoute("/_main/profile/coach-settings")({
-  head: () => ({
-    meta: [{ title: "Coach settings — COUPL" }],
-  }),
-  component: CoachSettingsScreen,
+  head: () => ({ meta: [{ title: "Polaris settings — COUPL" }] }),
+  component: PolarisSettingsScreen,
 });
 
-function CoachSettingsScreen() {
-  const [intensity, setIntensity] = useState<CoachIntensity>("steady");
-  const [frequency, setFrequency] = useState<CoachFrequency>("medium");
-  const [allowInterventions, setAllowInterventions] = useState(true);
-  const [saved, setSaved] = useState(false);
+const FREQUENCY = ["Often", "Sometimes", "Rarely", "Off"] as const;
+const TONE = ["Direct", "Gentle", "Editorial"] as const;
+
+type Frequency = (typeof FREQUENCY)[number];
+type Tone = (typeof TONE)[number];
+
+type Surfaces = {
+  chatInsights: boolean;
+  conversationFlags: boolean;
+  preMeetingNotes: boolean;
+  repairNoticing: boolean;
+};
+
+const DEFAULT_SURFACES: Surfaces = {
+  chatInsights: true,
+  conversationFlags: true,
+  preMeetingNotes: true,
+  repairNoticing: false,
+};
+
+function PillRow<T extends string>({
+  label,
+  options,
+  value,
+  onChange,
+  disabled,
+}: {
+  label: string;
+  options: readonly T[];
+  value: T;
+  onChange: (v: T) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <section>
+      <p className="text-label-mono">{label}</p>
+      <ul className="mt-2 flex flex-wrap gap-2">
+        {options.map((opt) => {
+          const active = value === opt;
+          return (
+            <li key={opt}>
+              <button
+                type="button"
+                disabled={disabled}
+                onClick={() => onChange(opt)}
+                className={`rounded-full border px-4 py-1.5 font-body text-[13px] transition-colors disabled:opacity-40 ${
+                  active
+                    ? "border-plum-700 bg-plum-700 text-paper"
+                    : "border-line bg-paper text-ink hover:bg-lavender-50"
+                }`}
+              >
+                {opt}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+function ToggleRow({
+  label,
+  sub,
+  on,
+  onChange,
+  disabled,
+}: {
+  label: string;
+  sub: string;
+  on: boolean;
+  onChange: (v: boolean) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <li>
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => onChange(!on)}
+        className="flex w-full items-center justify-between gap-3 rounded-[14px] bg-paper p-4 text-left shadow-elev-1 transition-colors hover:bg-lavender-50 disabled:opacity-40 disabled:cursor-not-allowed"
+      >
+        <div className="min-w-0 flex-1">
+          <p className="font-display text-[14.5px] font-medium text-ink">{label}</p>
+          <p className="mt-0.5 font-body text-[12px] text-stone">{sub}</p>
+        </div>
+        <span
+          aria-hidden
+          className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+            on ? "bg-plum-700" : "bg-line"
+          }`}
+        >
+          <span
+            className={`inline-block h-5 w-5 transform rounded-full bg-paper shadow-elev-1 transition-transform ${
+              on ? "translate-x-[22px]" : "translate-x-0.5"
+            }`}
+          />
+        </span>
+      </button>
+    </li>
+  );
+}
+
+function PolarisSettingsScreen() {
+  const [frequency, setFrequency] = useState<Frequency>("Sometimes");
+  const [tone, setTone] = useState<Tone>("Editorial");
+  const [surfaces, setSurfaces] = useState<Surfaces>(DEFAULT_SURFACES);
+
+  const polarisOff = frequency === "Off";
+
+  const setSurface = (key: keyof Surfaces) => (v: boolean) =>
+    setSurfaces((s) => ({ ...s, [key]: v }));
 
   return (
     <YouBackdrop>
@@ -27,127 +138,77 @@ function CoachSettingsScreen() {
           <Link
             to="/profile"
             aria-label="Back to Profile"
-            className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full bg-paper/80 text-plum-700 shadow-elev-1 backdrop-blur-sm hover:bg-paper"
+            className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >
             <ChevronLeft size={18} />
           </Link>
         }
       />
 
-      <header className="px-5 pt-1 pb-5 text-center">
-        <h1 className="font-display text-[26px] font-semibold text-ink">
-          Coach settings
+      <header className="px-5 pt-2 pb-5">
+        <p className="text-label-mono">Polaris · settings</p>
+        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
+          How Polaris shows up.
         </h1>
       </header>
 
-      <section className="px-5">
-        <article className="rounded-[20px] bg-paper p-5 shadow-elev-1">
-          <h2 className="font-display text-[17px] font-semibold text-ink">
-            How much challenge feels useful?
-          </h2>
-          <p className="mt-2 font-body text-[13px] leading-relaxed text-slate">
-            Some people want gentle noticing. Others want sharper pattern
-            interruption. Adjust your coach to match your readiness.
-          </p>
+      <div className="space-y-7 px-5 pb-12">
+        <PillRow
+          label="Frequency"
+          options={FREQUENCY}
+          value={frequency}
+          onChange={setFrequency}
+        />
 
-          <fieldset className="mt-6">
-            <legend className="text-mono-sm uppercase tracking-[0.14em] text-slate">
-              Intensity
-            </legend>
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              {(["gentle", "steady", "sharper"] as CoachIntensity[]).map(
-                (opt) => {
-                  const active = intensity === opt;
-                  return (
-                    <button
-                      key={opt}
-                      type="button"
-                      onClick={() => {
-                        setIntensity(opt);
-                        setSaved(false);
-                      }}
-                      className={`rounded-[12px] border px-3 py-3 text-center transition-colors ${
-                        active
-                          ? "border-plum-500 bg-lavender-100"
-                          : "border-line bg-paper hover:bg-lavender-50"
-                      }`}
-                    >
-                      <span className="font-display text-[14px] capitalize text-ink">
-                        {opt}
-                      </span>
-                    </button>
-                  );
-                },
-              )}
-            </div>
-          </fieldset>
+        <PillRow
+          label="Tone"
+          options={TONE}
+          value={tone}
+          onChange={setTone}
+          disabled={polarisOff}
+        />
 
-          <fieldset className="mt-6">
-            <legend className="text-mono-sm uppercase tracking-[0.14em] text-slate">
-              Frequency of prompts
-            </legend>
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              {(["low", "medium", "high"] as CoachFrequency[]).map((opt) => {
-                const active = frequency === opt;
-                return (
-                  <button
-                    key={opt}
-                    type="button"
-                    onClick={() => {
-                      setFrequency(opt);
-                      setSaved(false);
-                    }}
-                    className={`rounded-[12px] border px-3 py-3 text-center transition-colors ${
-                      active
-                        ? "border-plum-500 bg-lavender-100"
-                        : "border-line bg-paper hover:bg-lavender-50"
-                    }`}
-                  >
-                    <span className="font-display text-[14px] capitalize text-ink">
-                      {opt}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </fieldset>
-
-          <label className="mt-6 flex items-start gap-3 rounded-[12px] border border-line bg-paper p-3 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={allowInterventions}
-              onChange={(e) => {
-                setAllowInterventions(e.target.checked);
-                setSaved(false);
-              }}
-              className="mt-1 h-4 w-4 accent-plum-500"
+        <section>
+          <p className="text-label-mono">Surfaces</p>
+          <ul className="mt-2 flex flex-col gap-2">
+            <ToggleRow
+              label="Chat insights"
+              sub="Editorial notes on patterns Polaris notices"
+              on={surfaces.chatInsights}
+              onChange={setSurface("chatInsights")}
+              disabled={polarisOff}
             />
-            <span className="flex-1">
-              <span className="block font-display text-[14px] font-medium text-ink">
-                Allow real-time interventions
-              </span>
-              <span className="mt-1 block font-body text-[12.5px] leading-relaxed text-slate">
-                Draft intercepts, red-flag pauses, and pattern noticing in
-                the moment. You can always send anyway.
-              </span>
-            </span>
-          </label>
+            <ToggleRow
+              label="Conversation flags"
+              sub="Quiet pauses when something feels off"
+              on={surfaces.conversationFlags}
+              onChange={setSurface("conversationFlags")}
+              disabled={polarisOff}
+            />
+            <ToggleRow
+              label="Pre-meeting notes"
+              sub="A short read before you meet in person"
+              on={surfaces.preMeetingNotes}
+              onChange={setSurface("preMeetingNotes")}
+              disabled={polarisOff}
+            />
+            <ToggleRow
+              label="Repair noticing"
+              sub="A nudge after a missed beat or rupture"
+              on={surfaces.repairNoticing}
+              onChange={setSurface("repairNoticing")}
+              disabled={polarisOff}
+            />
+          </ul>
+        </section>
 
-          <p className="mt-6 font-body text-[12.5px] italic text-stone">
-            Your coach adapts to you, not the reverse.
+        {polarisOff && (
+          <p className="font-body text-[13px] italic leading-relaxed text-stone">
+            Off means Polaris stops generating new insights — your past
+            ones stay readable.
           </p>
-        </article>
-      </section>
-
-      <section className="px-5 pt-5 pb-12">
-        <button
-          type="button"
-          onClick={() => setSaved(true)}
-          className="w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
-        >
-          {saved ? "Saved" : "Save preferences"}
-        </button>
-      </section>
+        )}
+      </div>
     </YouBackdrop>
   );
 }

@@ -155,8 +155,8 @@ function ProfileScreen() {
           />
           <ProfileLinkRow
             to="/profile/coach-settings"
-            title="Coach settings"
-            sub="Tone, frequency, intercepts"
+            title="Polaris settings"
+            sub="How Polaris shows up"
           />
           <ProfileLinkRow
             to="/profile/account"
