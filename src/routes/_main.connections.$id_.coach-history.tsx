@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/coach-history")({
   head: () => ({ meta: [{ title: "Polaris on this connection — COUPL" }] }),
@@ -89,10 +90,10 @@ function CoachHistoryScreen() {
       </header>
 
       <div className="px-5 pt-5 pb-12">
-        <p className="text-label-mono">Polaris · this connection</p>
-        <h1 className="mt-2 font-display text-[26px] leading-tight text-ink">
-          Everything Polaris has noticed about this.
-        </h1>
+        <ScreenHeader
+          eyebrow="Polaris · this connection"
+          title="Everything Polaris has noticed about this."
+        />
 
         {!isMember ? (
           <article className="mt-6 rounded-[18px] border border-line bg-paper p-6 text-center shadow-elev-1">

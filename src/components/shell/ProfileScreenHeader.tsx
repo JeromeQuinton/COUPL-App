@@ -9,7 +9,11 @@ type TitleSize = "24" | "26";
 type TitleWeight = "normal" | "semibold";
 
 type Props = {
-  backLink: { to: LinkTo; label?: string };
+  backLink: {
+    to: LinkTo;
+    label?: string;
+    params?: Record<string, string>;
+  };
   eyebrow: string;
   title: string;
   titleSize?: TitleSize;
@@ -38,6 +42,7 @@ export function ProfileScreenHeader({
       <header className="flex items-center gap-3">
         <Link
           to={backLink.to}
+          {...(backLink.params ? { params: backLink.params } : {})}
           aria-label={backLink.label ?? "Back"}
           className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
         >

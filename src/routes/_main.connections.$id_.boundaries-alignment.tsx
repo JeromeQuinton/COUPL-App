@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { BoundariesQuestion } from "@/components/connections/BoundariesQuestion";
 import {
   BOUNDARIES_QUESTIONS,
@@ -63,10 +64,7 @@ function BoundariesAlignmentScreen() {
       </header>
 
       <div className="px-5 pt-5 pb-12">
-        <p className="text-label-mono">Connection · boundaries</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Before you meet.
-        </h1>
+        <ScreenHeader eyebrow="Connection · boundaries" title="Before you meet." />
 
         <p className="mt-3 font-body text-[13.5px] italic leading-relaxed text-slate">
           A few quiet things to align on. Polaris keeps your answers private

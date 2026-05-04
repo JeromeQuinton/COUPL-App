@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/blocked-confirmed")({
   head: () => ({ meta: [{ title: "Blocked — COUPL" }] }),
@@ -11,19 +12,14 @@ function BlockedConfirmed() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/connections"
-          aria-label="Back"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Connection</p>
-      </header>
+      <ProfileScreenHeader
+        backLink={{ to: "/connections" }}
+        eyebrow="Connection"
+        title="Blocked."
+        titleWeight="normal"
+      />
 
       <div className="mx-auto mt-12 max-w-[420px]">
-        <h1 className="font-display text-[24px] leading-tight text-ink">Blocked.</h1>
         <div className="mt-6 space-y-2 font-body text-[14px] leading-[1.7] text-slate">
           <p>They can't reach you.</p>
           <p>They won't know why.</p>

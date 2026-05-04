@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft, X } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/availability")({
   head: () => ({ meta: [{ title: "Suggest times — COUPL" }] }),
@@ -58,10 +59,7 @@ function AvailabilityScreen() {
       </header>
 
       <div className="px-5 pt-5 pb-12">
-        <p className="text-label-mono">Plan · when</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Suggest some times.
-        </h1>
+        <ScreenHeader eyebrow="Plan · when" title="Suggest some times." />
 
         <section className="mt-6">
           <p className="text-label-mono">Quick picks</p>

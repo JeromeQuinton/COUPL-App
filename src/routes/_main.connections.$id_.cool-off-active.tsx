@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/cool-off-active")({
   head: () => ({ meta: [{ title: "Cool-off active — COUPL" }] }),
@@ -46,21 +47,11 @@ function CoolOffActive() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/connections/$id"
-          params={{ id }}
-          aria-label="Back"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Cool-off</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[24px] font-semibold leading-tight text-ink">
-        Cool-off active.
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/connections/$id", params: { id } } as never}
+        eyebrow="Cool-off"
+        title="Cool-off active."
+      />
       <p className="mt-2 font-body text-[13px] leading-relaxed text-slate">
         24 hours of quiet. Nothing they send reaches you. Nothing you send reaches them.
       </p>

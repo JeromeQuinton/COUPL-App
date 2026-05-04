@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/plan-quiz")({
   head: () => ({ meta: [{ title: "Plan a date — COUPL" }] }),
@@ -42,10 +43,7 @@ function PlanQuizScreen() {
       </header>
 
       <div className="px-5 pt-5 pb-12">
-        <p className="text-label-mono">Plan · what fits</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Three quick questions.
-        </h1>
+        <ScreenHeader eyebrow="Plan · what fits" title="Three quick questions." />
 
         <Question
           label="Pace"

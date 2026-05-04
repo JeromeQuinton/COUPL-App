@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-r
 import { ChevronLeft, Sparkles } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { HubScreenHeader } from "@/components/shell/HubScreenHeader";
 import { BODY_STATES, SEE_AGAIN_OPTIONS } from "@/data/growth_sample";
 
 export const Route = createFileRoute("/_main/connections/$id_/reflection")({
@@ -48,12 +49,10 @@ function PostDateReflectionPage() {
 
       {/* Header */}
       <header className="px-5 pt-2 pb-5">
-        <p className="font-body text-[11px] font-semibold uppercase tracking-[0.16em] text-plum-500">
-          After meeting
-        </p>
-        <h1 className="mt-2 font-display text-[26px] font-semibold leading-tight text-ink">
-          Your body is part of your dating data.
-        </h1>
+        <HubScreenHeader
+          eyebrow="After meeting"
+          title="Your body is part of your dating data."
+        />
         <p className="mt-2 font-body text-[13.5px] leading-relaxed text-slate">
           A quick, kind read. Nothing here is shared. Two minutes, then closed.
         </p>

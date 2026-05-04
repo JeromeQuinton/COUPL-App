@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft, MapPin, Clock, Shield, AlertCircle } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getConnection } from "@/data/connections_sample";
 
 export const Route = createFileRoute("/_main/connections/$id_/date-plan")({
@@ -58,10 +59,10 @@ function DatePlanScreen() {
         </header>
 
         <div className="mt-8">
-          <p className="text-label-mono">Proposed · awaiting {name}</p>
-          <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">
-            Held lightly. <em className="font-display italic">Easy to say yes or no.</em>
-          </h1>
+          <ScreenHeader
+            eyebrow={`Proposed · awaiting ${name}`}
+            title="Held lightly. Easy to say yes or no."
+          />
 
           <article
             className="mt-6 rounded-[18px] border border-plum-300/25 px-5 py-5"

@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { ValueCard } from "@/components/connections/ValueCard";
 import { SAMPLE_VALUES_ALIGNMENT } from "@/data/connections_sample";
 
@@ -31,10 +32,7 @@ function ValuesOverlapScreen() {
       </header>
 
       <div className="px-5 pt-5 pb-12">
-        <p className="text-label-mono">Connection · values</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          What you've both said matters.
-        </h1>
+        <ScreenHeader eyebrow="Connection · values" title="What you've both said matters." />
 
         <p className="mt-3 font-body text-[13.5px] italic leading-relaxed text-slate">
           These cards are conversation starters, not verdicts. Open them when

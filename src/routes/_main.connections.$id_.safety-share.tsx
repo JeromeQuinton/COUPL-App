@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link, useNavigate, useParams } from "@tanstack/react-router";
 import { ChevronLeft, MapPin } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getConnection } from "@/data/connections_sample";
 import { listContacts, type TrustedContact } from "@/lib/trusted-contacts";
 
@@ -57,10 +59,12 @@ function SafetyShareScreen() {
         </header>
 
         <div className="mt-12 text-center">
-          <p className="text-label-mono text-stone">Sharing ended</p>
-          <h1 className="mt-3 font-display text-[26px] italic leading-tight text-ink">
-            Hope it went well.
-          </h1>
+          <ScreenHeader
+            eyebrow="Sharing ended"
+            title="Hope it went well."
+            eyebrowTone="stone"
+            titleItalic
+          />
           <Link
             to="/connections/$id/reflection"
             params={{ id }}
@@ -77,21 +81,11 @@ function SafetyShareScreen() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/connections/$id/date-plan"
-          params={{ id }}
-          aria-label="Back"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Safety share</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[24px] font-semibold leading-tight text-ink">
-        Safety share active
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/connections/$id/date-plan", params: { id } }}
+        eyebrow="Safety share"
+        title="Safety share active"
+      />
       <p className="mt-1 font-body text-[13px] text-slate">On your date with {name}</p>
 
       {noContacts ? (

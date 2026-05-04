@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft, Coffee, Footprints, Sandwich, Wine } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/coffee-sheet")({
   head: () => ({ meta: [{ title: "A low-key plan — COUPL" }] }),
@@ -31,10 +32,7 @@ function CoffeeSheetScreen() {
       </header>
 
       <div className="px-5 pt-5 pb-12">
-        <p className="text-label-mono">Plan · low-key</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          A coffee, then.
-        </h1>
+        <ScreenHeader eyebrow="Plan · low-key" title="A coffee, then." />
 
         <article className="mt-5 rounded-[18px] bg-paper p-5 shadow-elev-1">
           <p className="font-body text-[14px] leading-relaxed text-ink">

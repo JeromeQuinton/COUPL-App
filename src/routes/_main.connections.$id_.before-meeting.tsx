@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getConnection } from "@/data/connections_sample";
 
 /**
@@ -56,10 +57,10 @@ function BeforeMeetingScreen() {
         </header>
 
         <div className="mt-8">
-          <p className="text-label-mono">For Saturday · with {name}</p>
-          <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">
-            A short read before <em className="font-display italic">you go.</em>
-          </h1>
+          <ScreenHeader
+            eyebrow={`For Saturday · with ${name}`}
+            title="A short read before you go."
+          />
           <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
             Not a checklist. Just three things worth holding lightly as you head out.
           </p>

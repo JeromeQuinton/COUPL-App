@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft, Check, Copy, Link as LinkIcon, MessageCircle, Phone } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/connections/$id_/plan-share")({
   head: () => ({ meta: [{ title: "Share plan — COUPL" }] }),
@@ -38,10 +39,7 @@ function PlanShareScreen() {
       </header>
 
       <div className="px-5 pt-5 pb-12">
-        <p className="text-label-mono">Plan · share</p>
-        <h1 className="mt-2 font-display text-[28px] leading-tight text-ink">
-          Send this plan.
-        </h1>
+        <ScreenHeader eyebrow="Plan · share" title="Send this plan." />
 
         <article className="mt-6 rounded-[18px] bg-paper p-5 shadow-elev-1">
           <p className="text-label-mono">Plan</p>

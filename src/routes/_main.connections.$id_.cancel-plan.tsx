@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { PageBackdrop } from "@/components/connections/PageBackdrop";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getConnection } from "@/data/connections_sample";
 
 /**
@@ -27,10 +28,11 @@ function CancelPlanScreen() {
     return (
       <PageBackdrop>
         <main className="mx-auto max-w-[460px] px-6 pt-16 text-center">
-          <p className="text-label-mono">Cancelled</p>
-          <h1 className="mt-3 font-display text-[26px] italic leading-tight text-ink">
-            Done. We've let {name} know.
-          </h1>
+          <ScreenHeader
+            eyebrow="Cancelled"
+            title={`Done. We've let ${name} know.`}
+            titleItalic
+          />
           <Link
             to="/connections/$id"
             params={{ id }}
