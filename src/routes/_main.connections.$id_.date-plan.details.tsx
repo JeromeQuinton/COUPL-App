@@ -117,7 +117,7 @@ function PlanDetailsScreen() {
             Update plan
           </Link>
           <Link
-            to="/connections/$id_/cancel-plan"
+            to="/connections/$id/cancel-plan"
             params={{ id }}
             className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-danger"
           >

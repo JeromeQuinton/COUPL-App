@@ -137,7 +137,7 @@ function EventDetailPage() {
         </Link>
         <div className="mt-3 text-center">
           <Link
-            to="/events/$id_/waitlist"
+            to="/events/$id/waitlist"
             params={{ id: e.id }}
             className="font-body text-[12.5px] italic text-stone hover:text-plum-500"
           >

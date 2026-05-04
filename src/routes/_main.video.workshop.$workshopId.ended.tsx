@@ -49,7 +49,7 @@ function WorkshopEnded() {
             Skip — I'll come back to this
           </button>
           <Link
-            to="/growth/$id_/reflect"
+            to="/growth/$id/reflect"
             params={{ id: workshopId }}
             className="block w-full px-5 py-2 text-center font-body text-[13px] italic text-stone hover:text-plum-500"
           >
