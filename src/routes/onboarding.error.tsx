@@ -32,7 +32,8 @@ export const Route = createFileRoute("/onboarding/error")({
  * Unknown values fall back to "unknown" via z.catch (INVALID DATA defence).
  */
 function OnboardingError() {
-  const { reason } = Route.useSearch();
+  const search = Route.useSearch();
+  const reason = reasonSchema.parse(search.reason);
   const navigate = useNavigate();
   const draft = typeof window !== "undefined" ? loadDraft() : null;
   const lastStep = draft?.lastStep ?? "review";
