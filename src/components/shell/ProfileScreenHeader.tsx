@@ -1,19 +1,32 @@
-import { type ComponentProps, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-type LinkTo = ComponentProps<typeof Link>["to"];
 type TitleSize = "24" | "26" | "28";
 type TitleWeight = "normal" | "semibold";
 
+type StaticBackLink = {
+  to:
+    | "/connections"
+    | "/discover"
+    | "/polaris"
+    | "/polaris/chat"
+    | "/profile"
+    | "/profile/help"
+    | "/profile/safety";
+  label?: string;
+};
+
+type IdBackLink = {
+  to: "/connections/$id" | "/connections/$id/date-plan" | "/discover/$id";
+  params: { id: string };
+  label?: string;
+};
+
 type Props = {
-  backLink: {
-    to: LinkTo;
-    label?: string;
-    params?: Record<string, string>;
-  };
+  backLink: StaticBackLink | IdBackLink;
   eyebrow: string;
   title: ReactNode;
   titleSize?: TitleSize;
@@ -41,14 +54,24 @@ export function ProfileScreenHeader({
   return (
     <>
       <header className="flex items-center gap-3">
-        <Link
-          to={backLink.to}
-          {...(backLink.params ? { params: backLink.params } : {})}
-          aria-label={backLink.label ?? "Back"}
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
+        {"params" in backLink ? (
+          <Link
+            to={backLink.to}
+            params={backLink.params}
+            aria-label={backLink.label ?? "Back"}
+            className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Link>
+        ) : (
+          <Link
+            to={backLink.to}
+            aria-label={backLink.label ?? "Back"}
+            className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Link>
+        )}
         <p className="text-label-mono">{eyebrow}</p>
       </header>
       <h1

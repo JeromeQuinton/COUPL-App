@@ -6,10 +6,11 @@ import { loadDraft } from "@/lib/onboarding_store";
 const reasonSchema = z
   .enum(["unknown", "offline", "permission_denied"])
   .catch("unknown");
+type ErrorReason = z.infer<typeof reasonSchema>;
 
 export const Route = createFileRoute("/onboarding/error")({
-  validateSearch: (search) => ({
-    reason: reasonSchema.parse((search as { reason?: string }).reason),
+  validateSearch: (search: Record<string, unknown>): { reason: ErrorReason } => ({
+    reason: reasonSchema.parse(search.reason),
   }),
   head: () => ({
     meta: [
@@ -31,7 +32,8 @@ export const Route = createFileRoute("/onboarding/error")({
  * Unknown values fall back to "unknown" via z.catch (INVALID DATA defence).
  */
 function OnboardingError() {
-  const { reason } = Route.useSearch();
+  const search = Route.useSearch();
+  const reason = reasonSchema.parse(search.reason);
   const navigate = useNavigate();
   const draft = typeof window !== "undefined" ? loadDraft() : null;
   const lastStep = draft?.lastStep ?? "review";
@@ -73,7 +75,7 @@ function OnboardingError() {
 }
 
 const REASON_CONFIG: Record<
-  "unknown" | "offline" | "permission_denied",
+  ErrorReason,
   {
     icon: typeof AlertTriangle;
     title: string;
