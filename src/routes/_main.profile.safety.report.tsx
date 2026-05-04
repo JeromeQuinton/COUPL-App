@@ -123,6 +123,20 @@ function SafetyReportPage() {
         />
       </section>
 
+      {/* Optional evidence — leads to R3-01 evidence surface */}
+      <section className="px-5 pt-5">
+        <Link
+          to="/profile/safety/report/$reportId_/evidence"
+          params={{ reportId_: "draft" }}
+          className="block rounded-[14px] border border-dashed border-line bg-paper px-4 py-3.5 hover:bg-lavender-50"
+        >
+          <p className="font-display text-[14px] text-ink">Attach evidence (optional)</p>
+          <p className="mt-1 font-body text-[12.5px] text-stone">
+            Screenshots, message excerpts, or a voice note. Skip if it feels like too much.
+          </p>
+        </Link>
+      </section>
+
       {/* Auto-protection */}
       <section className="px-5 pt-5">
         <div className="flex items-start gap-3 rounded-[14px] border border-line bg-paper/70 p-4">
