@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/onboarding/checks/liveness/help")({
   head: () => ({
@@ -12,10 +13,11 @@ function LivenessHelpScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/liveness">
       <div>
-        <p className="text-label-mono">Verify · help</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          Trouble with the selfie?
-        </h1>
+        <ScreenHeader
+          eyebrow="Verify · help"
+          title="Trouble with the selfie?"
+          titleSize="display-xl"
+        />
       </div>
 
       <section className="mt-8 space-y-4">

@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Camera } from "lucide-react";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/onboarding/checks/id-scan")({
   head: () => ({
@@ -16,8 +17,11 @@ function IDScanScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/id-select">
       <div>
-        <p className="text-label-mono">Verification · 2 of 3</p>
-        <h1 className="mt-3 text-display-xl text-ink">Capture the photo page.</h1>
+        <ScreenHeader
+          eyebrow="Verification · 2 of 3"
+          title="Capture the photo page."
+          titleSize="display-xl"
+        />
         <p className="mt-2 text-body-md text-slate">
           Flat surface, good light, all four corners visible.
         </p>

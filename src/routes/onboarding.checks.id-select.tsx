@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/onboarding/checks/id-select")({
   head: () => ({
@@ -19,10 +20,11 @@ function IDSelectScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks">
       <div>
-        <p className="text-label-mono">Verify · choose ID</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          Choose how to prove it's you.
-        </h1>
+        <ScreenHeader
+          eyebrow="Verify · choose ID"
+          title="Choose how to prove it's you."
+          titleSize="display-xl"
+        />
         <p className="mt-2 text-body-md text-slate">
           We ask for one official document once, to help keep impersonation
           and fake profiles out of COUPL.

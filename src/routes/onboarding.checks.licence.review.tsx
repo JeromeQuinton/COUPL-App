@@ -3,6 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
 import { RedactionPreview } from "@/components/verification/RedactionPreview";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   REDACTED_FIELDS,
   RETENTION_COPY_PLACEHOLDER,
@@ -23,10 +24,11 @@ function LicenceReviewScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/licence/scan">
       <div>
-        <p className="text-label-mono">Verify · licence · review</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          Does this look right?
-        </h1>
+        <ScreenHeader
+          eyebrow="Verify · licence · review"
+          title="Does this look right?"
+          titleSize="display-xl"
+        />
       </div>
 
       <div className="mt-6 flex gap-1.5" role="tablist" aria-label="Side">

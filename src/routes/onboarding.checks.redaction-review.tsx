@@ -3,6 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
 import { RedactionPreview } from "@/components/verification/RedactionPreview";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   REDACTED_FIELDS,
   RETENTION_COPY_PLACEHOLDER,
@@ -41,10 +42,11 @@ function RedactionReviewScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/passport/review">
       <div>
-        <p className="text-label-mono">Verify · privacy review</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          Choose what's shared from this document.
-        </h1>
+        <ScreenHeader
+          eyebrow="Verify · privacy review"
+          title="Choose what's shared from this document."
+          titleSize="display-xl"
+        />
         <p className="mt-2 text-body-md text-slate">
           To verify you, we only need a few details. Some are required for
           this check; others are your choice.

@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
 import { RedactionPreview } from "@/components/verification/RedactionPreview";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import {
   REDACTED_FIELDS,
   RETENTION_COPY_PLACEHOLDER,
@@ -28,10 +29,11 @@ function PassportReviewScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/passport/scan">
       <div>
-        <p className="text-label-mono">Verify · passport · review</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          Does this look right?
-        </h1>
+        <ScreenHeader
+          eyebrow="Verify · passport · review"
+          title="Does this look right?"
+          titleSize="display-xl"
+        />
       </div>
 
       <div className="mt-7">

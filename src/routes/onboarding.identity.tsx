@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/onboarding/identity")({
   head: () => ({
@@ -67,10 +68,11 @@ function IdentityScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks">
       <div>
-        <p className="text-label-mono">Onboarding · identity</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          A few optional details.
-        </h1>
+        <ScreenHeader
+          eyebrow="Onboarding · identity"
+          title="A few optional details."
+          titleSize="display-xl"
+        />
         <p className="mt-2 text-body-md text-slate">
           Anything you share here is yours. We don't use it to filter the
           people you see — that's a separate setting.

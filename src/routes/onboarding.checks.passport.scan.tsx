@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Camera } from "lucide-react";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/onboarding/checks/passport/scan")({
   head: () => ({
@@ -16,8 +17,11 @@ function PassportScanScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/id-select">
       <div>
-        <p className="text-label-mono">Verify · ID</p>
-        <h1 className="mt-3 text-display-xl text-ink">Scan your ID.</h1>
+        <ScreenHeader
+          eyebrow="Verify · ID"
+          title="Scan your ID."
+          titleSize="display-xl"
+        />
         <p className="mt-2 text-body-md text-slate">
           Rear camera. Hold steady — the frame turns plum when the edges line
           up.

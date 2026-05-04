@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Video } from "lucide-react";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/onboarding/checks/liveness")({
   head: () => ({
@@ -16,8 +17,11 @@ function LivenessScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/id-scan">
       <div>
-        <p className="text-label-mono">Verification · 3 of 3</p>
-        <h1 className="mt-3 text-display-xl text-ink">A 30-second selfie.</h1>
+        <ScreenHeader
+          eyebrow="Verification · 3 of 3"
+          title="A 30-second selfie."
+          titleSize="display-xl"
+        />
         <p className="mt-2 text-body-md text-slate">
           Look at the dot, follow it slowly. We're checking the photo is you, in this moment.
         </p>

@@ -3,6 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Camera, ChevronDown, ChevronUp } from "lucide-react";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/onboarding/checks/licence/scan")({
   head: () => ({ meta: [{ title: "Capture licence — coupl" }] }),
@@ -39,10 +40,11 @@ function LicenceScanScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks/id-select">
       <div>
-        <p className="text-label-mono">Verify · licence</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          {side === "front" ? "Front of your licence." : "Back of your licence."}
-        </h1>
+        <ScreenHeader
+          eyebrow="Verify · licence"
+          title={side === "front" ? "Front of your licence." : "Back of your licence."}
+          titleSize="display-xl"
+        />
         <p className="mt-2 text-body-md text-slate">
           Keep it flat, with all details visible. We'll guide you if anything
           needs adjusting.
