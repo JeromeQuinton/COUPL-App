@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
@@ -16,36 +16,8 @@ export const Route = createFileRoute("/_main/profile/account/delete")({
   component: DeleteScreen,
 });
 
-const REQUIRED = "delete my account";
-
 function DeleteScreen() {
-  const [text, setText] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const ready = text.trim().toLowerCase() === REQUIRED;
-
-  if (submitted) {
-    return (
-      <YouBackdrop tone="serious">
-        <StatusBar />
-        <div className="px-5 pt-12 text-center">
-          <p className="text-label-mono">Done</p>
-          <h1 className="mt-3 font-display text-[26px] italic leading-tight text-ink">
-            Your account is being closed.
-          </h1>
-          <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
-            You can sign in for the next 30 days to undo this. After that,
-            it's gone.
-          </p>
-          <Link
-            to="/"
-            className="mt-8 inline-flex rounded-full border border-line bg-paper px-6 py-3 font-body text-[14px] text-ink hover:bg-lavender-50"
-          >
-            Sign out
-          </Link>
-        </div>
-      </YouBackdrop>
-    );
-  }
+  const navigate = useNavigate();
 
   return (
     <YouBackdrop tone="serious">
@@ -93,25 +65,12 @@ function DeleteScreen() {
       </section>
 
       <div className="px-5 pt-8 pb-12 space-y-4">
-        <label className="block">
-          <span className="text-label-mono">
-            Type "{REQUIRED}" to confirm
-          </span>
-          <input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            className="mt-2 w-full rounded-[12px] border border-line bg-paper px-4 py-3 font-body text-[14px] text-ink"
-          />
-        </label>
-
         <button
           type="button"
-          disabled={!ready}
-          onClick={() => setSubmitted(true)}
-          className="w-full rounded-full bg-danger px-5 py-3.5 font-display text-[15px] font-medium text-paper disabled:opacity-40 disabled:cursor-not-allowed"
+          onClick={() => navigate({ to: "/profile/account/delete/confirm" })}
+          className="w-full rounded-full bg-danger px-5 py-3.5 font-display text-[15px] font-medium text-paper"
         >
-          Delete my account
+          Continue to confirm
         </button>
 
         <Link
