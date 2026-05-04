@@ -16,6 +16,14 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // COUPL primary commit (Attune button shape) — DR-040, sampled across
+        // routes/about, auth.sign-up, auth.verify-*, onboarding.checks.liveness.help.
+        commit:
+          "h-auto rounded-full bg-plum-700 px-5 py-3 font-display text-[14.5px] font-medium text-paper shadow-elev-1 hover:bg-plum-700 hover:opacity-90",
+        // COUPL secondary CTA — paired with commit. Pink-50 surface, plum-700 text,
+        // no shadow.
+        "secondary-cta":
+          "h-auto rounded-full bg-pink-50 px-5 py-3 font-display text-[14.5px] font-medium text-plum-700 shadow-none hover:bg-pink-100",
       },
       size: {
         default: "h-9 px-4 py-2",
