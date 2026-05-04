@@ -36,13 +36,19 @@ function VerifyPhone() {
   };
 
   if (success) {
+    // DR-AUTH-METHOD: /auth/verify-phone is the deep-link landing for adding a phone
+    // post-onboarding. On success, route to /profile/account/phone — never to
+    // /onboarding (in-flow phone capture lives at /onboarding/verify, not here).
     return (
       <AuthShell>
-        <p className="text-label-mono text-stone">Verified</p>
-        <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">You're in.</h1>
+        <p className="text-label-mono text-stone">Number added</p>
+        <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">All set.</h1>
+        <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
+          Your phone is now linked to the account. We'll only use it for safety touchpoints.
+        </p>
         <button
           type="button"
-          onClick={() => navigate({ to: "/onboarding" })}
+          onClick={() => navigate({ to: "/profile/account/phone" })}
           className="mt-6 w-full rounded-full bg-plum-700 px-5 py-3 font-display text-[14.5px] font-medium text-paper shadow-elev-1 hover:opacity-90"
         >
           Continue
@@ -80,6 +86,11 @@ function VerifyPhone() {
       <p className="mt-6 text-center">
         <Link to="/auth/sign-in" className="font-body text-[13.5px] text-plum-700 hover:underline">
           Use a different number
+        </Link>
+      </p>
+      <p className="mt-3 text-center">
+        <Link to="/auth/recover" className="font-body text-[12.5px] text-stone hover:text-plum-700 hover:underline">
+          Didn't get the code?
         </Link>
       </p>
     </AuthShell>

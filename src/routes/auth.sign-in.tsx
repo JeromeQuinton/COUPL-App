@@ -73,6 +73,11 @@ function SignIn() {
           New here? Sign up instead.
         </Link>
       </p>
+      <p className="mt-3 text-center">
+        <Link to="/auth/recover" className="font-body text-[12.5px] text-stone hover:text-plum-700 hover:underline">
+          Can't sign in?
+        </Link>
+      </p>
     </AuthShell>
   );
 }

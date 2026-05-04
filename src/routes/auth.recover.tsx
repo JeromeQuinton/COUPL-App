@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AuthShell } from "@/components/auth/AuthShell";
 
 export const Route = createFileRoute("/auth/recover")({
-  head: () => ({ meta: [{ title: "Reset password — COUPL" }] }),
+  head: () => ({ meta: [{ title: "Recover access — COUPL" }] }),
   component: Recover,
 });
 

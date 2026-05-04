@@ -48,11 +48,12 @@ function SignUp() {
       >
         <label className="block">
           <span className="font-body text-[12px] font-semibold uppercase tracking-[0.12em] text-stone">
-            Email or phone
+            Email
           </span>
           <input
-            type="text"
+            type="email"
             inputMode="email"
+            autoComplete="email"
             value={field}
             onChange={(e) => setField(e.target.value)}
             className="mt-1.5 w-full rounded-[12px] border border-line bg-paper px-4 py-3 font-body text-[14px] text-ink focus:border-plum-500 focus:outline-none"

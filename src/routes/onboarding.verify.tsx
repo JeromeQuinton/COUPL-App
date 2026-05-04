@@ -107,20 +107,88 @@ function EmailVerify() {
 }
 
 function PhoneVerify() {
+  // DR-AUTH-METHOD: in-flow OTP capture, no deep-link round-trip.
+  // Two stages: phone capture -> inline OTP entry -> continue.
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
+  const [stage, setStage] = useState<"phone" | "otp">("phone");
+  const [code, setCode] = useState("");
   const digits = phone.replace(/\D/g, "");
-  const canSubmit = digits.length >= 7;
+  const canSendCode = digits.length >= 7;
+  const codeDigits = code.replace(/\D/g, "");
+  const canSubmitCode = codeDigits.length >= 6;
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSendCode = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!canSubmit) return;
+    if (!canSendCode) return;
+    setStage("otp");
+  };
+
+  const onSubmitCode = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!canSubmitCode) return;
     navigate({ to: "/onboarding/name" });
   };
 
+  if (stage === "otp") {
+    return (
+      <>
+        <form id="verify-form" onSubmit={onSubmitCode}>
+          <h1 className="mt-3 text-display-xl text-ink">Enter the code.</h1>
+          <p className="mt-2 text-body-md text-slate">
+            We sent it to {phone}. The code arrives in a moment.
+          </p>
+
+          <div className="mt-8">
+            <input
+              id="otp"
+              name="otp"
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              maxLength={6}
+              placeholder="••••••"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              aria-label="6-digit code"
+              className="w-full rounded-[12px] border border-line bg-paper px-4 py-3.5 text-center text-display-xl tracking-[0.4em] text-ink outline-none placeholder:text-stone focus:border-plum-500 focus:ring-2 focus:ring-plum-300"
+            />
+          </div>
+        </form>
+
+        <div className="mt-6 space-y-3">
+          <OnboardingButton type="submit" form="verify-form" disabled={!canSubmitCode}>
+            Continue
+          </OnboardingButton>
+          <div className="flex items-center justify-between text-body-sm text-slate">
+            <button
+              type="button"
+              className="underline-offset-2 hover:underline"
+              onClick={() => {
+                /* phase 2: trigger resend */
+              }}
+            >
+              Didn't arrive? Resend
+            </button>
+            <button
+              type="button"
+              className="underline-offset-2 hover:underline"
+              onClick={() => {
+                setStage("phone");
+                setCode("");
+              }}
+            >
+              Use a different number
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      <form id="verify-form" onSubmit={onSubmit}>
+      <form id="verify-form" onSubmit={onSendCode}>
         <h1 className="mt-3 text-display-xl text-ink">What's your number?</h1>
         <p className="mt-2 text-body-md text-slate">
           We text a code. We don't share it, ever.
@@ -148,7 +216,7 @@ function PhoneVerify() {
       </form>
 
       <div className="mt-6 space-y-3">
-        <OnboardingButton type="submit" form="verify-form" disabled={!canSubmit}>
+        <OnboardingButton type="submit" form="verify-form" disabled={!canSendCode}>
           Send code
         </OnboardingButton>
         <div className="flex items-center justify-between text-body-sm text-slate">

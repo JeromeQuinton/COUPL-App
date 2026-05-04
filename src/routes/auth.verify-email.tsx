@@ -36,6 +36,9 @@ function VerifyEmail() {
   };
 
   if (success) {
+    // DR-AUTH-METHOD: post-token routes to /onboarding (new) or /home (existing).
+    // Phase 1 always routes to /onboarding (no session check yet); Phase 2 wires the
+    // existing-user branch via the auth-guard at index.tsx.
     return (
       <AuthShell>
         <p className="text-label-mono text-stone">Verified</p>
@@ -80,6 +83,11 @@ function VerifyEmail() {
       <p className="mt-6 text-center">
         <Link to="/auth/sign-in" className="font-body text-[13.5px] text-plum-700 hover:underline">
           Use a different email
+        </Link>
+      </p>
+      <p className="mt-3 text-center">
+        <Link to="/auth/recover" className="font-body text-[12.5px] text-stone hover:text-plum-700 hover:underline">
+          Didn't get the code?
         </Link>
       </p>
     </AuthShell>
