@@ -165,6 +165,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         }
       },
       {
+        "label": "Boundaries alignment",
+        "to": "/connections/$id/boundaries-alignment",
+        "params": {
+          "id": "ava"
+        }
+      },
+      {
         "label": "Cancel plan",
         "to": "/connections/$id/cancel-plan",
         "params": {

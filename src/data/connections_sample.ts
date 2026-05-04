@@ -378,3 +378,187 @@ export const SAMPLE_COOL_OFF = {
   minutesLeft: 14,
   toldThem: false,
 };
+
+/* ---------- R3-28 Boundaries Alignment (DR-087, paired-reveal) ---------- */
+
+export type BoundariesQuestionId =
+  | "pace"
+  | "physical-contact"
+  | "substances"
+  | "comms-when-off"
+  | "leaving-early";
+
+export type BoundariesQuestion = {
+  id: BoundariesQuestionId;
+  prompt: string;
+  options: string[]; // empty for free-text-only questions (e.g. leaving-early)
+  optional: boolean;
+};
+
+export const BOUNDARIES_QUESTIONS: BoundariesQuestion[] = [
+  {
+    id: "pace",
+    prompt:
+      "When a new connection feels promising, how soon do you usually like to meet in person?",
+    options: [
+      "Within a few days",
+      "After a week or two",
+      "After we've had a longer chat",
+      "It depends",
+    ],
+    optional: false,
+  },
+  {
+    id: "physical-contact",
+    prompt:
+      "On a first or second date, what kind of physical contact, if any, tends to feel comfortable for you?",
+    options: [
+      "None — I prefer no touch at all",
+      "A hello/goodbye hug can feel fine",
+      "It depends on how it feels in the moment",
+    ],
+    optional: false,
+  },
+  {
+    id: "substances",
+    prompt:
+      "What feels right for you around alcohol or other substances on early dates?",
+    options: [
+      "I prefer no alcohol or substances",
+      "One drink is my limit",
+      "I'm comfortable if we talk about it first",
+      "I don't use substances, but I'm relaxed if you have one drink",
+    ],
+    optional: false,
+  },
+  {
+    id: "comms-when-off",
+    prompt:
+      "If something doesn't feel right for you on a date, what usually helps you say so?",
+    options: [
+      "I prefer to step away and text later",
+      "I'll say something gently in the moment",
+      "I might go quiet and need time before talking",
+    ],
+    optional: false,
+  },
+  {
+    id: "leaving-early",
+    prompt:
+      "If you needed to leave a date early, what would you want the other person to understand?",
+    options: [],
+    optional: true,
+  },
+];
+
+export type BoundariesAnswer = {
+  questionId: BoundariesQuestionId;
+  choice?: string;
+  freeText?: string;
+};
+
+export type BoundariesPartnerState =
+  | "not-started"
+  | "in-progress"
+  | "finished"
+  | "stalled";
+
+// Phase 1 fixture per-connection. Phase 4 reads from
+// boundariesAnswers (per user) + boundariesInsights (post paired-reveal).
+export const SAMPLE_BOUNDARIES_PARTNER_STATE: Record<string, BoundariesPartnerState> = {
+  ava: "in-progress",
+  maya: "finished",
+  jade: "not-started",
+};
+
+export type BoundariesInsight = {
+  pacedShared: string;
+  paceDifferent: string;
+  observations: string[];
+};
+
+export const SAMPLE_BOUNDARIES_INSIGHT: Record<string, BoundariesInsight> = {
+  maya: {
+    pacedShared:
+      "You both prefer a longer chat before meeting in person. Worth noticing.",
+    paceDifferent:
+      "You approach substances differently — worth a careful conversation when it feels right.",
+    observations: [
+      "You're close on pace.",
+      "You differ on substances.",
+      "You're aligned on how you'd communicate if something felt off.",
+    ],
+  },
+};
+
+/* ---------- R3-31 Values Alignment (DR-094, conversation cards) ---------- */
+
+export type ValuesAreaId =
+  | "pace"
+  | "physical-contact"
+  | "substances"
+  | "comms-when-off"
+  | "leaving-early";
+
+export type ValuesCardState = "close" | "different" | "not-yet";
+
+export type ValuesCard = {
+  area: ValuesAreaId;
+  label: string;
+  state: ValuesCardState;
+  copy: string;
+  prompt: string;
+};
+
+export type ValuesAlignment = {
+  summary: string;
+  cards: ValuesCard[];
+};
+
+export const SAMPLE_VALUES_ALIGNMENT: Record<string, ValuesAlignment> = {
+  ava: {
+    summary:
+      "You're close on pace; different on substances. Polaris noticed — worth a quiet conversation when it feels right.",
+    cards: [
+      {
+        area: "pace",
+        label: "Pace of meeting up",
+        state: "close",
+        copy: "You both prefer a longer chat before meeting in person. Worth noticing.",
+        prompt:
+          "What part of getting to know each other before a first meet matters most to you?",
+      },
+      {
+        area: "physical-contact",
+        label: "Physical contact on early dates",
+        state: "close",
+        copy: "You both said a hello/goodbye hug can feel fine, depending on the moment. Aligned.",
+        prompt: "Is there anything you'd want to flag about touch at the start?",
+      },
+      {
+        area: "substances",
+        label: "Substances on dates",
+        state: "different",
+        copy:
+          "You differ here. You prefer no alcohol; they're comfortable with one drink if you talk about it first. This isn't a problem unless it becomes one.",
+        prompt: "How would you want to bring this up if it felt relevant?",
+      },
+      {
+        area: "comms-when-off",
+        label: "Communication when something feels off",
+        state: "close",
+        copy:
+          "You both said you'd say something gently in the moment. The same instinct.",
+        prompt: "What helps you actually do this in the moment?",
+      },
+      {
+        area: "leaving-early",
+        label: "Leaving a date early",
+        state: "not-yet",
+        copy: "We don't have this from them yet.",
+        prompt: "If it came up, what would you want them to understand?",
+      },
+    ],
+  },
+};
+
