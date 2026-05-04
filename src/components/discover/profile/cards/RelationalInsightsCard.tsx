@@ -1,6 +1,7 @@
 import { SectionCard } from "./SectionCard";
 import { InfoButton } from "@/components/discover/InfoButton";
 import { useParams } from "@tanstack/react-router";
+import { bandLabelFor } from "@/components/discover/profile/RelationalBand";
 
 /**
  * Card 7 — Relational Insights. Composes two sub-cards:
@@ -79,28 +80,11 @@ function ConnectionLanguageSubCard({
       <div className="mt-2 flex flex-col gap-1.5">
         <div className="flex items-center justify-between">
           <span className="font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-stone">
-            Primary signal strength
+            Primary signal
           </span>
-          <span className="font-body text-[12px] font-medium text-plum-700">
-            {v}%
+          <span className="font-display text-[12.5px] italic text-plum-700">
+            {bandLabelFor(v)}
           </span>
-        </div>
-        <div
-          className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
-          role="progressbar"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={v}
-          aria-label="Primary signal strength"
-        >
-          <div
-            className="absolute inset-y-0 left-0 rounded-full"
-            style={{
-              width: `${v}%`,
-              background:
-                "linear-gradient(90deg, var(--plum-300) 0%, var(--plum-500) 100%)",
-            }}
-          />
         </div>
       </div>
     </div>

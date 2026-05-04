@@ -5,6 +5,7 @@ import { SectionCard } from "./SectionCard";
 import { InfoButton } from "@/components/discover/InfoButton";
 import { VIEWER_PROFILE } from "@/data/discover_profile_detail_sample";
 import { computeAlignment } from "@/lib/compatibility";
+import { bandLabelFor } from "@/components/discover/profile/RelationalBand";
 
 /**
  * Card 4 — Compatibility Overview (DR-018).
@@ -122,29 +123,12 @@ export function CompatibilityOverviewCard({
                   </span>
                   <InfoButton termKey={r.termKey} />
                 </div>
-                <span className="font-display text-[13px] font-semibold text-plum-700">
-                  {r.alignment}%
+                <span className="font-display text-[12.5px] italic text-plum-700">
+                  {bandLabelFor(r.alignment)}
                 </span>
               </div>
-              <div
-                className="relative h-2 w-full overflow-hidden rounded-full bg-lavender-100"
-                role="progressbar"
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={r.alignment}
-                aria-label={`${r.label} alignment: ${r.alignment}%`}
-              >
-                <div
-                  className="absolute inset-y-0 left-0 rounded-full"
-                  style={{
-                    width: `${Math.max(2, r.alignment)}%`,
-                    background:
-                      "linear-gradient(90deg, var(--plum-300) 0%, var(--plum-500) 100%)",
-                  }}
-                />
-              </div>
               <p className="font-body text-[11px] text-stone">
-                You {r.viewer}% · {profileName} {r.theirs}%
+                Polaris reads {r.label.toLowerCase()} as a {bandLabelFor(r.alignment)} signal.
               </p>
             </div>
           );
