@@ -604,6 +604,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/coach"
       },
       {
+        "label": "Audit log",
+        "to": "/coach/audit-log"
+      },
+      {
         "label": "History",
         "to": "/coach/history"
       },
