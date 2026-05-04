@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, X } from "lucide-react";
 
 export const Route = createFileRoute("/_main/polaris")({
   head: () => ({ meta: [{ title: "Polaris — COUPL" }] }),
@@ -23,9 +24,49 @@ const CAPACITY = { current: "Some bandwidth", typical: "More than usual" };
 const REPAIR_LINE =
   "When something jarred, you came back to it more often than you let it sit.";
 
+const LENS_NOTE_KEY = "polaris.lens-model-note.dismissed.v1";
+
 function PolarisScreen() {
+  const [showLensNote, setShowLensNote] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const dismissed = window.localStorage.getItem(LENS_NOTE_KEY) === "1";
+      if (!dismissed) setShowLensNote(true);
+    } catch {
+      // localStorage may be unavailable (SSR / privacy mode) — skip silently.
+    }
+  }, []);
+
+  const dismissLensNote = () => {
+    setShowLensNote(false);
+    try {
+      window.localStorage.setItem(LENS_NOTE_KEY, "1");
+    } catch {
+      // Best-effort dismissal.
+    }
+  };
+
   return (
     <div className="relative px-5 pb-16 pt-6">
+      {showLensNote && (
+        <div className="mb-4 flex items-start justify-between gap-3 rounded-[14px] bg-lavender-50 px-4 py-3">
+          <p className="font-body text-[13px] italic leading-snug text-ink">
+            Polaris now reads four things: <em>pace</em>, <em>presence</em>,{" "}
+            <em>capacity</em>, <em>repair</em>. Each one is a lens — tap to look
+            closer.
+          </p>
+          <button
+            type="button"
+            aria-label="Dismiss note"
+            onClick={dismissLensNote}
+            className="-mt-1 -mr-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-stone hover:bg-paper hover:text-plum-700"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      )}
       <header className="flex items-center gap-3">
         <Link
           to="/profile"
