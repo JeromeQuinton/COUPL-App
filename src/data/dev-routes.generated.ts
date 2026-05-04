@@ -606,6 +606,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
       {
         "label": "History",
         "to": "/coach/history"
+      },
+      {
+        "label": "Monthly summary",
+        "to": "/coach/monthly-summary"
       }
     ]
   },
