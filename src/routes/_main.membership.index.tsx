@@ -34,7 +34,7 @@ const LADDER = [
   },
 ];
 
-const LIORA_FEATURE = {
+const POLARIS_FEATURE = {
   title: "Polaris · without limits",
   sub: "Deeper conversations with the AI coach any time — not just on prompts.",
 };
@@ -76,10 +76,10 @@ function MembershipIndex() {
               className="block"
             >
               <p className="font-display text-[15px] font-medium text-ink">
-                {LIORA_FEATURE.title}
+                {POLARIS_FEATURE.title}
               </p>
               <p className="mt-0.5 font-body text-[12.5px] text-slate">
-                {LIORA_FEATURE.sub}
+                {POLARIS_FEATURE.sub}
               </p>
               <p className="mt-1.5 text-label-mono text-plum-700">
                 OPEN COACH →

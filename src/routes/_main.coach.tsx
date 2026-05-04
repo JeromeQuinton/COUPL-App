@@ -9,7 +9,7 @@ export const Route = createFileRoute("/_main/coach")({
 
 type Msg = {
   id: string;
-  sender: "me" | "liora";
+  sender: "me" | "polaris";
   body: string;
 };
 
@@ -21,7 +21,7 @@ const SEED: Msg[] = [
   },
   {
     id: "m2",
-    sender: "liora",
+    sender: "polaris",
     body:
       "Her pace shifted on Tuesday. The reply gap stretched, then her sentences got shorter. Not a withdrawal — more like she's holding capacity for something else this week. Worth noticing without pulling on it.",
   },
@@ -32,7 +32,7 @@ const SEED: Msg[] = [
   },
   {
     id: "m4",
-    sender: "liora",
+    sender: "polaris",
     body:
       "Maya's quiet often arrives when the conversation gets close to something specific — work, family. Her presence comes back when the topic widens again. It's a pattern worth attunement, not a flag.",
   },

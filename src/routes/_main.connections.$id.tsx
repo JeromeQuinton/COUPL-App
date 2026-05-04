@@ -146,7 +146,7 @@ function ThreadScreen() {
             to="/coach"
             className="text-label-mono text-plum-700 hover:underline"
           >
-            ASK LIORA
+            ASK POLARIS
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

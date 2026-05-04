@@ -51,7 +51,7 @@ function CoachActive() {
             {formatTime(elapsed)}
           </p>
           <p className="rounded-full bg-paper/10 px-3 py-1 text-label-mono text-paper backdrop-blur">
-            LIORA · PRACTITIONER
+            POLARIS · COACH
           </p>
         </div>
       }
