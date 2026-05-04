@@ -628,6 +628,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "params": {
           "monthId": "demo"
         }
+      },
+      {
+        "label": "Weekly review",
+        "to": "/coach/weekly-review"
       }
     ]
   },
