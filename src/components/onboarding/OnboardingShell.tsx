@@ -3,6 +3,11 @@ import { useNavigate, useRouter } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { ORDERED_STEPS, type OnboardingStep } from "@/lib/onboarding_store";
 import { OfflineBanner } from "./OfflineBanner";
+import {
+  NamedPhaseStepper,
+  ONBOARDING_PHASES,
+  phaseForStep,
+} from "./NamedPhaseStepper";
 
 type Props = {
   step: OnboardingStep;
@@ -18,12 +23,10 @@ type Props = {
 /**
  * Shared chrome for every onboarding step:
  *   - back arrow (history-aware)
- *   - step counter
- *   - linear progress bar
+ *   - named-phase stepper (R4 Stream 1.5, DR-103) — no progressbar, no
+ *     "step N of M", no percentage
  *   - sticky footer for CTAs
  *   - offline banner pinned to top
- *
- * Keeping chrome in one component prevents drift between step screens.
  */
 export function OnboardingShell({
   step,
@@ -37,7 +40,7 @@ export function OnboardingShell({
   const navigate = useNavigate();
   const idx = ORDERED_STEPS.indexOf(step);
   const total = ORDERED_STEPS.length;
-  const progress = ((idx + 1) / total) * 100;
+  const currentPhase = phaseForStep(idx, total);
 
   const handleBack = () => {
     if (onBack) return onBack();
@@ -52,7 +55,7 @@ export function OnboardingShell({
     >
       <OfflineBanner />
 
-      {/* Sticky header with back + progress */}
+      {/* Sticky header with back + named-phase stepper */}
       <header className="sticky top-0 z-20 -mx-0 bg-paper/85 px-6 pb-3 pt-4 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <button
@@ -63,20 +66,11 @@ export function OnboardingShell({
           >
             <ArrowLeft className="h-5 w-5" aria-hidden />
           </button>
-          <p className="text-body-sm text-slate">
-            Step {idx + 1} of {total}
-          </p>
         </div>
-        <div
-          className="mt-3 h-1 w-full overflow-hidden rounded-full bg-cloud"
-          role="progressbar"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(progress)}
-        >
-          <div
-            className="h-full rounded-full bg-plum-500 transition-[width] duration-300 ease-[var(--ease-coupl)]"
-            style={{ width: `${progress}%` }}
+        <div className="mt-3">
+          <NamedPhaseStepper
+            phases={ONBOARDING_PHASES}
+            currentPhase={currentPhase}
           />
         </div>
       </header>
