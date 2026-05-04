@@ -49,8 +49,8 @@ function WorkshopEnded() {
             Skip — I'll come back to this
           </button>
           <Link
-            to="/video/workshop/$workshopId/feedback"
-            params={{ workshopId }}
+            to="/growth/$id_/reflect"
+            params={{ id: workshopId }}
             className="block w-full px-5 py-2 text-center font-body text-[13px] italic text-stone hover:text-plum-500"
           >
             Want to take more time? Reflect on this →
