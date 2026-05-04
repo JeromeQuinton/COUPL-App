@@ -10,7 +10,7 @@ export const Route = createFileRoute("/onboarding/checks/id-select")({
   component: IDSelectScreen,
 });
 
-type IDType = "passport" | "licence";
+type IDType = "passport" | "licence" | "national-id";
 
 function IDSelectScreen() {
   const navigate = useNavigate();
@@ -19,17 +19,21 @@ function IDSelectScreen() {
   return (
     <OnboardingFrame backTo="/onboarding/checks">
       <div>
-        <p className="text-label-mono">Verification · 1 of 3</p>
-        <h1 className="mt-3 text-display-xl text-ink">Which document?</h1>
+        <p className="text-label-mono">Verify · choose ID</p>
+        <h1 className="mt-3 text-display-xl text-ink">
+          Choose how to prove it's you.
+        </h1>
         <p className="mt-2 text-body-md text-slate">
-          Either works. Whichever's easier to find right now.
+          We ask for one official document once, to help keep impersonation
+          and fake profiles out of COUPL.
         </p>
       </div>
 
       <div className="mt-8 space-y-3">
         {([
-          { id: "passport", label: "Passport", hint: "Photo page only." },
-          { id: "licence", label: "Driving licence", hint: "Front and back." },
+          { id: "passport", label: "Passport", hint: "Best for most UK citizens." },
+          { id: "licence", label: "Driving licence", hint: "If you don't have a passport, a UK licence works too." },
+          { id: "national-id", label: "National ID card", hint: "If you have a national identity card." },
         ] as Array<{ id: IDType; label: string; hint: string }>).map((opt) => {
           const active = pick === opt.id;
           return (
@@ -69,7 +73,8 @@ function IDSelectScreen() {
           Continue
         </OnboardingButton>
         <p className="mt-3 text-center text-body-sm italic text-stone">
-          Your document is encrypted at upload, used once, then deleted.
+          You can skip this step for now, but some features may stay limited
+          until you've verified.
         </p>
       </div>
     </OnboardingFrame>
