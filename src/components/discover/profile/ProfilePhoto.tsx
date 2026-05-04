@@ -3,29 +3,28 @@
  * Phase 1 only — Phase 4 swaps `hue` for real uploads.
  */
 import { useState } from "react";
-import { Heart, BadgeCheck } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import { PhotoCaption } from "@/components/discover/PhotoCaption";
-import { InfoButton } from "@/components/discover/InfoButton";
 
 /**
- * Hero overlay (DR-047) — Photo 1 only. Four-corner identity overlay
- * replacing the deleted IntroductionCard. Renders Attuned % (top-left),
- * Trust Score (top-right), name+age+location (bottom-left), Verified
- * pill (bottom-right). A radial-darkened gradient improves legibility.
+ * Hero overlay (DR-047) — Photo 1 only. Four-corner identity overlay.
+ *
+ * R4 Stream 1.3 + DR-105: Trust Score numeric pill removed. Trust signal
+ * is now language-only ("Verified · Neighbourhood-known") via a subtle
+ * bottom-right BadgeCheck. The Attuned-percentage pill is removed in
+ * favour of a descriptive band label rendered upstream.
  */
 export type HeroOverlay = {
   name: string;
   age: number;
   region: string;
   verified: boolean;
-  attunedValue: number;
-  trustScore: number;
+  attunedLabel?: string;
 };
 
 export function ProfilePhoto({
   hue,
   alt,
-  trustScore,
   src,
   caption,
   hero,
@@ -33,8 +32,6 @@ export function ProfilePhoto({
 }: {
   hue: string;
   alt: string;
-  /** Optional Trust Score overlay pill (top-right). Legacy — superseded by `hero` on Photo 1. */
-  trustScore?: number;
   /** Optional image URL/path. When omitted, the lavender gradient is used as a fallback. */
   src?: string;
   /** Optional user-authored caption rendered over a soft bottom gradient. */
@@ -77,17 +74,7 @@ export function ProfilePhoto({
           }}
         />
       )}
-      {hero ? (
-        <HeroOverlayLayer hero={hero} />
-      ) : typeof trustScore === "number" ? (
-        <span
-          className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-paper/90 px-3 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"
-          aria-label={`Trust Score ${trustScore}%`}
-        >
-          <span className="font-display text-[12px] font-semibold">Trust Score {trustScore}%</span>
-          <InfoButton termKey="trust_score" />
-        </span>
-      ) : null}
+      {hero ? <HeroOverlayLayer hero={hero} /> : null}
       {hero ? null : <PhotoCaption caption={caption} photoAlt={alt} />}
     </div>
   );
@@ -114,35 +101,17 @@ function HeroOverlayLayer({ hero }: { hero: HeroOverlay }) {
         }}
       />
 
-      {/* Top-left — Attuned % */}
-      <span
-        className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-paper/90 px-3 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"
-        aria-label={`${hero.attunedValue}% Attuned`}
-      >
-        <Heart
-          aria-hidden
-          width={12}
-          height={12}
-          strokeWidth={2}
-          className="text-plum-500"
-          fill="currentColor"
-        />
-        <span className="font-display text-[12px] font-semibold">
-          {hero.attunedValue}% Attuned
+      {/* Top-left — descriptive Attuned label (no percentage). */}
+      {hero.attunedLabel && (
+        <span
+          className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-paper/90 px-3 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"
+          aria-label={hero.attunedLabel}
+        >
+          <span className="font-display text-[12px] italic">
+            {hero.attunedLabel}
+          </span>
         </span>
-        <InfoButton termKey="attuned_percentage" />
-      </span>
-
-      {/* Top-right — Trust Score */}
-      <span
-        className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-paper/90 px-3 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"
-        aria-label={`Trust Score ${hero.trustScore}%`}
-      >
-        <span className="font-display text-[12px] font-semibold">
-          Trust Score {hero.trustScore}%
-        </span>
-        <InfoButton termKey="trust_score" />
-      </span>
+      )}
 
       {/* Bottom-left — Name+age + location */}
       <div
@@ -157,16 +126,18 @@ function HeroOverlayLayer({ hero }: { hero: HeroOverlay }) {
         </span>
       </div>
 
-      {/* Bottom-right — Verified */}
-      {hero.verified ? (
-        <span
-          className="absolute bottom-4 right-4 inline-flex items-center gap-1 rounded-full bg-paper/90 px-2.5 py-1 font-body text-[11px] font-medium text-plum-700 shadow-elev-1 backdrop-blur"
+      {/* Bottom-right — subtle verified-mark icon (no text label by default).
+          Tooltip on press: "Verified · Neighbourhood-known" per DR-105. */}
+      {hero.verified && (
+        <button
+          type="button"
           aria-label="Verified profile"
+          title="Verified · Neighbourhood-known"
+          className="absolute bottom-4 right-4 grid h-7 w-7 place-items-center rounded-full bg-paper/90 text-plum-700 shadow-elev-1 backdrop-blur"
         >
-          <BadgeCheck aria-hidden width={12} height={12} strokeWidth={2} />
-          Verified
-        </span>
-      ) : null}
+          <BadgeCheck aria-hidden width={14} height={14} strokeWidth={2} />
+        </button>
+      )}
     </>
   );
 }

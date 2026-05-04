@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-router";
 import { ProfileDetailHeader } from "@/components/discover/profile/ProfileDetailHeader";
 import { ProfilePhoto } from "@/components/discover/profile/ProfilePhoto";
+import { bandLabelFor } from "@/components/discover/profile/RelationalBand";
 import { ActionRow } from "@/components/discover/profile/ActionRow";
 import { AttuneDateCard } from "@/components/discover/AttuneDateCard";
 import { RelationalSnapshotCard } from "@/components/discover/profile/cards/RelationalSnapshotCard";
@@ -223,8 +224,7 @@ function ProfileDetailScreen() {
               age: profile.age,
               region: profile.region,
               verified: profile.verified,
-              attunedValue: profile.compatibility,
-              trustScore: profile.trustScore,
+              attunedLabel: bandLabelFor(profile.compatibility),
             }}
           />
         </div>
