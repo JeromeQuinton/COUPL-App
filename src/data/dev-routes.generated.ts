@@ -632,6 +632,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
       {
         "label": "Weekly review",
         "to": "/coach/weekly-review"
+      },
+      {
+        "label": "Weekly review detail",
+        "to": "/coach/weekly-review/$weekId",
+        "params": {
+          "weekId": "demo"
+        }
       }
     ]
   },
