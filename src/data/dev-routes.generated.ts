@@ -608,6 +608,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/coach/audit-log"
       },
       {
+        "label": "Audit log detail",
+        "to": "/coach/audit-log/$entryId",
+        "params": {
+          "entryId": "demo"
+        }
+      },
+      {
         "label": "History",
         "to": "/coach/history"
       },
