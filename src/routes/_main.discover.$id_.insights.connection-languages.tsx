@@ -31,42 +31,14 @@ export const Route = createFileRoute(
   component: ConnectionLanguagesScreen,
 });
 
-// Phase 1 fixture. Order matters — radar walks clockwise from top.
-const RADAR = [
-  { label: "Words", value: 92 },
-  { label: "Slow time", value: 84 },
-  { label: "Building", value: 58 },
-  { label: "Closeness", value: 71 },
-  { label: "Care", value: 66 },
-];
+import {
+  CONNECTION_LANGUAGES_PATTERNS,
+  CONNECTION_LANGUAGES_RADAR,
+} from "@/data/insights_sample";
 
-const PATTERNS: { title: string; score: number; body: string }[] = [
-  {
-    title: "Words of attention",
-    score: 92,
-    body: "Being noticed in language. Specific naming. Letters.",
-  },
-  {
-    title: "Slow time together",
-    score: 84,
-    body: "Long unscheduled stretches. The walk that becomes dinner.",
-  },
-  {
-    title: "Quiet closeness",
-    score: 71,
-    body: "Easy proximity. Reading on the same couch. Hand on a shoulder.",
-  },
-  {
-    title: "Acts of care",
-    score: 66,
-    body: "Coffee made the way you like it. The errand done before you asked.",
-  },
-  {
-    title: "Building together",
-    score: 58,
-    body: "Small projects, shared. The studio shelf you put up on a Sunday.",
-  },
-];
+// Fixtures live in src/data/insights_sample.ts (R4 Stream 1.4).
+const RADAR = CONNECTION_LANGUAGES_RADAR;
+const PATTERNS = CONNECTION_LANGUAGES_PATTERNS;
 
 function ConnectionLanguagesScreen() {
   const { id } = Route.useParams();
@@ -95,7 +67,7 @@ function ConnectionLanguagesScreen() {
           <InsightPatternCard
             key={p.title}
             title={p.title}
-            score={p.score}
+            band={p.band}
             body={p.body}
           />
         ))}

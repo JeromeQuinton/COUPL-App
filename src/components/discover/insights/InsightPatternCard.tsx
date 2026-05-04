@@ -1,16 +1,22 @@
+import {
+  RelationalBand,
+  type RelationalBandLabel,
+} from "@/components/discover/profile/RelationalBand";
+
 type Props = {
   title: string;
-  /** 0..100 score shown in the right gutter. */
-  score: number;
+  /** Descriptive band label — never a number. R4 Stream 1.4, DR-103. */
+  band: RelationalBandLabel;
   body: string;
 };
 
 /**
- * Premium pattern card used inside any RelationalInsightExplainer.
- * Paper surface with plum-300 hairline, score in plum-700 to the right.
+ * Pattern card used inside any RelationalInsightExplainer.
+ * Paper surface with plum-300 hairline. The right gutter now carries a
+ * descriptive band label; the prior numeric score has been removed per
+ * the charter (R4 Stream 1.4, DR-103).
  */
-export function InsightPatternCard({ title, score, body }: Props) {
-  const v = Math.round(Math.max(0, Math.min(100, score)));
+export function InsightPatternCard({ title, band, body }: Props) {
   return (
     <article
       className="rounded-[16px] border border-plum-300/35 px-4 py-3 shadow-elev-1 backdrop-blur-sm"
@@ -23,14 +29,11 @@ export function InsightPatternCard({ title, score, body }: Props) {
         <h3 className="font-display text-[17px] leading-tight text-ink">
           {title}
         </h3>
-        <span
-          aria-label={`Pattern strength ${v} out of 100`}
-          className="font-body text-[14px] font-semibold tabular-nums text-plum-700"
-        >
-          {v}
-        </span>
       </header>
-      <p className="mt-1 text-[13px] leading-snug text-slate">{body}</p>
+      <div className="mt-2">
+        <RelationalBand label={band} />
+      </div>
+      <p className="mt-2 text-[13px] leading-snug text-slate">{body}</p>
     </article>
   );
 }
