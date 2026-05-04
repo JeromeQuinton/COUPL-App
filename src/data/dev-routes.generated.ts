@@ -429,6 +429,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "params": {
           "id": "ava"
         }
+      },
+      {
+        "label": "Values overlap",
+        "to": "/connections/$id/values-overlap",
+        "params": {
+          "id": "ava"
+        }
       }
     ]
   },
