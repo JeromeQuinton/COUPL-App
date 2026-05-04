@@ -11,10 +11,10 @@ export const Route = createFileRoute("/_main/polaris/weekly-review/$weekId_")({
 });
 
 function ArchivedWeeklyScreen() {
-  const { weekId_ } = useParams({
+  const { weekId } = useParams({
     from: "/_main/polaris/weekly-review/$weekId_",
   });
-  const review = SAMPLE_WEEKLY_REVIEWS[weekId_];
+  const review = SAMPLE_WEEKLY_REVIEWS[weekId];
   const [compareOpen, setCompareOpen] = useState(false);
 
   if (!review) {
@@ -41,7 +41,7 @@ function ArchivedWeeklyScreen() {
     );
   }
 
-  const prevId = weekId_ === "2026-w17" ? "2026-w16" : null;
+  const prevId = weekId === "2026-w17" ? "2026-w16" : null;
   const prev = prevId ? SAMPLE_WEEKLY_REVIEWS[prevId] : null;
 
   return (

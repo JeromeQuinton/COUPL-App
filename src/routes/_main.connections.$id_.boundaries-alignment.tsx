@@ -22,13 +22,13 @@ const isMember = true;
 type Stage = "intro" | "answering" | "waiting" | "stalled" | "revealed";
 
 function BoundariesAlignmentScreen() {
-  const { id_ } = useParams({
+  const { id } = useParams({
     from: "/_main/connections/$id_/boundaries-alignment",
   });
 
   const partnerState: BoundariesPartnerState =
-    SAMPLE_BOUNDARIES_PARTNER_STATE[id_] ?? "not-started";
-  const partnerInsight = SAMPLE_BOUNDARIES_INSIGHT[id_];
+    SAMPLE_BOUNDARIES_PARTNER_STATE[id] ?? "not-started";
+  const partnerInsight = SAMPLE_BOUNDARIES_INSIGHT[id];
 
   const [stage, setStage] = useState<Stage>("intro");
   const [answers, setAnswers] = useState<Record<string, BoundariesAnswer>>({});
@@ -53,7 +53,7 @@ function BoundariesAlignmentScreen() {
       <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-plum-300/15 bg-paper/85 px-4 py-3 backdrop-blur-md">
         <Link
           to="/connections/$id"
-          params={{ id: id_ }}
+          params={{ id: id }}
           aria-label="Back"
           className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
         >
@@ -198,7 +198,7 @@ function BoundariesAlignmentScreen() {
             </article>
             <Link
               to="/connections/$id"
-              params={{ id: id_ }}
+              params={{ id: id }}
               className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
             >
               Back to chat

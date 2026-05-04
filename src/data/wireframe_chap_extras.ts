@@ -108,7 +108,7 @@ export type SafetyRow = {
     | "/profile/safety/blocked"
     | "/profile/safety/trusted-contact"
     | "/profile/verification"
-    | "/profile/audit-log"
+    | "/polaris/audit-log"
     | "/profile/edit"
     | "/profile/pause"
     | "/profile/visibility";

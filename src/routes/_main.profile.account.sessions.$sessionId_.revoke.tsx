@@ -24,10 +24,10 @@ const SAMPLE_SESSIONS: Record<
 
 function RevokeScreen() {
   const navigate = useNavigate();
-  const { sessionId_ } = useParams({
+  const { sessionId } = useParams({
     from: "/_main/profile/account/sessions/$sessionId_/revoke",
   });
-  const session = SAMPLE_SESSIONS[sessionId_];
+  const session = SAMPLE_SESSIONS[sessionId];
 
   if (!session) {
     return (
