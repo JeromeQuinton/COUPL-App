@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Camera, BadgeCheck, ScanFace, Globe } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 /**
  * /profile/verification/refresh — re-run a verification check.
@@ -51,10 +52,11 @@ function RefreshScreen() {
       />
 
       <header className="px-5 pt-2 pb-5">
-        <p className="text-label-mono">Verification · refresh</p>
-        <h1 className="mt-2 font-display text-[28px] italic leading-tight text-ink">
-          Quiet credibility.
-        </h1>
+        <ScreenHeader
+          eyebrow="Verification · refresh"
+          title="Quiet credibility."
+          titleItalic
+        />
         <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
           Pick a check to re-run. Other people see what we've checked, never the
           details.

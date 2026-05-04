@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { OnboardingFrame } from "@/components/onboarding/OnboardingFrame";
 import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/system/verification-failed")({
   head: () => ({
@@ -21,10 +22,11 @@ function MismatchScreen() {
   return (
     <OnboardingFrame>
       <div className="pt-12">
-        <p className="text-label-mono">Verification</p>
-        <h1 className="mt-3 text-display-xl text-ink">
-          Something didn't match.
-        </h1>
+        <ScreenHeader
+          eyebrow="Verification"
+          title="Something didn't match."
+          titleSize="display-xl"
+        />
         <p className="mt-3 text-body-md text-slate">
           One or more details need another look before we proceed.
         </p>
