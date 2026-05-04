@@ -1105,6 +1105,14 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/onboarding/checks/id-select"
       },
       {
+        "label": "Review",
+        "to": "/onboarding/checks/licence/review"
+      },
+      {
+        "label": "Scan",
+        "to": "/onboarding/checks/licence/scan"
+      },
+      {
         "label": "Liveness",
         "to": "/onboarding/checks/liveness"
       },
