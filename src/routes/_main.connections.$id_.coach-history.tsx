@@ -154,7 +154,7 @@ function CoachHistoryScreen() {
             </ul>
 
             <Link
-              to="/coach/audit-log"
+              to="/polaris/audit-log"
               className="mt-7 flex items-center justify-between rounded-[14px] border border-line bg-paper px-4 py-3.5 hover:bg-lavender-50"
             >
               <div>

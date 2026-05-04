@@ -5,7 +5,7 @@ import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { SAMPLE_WEEKLY_REVIEWS } from "@/data/coach_sample";
 
-export const Route = createFileRoute("/_main/coach/weekly-review")({
+export const Route = createFileRoute("/_main/polaris/weekly-review")({
   head: () => ({ meta: [{ title: "This week — COUPL" }] }),
   component: WeeklyReviewScreen,
 });
@@ -21,7 +21,7 @@ function WeeklyReviewScreen() {
       <StatusBar
         leading={
           <Link
-            to="/coach"
+            to="/polaris/chat"
             aria-label="Back"
             className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >
@@ -89,7 +89,7 @@ function WeeklyReviewScreen() {
 
           <div className="px-5 pt-8 pb-12">
             <Link
-              to="/coach/weekly-review/$weekId_"
+              to="/polaris/weekly-review/$weekId_"
               params={{ weekId_: "2026-w17" }}
               className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"
             >

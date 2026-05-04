@@ -143,7 +143,7 @@ function ThreadScreen() {
             INSIGHTS
           </Link>
           <Link
-            to="/coach"
+            to="/polaris/chat"
             className="text-label-mono text-plum-700 hover:underline"
           >
             ASK POLARIS

@@ -5,7 +5,7 @@ import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { SAMPLE_AUDIT_LOG, type AuditSurface } from "@/data/coach_sample";
 
-export const Route = createFileRoute("/_main/coach/audit-log")({
+export const Route = createFileRoute("/_main/polaris/audit-log")({
   head: () => ({ meta: [{ title: "Audit log — COUPL" }] }),
   component: AuditLogScreen,
 });
@@ -43,7 +43,7 @@ function AuditLogScreen() {
       <StatusBar
         leading={
           <Link
-            to="/coach"
+            to="/polaris/chat"
             aria-label="Back"
             className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >
@@ -107,7 +107,7 @@ function AuditLogScreen() {
             {entries.map((e) => (
               <li key={e.id}>
                 <Link
-                  to="/coach/audit-log/$entryId_"
+                  to="/polaris/audit-log/$entryId_"
                   params={{ entryId_: e.id }}
                   className="flex items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
                 >

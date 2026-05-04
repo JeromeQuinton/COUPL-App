@@ -582,16 +582,8 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         }
       },
       {
-        "label": "Monthly summary",
-        "to": "/growth/monthly-summary"
-      },
-      {
         "label": "Path",
         "to": "/growth/path"
-      },
-      {
-        "label": "Weekly",
-        "to": "/growth/weekly"
       },
       {
         "label": "Workshops",
@@ -636,63 +628,58 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/polaris/about"
       },
       {
+        "label": "Audit log",
+        "to": "/polaris/audit-log"
+      },
+      {
+        "label": "Audit log detail",
+        "to": "/polaris/audit-log/$entryId",
+        "params": {
+          "entryId": "demo"
+        }
+      },
+      {
+        "label": "Chat",
+        "to": "/polaris/chat"
+      },
+      {
+        "label": "History",
+        "to": "/polaris/history"
+      },
+      {
         "label": "Love language",
         "to": "/polaris/love-language"
       },
       {
         "label": "Methodology",
         "to": "/polaris/methodology"
-      }
-    ]
-  },
-  {
-    "title": "Coach",
-    "rows": [
-      {
-        "label": "Coach",
-        "to": "/coach"
-      },
-      {
-        "label": "Audit log",
-        "to": "/coach/audit-log"
-      },
-      {
-        "label": "Audit log detail",
-        "to": "/coach/audit-log/$entryId",
-        "params": {
-          "entryId": "demo"
-        }
-      },
-      {
-        "label": "History",
-        "to": "/coach/history"
       },
       {
         "label": "Monthly summary",
-        "to": "/coach/monthly-summary"
+        "to": "/polaris/monthly-summary"
       },
       {
         "label": "Monthly summary detail",
-        "to": "/coach/monthly-summary/$monthId",
+        "to": "/polaris/monthly-summary/$monthId",
         "params": {
           "monthId": "demo"
         }
       },
       {
         "label": "Pacing",
-        "to": "/coach/pacing"
+        "to": "/polaris/pacing"
       },
       {
         "label": "Preferences",
-        "to": "/coach/preferences"
+        "to": "/polaris/preferences"
       },
       {
         "label": "Weekly review",
-        "to": "/coach/weekly-review"
+        "to": "/polaris/weekly-review"
       },
       {
         "label": "Weekly review detail",
-        "to": "/coach/weekly-review/$weekId",
+        "to": "/polaris/weekly-review/$weekId",
         "params": {
           "weekId": "demo"
         }
@@ -748,6 +735,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/account"
       },
       {
+        "label": "Account history",
+        "to": "/profile/account-history"
+      },
+      {
         "label": "2fa",
         "to": "/profile/account/2fa"
       },
@@ -797,10 +788,6 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "params": {
           "sessionId": "demo"
         }
-      },
-      {
-        "label": "Audit log",
-        "to": "/profile/audit-log"
       },
       {
         "label": "Coach settings",

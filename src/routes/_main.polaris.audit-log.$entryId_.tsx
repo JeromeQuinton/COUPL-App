@@ -5,7 +5,7 @@ import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { SAMPLE_AUDIT_LOG, type AuditSurface } from "@/data/coach_sample";
 
-export const Route = createFileRoute("/_main/coach/audit-log/$entryId_")({
+export const Route = createFileRoute("/_main/polaris/audit-log/$entryId_")({
   head: () => ({ meta: [{ title: "Why Polaris said that — COUPL" }] }),
   component: AuditEntryScreen,
 });
@@ -19,7 +19,7 @@ const SURFACE_LABEL: Record<AuditSurface, string> = {
 
 function AuditEntryScreen() {
   const { entryId_ } = useParams({
-    from: "/_main/coach/audit-log/$entryId_",
+    from: "/_main/polaris/audit-log/$entryId_",
   });
   const entry = SAMPLE_AUDIT_LOG.find((e) => e.id === entryId_);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
@@ -32,7 +32,7 @@ function AuditEntryScreen() {
         <StatusBar
           leading={
             <Link
-              to="/coach/audit-log"
+              to="/polaris/audit-log"
               aria-label="Back"
               className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
             >
@@ -55,7 +55,7 @@ function AuditEntryScreen() {
       <StatusBar
         leading={
           <Link
-            to="/coach/audit-log"
+            to="/polaris/audit-log"
             aria-label="Back"
             className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >

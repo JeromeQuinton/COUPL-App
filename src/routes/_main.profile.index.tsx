@@ -144,9 +144,9 @@ function ProfileScreen() {
             title="Edit profile"
           />
           <ProfileLinkRow
-            to="/profile/audit-log"
-            title="Decision audit log"
-            sub="Every AI nudge, transparent + reversible"
+            to="/profile/account-history"
+            title="Account history"
+            sub="Every Polaris signal, transparent + reversible"
           />
           <ProfileLinkRow
             to="/profile/visibility"
@@ -226,7 +226,7 @@ function ProfileLinkRow({
 }: {
   to:
     | "/profile/edit"
-    | "/profile/audit-log"
+    | "/profile/account-history"
     | "/profile/visibility"
     | "/profile/safety"
     | "/profile/coach-settings"

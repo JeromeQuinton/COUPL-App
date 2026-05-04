@@ -6,7 +6,7 @@ import { StatusBar } from "@/components/events/StatusBar";
 import { SAMPLE_MONTHLY_SUMMARIES } from "@/data/coach_sample";
 
 export const Route = createFileRoute(
-  "/_main/coach/monthly-summary/$monthId_",
+  "/_main/polaris/monthly-summary/$monthId_",
 )({
   head: () => ({ meta: [{ title: "Monthly summary — COUPL" }] }),
   component: ArchivedSummaryScreen,
@@ -14,7 +14,7 @@ export const Route = createFileRoute(
 
 function ArchivedSummaryScreen() {
   const { monthId_ } = useParams({
-    from: "/_main/coach/monthly-summary/$monthId_",
+    from: "/_main/polaris/monthly-summary/$monthId_",
   });
   const summary = SAMPLE_MONTHLY_SUMMARIES[monthId_];
   const [compareOpen, setCompareOpen] = useState(false);
@@ -25,7 +25,7 @@ function ArchivedSummaryScreen() {
         <StatusBar
           leading={
             <Link
-              to="/coach/monthly-summary"
+              to="/polaris/monthly-summary"
               aria-label="Back"
               className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
             >
@@ -51,7 +51,7 @@ function ArchivedSummaryScreen() {
       <StatusBar
         leading={
           <Link
-            to="/coach/monthly-summary"
+            to="/polaris/monthly-summary"
             aria-label="Back"
             className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >

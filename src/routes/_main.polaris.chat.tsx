@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUp, ChevronLeft } from "lucide-react";
 
-export const Route = createFileRoute("/_main/coach")({
+export const Route = createFileRoute("/_main/polaris/chat")({
   head: () => ({ meta: [{ title: "Polaris — COUPL" }] }),
   component: CoachThread,
 });

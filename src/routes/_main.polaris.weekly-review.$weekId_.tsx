@@ -5,14 +5,14 @@ import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { SAMPLE_WEEKLY_REVIEWS } from "@/data/coach_sample";
 
-export const Route = createFileRoute("/_main/coach/weekly-review/$weekId_")({
+export const Route = createFileRoute("/_main/polaris/weekly-review/$weekId_")({
   head: () => ({ meta: [{ title: "Past week — COUPL" }] }),
   component: ArchivedWeeklyScreen,
 });
 
 function ArchivedWeeklyScreen() {
   const { weekId_ } = useParams({
-    from: "/_main/coach/weekly-review/$weekId_",
+    from: "/_main/polaris/weekly-review/$weekId_",
   });
   const review = SAMPLE_WEEKLY_REVIEWS[weekId_];
   const [compareOpen, setCompareOpen] = useState(false);
@@ -23,7 +23,7 @@ function ArchivedWeeklyScreen() {
         <StatusBar
           leading={
             <Link
-              to="/coach/weekly-review"
+              to="/polaris/weekly-review"
               aria-label="Back"
               className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
             >
@@ -49,7 +49,7 @@ function ArchivedWeeklyScreen() {
       <StatusBar
         leading={
           <Link
-            to="/coach/weekly-review"
+            to="/polaris/weekly-review"
             aria-label="Back"
             className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >

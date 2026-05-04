@@ -181,7 +181,7 @@ function GrowthDashboard() {
           </li>
           <li>
             <Link
-              to="/growth/monthly-summary"
+              to="/polaris/monthly-summary"
               className="block rounded-[16px] bg-paper p-4 shadow-elev-1 transition-colors hover:bg-lavender-50"
             >
               <p className="text-label-mono">Monthly</p>

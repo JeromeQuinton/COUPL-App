@@ -22,7 +22,7 @@ export function FeedHeader() {
             Attuned with me →
           </Link>
           <Link
-            to="/growth/weekly"
+            to="/polaris/weekly-review"
             className="rounded-full border border-plum-300/60 bg-paper/60 px-3 py-1.5 font-body text-[12px] font-medium text-plum-700 transition-colors hover:bg-lavender-50"
           >
             Weekly review →

@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
  *
  * Stream-19 SCREEN-31.
  */
-export const Route = createFileRoute("/_main/coach/history")({
+export const Route = createFileRoute("/_main/polaris/history")({
   head: () => ({ meta: [{ title: "Past reflections — COUPL" }] }),
   component: HistoryScreen,
 });
@@ -43,7 +43,7 @@ function HistoryScreen() {
   return (
     <div className="relative px-5 pb-16 pt-6">
       <header className="flex items-center gap-3">
-        <Link to="/coach" aria-label="Back" className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50">
+        <Link to="/polaris/chat" aria-label="Back" className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50">
           <ChevronLeft className="h-5 w-5" />
         </Link>
         <p className="text-label-mono">Polaris · past reflections</p>

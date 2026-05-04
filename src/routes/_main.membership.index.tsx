@@ -72,7 +72,7 @@ function MembershipIndex() {
           <span className="font-display text-[16px] font-semibold text-plum-500 min-w-[2rem]">04</span>
           <div className="flex-1">
             <Link
-              to="/coach"
+              to="/polaris/chat"
               className="block"
             >
               <p className="font-display text-[15px] font-medium text-ink">

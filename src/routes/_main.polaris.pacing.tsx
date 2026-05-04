@@ -6,7 +6,7 @@ import { StatusBar } from "@/components/events/StatusBar";
 import { BreathRhythm } from "@/components/polaris/BreathRhythm";
 import { SAMPLE_PACING_THIS_WEEK } from "@/data/coach_sample";
 
-export const Route = createFileRoute("/_main/coach/pacing")({
+export const Route = createFileRoute("/_main/polaris/pacing")({
   head: () => ({ meta: [{ title: "Pacing — COUPL" }] }),
   component: PacingScreen,
 });
@@ -24,7 +24,7 @@ function PacingScreen() {
         <StatusBar
           leading={
             <Link
-              to="/coach"
+              to="/polaris/chat"
               aria-label="Back"
               className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
             >
@@ -51,7 +51,7 @@ function PacingScreen() {
       <StatusBar
         leading={
           <Link
-            to="/coach"
+            to="/polaris/chat"
             aria-label="Back"
             className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >

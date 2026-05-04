@@ -34,7 +34,7 @@ import {
  * influence with status, severity, AI confidence, and behavioural
  * pattern intelligence.
  */
-export const Route = createFileRoute("/_main/profile/audit-log")({
+export const Route = createFileRoute("/_main/profile/account-history")({
   head: () => ({ meta: [{ title: "Decision Intelligence — COUPL" }] }),
   component: DecisionIntelligenceScreen,
 });

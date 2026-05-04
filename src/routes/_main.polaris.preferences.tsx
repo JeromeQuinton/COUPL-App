@@ -4,7 +4,7 @@ import { ChevronLeft } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 
-export const Route = createFileRoute("/_main/coach/preferences")({
+export const Route = createFileRoute("/_main/polaris/preferences")({
   head: () => ({ meta: [{ title: "Polaris preferences — COUPL" }] }),
   component: PreferencesScreen,
 });
@@ -51,7 +51,7 @@ function PreferencesScreen() {
       <StatusBar
         leading={
           <Link
-            to="/coach"
+            to="/polaris/chat"
             aria-label="Back"
             className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-ink/70 hover:bg-ink/5"
           >
