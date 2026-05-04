@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { AlignmentRing } from "@/components/discover/profile/cards/AlignmentRing";
 
 /**
  * AttuneSentConfirmation — the single post-Attune visual moment.
  * Full-screen overlay, fixed 800ms duration (200ms in / 400ms hold /
  * 200ms out). No tap interactions. Reduced-motion users get a flat
  * full-opacity render for the same total duration.
+ *
+ * R4 Stream 1.2: ring primitive removed. Confirmation now reads as a
+ * soft glow + ∞ glyph + sentence — ceremonial without surfacing a number
+ * or progress visual.
  */
 
 const TOTAL_MS = 800;
@@ -73,13 +76,18 @@ export function AttuneSentConfirmation({
         pointerEvents: "none",
       }}
     >
-      <AlignmentRing
-        value={100}
-        size={140}
-        strokeWidth={10}
-        centerLabel="∞"
-        brandGradient
-      />
+      <span
+        aria-hidden
+        className="grid h-[140px] w-[140px] place-items-center rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, var(--brand-gradient-stop-3, #EC4899) 0%, var(--brand-gradient-stop-2, #6B21A8) 70%, var(--brand-gradient-stop-1, #1A0533) 100%)",
+        }}
+      >
+        <span className="font-display text-[44px] font-semibold text-paper">
+          ∞
+        </span>
+      </span>
       <h2 className="mt-6 font-display text-[24px] font-semibold text-plum-700">
         Attune sent
       </h2>
