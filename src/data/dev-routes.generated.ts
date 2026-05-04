@@ -702,6 +702,13 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/account/sessions"
       },
       {
+        "label": "Revoke",
+        "to": "/profile/account/sessions/$sessionId/revoke",
+        "params": {
+          "sessionId": "demo"
+        }
+      },
+      {
         "label": "Audit log",
         "to": "/profile/audit-log"
       },
