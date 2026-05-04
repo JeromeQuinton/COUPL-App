@@ -19,12 +19,12 @@ export const Route = createFileRoute("/_main/discover/attuned-with-me")({
 const IS_PAID_USER_V0 = true;
 
 const PEOPLE = [
-  { id: "maya", name: "Maya", age: 31, swatch: "#E8C8D6", note: "2 days ago" },
-  { id: "sam", name: "Sam", age: 34, swatch: "#C8D6E8", note: "3 days ago" },
-  { id: "rae", name: "Rae", age: 29, swatch: "#D6E8C8", note: "4 days ago" },
-  { id: "ava", name: "Ava", age: 32, swatch: "#E8D6C8", note: "this week" },
-  { id: "noor", name: "Noor", age: 30, swatch: "#D6C8E8", note: "this week" },
-  { id: "kit", name: "Kit", age: 33, swatch: "#C8E8D6", note: "last week" },
+  { id: "maya", name: "Maya", age: 31, swatch: "var(--swatch-rose-100)", note: "2 days ago" },
+  { id: "sam", name: "Sam", age: 34, swatch: "var(--swatch-blue-100)", note: "3 days ago" },
+  { id: "rae", name: "Rae", age: 29, swatch: "var(--swatch-sage-100)", note: "4 days ago" },
+  { id: "ava", name: "Ava", age: 32, swatch: "var(--swatch-peach-100)", note: "this week" },
+  { id: "noor", name: "Noor", age: 30, swatch: "var(--swatch-lilac-100)", note: "this week" },
+  { id: "kit", name: "Kit", age: 33, swatch: "var(--swatch-mint-100)", note: "last week" },
 ];
 
 function AttunedWithMeScreen() {
