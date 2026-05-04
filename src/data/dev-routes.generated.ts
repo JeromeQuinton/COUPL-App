@@ -1121,6 +1121,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/onboarding/checks/passport/scan"
       },
       {
+        "label": "Redaction review",
+        "to": "/onboarding/checks/redaction-review"
+      },
+      {
         "label": "Complete",
         "to": "/onboarding/complete"
       },
