@@ -1,3 +1,5 @@
+import type { OnboardingStep } from "@/lib/onboarding_store";
+
 /**
  * NamedPhaseStepper — replaces the linear progressbar in OnboardingShell.
  * Charter (R4 Stream 1.5, DR-103) bans progressbars; replace with a soft
@@ -60,17 +62,22 @@ export const ONBOARDING_PHASES: OnboardingPhase[] = [
 ];
 
 /**
- * Map a step index (0-based) within `total` steps onto one of the four
- * named phases. Quartile split.
+ * Locked mapping from each onboarding step to its named phase (DR-110).
+ * The four-bucket shape (Arrival → Reflection → Presence → Clarity) is
+ * fixed; keys track the live OnboardingStep union. Phase intent:
+ *   - Arrival: establishing intent + base context
+ *   - Reflection: personality + values capture
+ *   - Presence: photo + verification capture (no step in current flow)
+ *   - Clarity: final review + handoff
  */
-export function phaseForStep(
-  stepIndex: number,
-  totalSteps: number,
-): OnboardingPhase {
-  const t = totalSteps > 0 ? totalSteps : 1;
-  const fraction = stepIndex / t;
-  if (fraction < 0.25) return "Arrival";
-  if (fraction < 0.5) return "Reflection";
-  if (fraction < 0.75) return "Presence";
-  return "Clarity";
+export const STEP_TO_PHASE: Record<OnboardingStep, OnboardingPhase> = {
+  start: "Arrival",
+  intent: "Arrival",
+  pacing: "Reflection",
+  values: "Reflection",
+  review: "Clarity",
+};
+
+export function phaseForStep(step: OnboardingStep): OnboardingPhase {
+  return STEP_TO_PHASE[step];
 }

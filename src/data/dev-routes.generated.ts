@@ -582,8 +582,16 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         }
       },
       {
+        "label": "Monthly summary",
+        "to": "/growth/monthly-summary"
+      },
+      {
         "label": "Path",
         "to": "/growth/path"
+      },
+      {
+        "label": "Weekly",
+        "to": "/growth/weekly"
       },
       {
         "label": "Workshops",
@@ -680,6 +688,60 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
       {
         "label": "Weekly review detail",
         "to": "/polaris/weekly-review/$weekId",
+        "params": {
+          "weekId": "demo"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Coach",
+    "rows": [
+      {
+        "label": "Coach",
+        "to": "/coach"
+      },
+      {
+        "label": "Audit log",
+        "to": "/coach/audit-log"
+      },
+      {
+        "label": "Audit log detail",
+        "to": "/coach/audit-log/$entryId",
+        "params": {
+          "entryId": "demo"
+        }
+      },
+      {
+        "label": "History",
+        "to": "/coach/history"
+      },
+      {
+        "label": "Monthly summary",
+        "to": "/coach/monthly-summary"
+      },
+      {
+        "label": "Monthly summary detail",
+        "to": "/coach/monthly-summary/$monthId",
+        "params": {
+          "monthId": "demo"
+        }
+      },
+      {
+        "label": "Pacing",
+        "to": "/coach/pacing"
+      },
+      {
+        "label": "Preferences",
+        "to": "/coach/preferences"
+      },
+      {
+        "label": "Weekly review",
+        "to": "/coach/weekly-review"
+      },
+      {
+        "label": "Weekly review detail",
+        "to": "/coach/weekly-review/$weekId",
         "params": {
           "weekId": "demo"
         }
@@ -788,6 +850,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "params": {
           "sessionId": "demo"
         }
+      },
+      {
+        "label": "Audit log",
+        "to": "/profile/audit-log"
       },
       {
         "label": "Coach settings",

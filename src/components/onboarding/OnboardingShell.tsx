@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 import { useNavigate, useRouter } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import { ORDERED_STEPS, type OnboardingStep } from "@/lib/onboarding_store";
+import { type OnboardingStep } from "@/lib/onboarding_store";
 import { OfflineBanner } from "./OfflineBanner";
 import {
   NamedPhaseStepper,
@@ -38,9 +38,7 @@ export function OnboardingShell({
 }: Props) {
   const router = useRouter();
   const navigate = useNavigate();
-  const idx = ORDERED_STEPS.indexOf(step);
-  const total = ORDERED_STEPS.length;
-  const currentPhase = phaseForStep(idx, total);
+  const currentPhase = phaseForStep(step);
 
   const handleBack = () => {
     if (onBack) return onBack();
