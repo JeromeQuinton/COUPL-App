@@ -64,7 +64,7 @@ function PassportReviewScreen() {
         </OnboardingButton>
         <OnboardingButton
           type="button"
-          variant="ghost"
+          variant="secondary"
           onClick={() => navigate({ to: "/onboarding/checks/passport/scan" })}
         >
           Retake

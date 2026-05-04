@@ -12,7 +12,7 @@ import { OnboardingButton } from "@/components/onboarding/OnboardingButton";
  * shows a fixed "six" since the existing review screen ships six.
  */
 
-const PHOTO_COUNT = 6;
+const PHOTO_COUNT: number = 6;
 
 export const Route = createFileRoute("/onboarding/photos/saved")({
   head: () => ({
