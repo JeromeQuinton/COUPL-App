@@ -730,6 +730,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/data/export/start"
       },
       {
+        "label": "History",
+        "to": "/profile/data/exports/history"
+      },
+      {
         "label": "Ready",
         "to": "/profile/data/ready"
       },

@@ -208,6 +208,11 @@ function ProfileScreen() {
             title="Data export"
             sub="Take your record with you"
           />
+          <ProfileLinkRow
+            to="/profile/data/exports/history"
+            title="Past exports"
+            sub="What you've downloaded before — re-download for 24 hours"
+          />
         </ul>
       </section>
     </YouBackdrop>
@@ -228,6 +233,7 @@ function ProfileLinkRow({
     | "/membership"
     | "/host"
     | "/profile/data/export/start"
+    | "/profile/data/exports/history"
     | "/profile/account"
     | "/profile/notifications"
     | "/profile/help"
