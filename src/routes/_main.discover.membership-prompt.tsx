@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/_main/discover/membership-prompt")({
   head: () => ({ meta: [{ title: "Membership — COUPL" }] }),
@@ -44,10 +45,11 @@ function MembershipPrompt() {
       </header>
 
       <div className="mx-auto mt-12 flex w-full max-w-[420px] flex-col items-center text-center">
-        <p className="text-label-mono text-plum-500">DAILY LIMIT</p>
-        <h1 className="mt-4 font-display text-[28px] italic leading-tight text-ink">
-          You've noticed three people today.
-        </h1>
+        <ScreenHeader
+          eyebrow="DAILY LIMIT"
+          title="You've noticed three people today."
+          titleItalic
+        />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           Free remains intentional. Membership expands.
         </p>

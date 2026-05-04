@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronDown, ChevronLeft } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 import {
   useCompatibilityDeepDive,
   type LensReading,
@@ -18,21 +19,17 @@ function CompatibilityDeepDive() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/discover/$id"
-          params={{ id }}
-          aria-label="Back to profile"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Compatibility</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">
-        How you two read on each <em className="italic">lens.</em>
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/discover/$id", params: { id } }}
+        eyebrow="Compatibility"
+        title={
+          <>
+            How you two read on each <em className="italic">lens.</em>
+          </>
+        }
+        titleSize="26"
+        titleWeight="normal"
+      />
       <p className="mt-2 font-body text-[13px] leading-relaxed text-slate">
         Five lenses. Tap to expand each one.
       </p>

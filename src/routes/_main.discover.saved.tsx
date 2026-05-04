@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { X } from "lucide-react";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 import { getSavedProfiles, unsaveProfile } from "@/lib/saved-profiles";
 
 export const Route = createFileRoute("/_main/discover/saved")({
@@ -32,10 +33,7 @@ function SavedList() {
       style={{ paddingTop: "calc(env(safe-area-inset-top) + 1.5rem)", paddingBottom: "calc(env(safe-area-inset-bottom) + 1.5rem)" }}
     >
       <div className="mx-auto max-w-md">
-        <p className="text-label-mono">Saved</p>
-        <h1 className="mt-3 font-display text-[28px] italic leading-tight text-ink">
-          Who's stayed with you?
-        </h1>
+        <ScreenHeader eyebrow="Saved" title="Who's stayed with you?" titleItalic />
 
         {ids.length === 0 ? (
           <article className="mt-10 rounded-[18px] border border-dashed border-line bg-paper px-5 py-10 text-center">

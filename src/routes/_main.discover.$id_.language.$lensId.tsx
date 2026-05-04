@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { PolarisHeader } from "@/components/shell/PolarisHeader";
 import { getProfileDetail } from "@/data/discover_profile_detail_sample";
 
 /**
@@ -126,12 +127,11 @@ function LanguageDeepDiveScreen() {
         </header>
 
         <div className="mt-10">
-          <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-plum-700">
-            With {name}
-          </p>
-          <h1 className="mt-3 font-display text-[28px] leading-[1.1] text-ink">
-            {lens.label}
-          </h1>
+          <PolarisHeader
+            eyebrow={`With ${name}`}
+            title={lens.label}
+            eyebrowTone="plum-700"
+          />
           <p className="mt-3 font-body text-[14.5px] leading-relaxed text-slate">
             {lens.field}
           </p>

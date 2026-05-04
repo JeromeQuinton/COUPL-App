@@ -5,7 +5,7 @@ import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type LinkTo = ComponentProps<typeof Link>["to"];
-type TitleSize = "24" | "26";
+type TitleSize = "24" | "26" | "28";
 type TitleWeight = "normal" | "semibold";
 
 type Props = {
@@ -23,6 +23,7 @@ type Props = {
 const TITLE_SIZE: Record<TitleSize, string> = {
   "24": "text-[24px]",
   "26": "text-[26px]",
+  "28": "text-[28px]",
 };
 
 const TITLE_WEIGHT: Record<TitleWeight, string> = {

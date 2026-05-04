@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft, Lock } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 
 /**
  * /discover/attuned-with-me — see who attuned to you.
@@ -29,16 +30,17 @@ const PEOPLE = [
 function AttunedWithMeScreen() {
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link to="/discover" aria-label="Back" className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50">
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Discover · attuned with me</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[28px] leading-[1.1] text-ink">
-        People who <em className="font-display italic">noticed you.</em>
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/discover" }}
+        eyebrow="Discover · attuned with me"
+        title={
+          <>
+            People who <em className="font-display italic">noticed you.</em>
+          </>
+        }
+        titleSize="28"
+        titleWeight="normal"
+      />
       <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
         These six attuned to you in the last fortnight. Open one when you're
         ready to look back.

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { ProfileScreenHeader } from "@/components/shell/ProfileScreenHeader";
 
 /**
  * /discover/preferences — persistent Discover preferences.
@@ -33,20 +34,17 @@ function PreferencesScreen() {
 
   return (
     <div className="relative px-5 pb-16 pt-6">
-      <header className="flex items-center gap-3">
-        <Link
-          to="/discover"
-          aria-label="Back"
-          className="-ml-1 rounded-full p-1.5 text-plum-700 hover:bg-lavender-50"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </Link>
-        <p className="text-label-mono">Discover · preferences</p>
-      </header>
-
-      <h1 className="mt-3 font-display text-[28px] leading-[1.1] text-ink">
-        Set your <em className="font-display italic">defaults.</em>
-      </h1>
+      <ProfileScreenHeader
+        backLink={{ to: "/discover" }}
+        eyebrow="Discover · preferences"
+        title={
+          <>
+            Set your <em className="font-display italic">defaults.</em>
+          </>
+        }
+        titleSize="28"
+        titleWeight="normal"
+      />
       <p className="mt-3 font-body text-[13.5px] leading-relaxed text-slate">
         These shape tomorrow's issue. You can still tune any single day from
         the filter sheet.
