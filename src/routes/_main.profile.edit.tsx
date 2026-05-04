@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeft, Plus, Pencil } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Pencil } from "lucide-react";
 import { YouBackdrop } from "@/components/you/YouBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { EDIT_PHOTOS, EDIT_PROMPTS, EDIT_THINGS_TO_KNOW } from "@/data/you_sample";
@@ -95,7 +95,7 @@ function EditProfilePage() {
       </section>
 
       {/* Things to know */}
-      <section className="px-5 pt-7 pb-12">
+      <section className="px-5 pt-7">
         <h2 className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
           Things to know
         </h2>
@@ -106,6 +106,28 @@ function EditProfilePage() {
               {t}
             </li>
           ))}
+        </ul>
+      </section>
+      {/* Settings — preferences that aren't shown on your profile */}
+      <section className="px-5 pt-7 pb-12">
+        <h2 className="font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-slate">
+          Settings
+        </h2>
+        <ul className="mt-3 flex flex-col gap-2">
+          <li>
+            <Link
+              to="/profile/edit/language"
+              className="flex items-center justify-between rounded-[14px] bg-paper px-4 py-3.5 shadow-elev-1 hover:bg-lavender-50"
+            >
+              <div className="min-w-0 flex-1 pr-3">
+                <p className="font-display text-[14.5px] text-ink">Language</p>
+                <p className="mt-0.5 font-body text-[12.5px] text-stone">
+                  English (UK)
+                </p>
+              </div>
+              <ChevronRight size={18} className="shrink-0 text-stone" />
+            </Link>
+          </li>
         </ul>
       </section>
     </YouBackdrop>
