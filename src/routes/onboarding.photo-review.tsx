@@ -137,9 +137,9 @@ function PhotoReviewScreen() {
         <OnboardingButton
           type="button"
           disabled={!done}
-          onClick={() => navigate({ to: "/home" })}
+          onClick={() => navigate({ to: "/onboarding/photos/saved" })}
         >
-          Take me home
+          Continue
         </OnboardingButton>
       </div>
     </OnboardingFrame>
