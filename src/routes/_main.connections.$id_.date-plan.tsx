@@ -167,6 +167,13 @@ function DatePlanScreen() {
             Reschedule
           </button>
           <Link
+            to="/connections/$id/date-plan/update"
+            params={{ id }}
+            className="block w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[13.5px] text-ink hover:bg-lavender-50"
+          >
+            Update plan
+          </Link>
+          <Link
             to="/connections/$id_/add-to-calendar"
             params={{ id }}
             className="block w-full rounded-full border border-line bg-paper px-5 py-3 text-center font-display text-[13.5px] text-ink hover:bg-lavender-50"
