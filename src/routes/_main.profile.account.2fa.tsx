@@ -64,6 +64,12 @@ function TwoFactor() {
             </strong>
             .
           </p>
+          <Link
+            to="/profile/account/2fa/recovery-codes"
+            className="mt-5 inline-flex self-start text-label-mono text-plum-700 hover:text-plum-500"
+          >
+            Download backup codes →
+          </Link>
           <button
             type="button"
             onClick={() => navigate({ to: "/profile/account" })}

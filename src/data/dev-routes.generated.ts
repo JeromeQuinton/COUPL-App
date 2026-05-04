@@ -662,6 +662,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/profile/account/2fa"
       },
       {
+        "label": "Recovery codes",
+        "to": "/profile/account/2fa/recovery-codes"
+      },
+      {
         "label": "Delete",
         "to": "/profile/account/delete"
       },
