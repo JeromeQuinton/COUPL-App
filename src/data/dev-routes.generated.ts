@@ -1137,6 +1137,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         "to": "/onboarding/error"
       },
       {
+        "label": "Identity",
+        "to": "/onboarding/identity"
+      },
+      {
         "label": "Intent",
         "to": "/onboarding/intent"
       },
