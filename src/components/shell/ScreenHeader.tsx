@@ -1,11 +1,13 @@
 import { cn } from "@/lib/utils";
 
 type EyebrowTone = "plum" | "stone";
+type TitleSize = "display" | "display-xl";
 
 type Props = {
   eyebrow?: string;
   title: string;
   eyebrowTone?: EyebrowTone;
+  titleSize?: TitleSize;
 };
 
 const EYEBROW_TYPOGRAPHY =
@@ -16,10 +18,16 @@ const EYEBROW_TONE: Record<EyebrowTone, string> = {
   stone: "text-stone",
 };
 
+const TITLE_TYPOGRAPHY: Record<TitleSize, string> = {
+  display: "font-display text-[28px] leading-tight",
+  "display-xl": "text-display-xl",
+};
+
 export function ScreenHeader({
   eyebrow,
   title,
   eyebrowTone = "plum",
+  titleSize = "display",
 }: Props) {
   return (
     <>
@@ -31,7 +39,8 @@ export function ScreenHeader({
       <h1
         className={cn(
           eyebrow && "mt-3",
-          "font-display text-[28px] leading-tight text-ink",
+          TITLE_TYPOGRAPHY[titleSize],
+          "text-ink",
         )}
       >
         {title}
