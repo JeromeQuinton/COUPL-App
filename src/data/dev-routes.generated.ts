@@ -679,6 +679,10 @@ export const DEV_ROUTE_SECTIONS: DevRouteSection[] = [
         }
       },
       {
+        "label": "Pacing",
+        "to": "/coach/pacing"
+      },
+      {
         "label": "Preferences",
         "to": "/coach/preferences"
       },

@@ -205,6 +205,38 @@ export type WeeklyReview = {
   prompts: string[];
 };
 
+/* ---------- R3-23 Pacing observations (DR-093, breath-rhythm) ---------- */
+
+export type PaceLabel =
+  | "steady"
+  | "spirited"
+  | "in a hurry"
+  | "attuned"
+  | "needing repair";
+
+export type PacingDimension = {
+  band: "pace" | "presence" | "repair";
+  label: PaceLabel;
+  intensity: number; // 0..1, drives the band's amplitude — never user-visible
+};
+
+export type PacingObservation = {
+  weekLabel: string;
+  bands: PacingDimension[];
+  caption: string;
+};
+
+export const SAMPLE_PACING_THIS_WEEK: PacingObservation = {
+  weekLabel: "This week",
+  bands: [
+    { band: "pace", label: "steady", intensity: 0.55 },
+    { band: "presence", label: "attuned", intensity: 0.7 },
+    { band: "repair", label: "attuned", intensity: 0.65 },
+  ],
+  caption:
+    "There's been a steadier rhythm in the connections this week than last; mid-week felt a touch more spirited, and the edges softened back into pause.",
+};
+
 export const SAMPLE_WEEKLY_REVIEWS: Record<string, WeeklyReview> = {
   current: {
     id: "current",
