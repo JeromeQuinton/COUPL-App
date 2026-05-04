@@ -89,7 +89,7 @@ function HeroOverlayLayer({ hero }: { hero: HeroOverlay }) {
         className="pointer-events-none absolute inset-x-0 top-0 h-[28%]"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%)",
+            "linear-gradient(to bottom, var(--photo-overlay-medium) 0%, rgba(0,0,0,0) 100%)",
         }}
       />
       <div
@@ -97,7 +97,7 @@ function HeroOverlayLayer({ hero }: { hero: HeroOverlay }) {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]"
         style={{
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)",
+            "linear-gradient(to top, var(--photo-overlay-strong) 0%, rgba(0,0,0,0) 100%)",
         }}
       />
 
@@ -116,7 +116,7 @@ function HeroOverlayLayer({ hero }: { hero: HeroOverlay }) {
       {/* Bottom-left — Name+age + location */}
       <div
         className="absolute bottom-4 left-4 flex flex-col"
-        style={{ textShadow: "0 1px 3px rgba(0,0,0,0.45)" }}
+        style={{ textShadow: "0 1px 3px var(--photo-overlay-light)" }}
       >
         <span className="font-display text-[24px] font-medium leading-tight text-white">
           {hero.name} · {hero.age}
