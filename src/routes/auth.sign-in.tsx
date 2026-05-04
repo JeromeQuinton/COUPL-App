@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AuthShell } from "@/components/auth/AuthShell";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/auth/sign-in")({
   head: () => ({ meta: [{ title: "Sign in — COUPL" }] }),
@@ -15,8 +16,7 @@ function SignIn() {
   if (sent) {
     return (
       <AuthShell>
-        <p className="text-label-mono text-stone">Check your inbox</p>
-        <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">Link on its way.</h1>
+        <ScreenHeader eyebrow="Check your inbox" title="Link on its way." eyebrowTone="stone" />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           Open the email or message we just sent. The link works for fifteen minutes.
         </p>
@@ -32,8 +32,7 @@ function SignIn() {
 
   return (
     <AuthShell>
-      <p className="text-label-mono text-stone">Sign in</p>
-      <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">Welcome back.</h1>
+      <ScreenHeader eyebrow="Sign in" title="Welcome back." eyebrowTone="stone" />
       <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
         Sign in with the email or phone you used to join.
       </p>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AuthShell } from "@/components/auth/AuthShell";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/auth/recover")({
   head: () => ({ meta: [{ title: "Recover access — COUPL" }] }),
@@ -22,8 +23,7 @@ function Recover() {
   if (sent) {
     return (
       <AuthShell>
-        <p className="text-label-mono text-stone">Email sent</p>
-        <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">Link sent.</h1>
+        <ScreenHeader eyebrow="Email sent" title="Link sent." eyebrowTone="stone" />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           We've sent a link to <span className="font-semibold">{email}</span>. It works for an hour.
         </p>
@@ -46,8 +46,11 @@ function Recover() {
 
   return (
     <AuthShell>
-      <p className="text-label-mono text-stone">Recover access</p>
-      <h1 className="mt-3 font-display text-[28px] leading-tight text-ink">Let's get you back in.</h1>
+      <ScreenHeader
+        eyebrow="Recover access"
+        title="Let's get you back in."
+        eyebrowTone="stone"
+      />
       <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
         Tell us the email on your account. We'll send a link to reset things.
       </p>

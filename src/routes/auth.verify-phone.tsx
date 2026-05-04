@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { AuthShell } from "@/components/auth/AuthShell";
 import { CodeInput } from "@/components/CodeInput";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/auth/verify-phone")({
   head: () => ({ meta: [{ title: "Verify phone — COUPL" }] }),
@@ -41,8 +42,7 @@ function VerifyPhone() {
     // /onboarding (in-flow phone capture lives at /onboarding/verify, not here).
     return (
       <AuthShell>
-        <p className="text-label-mono text-stone">Number added</p>
-        <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">All set.</h1>
+        <ScreenHeader eyebrow="Number added" title="All set." eyebrowTone="stone" />
         <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
           Your phone is now linked to the account. We'll only use it for safety touchpoints.
         </p>
@@ -59,8 +59,7 @@ function VerifyPhone() {
 
   return (
     <AuthShell>
-      <p className="text-label-mono text-stone">Verify</p>
-      <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">Check your messages.</h1>
+      <ScreenHeader eyebrow="Verify" title="Check your messages." eyebrowTone="stone" />
       <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
         We sent a code to {phone ?? "your phone"}.
       </p>

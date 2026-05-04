@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { AuthShell } from "@/components/auth/AuthShell";
 import { CodeInput } from "@/components/CodeInput";
+import { ScreenHeader } from "@/components/shell/ScreenHeader";
 
 export const Route = createFileRoute("/auth/verify-email")({
   head: () => ({ meta: [{ title: "Verify email — COUPL" }] }),
@@ -41,8 +42,7 @@ function VerifyEmail() {
     // existing-user branch via the auth-guard at index.tsx.
     return (
       <AuthShell>
-        <p className="text-label-mono text-stone">Verified</p>
-        <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">You're in.</h1>
+        <ScreenHeader eyebrow="Verified" title="You're in." eyebrowTone="stone" />
         <button
           type="button"
           onClick={() => navigate({ to: "/onboarding" })}
@@ -56,8 +56,7 @@ function VerifyEmail() {
 
   return (
     <AuthShell>
-      <p className="text-label-mono text-stone">Verify</p>
-      <h1 className="mt-3 font-display text-[26px] leading-tight text-ink">Check your email.</h1>
+      <ScreenHeader eyebrow="Verify" title="Check your email." eyebrowTone="stone" />
       <p className="mt-3 font-body text-[14px] leading-relaxed text-slate">
         We sent a code to {email ?? "your email"}.
       </p>
