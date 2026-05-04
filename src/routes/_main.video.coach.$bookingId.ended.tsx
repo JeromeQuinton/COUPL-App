@@ -82,6 +82,13 @@ function CoachEnded() {
         >
           Skip for now
         </button>
+        <Link
+          to="/video/coach/$bookingId/feedback"
+          params={{ bookingId }}
+          className="mt-2 block w-full px-5 py-2 text-center font-body text-[13px] italic text-stone hover:text-plum-500"
+        >
+          Want to take more time? Reflect on this →
+        </Link>
       </div>
     </div>
   );

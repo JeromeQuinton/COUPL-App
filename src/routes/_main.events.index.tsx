@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Search } from "lucide-react";
 import { EventsBackdrop } from "@/components/events/EventsBackdrop";
 import { StatusBar } from "@/components/events/StatusBar";
 import { FEATURED_EVENT, UPCOMING_EVENTS } from "@/data/events_sample";
@@ -29,9 +29,18 @@ function EventsListPage() {
               Small. Hosted. Easy to leave.
             </p>
           </div>
-          <span className="mt-1 rounded-full bg-beeswax-300/70 px-2.5 py-1 text-[11px] font-medium text-plum-700">
-            {f.neighborhood}
-          </span>
+          <div className="mt-1 flex items-center gap-2">
+            <Link
+              to="/events/search"
+              aria-label="Search events"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-paper text-plum-700 shadow-elev-1 hover:bg-lavender-50"
+            >
+              <Search size={15} />
+            </Link>
+            <span className="rounded-full bg-beeswax-300/70 px-2.5 py-1 text-[11px] font-medium text-plum-700">
+              {f.neighborhood}
+            </span>
+          </div>
         </div>
       </header>
 

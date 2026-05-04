@@ -64,13 +64,12 @@ function SubscriptionDetail() {
         >
           Invoices
         </Link>
-        <button
-          type="button"
-          // TODO: stream-5-next stripe portal
-          className="w-full rounded-[14px] bg-paper px-4 py-3.5 text-center font-display text-[14.5px] text-ink shadow-elev-1 hover:bg-lavender-50"
+        <Link
+          to="/membership/subscription/payment"
+          className="block w-full rounded-[14px] bg-paper px-4 py-3.5 text-center font-display text-[14.5px] text-ink shadow-elev-1 hover:bg-lavender-50"
         >
           Update payment method
-        </button>
+        </Link>
       </section>
 
       <p className="px-5 pt-8 pb-12 text-center font-body text-[12.5px] italic text-stone">

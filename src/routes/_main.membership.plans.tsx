@@ -153,12 +153,12 @@ function MembershipPlans() {
       </section>
 
       <div className="px-5 pt-8 pb-12 space-y-3">
-        <button
-          type="button"
-          className="w-full rounded-full bg-plum-700 px-5 py-3.5 font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
+        <Link
+          to="/membership/upgraded"
+          className="block w-full rounded-full bg-plum-700 px-5 py-3.5 text-center font-display text-[15px] font-medium text-paper shadow-elev-1 hover:opacity-90"
         >
           Start membership · {price.display}
-        </button>
+        </Link>
         <Link
           to="/profile"
           className="block w-full rounded-full px-5 py-3 text-center font-body text-[13.5px] text-slate hover:text-plum-500"

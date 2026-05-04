@@ -79,11 +79,9 @@ function AccountHome() {
           value={twoFactorLabel(twoFactor)}
         />
         <li>
-          <button
-            type="button"
-            disabled
-            aria-disabled
-            className="flex w-full items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 text-left shadow-elev-1 opacity-70"
+          <Link
+            to="/profile/account/linked"
+            className="flex w-full items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 text-left shadow-elev-1 transition-colors hover:bg-lavender-50"
           >
             <div>
               <p className="font-display text-[15px] text-ink">
@@ -92,25 +90,39 @@ function AccountHome() {
               <p className="mt-0.5 font-body text-[12px] text-stone">Apple</p>
             </div>
             <ChevronRight size={16} className="text-stone" />
-          </button>
+          </Link>
         </li>
         <li>
-          <button
-            type="button"
-            disabled
-            aria-disabled
-            className="flex w-full items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 text-left shadow-elev-1 opacity-70"
+          <Link
+            to="/profile/account/sessions"
+            className="flex w-full items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 text-left shadow-elev-1 transition-colors hover:bg-lavender-50"
           >
             <div>
               <p className="font-display text-[15px] text-ink">
-                Sign out everywhere
+                Active sessions
               </p>
               <p className="mt-0.5 font-body text-[12px] text-stone">
-                Sign out of all sessions
+                Sign one out, or all but this one
               </p>
             </div>
             <ChevronRight size={16} className="text-stone" />
-          </button>
+          </Link>
+        </li>
+        <li className="pt-3">
+          <Link
+            to="/profile/account/delete"
+            className="flex w-full items-center justify-between gap-3 rounded-[14px] bg-paper px-4 py-3.5 text-left shadow-elev-1 transition-colors hover:bg-blush-50"
+          >
+            <div>
+              <p className="font-display text-[15px] text-danger">
+                Delete account
+              </p>
+              <p className="mt-0.5 font-body text-[12px] text-stone">
+                Pause is reversible. This isn't.
+              </p>
+            </div>
+            <ChevronRight size={16} className="text-stone" />
+          </Link>
         </li>
       </ul>
     </YouBackdrop>
